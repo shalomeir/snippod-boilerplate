@@ -1,0 +1,8 @@
+snippod-webapp/node_modules
+*.log
+snippod-webapp/dist
+snippod-webapp/client/bower_components
+snippod-webapp/.tmp
+snippod-webapp/.grunt
+.DS_Store
+snippod-webapp/.yo-rc.json
