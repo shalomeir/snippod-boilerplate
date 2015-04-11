@@ -1,8 +1,23 @@
-snippod-webapp/node_modules
-*.log
-snippod-webapp/dist
-snippod-webapp/client/bower_components
-snippod-webapp/.tmp
-snippod-webapp/.grunt
 .DS_Store
-snippod-webapp/.yo-rc.json
+snippod_webapp/.DS_Store
+snippod_webapp/node_modules
+snippod_webapp/*.log
+snippod_webapp/dist
+snippod_webapp/client/bower_components
+snippod_webapp/.tmp
+snippod_webapp/.grunt
+snippod_webapp/.yo-rc.json
+
+snippod_boilerplate/.DS_Store
+
+# Python compiled byte code
+*.pyc
+
+# SQLite3 database
+*.sqlite3
+
+# Staticfiles
+staticfiles/
+
+# vrtualenv
+venv/

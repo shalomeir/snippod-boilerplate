@@ -10,7 +10,10 @@ https://github.com/shalomeir/snippod-boilerplate
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+APPS_ROOT = os.path.join(BASE_DIR, 'djangoapps')
+sys.path.insert(0, APPS_ROOT)
 
 
 # Quick-start development settings - unsuitable for production
@@ -51,12 +54,27 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'snippod-boilerplate.urls'
+ROOT_URLCONF = 'snippod_boilerplate.urls'
 
-WSGI_APPLICATION = 'snippod-boilerplate.wsgi.application'
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                ],
+            },
+        },
+    ]
+
+WSGI_APPLICATION = 'snippod_boilerplate.wsgi.application'
 
 
 # Database
@@ -65,13 +83,14 @@ WSGI_APPLICATION = 'snippod-boilerplate.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
+# https://docs.djangoproject.com/en/dev/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -91,7 +110,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'dist/static'),
+    # os.path.join(BASE_DIR, 'snippod_webapp/dist/client'),
     os.path.join(BASE_DIR, 'static'),
 )
 
@@ -104,7 +123,7 @@ STATICFILES_FINDERS = (
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'djangoapps/templates'),
 )
 
 REST_FRAMEWORK = {

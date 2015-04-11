@@ -1,9 +1,12 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+
+from django.utils.translation import ugettext_lazy as _
+
 
 
 class AccountManager(BaseUserManager):
-    def create_user(self, email, password=None, **kwargs):
+    def create_user(self, email, password=None, is_staff=False, is_superuser=False, **kwargs):
         if not email:
             raise ValueError('Users must have a valid email address.')
 
@@ -11,7 +14,8 @@ class AccountManager(BaseUserManager):
             raise ValueError('Users must have a valid username.')
 
         account = self.model(
-            email=self.normalize_email(email), username=kwargs.get('username')
+            email=self.normalize_email(email), username=kwargs.get('username'),
+            is_staff=is_staff, is_superuser=is_superuser
         )
 
         account.set_password(password)
@@ -20,7 +24,7 @@ class AccountManager(BaseUserManager):
         return account
 
     def create_superuser(self, email, password, **kwargs):
-        account = self.create_user(email, password, **kwargs)
+        account = self.create_user(email, password, True, True, **kwargs)
 
         account.is_admin = True
         account.save()
@@ -28,7 +32,7 @@ class AccountManager(BaseUserManager):
         return account
 
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=40, unique=True)
 
@@ -37,6 +41,9 @@ class Account(AbstractBaseUser):
     tagline = models.CharField(max_length=140, blank=True)
 
     is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(_('staff status'), default=False,
+                                    help_text=_('Designates whether the user'
+                                            ' can log into this admin site.'))
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -54,3 +61,7 @@ class Account(AbstractBaseUser):
 
     def get_short_name(self):
         return self.first_name
+
+    @property
+    def is_staff(self):
+        return self.is_admin

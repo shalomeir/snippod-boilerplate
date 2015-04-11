@@ -15,23 +15,23 @@
     $routeProvider.when('/', {
       controller: 'IndexController', 
       controllerAs: 'vm',
-      templateUrl: '/static/templates/layout/index.html'
+      templateUrl: '/templates/layout/index.html'
     }).when('/register', {
       controller: 'RegisterController', 
       controllerAs: 'vm',
-      templateUrl: '/static/templates/authentication/register.html'
+      templateUrl: '/templates/authentication/register.html'
     }).when('/login', {
       controller: 'LoginController',
       controllerAs: 'vm',
-      templateUrl: '/static/templates/authentication/login.html'
+      templateUrl: '/templates/authentication/login.html'
     }).when('/+:username', {
       controller: 'AccountController',
       controllerAs: 'vm',
-      templateUrl: '/static/templates/accounts/account.html'
+      templateUrl: '/templates/accounts/account.html'
     }).when('/+:username/settings', {
       controller: 'AccountSettingsController',
       controllerAs: 'vm',
-      templateUrl: '/static/templates/accounts/settings.html'
+      templateUrl: '/templates/accounts/settings.html'
     }).otherwise('/');
   }
 })();
