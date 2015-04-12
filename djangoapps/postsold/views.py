@@ -1,9 +1,9 @@
 from rest_framework import permissions, viewsets
 from rest_framework.response import Response
 
-from posts.models import Post
-from posts.permissions import IsAuthorOfPost
-from posts.serializers import PostSerializer
+from postsold.models import Post
+from postsold.permissions import IsAuthorOfPost
+from postsold.serializers import PostSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):

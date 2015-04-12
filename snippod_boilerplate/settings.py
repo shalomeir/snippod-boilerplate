@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'argonauts',
     'authentication',
-    'posts',
+    'postsold',
     'myapp',
 )
 

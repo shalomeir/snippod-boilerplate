@@ -6,17 +6,17 @@ from django.conf import settings
 from rest_framework_nested import routers
 
 from authentication.views import AccountViewSet, LoginView, LogoutView
-from posts.views import AccountPostsViewSet, PostViewSet
+from postsold.views import AccountPostsViewSet, PostViewSet
 from snippod_boilerplate.views import IndexView
 
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
-router.register(r'posts', PostViewSet)
+router.register(r'postsold', PostViewSet)
 
 accounts_router = routers.NestedSimpleRouter(
     router, r'accounts', lookup='account'
 )
-accounts_router.register(r'posts', AccountPostsViewSet)
+accounts_router.register(r'postsold', AccountPostsViewSet)
 
 urlpatterns = patterns(
     '',
@@ -28,7 +28,7 @@ urlpatterns = patterns(
     url(r'^', include('myapp.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    # url(r'^.*$', IndexView.as_view(), name='index'),
+    url(r'^.*$', IndexView.as_view(), name='index'),
 )
 
 if settings.DEBUG:
