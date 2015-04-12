@@ -14,7 +14,7 @@ var taskConfig = function(grunt) {
       },
       files: [{
         expand: true,
-        cwd: '<%= snippod.client %>/images',
+        cwd: '<%= snippod.client %>/static/images',
         src: '**/*.{jpg,jpeg,gif,png,svg}',
         dest: '<%= snippod.dist %>/client/images'
       }]

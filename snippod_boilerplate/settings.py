@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'authentication',
     'postsold',
     'myapp',
+    'main',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,7 +113,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
-    # os.path.join(BASE_DIR, 'snippod_webapp/dist/client'),
+    os.path.join(BASE_DIR, 'snippod_webapp/dist/client'),
     # os.path.join(BASE_DIR, 'static'),
 )
 

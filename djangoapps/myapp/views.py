@@ -75,4 +75,4 @@ def index(request):
            'react_ctx_comments': react_ctx_comments,
            'rendered_hello_world': rendered_hello_world}
 
-    return render(request, 'index.html', ctx)
+    return render(request, 'indexapp.html', ctx)

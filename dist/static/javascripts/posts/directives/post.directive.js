@@ -1,0 +1,1 @@
+!function(){"use strict";function t(){var t={restrict:"E",scope:{post:"="},templateUrl:"/static/templates/posts/post.html"};return t}angular.module("thinkster.posts.directives").directive("post",t)}();

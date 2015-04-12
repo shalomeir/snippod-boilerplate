@@ -1,0 +1,1 @@
+!function(){"use strict";function t(t){function n(){return t.get("/api/v1/posts/")}function s(n){return t.post("/api/v1/posts/",{content:n})}function e(n){return t.get("/api/v1/accounts/"+n+"/posts/")}var o={all:n,get:e,create:s};return o}angular.module("thinkster.posts.services").factory("Posts",t),t.$inject=["$http"]}();

@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="django" name="Django">
       <configuration>
-        <option name="rootFolder" value="$MODULE_DIR$" />
+        <option name="rootFolder" value="$MODULE_DIR$/snippod_boilerplate" />
         <option name="settingsModule" value="snippod_boilerplate/settings.py" />
         <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
@@ -17,4 +17,12 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="snippod-boilerplate/venv interpreter library" level="application" />
   </component>
+  <component name="TemplatesService">
+      <option name="TEMPLATE_CONFIGURATION" value="Django" />
+      <option name="TEMPLATE_FOLDERS">
+        <list>
+          <option value="$MODULE_DIR$/snippod_boilerplate/djangoapps//templates" />
+        </list>
+      </option>
+    </component>
 </module>

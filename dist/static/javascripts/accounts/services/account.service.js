@@ -1,0 +1,1 @@
+!function(){"use strict";function t(t){function n(n){return t["delete"]("/api/v1/accounts/"+n+"/")}function c(n){return t.get("/api/v1/accounts/"+n+"/")}function u(n,c){return t.put("/api/v1/accounts/"+n+"/",c)}var e={destroy:n,get:c,update:u};return e}angular.module("thinkster.accounts.services").factory("Account",t),t.$inject=["$http"]}();

@@ -1,0 +1,1 @@
+!function(){"use static";function n(n,t,o){function i(){o.isAuthenticated()&&n.url("/")}function c(){o.login(e.email,e.password)}var e=this;e.login=c,i()}angular.module("thinkster.authentication.controllers").controller("LoginController",n),n.$inject=["$location","$scope","Authentication"]}();
