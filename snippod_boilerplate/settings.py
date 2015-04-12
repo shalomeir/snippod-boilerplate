@@ -42,8 +42,10 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'compressor',
     'rest_framework',
+    'argonauts',
     'authentication',
     'posts',
+    'myapp',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -111,7 +113,7 @@ STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
     # os.path.join(BASE_DIR, 'snippod_webapp/dist/client'),
-    os.path.join(BASE_DIR, 'static'),
+    # os.path.join(BASE_DIR, 'static'),
 )
 
 STATICFILES_FINDERS = (
@@ -122,9 +124,9 @@ STATICFILES_FINDERS = (
 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'djangoapps/templates'),
-)
+# TEMPLATE_DIRS = (
+#     os.path.join(BASE_DIR, 'djangoapps/templates'),
+# )
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -139,3 +141,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'authentication.Account'
+
+# Node server is important for React Server-side rendering.
+NODE_SERVER = 'http://0.0.0.0:3000/'

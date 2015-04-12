@@ -1,5 +1,5 @@
 {
-  "name": "generator-snippod-hackathon",
+  "name": "snippod_webapp",
   "version": "0.0.1",
   "dependencies": {
     "async": "~0.7.0",

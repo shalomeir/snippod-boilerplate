@@ -28,11 +28,11 @@ var taskConfig = function(grunt) {
         }
       },
       src: [
-        '<%= yeogurt.client %>/index.html'
+        '<%= snippod.client %>/index.html'
       ]
     },
     styles: {
-      src: ['<%= yeogurt.client %>/styles/**/*.{scss,sass}'],
+      src: ['<%= snippod.client %>/styles/**/*.{scss,sass}'],
       ignorePath: /client/g,
     }
   });

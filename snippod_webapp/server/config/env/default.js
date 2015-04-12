@@ -33,7 +33,7 @@ var defaults = {
   },
   database: {
     // URL to connect to database
-    url: process.env.DBURL || 'mongodb://snippod@localhost:27017/generator-snippod-hackathon_db',
+    url: process.env.DBURL || 'mongodb://snippod@localhost:27017/snippod_webapp_db',
     // Mongoose database options
     options: {
       server: {

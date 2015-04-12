@@ -5,8 +5,8 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('clean', {
-    dist: ['<%= yeogurt.dist %>'],
-    tmp: ['<%= yeogurt.tmp %>']
+    dist: ['<%= snippod.dist %>'],
+    tmp: ['<%= snippod.tmp %>']
   });
 
 };

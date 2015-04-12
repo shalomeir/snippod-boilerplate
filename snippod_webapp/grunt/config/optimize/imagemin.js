@@ -14,9 +14,9 @@ var taskConfig = function(grunt) {
       },
       files: [{
         expand: true,
-        cwd: '<%= yeogurt.client %>/images',
+        cwd: '<%= snippod.client %>/images',
         src: '**/*.{jpg,jpeg,gif,png,svg}',
-        dest: '<%= yeogurt.dist %>/client/images'
+        dest: '<%= snippod.dist %>/client/images'
       }]
     }
   });

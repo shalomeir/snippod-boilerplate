@@ -18,7 +18,7 @@ var TopicCard = React.createClass({
               documentation</a> and start mixing up something awesome.
             </p>
             <p>
-              <img src="/images/yeogurt-swirl.png" width="75px" className="logo" />
+              <img src="/images/snippod-swirl.png" width="75px" className="logo" />
             </p>
           </div>
       /* jshint ignore:end */

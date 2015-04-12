@@ -23,7 +23,7 @@ var taskConfig = function(grunt) {
       ]
     },
     sass: {
-      files: ['<%= yeogurt.client %>/styles/**/*.{scss,sass,md}'],
+      files: ['<%= snippod.client %>/styles/**/*.{scss,sass,md}'],
       tasks: [
         'injector:sass',
         'sass:server',
@@ -32,7 +32,7 @@ var taskConfig = function(grunt) {
     },
     injectCss: {
       files: [
-        '<%= yeogurt.client %>/styles/**/*.css'
+        '<%= snippod.client %>/styles/**/*.css'
       ],
       tasks: [
         'injector:css',
@@ -41,7 +41,7 @@ var taskConfig = function(grunt) {
     },
     js: {
       files: [
-        '<%= yeogurt.client %>/scripts/**/*.js'
+        '<%= snippod.client %>/scripts/**/*.js'
       ],
       tasks: [
         'newer:jshint'
@@ -52,12 +52,12 @@ var taskConfig = function(grunt) {
         livereload: true
       },
       files: [
-        '<%= yeogurt.client %>/*.{ico,png,txt}',
-        '<%= yeogurt.client %>/**/*.html',
-        '<%= yeogurt.tmp %>/styles/**/*.{css,ttf,otf,woff,svg,eot}',
-        '<%= yeogurt.tmp %>/scripts/**/*.js',
-        '<%= yeogurt.tmp %>/templates/**/*.js',
-        '<%= yeogurt.client %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+        '<%= snippod.client %>/*.{ico,png,txt}',
+        '<%= snippod.client %>/**/*.html',
+        '<%= snippod.tmp %>/styles/**/*.{css,ttf,otf,woff,svg,eot}',
+        '<%= snippod.tmp %>/scripts/**/*.js',
+        '<%= snippod.tmp %>/templates/**/*.js',
+        '<%= snippod.client %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
       ]
     },
     express: {
@@ -75,7 +75,7 @@ var taskConfig = function(grunt) {
       }
     }
   };
-  
+
   // Documentation specific configuration
   var docsConfig = {
     sass: {
@@ -98,7 +98,7 @@ var taskConfig = function(grunt) {
     },
     kss: {
       files: [
-        '<%= yeogurt.client %>/docs/styleguide/**/*.*'
+        '<%= snippod.client %>/docs/styleguide/**/*.*'
       ],
       tasks: ['styleguide:server']
     },
@@ -114,7 +114,7 @@ var taskConfig = function(grunt) {
     }));
     grunt.task.run('watch');
   });
-  
+
 
 };
 

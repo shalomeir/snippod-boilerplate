@@ -1,5 +1,7 @@
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
+from django.conf import settings
+
 
 from rest_framework_nested import routers
 
@@ -18,11 +20,18 @@ accounts_router.register(r'posts', AccountPostsViewSet)
 
 urlpatterns = patterns(
     '',
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/', include(accounts_router.urls)),
     url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
     url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
 
-    url(r'^.*$', IndexView.as_view(), name='index'),
+    url(r'^', include('myapp.urls')),
+
+    url(r'^admin/', include(admin.site.urls)),
+    # url(r'^.*$', IndexView.as_view(), name='index'),
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('django.contrib.staticfiles.views',
+                            url(r'^static/(?P<path>.*)$', 'serve'),
+                            )

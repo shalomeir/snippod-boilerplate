@@ -581,13 +581,13 @@ var IndexComponent = React.createClass({displayName: "IndexComponent",
       /* jshint ignore:start */
       React.createElement(DefaultLayout, null,
         React.createElement("div", {className: "main-container"},
-          React.createElement("div", {className: "yeogurt-info"},
-            React.createElement("h1", null, "Welcome to Yeogurt!"),
+          React.createElement("div", {className: "snippod-info"},
+            React.createElement("h1", null, "Welcome to snippod!"),
             React.createElement("p", null,
-              "Take a look at the ", React.createElement("a", {href: "https://github.com/larsonjj/generator-yeogurt#yeogurt-generator"}, "documentation"), " and start mixing up something awesome."
+              "Take a look at the ", React.createElement("a", {href: "https://github.com/larsonjj/generator-snippod#snippod-generator"}, "documentation"), " and start mixing up something awesome."
             ),
             React.createElement("p", null,
-              React.createElement("img", {src: "/images/yeogurt-swirl.png", width: "75px", className: "logo"})
+              React.createElement("img", {src: "/images/snippod-swirl.png", width: "75px", className: "logo"})
             ),
             React.createElement("p", {className: "links"},
               React.createElement("a", {href: "/docs/styleguide/index.html"}, "Styleguide"),

@@ -11,8 +11,8 @@ var taskConfig = function(grunt) {
     }
 
     grunt.task.run([
-      'jshint:test',
-      'browserify:test'
+      'jshint:test'
+      //'browserify:test'
     ]);
 
     //if (target === 'watch') {

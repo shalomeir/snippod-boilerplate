@@ -6,17 +6,17 @@
 var taskConfig = function(grunt) {
 
   grunt.config.set('useminPrepare', {
-    html: '<%= yeogurt.client %>/index.html',
+    html: '<%= snippod.client %>/index.html',
     options: {
-      root: '<%= yeogurt.client %>',
-      dest: '<%= yeogurt.dist %>/client'
+      root: '<%= snippod.client %>',
+      dest: '<%= snippod.dist %>/client'
     }
   });
 
   grunt.config.set('usemin', {
-    html: '<%= yeogurt.dist %>/client/*.html',
+    html: '<%= snippod.dist %>/client/*.html',
     options: {
-      assetsDirs: ['<%= yeogurt.client %>', '<%= yeogurt.client %>/images']
+      assetsDirs: ['<%= snippod.client %>', '<%= snippod.client %>/images']
     }
   });
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/images/yeogurt-logo.png" alt="Yeogurt Logo" width="200">
+  <img src="public/images/snippod-logo.png" alt="Snippod Logo" width="200">
 </p>
 
 <h1 class="kss-title kss-title-main"> Overview </h1>

@@ -168,8 +168,8 @@ var postReset = function(req, res, next) {
       // Create email message
       var mailOptions = {
         to: user.email,
-        from: 'yeogurt@yoururl.com',
-        subject: 'Your Yeogurt password has been changed',
+        from: 'snippod@yoururl.com',
+        subject: 'Your snippod password has been changed',
         text: 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
       };

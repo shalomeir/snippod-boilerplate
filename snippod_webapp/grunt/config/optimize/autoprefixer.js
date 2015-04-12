@@ -13,8 +13,8 @@ var taskConfig = function(grunt) {
       files: [{
         expand: true,
         flatten: true,
-        src: '<%= yeogurt.tmp %>/styles/*.css',
-        dest: '<%= yeogurt.tmp %>/styles/'
+        src: '<%= snippod.tmp %>/styles/*.css',
+        dest: '<%= snippod.tmp %>/styles/'
       }]
     },
     dist: {
@@ -25,8 +25,8 @@ var taskConfig = function(grunt) {
       files: [{
         expand: true,
         flatten: true,
-        src: '<%= yeogurt.dist %>/client/styles/*.css',
-        dest: '<%= yeogurt.dist %>/client/styles/'
+        src: '<%= snippod.dist %>/client/styles/*.css',
+        dest: '<%= snippod.dist %>/client/styles/'
       }]
     }
   });

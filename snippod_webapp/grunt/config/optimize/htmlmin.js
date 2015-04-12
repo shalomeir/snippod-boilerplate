@@ -16,11 +16,11 @@ var taskConfig = function(grunt) {
       },
       files: [{
         expand: true,
-        cwd: '<%= yeogurt.dist %>/client',
+        cwd: '<%= snippod.dist %>/client',
         src: [
           '*.html'
         ],
-        dest: '<%= yeogurt.dist %>/client'
+        dest: '<%= snippod.dist %>/client'
       }]
     }
   });

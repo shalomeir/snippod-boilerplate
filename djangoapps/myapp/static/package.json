@@ -1,0 +1,23 @@
+{
+  "name": "static",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build_serverside": "node_modules/react-tools/bin/jsx --watch src build",
+    "build_clientside": "node_modules/webpack/bin/webpack.js --watch",
+    "server": "node server/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.11.1",
+    "griddle-react": "^0.2.0",
+    "jsx-loader": "^0.12.2",
+    "react": "^0.12.2",
+    "react-tools": "^0.12.2",
+    "webpack": "^1.5.3",
+    "whatwg-fetch": "^0.6.1"
+  }
+}

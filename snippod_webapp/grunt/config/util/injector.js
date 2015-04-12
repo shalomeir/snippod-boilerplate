@@ -22,9 +22,9 @@ var taskConfig = function(grunt) {
         endtag: '// [endinjector]'
       },
       files: {
-        '<%= yeogurt.client %>/styles/main.scss': [
-          '<%= yeogurt.client %>/styles/**/*.scss',
-          '!<%= yeogurt.client %>/styles/main.scss'
+        '<%= snippod.client %>/styles/main.scss': [
+          '<%= snippod.client %>/styles/**/*.scss',
+          '!<%= snippod.client %>/styles/main.scss'
         ]
       }
     }

@@ -14,21 +14,21 @@ var taskConfig = function(grunt) {
       name: 'Style Guide',
 
       template: {
-        src: '<%= yeogurt.client %>/docs/styleguide'
+        src: '<%= snippod.client %>/docs/styleguide'
       }
 
     },
     server: {
       files: {
-        '<%= yeogurt.tmp %>/docs/styleguide': [
-          '<%= yeogurt.tmp %>/styles/**/*.css'
+        '<%= snippod.tmp %>/docs/styleguide': [
+          '<%= snippod.tmp %>/styles/**/*.css'
         ]
       }
     },
     dist: {
       files: {
-        '<%= yeogurt.dist %>/client/docs/styleguide': [
-          '<%= yeogurt.dist %>/client/styles/**/*.css'
+        '<%= snippod.dist %>/client/docs/styleguide': [
+          '<%= snippod.dist %>/client/styles/**/*.css'
         ]
       }
     }

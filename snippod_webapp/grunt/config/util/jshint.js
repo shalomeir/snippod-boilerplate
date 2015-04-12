@@ -11,8 +11,8 @@ var taskConfig = function(grunt) {
     },
     test: [
       'Gruntfile.js',
-      '<%= yeogurt.client %>/scripts/**/*.js',
-      '!<%= yeogurt.client %>/scripts/vendor/**/*.*'
+      '<%= snippod.client %>/scripts/**/*.js',
+      '!<%= snippod.client %>/scripts/vendor/**/*.*'
     ]
   });
 

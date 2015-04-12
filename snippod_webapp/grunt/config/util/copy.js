@@ -8,8 +8,8 @@ var taskConfig = function(grunt) {
     server: {
       files: [{
          expand: true,
-          cwd: '<%= yeogurt.client %>/',
-          dest: '<%= yeogurt.tmp %>',
+          cwd: '<%= snippod.client %>/',
+          dest: '<%= snippod.tmp %>',
           src: [
             'styles/styleguide.md'
           ]
@@ -18,8 +18,8 @@ var taskConfig = function(grunt) {
     dist: {
       files: [{
         expand: true,
-        cwd: '<%= yeogurt.client %>/',
-        dest: '<%= yeogurt.dist %>/client/',
+        cwd: '<%= snippod.client %>/',
+        dest: '<%= snippod.dist %>/client/',
         src: [
           'styles/styleguide.md',
           'docs/styleguide/public/images',
@@ -31,17 +31,17 @@ var taskConfig = function(grunt) {
         ]
       }, {
         expand: true,
-        cwd: '<%= yeogurt.server %>/templates/',
-        dest: '<%= yeogurt.tmp %>',
+        cwd: '<%= snippod.server %>/templates/',
+        dest: '<%= snippod.tmp %>',
         src: [
           'index.html'
         ]
       }, {
         expand: true,
         cwd: './',
-        dest: '<%= yeogurt.dist %>/',
+        dest: '<%= snippod.dist %>/',
         src: [
-          '<%= yeogurt.server %>/**/*',
+          '<%= snippod.server %>/**/*',
           'server.js',
           'package.json'
         ]

@@ -15,7 +15,7 @@ var config = {
 module.exports = function(grunt) {
 
   // setup configuration object
-  grunt.config.set('yeogurt', config);
+  grunt.config.set('snippod', config);
 
   // show elapsed time at the end
   require('time-grunt')(grunt);

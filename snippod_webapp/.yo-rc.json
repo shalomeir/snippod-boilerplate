@@ -1,13 +1,13 @@
 {
-  "generator-yeogurt": {
+  "snippod_webapp": {
     "config": {
-      "projectName": "generator-snippod-hackathon",
+      "projectName": "snippod_webapp",
       "versionControl": "git",
       "useServer": true,
       "dbOption": "mongodb",
       "dbHost": "localhost",
       "dbPort": "27017",
-      "dbName": "generator-snippod-hackathon_db",
+      "dbName": "snippod_webapp_db",
       "dbUser": "snippod",
       "dbPass": "",
       "useAuth": true,

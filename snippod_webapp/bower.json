@@ -1,5 +1,5 @@
 {
-  "name": "snippod-webapp",
+  "name": "snippod_webapp",
   "version": "0.0.1",
   "dependencies": {
     "consolelog": "~2.0.1",

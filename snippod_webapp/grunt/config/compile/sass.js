@@ -11,12 +11,12 @@ var taskConfig = function(grunt) {
         outputStyle: 'nested',
         sourceMap: true,
         includePaths: [
-          '<%= yeogurt.client %>/bower_components',
-          '<%= yeogurt.client %>/styles/'
+          '<%= snippod.client %>/bower_components',
+          '<%= snippod.client %>/styles/'
         ]
       },
       files: {
-        '<%= yeogurt.tmp %>/styles/main.css': '<%= yeogurt.client %>/styles/main.{scss,sass}'
+        '<%= snippod.tmp %>/styles/main.css': '<%= snippod.client %>/styles/main.{scss,sass}'
       }
     },
     dist: {
@@ -25,12 +25,12 @@ var taskConfig = function(grunt) {
         outputStyle: 'compressed',
         sourceMap: true,
         includePaths: [
-          '<%= yeogurt.client %>/bower_components',
-          '<%= yeogurt.client %>/styles/'
+          '<%= snippod.client %>/bower_components',
+          '<%= snippod.client %>/styles/'
         ]
       },
       files: {
-        '<%= yeogurt.dist %>/client/styles/main.css': '<%= yeogurt.client %>/styles/main.{scss,sass}'
+        '<%= snippod.dist %>/client/styles/main.css': '<%= snippod.client %>/styles/main.{scss,sass}'
       }
     }
   });

@@ -14,7 +14,7 @@ var taskConfig = function(grunt) {
         watch: true
       },
       files: {
-        '<%= yeogurt.tmp %>/scripts/main.js': ['<%= yeogurt.client %>/scripts/main.js']
+        '<%= snippod.tmp %>/scripts/main.js': ['<%= snippod.client %>/scripts/main.js']
       }
     },
     dist: {
@@ -32,7 +32,7 @@ var taskConfig = function(grunt) {
         }
       },
       files: {
-        '<%= yeogurt.dist %>/client/scripts/main.js': ['<%= yeogurt.client %>/scripts/main.js']
+        '<%= snippod.dist %>/client/scripts/main.js': ['<%= snippod.client %>/scripts/main.js']
       }
     },
     test: {

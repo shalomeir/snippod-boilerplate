@@ -6,17 +6,17 @@ var taskConfig = function(grunt) {
 
   grunt.config.set('jsdoc', {
     server : {
-      src: ['<%= yeogurt.client %>/scripts/**/*', '*.md'],
-      dest: '<%= yeogurt.tmp %>/docs/api',
+      src: ['<%= snippod.client %>/scripts/**/*', '*.md'],
+      dest: '<%= snippod.tmp %>/docs/api',
       options: {
-        template : '<%= yeogurt.client %>/docs/api/theme'
+        template : '<%= snippod.client %>/docs/api/theme'
       }
     },
     dist : {
-      src: ['<%= yeogurt.client %>/scripts/**/*', '*.md'],
-      dest: '<%= yeogurt.dist %>/client/docs/api',
+      src: ['<%= snippod.client %>/scripts/**/*', '*.md'],
+      dest: '<%= snippod.dist %>/client/docs/api',
       options: {
-        template : '<%= yeogurt.client %>/docs/api/theme'
+        template : '<%= snippod.client %>/docs/api/theme'
       }
     }
   });
