@@ -1,1 +1,0 @@
-!function(){"use strict";function t(t,o){function n(){o.logout()}var l=this;l.logout=n}angular.module("thinkster.layout.controllers").controller("NavbarController",t),t.$inject=["$scope","Authentication"]}();
