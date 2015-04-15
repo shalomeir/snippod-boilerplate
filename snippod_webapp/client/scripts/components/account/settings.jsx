@@ -21,11 +21,16 @@ var Settings = React.createClass({
 
           <h3>Profile Information</h3>
 
-          <form id="profile-form" action="/user?_method=PUT" method="post" onSubmit={this.handleSettings}>
+          <form id="profile-form" action="/auth/profile?_method=PUT" method="post" onSubmit={this.handleSettings}>
 
             <p>
               <label htmlFor="email">Email:</label>
               <input type="text" name="email" id="email" defaultValue={user.email} />
+            </p>
+
+            <p>
+              <label htmlFor="username">Username:</label>
+              <input type="text" name="username" id="username" defaultValue={user.username} />
             </p>
 
             <p>
@@ -43,7 +48,7 @@ var Settings = React.createClass({
 
           <h3>Change Password</h3>
 
-          <form id="password-form" action="/user/password?_method=PUT" method="post" onSubmit={this.handlePassword}>
+          <form id="password-form" action="/auth/password_change?_method=PUT" method="post" onSubmit={this.handlePassword}>
 
             <p>
               <label htmlFor="password">New Password:</label>
@@ -51,8 +56,8 @@ var Settings = React.createClass({
             </p>
 
             <p>
-              <label htmlFor="confirmPassword">Confirm Password:</label>
-              <input type="password" name="confirmPassword" id="confirmPassword" defaultValue='' />
+              <label htmlFor="confirm_password">Confirm Password:</label>
+              <input type="password" name="confirm_password" id="confirm_password" defaultValue='' />
             </p>
 
             <button>Change Password</button>
@@ -62,7 +67,7 @@ var Settings = React.createClass({
 
           <p>You can delete your account, but keep in mind this action is irreversible.</p>
 
-          <form id="delete-form" action="/user?_method=DELETE" method="post" onSubmit={this.handleDestroy}>
+          <form id="delete-form" action="/auth/delete?_method=DELETE" method="post" onSubmit={this.handleDestroy}>
             <button>Delete my account</button>
           </form>
         </div>

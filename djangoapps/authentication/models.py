@@ -1,50 +1,75 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from __future__ import unicode_literals
+
 from django.db import models
-
+from django.contrib.auth.models import (
+    AbstractBaseUser, BaseUserManager, PermissionsMixin
+)
+from django.core.mail import send_mail
+from django.core import validators
 from django.utils.translation import ugettext_lazy as _
-
+from django.utils import timezone
 
 
 class AccountManager(BaseUserManager):
-    def create_user(self, email, password=None, is_staff=False, is_superuser=False, **kwargs):
+    def _create_user(self, email, username, password,
+                     is_staff, is_superuser, **extra_fields):
+        """
+        Creates and saves a User with the given email, username and password.
+        """
+        now = timezone.now()
+
         if not email:
             raise ValueError('Users must have a valid email address.')
 
-        if not kwargs.get('username'):
-            raise ValueError('Users must have a valid username.')
+        if not username:
+            raise ValueError('The given username must be set')
 
-        account = self.model(
-            email=self.normalize_email(email), username=kwargs.get('username'),
-            is_staff=is_staff, is_superuser=is_superuser
-        )
+        email = self.normalize_email(email)
+        del extra_fields['confirm_password']
+        account = self.model(email=email, username=username,
+                             is_staff=is_staff, is_active=True,
+                             is_superuser=is_superuser, last_login=now,
+                             date_joined=now, **extra_fields)
 
         account.set_password(password)
-        account.save()
-
+        account.save(using=self._db)
         return account
 
-    def create_superuser(self, email, password, **kwargs):
-        account = self.create_user(email, password, True, True, **kwargs)
+    def create_user(self, email, username, password=None, **extra_fields):
+        return self._create_user(email, username, password, False, False,
+                                 **extra_fields)
 
-        account.is_admin = True
-        account.save()
-
-        return account
+    def create_superuser(self, email, username, password, **extra_fields):
+        return self._create_user(email, username, password, True, True,
+                                 **extra_fields)
 
 
 class Account(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    username = models.CharField(max_length=40, unique=True)
 
-    first_name = models.CharField(max_length=40, blank=True)
-    last_name = models.CharField(max_length=40, blank=True)
-    tagline = models.CharField(max_length=140, blank=True)
+    email = models.EmailField(
+        verbose_name='email address',
+        max_length=255,
+        unique=True,
+    )
 
-    is_admin = models.BooleanField(default=False)
+    username = models.CharField(_('username'), max_length=30, unique=True,
+                help_text=_('Required. 30 characters or fewer. Letters, digits'
+                            ' and ./+/-/_ only.'),
+                validators=[
+                    validators.RegexValidator(r'^[\w.+-]+$', _('Enter a valid username.'), 'invalid')
+                ])
+
+    first_name = models.CharField(_('first name'), max_length=30, blank=True)
+    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+
     is_staff = models.BooleanField(_('staff status'), default=False,
-                                    help_text=_('Designates whether the user'
-                                            ' can log into this admin site.'))
+        help_text=_('Designates whether the user can log into this admin site.'))
+    is_active = models.BooleanField(_('active'), default=True,
+        help_text=_('Designates whether this user should be treated as '
+                    'active. Unselect this instead of deleting accounts.'))
 
+    # Use date_joined than created_at plz.
+    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -53,15 +78,36 @@ class Account(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    class Meta:
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
+        swappable = 'AUTH_USER_MODEL'
+
     def __unicode__(self):
         return self.email
 
     def get_full_name(self):
-        return ' '.join([self.first_name, self.last_name])
+        """
+        Returns the first_name plus the last_name, with a space in between.
+        """
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name.strip()
 
     def get_short_name(self):
+        "Returns the short name for the user."
         return self.first_name
 
-    @property
-    def is_staff(self):
-        return self.is_admin
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        """
+        Sends an email to this User.
+        """
+        send_mail(subject, message, from_email, [self.email], **kwargs)
+
+
+
+
+
+
+
+
+

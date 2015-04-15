@@ -21,7 +21,7 @@ var User = React.createClass({
       /* jshint ignore:start */
       <DocumentTitle title='User'>
         <div className="main-container">
-          <h1>Hello, {user.firstName ? user.firstName : user.email}.</h1>
+          <h1>Hello, {user.username}.</h1>
         </div>
       </DocumentTitle>
       /* jshint ignore:end */

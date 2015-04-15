@@ -1,11 +1,14 @@
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.views.generic.base import TemplateView
-from django.utils.decorators import method_decorator
-
-
-class IndexView(TemplateView):
-    template_name = 'index.html'
-
-    @method_decorator(ensure_csrf_cookie)
-    def dispatch(self, *args, **kwargs):
-        return super(IndexView, self).dispatch(*args, **kwargs)
+# from rest_framework.decorators import api_view
+# from rest_framework.response import Response
+# from rest_framework.reverse import reverse
+#
+# # from posts.views import PostViewSet
+#
+#
+# # @api_view(('GET',))
+# # TODO I don't know how to show root api
+# # def api_root(request, format=None):
+# #     return Response({
+# #         # 'users': reverse('user-list', request=request, format=format),
+# #         'posts': reverse('post-list', request=request, format=format)
+# #     })

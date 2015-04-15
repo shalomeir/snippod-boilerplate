@@ -32,8 +32,9 @@ var Register = React.createClass({
 
   resetForm: function() {
     this.refs.email.getDOMNode().value = '';
+    this.refs.username.getDOMNode().value = '';
     this.refs.password.getDOMNode().value = '';
-    this.refs.confirmPassword.getDOMNode().value = '';
+    this.refs.confirm_password.getDOMNode().value = '';
     this.refs.submit.getDOMNode().disabled = false;
     this.setState({
       submitted: false
@@ -82,14 +83,16 @@ var Register = React.createClass({
     return (
       /* jshint ignore:start */
       <div className="login md-modal text-center" id="overlay-content">
-        <form onSubmit={ this.registerUser } id="signup-form" method="post" action="/user" className="login-form text-left">
+        <form onSubmit={ this.registerUser } id="signup-form" method="post" action="/accounts/register/" className="login-form text-left">
           <h1>Register</h1>
           <label htmlFor="email">Email</label><br />
           <input type="text" name="email" id="email" placeholder="Email" ref="email" /><br />
+          <label htmlFor="username">Username</label><br />
+          <input type="text" name="username" id="username" placeholder="Username" ref="username" /><br />
           <label htmlFor="password">Password</label><br />
           <input type="password" name="password" placeholder="Password" id="password" ref="password" /><br />
-          <label htmlFor="confirmPassword">Confirm Password</label><br />
-          <input type="password" name="confirmPassword" placeholder="Confirm Password" id="confirmPassword" ref="confirmPassword" /><br />
+          <label htmlFor="confirm_password">Confirm Password</label><br />
+          <input type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password" ref="confirm_password" /><br />
           <button type="submit" className="button button-primary" ref="submit">
             { this.state.submitted ? <Spinner /> : 'Register' }
           </button>

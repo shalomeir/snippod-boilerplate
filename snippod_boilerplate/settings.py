@@ -44,9 +44,9 @@ INSTALLED_APPS = (
     'rest_framework',
     'argonauts',
     'authentication',
-    'postsold',
     'myapp',
     'main',
+    'posts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,7 +113,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'snippod_webapp/dist/client'),
+    os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
+    os.path.join(BASE_DIR, 'snippod_webapp/dist/client'), #grunt
     # os.path.join(BASE_DIR, 'static'),
 )
 
@@ -130,9 +131,14 @@ COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 # )
 
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
 }
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()

@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="django" name="Django">
       <configuration>
-        <option name="rootFolder" value="$MODULE_DIR$/snippod_boilerplate" />
+        <option name="rootFolder" value="$MODULE_DIR$" />
         <option name="settingsModule" value="snippod_boilerplate/settings.py" />
         <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
@@ -12,17 +12,26 @@
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/djangoapps" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod_boilerplate" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/client/scripts" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/client/styles" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/grunt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/server" isTestSource="false" />
+    </content>
     <orderEntry type="jdk" jdkName="snippod-boilerplate/venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="snippod-boilerplate/venv interpreter library" level="application" />
   </component>
   <component name="TemplatesService">
-      <option name="TEMPLATE_CONFIGURATION" value="Django" />
-      <option name="TEMPLATE_FOLDERS">
-        <list>
-          <option value="$MODULE_DIR$/snippod_boilerplate/djangoapps//templates" />
-        </list>
-      </option>
-    </component>
+    <option name="TEMPLATE_CONFIGURATION" value="Django" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/djangoapps/myapp/templates" />
+        <option value="$MODULE_DIR$/djangoapps/main/templates" />
+        <option value="$MODULE_DIR$/djangoapps/templates" />
+      </list>
+    </option>
+  </component>
 </module>

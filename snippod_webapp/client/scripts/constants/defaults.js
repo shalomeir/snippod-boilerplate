@@ -4,6 +4,8 @@ var Defaults = {
 
   route: '/',
 
+  apiPath: 'api/v1',
+
   page: {
     title: 'Home',
     description: 'Page Component - default',
@@ -14,12 +16,12 @@ var Defaults = {
 
   user: {
     loggedIn: false,
-    firstName: 'John',
-    lastName: 'Doe',
-    username: null,
-    uid:'',
+    email: 'anonymous@snippod.com',
+    firstName: '',
+    lastName: '',
+    username: 'anonymous',
+    id:'',
     profile: {
-      username: '',
       upvoted: {}
     }
   },

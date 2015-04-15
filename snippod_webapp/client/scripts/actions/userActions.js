@@ -1,12 +1,19 @@
 'use strict';
 
 var Reflux = require('reflux'),
-    request = require('superagent'),
     serialize = require('form-serialize'),
-    cookie = require('cookie'),
+    $ = require('jquery'),
+    //cookie = require('cookie'),
     router = require('../router'),
-    { getToken, setToken } = require('../utils/tokenControl'),
-    userDefaults = require('../constants/defaults').user;
+    //{ getToken, setToken, getCookie } = require('../utils/tokenControl'),
+    Cookies = require('cookies-js'),
+    userDefaults = require('../constants/defaults').user,
+    apiPath = require('../constants/defaults').apiPath,
+    request = require('superagent'),
+    csrf = require('superagent-csrf');
+//var prefix = require('superagent-prefix')(apiPath);
+
+require('../utils/serialization');
 
 var messagesActions = require('./messagesActions');
 
@@ -29,34 +36,37 @@ var userActions = Reflux.createActions({
 /* Auth Method
  ===============================*/
 var _postForm = function(form, callback){
-  var postData = serialize(form);
+  var postData = JSON.stringify($(form).serializeObject());
   var postUrl = form.getAttribute('action') || window.location.pathname;
-  var token = getToken();
+  postUrl = apiPath + postUrl;
+  //var token = getToken();
+  var csrftoken = Cookies.get('csrftoken');
   var options = callback.options || {};
+  //var to = csrf(request);
+  //token = window._csrf;
 
   request
     .post(postUrl)
-    .type('form')
+    .type('json')
+    .accept('json')
     .set({
-      'authorization': 'Bearer ' + token,
+      //'authorization': 'Bearer ' + token,
+      'X-CSRFToken': csrftoken,
       'X-Requested-With': 'XMLHttpRequest'
     })
     .send(postData)
     .end(function(res) {
       if (res.ok) {
-        var userData;
+        var userData = userDefaults;
         // If auth token needs to be stored
-        if (options.setToken) {
-          // Store token in cookie that expires in a week
-          setToken(res.body.token, 7);
-        }
+        //if (options.setToken) {
+        //  // Store token in cookie that expires in a week
+        //  setToken(res.body.token, 7);
+        //}
         // If user needs to be updated
         if (options.updateUser) {
           userData = res.body.user;
           userData.loggedIn = true;
-          userData.uid = userData._id;
-          userData.username = userData.firstName+' '+userData.lastName;
-          userData.profile = { username: userData.username };
           if (options.successUrl) {
             userActions.setUser(userData,options.successUrl);
           }
@@ -91,50 +101,13 @@ var _postForm = function(form, callback){
 
 };
 
-//var isAuthenticated = function(callback) {
-//  var self = this;
-//  var token = getToken();
-//  request
-//    .get('/user')
-//    .type('json')
-//    .set({
-//      'authorization': 'Bearer ' + token
-//    })
-//    .end(function(res) {
-//      if (res.ok) {
-//        if (res.body && res.body.user) {
-//          var userData = res.body.user;
-//          userData.loggedIn = true;
-//
-//          self.setUser(userData);
-//        }
-//        else {
-//          self.logout();
-//        }
-//        if (callback && callback.success) {
-//          callback.success(res);
-//        }
-//      }
-//      else {
-//        self.logout();
-//        if (callback && callback.error) {
-//          callback.error(res);
-//        }
-//      }
-//
-//      if (callback && callback.complete) {
-//        callback.complete(res);
-//      }
-//    });
-//};
-
 
 /* User Actions
  ===============================*/
 userActions.login.listen(function(form, callback) {
   var cb = callback || function() {};
   cb.options = {
-    setToken: true,
+    //setToken: true,
     updateUser: true
   };
   _postForm(form, cb);
@@ -143,10 +116,19 @@ userActions.login.listen(function(form, callback) {
 
 userActions.logout.listen(function() {
   // Remove token
-  setToken('', -1);
+  //setToken('', -1);
+  var cb = function() {};
+  cb.options = {};
+  var form = document.createElement('form');
+  form.setAttribute('action', '/auth/logout/');
+  _postForm(form, cb);
 
   // Reset user to defaults
   userActions.setUser(userDefaults);
+
+  // Delete Cookies
+  Cookies.expire('csrftoken');
+  Cookies.expire('sessionid');
 
   // Redirect to homepage
   router.transitionTo('/');
@@ -156,7 +138,6 @@ userActions.register.listen(function(form, callback) {
   var cb = callback || function() {};
   cb.options = {
     successUrl: '/settings',
-    setToken: true,
     updateUser: true
   };
   _postForm(form, cb);

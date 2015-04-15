@@ -83,9 +83,9 @@ var Login = React.createClass({
     return (
       /* jshint ignore:start */
       <div className="login text-center md-modal" id="overlay-content">
-        <form method="post" action="/login" onSubmit={ this.login } className="login-form text-left">
+        <form method="post" action="/auth/login/" onSubmit={ this.login } className="login-form text-left">
           <h1>Login</h1>
-          <label htmlFor="email">Email</label><br />
+          <label htmlFor="email">Email ID</label><br />
           <input autofocus="autofocus" type="email" name="email" placeholder="Enter your email" id="email" ref="email"/><br />
           <label htmlFor="password">Password</label><br />
           <input type="password" name="password" placeholder="Password" id="password" ref="password"/><br />

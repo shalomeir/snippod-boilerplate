@@ -12,6 +12,7 @@ var React = require('react'),
     Messages = require('./modules/messages.jsx'),
     DomContol = require('../utils/domControl'),
     userStore = require('../stores/userStore'),
+    userActions = require('../actions/userActions'),
     uiActions = require('../actions/uiActions');
 
 
@@ -29,6 +30,10 @@ var App = React.createClass({
   },
 
   getInitialState: function() {
+    var form = document.createElement('form');
+    form.setAttribute('action', '/auth/login/');
+    userActions.login(form);
+
     return {
       user: userStore.getUser(),
       showOverlay: false,

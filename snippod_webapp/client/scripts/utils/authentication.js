@@ -15,5 +15,4 @@ var Authentication = {
 };
 
 
-
 module.exports = Authentication;
