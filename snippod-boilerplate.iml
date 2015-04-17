@@ -19,6 +19,12 @@
       <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/client/styles" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/grunt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/server" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/client/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/scripts" />
+      <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="jdk" jdkName="snippod-boilerplate/venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
