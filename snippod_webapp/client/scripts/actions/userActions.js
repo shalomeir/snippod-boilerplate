@@ -6,6 +6,7 @@ var Reflux = require('reflux'),
     //cookie = require('cookie'),
     router = require('../router'),
     //{ getToken, setToken, getCookie } = require('../utils/tokenControl'),
+    { getParameterByName } = require('../utils/stringControl'),
     Cookies = require('cookies-js'),
     userDefaults = require('../constants/defaults').user,
     apiPath = require('../constants/defaults').apiPath,
@@ -36,8 +37,10 @@ var userActions = Reflux.createActions({
 /* Auth Method
  ===============================*/
 var _postForm = function(form, callback){
+
   var postData = JSON.stringify($(form).serializeObject());
   var postUrl = form.getAttribute('action') || window.location.pathname;
+  var method = getParameterByName(postUrl, '_method') || 'POST';
   postUrl = apiPath + postUrl;
   //var token = getToken();
   var csrftoken = Cookies.get('csrftoken');
@@ -52,7 +55,8 @@ var _postForm = function(form, callback){
     .set({
       //'authorization': 'Bearer ' + token,
       'X-CSRFToken': csrftoken,
-      'X-Requested-With': 'XMLHttpRequest'
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-HTTP-Method-Override': method
     })
     .send(postData)
     .end(function(res) {

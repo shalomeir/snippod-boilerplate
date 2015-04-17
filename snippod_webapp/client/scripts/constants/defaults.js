@@ -17,8 +17,8 @@ var Defaults = {
   user: {
     loggedIn: false,
     email: 'anonymous@snippod.com',
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     username: 'anonymous',
     id:'',
     profile: {

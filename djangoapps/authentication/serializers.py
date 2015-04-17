@@ -1,4 +1,4 @@
-from django.contrib.auth import update_session_auth_hash
+from django.core.validators import validate_email
 
 from rest_framework import serializers
 
@@ -16,6 +16,17 @@ class AccountSerializer(serializers.ModelSerializer):
                   'confirm_password',)
         read_only_fields = ('date_joined', 'updated_at',)
 
+    # def validate_email(self, value):
+    #     if not validate_email(value):
+    #         raise serializers.ValidationError("This value is not a Email form.")
+    #     return value
+
+    def validate(self, attrs):
+        if 'password' in attrs:
+            if attrs['password'] != attrs['confirm_password']:
+                raise serializers.ValidationError("Password is not matched with a confirm password")
+        return attrs
+
 
     def update(self, instance, validated_data):
         instance.email = validated_data.get('email', instance.email)
@@ -29,7 +40,6 @@ class AccountSerializer(serializers.ModelSerializer):
         if self.checkPassword(validated_data):
             instance.set_password(validated_data.get('password'))
             instance.save()
-            update_session_auth_hash(self.context.get('request'), instance)
 
         return instance
 

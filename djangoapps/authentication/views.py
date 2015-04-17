@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import update_session_auth_hash
 
 from rest_framework import permissions, status, views, viewsets
 from rest_framework.decorators import detail_route, list_route
@@ -21,19 +22,8 @@ class AccountViewSet(viewsets.ModelViewSet):
         if self.request.method == 'POST':
             return (permissions.AllowAny(),)
 
-        return (permissions.IsAuthenticated(), IsAccountOwner(),)
+        return (permissions.IsAuthenticated(),IsAccountOwner(),)
 
-    @detail_route(methods=['post'])
-    def set_password(self, request, pk=None):
-        user = self.get_object()
-        serializer = AccountSerializer(data=request.data)
-        if serializer.is_valid():
-            user.set_password(serializer.data['password'])
-            user.save()
-            return Response({'status': 'password set'})
-        else:
-            return Response(serializer.errors,
-                            status=status.HTTP_400_BAD_REQUEST)
 
     @list_route()
     def recent_users(self, request):
@@ -67,6 +57,31 @@ class AccountViewSet(viewsets.ModelViewSet):
     def register(self, request):
         return self.create(request)
 
+    def destroy(self, request, pk=None):
+        user = self.get_object()
+        user.email = str(user.id)+'_nonactive'+'@snippod.com'
+        user.firstname = ''
+        user.lastname = ''
+        user.is_active = False
+        user.save()
+
+        LogoutView.as_view()(self.request)
+        # return self.delete(request)
+        return Response({'status':'deleted clean'})
+
+    @detail_route(methods=['patch'])
+    def set_password(self, request, pk=None):
+        user = self.get_object()
+        serializer = self.serializer_class(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.update(user, serializer.validated_data)
+            update_session_auth_hash(request, user)
+            return Response({'status': 'password set'})
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
+
+
 
 class LoginView(views.APIView):
     permission_classes = (permissions.AllowAny,)
@@ -82,9 +97,7 @@ class LoginView(views.APIView):
         if account is not None:
             if account.is_active:
                 login(request, account)
-
                 serialized = AccountSerializer(account)
-
                 return Response({
                     'user': serialized.data
                 })
