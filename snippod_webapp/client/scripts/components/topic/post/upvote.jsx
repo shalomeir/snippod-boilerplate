@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react'),
+    cx = require('classnames'),
     throttle = require('lodash/function/throttle'),
     uiActions =require('../../../actions/uiActions');
 
@@ -47,7 +48,6 @@ var Upvote = React.createClass({
   }, 300, { trailing: false }),
 
   render: function() {
-    var cx = React.addons.classSet;
 
     var userId = this.props.user.uid;
     var itemId = this.props.itemId;

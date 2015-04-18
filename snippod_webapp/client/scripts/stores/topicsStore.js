@@ -4,6 +4,7 @@
 //'use strict';
 //
 //var Reflux = require('reflux'),
+//    Immutable = require('immutable'),
 //    topicDefaults = require('../constants/defaults').topic,
 //    topicActions = require('../actions/topicActions');
 //

@@ -2,10 +2,12 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    Immutable = require('immutable'),
     DocumentTitle = require('react-document-title'),
     { RouteHandler } = require('react-router'),
     { PropTypes } = React,
     $ = require('jquery'),
+    cx = require('classnames'),
     NavBar = require('./subs/navbar.jsx'),
     Login = require('./subs/Login.jsx'),
     Register = require('./subs/Register.jsx'),
@@ -37,7 +39,8 @@ var App = React.createClass({
     return {
       user: userStore.getUser(),
       showOverlay: false,
-      overlayType: 'login'
+      overlayType: 'login',
+      testcomp: Immutable.Map({'kkk':'vvv','k2':'v2','k3':3,'k4':4})
     };
   },
 
@@ -79,7 +82,6 @@ var App = React.createClass({
   },
 
   render: function() {
-    var cx = React.addons.classSet;
     var user = this.state.user;
 
     var overlayCx = cx({

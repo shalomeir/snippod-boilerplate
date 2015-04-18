@@ -2,6 +2,7 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    cx = require('classnames'),
     //components
     Spinner = require('../modules/Spinner.jsx'),
     //store
@@ -87,7 +88,6 @@ var ComposerBox = React.createClass({
 
   render: function() {
 
-    var cx = React.addons.classSet;
     var postError = this.state.postError;
 
     var titleInputCx = cx({

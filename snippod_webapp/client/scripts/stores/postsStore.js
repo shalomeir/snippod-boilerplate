@@ -1,6 +1,7 @@
 'use strict';
 
 var Reflux = require('reflux'),
+    Immutable = require('immutable'),
     postActions = require('../actions/postActions');
 
 var postsPerPage = 200;

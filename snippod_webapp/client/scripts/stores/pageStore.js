@@ -1,6 +1,7 @@
 'use strict';
 
 var Reflux = require('reflux'),
+    Immutable = require('immutable'),
     pageDefaults = require('../constants/defaults').page,
     pageActions = require('../actions/pageActions');
 
@@ -10,17 +11,17 @@ var PageStore = Reflux.createStore({
   listenables: pageActions,
 
   init: function() {
-    this.page = pageDefaults;
+    this.page = Immutable.Map(pageDefaults);
   },
 
   getPage: function() {
-    return this.page;
+    return this.page.toObject();
   },
 
   /* Listen PageActions
    ===============================*/
   setReturnpage: function(transition) {
-    this.page.returnpage = transition;
+    this.page = this.page.update('returnpage',transition);
   }
 
 });
