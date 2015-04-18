@@ -4,6 +4,8 @@
 'use strict';
 
 var React = require('react'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
+
     // actions
     postActions = require('../../../actions/postActions'),
     // components
@@ -12,6 +14,7 @@ var React = require('react'),
 var Post = React.createClass({
 
   mixins: [
+    PureRenderMixin,
     require('../../mixins/pluralize'),
     require('../../mixins/abbreviateNumber'),
     require('../../mixins/hostnameFromUrl'),

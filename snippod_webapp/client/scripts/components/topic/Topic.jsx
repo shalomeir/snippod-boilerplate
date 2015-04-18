@@ -6,6 +6,7 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
     Router = require('react-router'),
 
@@ -19,6 +20,7 @@ var React = require('react'),
 var Topic = React.createClass({
 
   mixins: [
+    PureRenderMixin,
     Router.Navigation,
   ],
 

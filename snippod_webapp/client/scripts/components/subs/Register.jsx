@@ -5,6 +5,7 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     Router = require('react-router'),
     { Link } = Router,
     // components
@@ -19,6 +20,7 @@ var React = require('react'),
 var Register = React.createClass({
 
   mixins: [
+    PureRenderMixin,
     Reflux.listenTo(userStore, 'resetForm'),
     Reflux.listenTo(messagesActions.setError, 'onErrorMessage')
   ],

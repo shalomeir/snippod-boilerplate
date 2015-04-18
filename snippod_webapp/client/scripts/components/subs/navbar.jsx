@@ -2,6 +2,7 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     userActions = require('../../actions/userActions'),
     uiActions = require('../../actions/uiActions'),
     Router = require('react-router'),
@@ -9,6 +10,8 @@ var React = require('react'),
 
 
 var NavBar = React.createClass({
+
+  mixins: [PureRenderMixin],
 
   componentDidMount: function() {
     var pathString = this.props.path.toLowerCase().trim();

@@ -1,11 +1,14 @@
 'use strict';
 
 var React = require('react'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     cx = require('classnames'),
     throttle = require('lodash/function/throttle'),
     uiActions =require('../../../actions/uiActions');
 
 var Upvote = React.createClass({
+
+  mixins:[PureRenderMixin],
 
   getInitialState: function() {
     return {

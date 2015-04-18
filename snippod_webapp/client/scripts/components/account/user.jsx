@@ -5,10 +5,13 @@
 'use strict';
 
 var React = require('react'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title');
 
 
 var User = React.createClass({
+
+  mixins:[PureRenderMixin],
 
   //getInitialState: function() {
   //  return getState();

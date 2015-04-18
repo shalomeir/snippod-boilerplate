@@ -2,6 +2,7 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
     $ = require('jquery'),
     userActions = require('../../actions/userActions'),
@@ -10,7 +11,10 @@ var React = require('react'),
 
 var Settings = React.createClass({
 
-  mixins: [Authentication],
+  mixins: [
+    PureRenderMixin,
+    Authentication
+  ],
 
   render: function() {
     var user = this.props.user;

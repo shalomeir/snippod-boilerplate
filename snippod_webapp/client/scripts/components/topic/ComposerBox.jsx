@@ -2,6 +2,7 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     cx = require('classnames'),
     //components
     Spinner = require('../modules/Spinner.jsx'),
@@ -16,6 +17,7 @@ var React = require('react'),
 var ComposerBox = React.createClass({
 
   mixins: [
+    PureRenderMixin,
     Reflux.listenTo(postsStore, 'resetForm'),
     Reflux.listenTo(messagesActions.setError, 'onErrorMessage')
   ],

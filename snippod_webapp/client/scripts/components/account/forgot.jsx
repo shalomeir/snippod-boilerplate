@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
     userActions = require('../../actions/userActions'),
     Router = require('react-router'),

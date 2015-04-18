@@ -6,12 +6,16 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     { PropTypes } = React,
     messagesStore = require('../../stores/messagesStore');
 
 var Messages = React.createClass({
 
-  mixins: [Reflux.listenTo(messagesStore,'onMessagesUpdate')],
+  mixins: [
+    PureRenderMixin,
+    Reflux.listenTo(messagesStore,'onMessagesUpdate')
+  ],
 
   getInitialState: function() {
     return {

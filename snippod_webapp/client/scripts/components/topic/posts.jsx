@@ -2,6 +2,7 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     //components
     Post = require('./post/post.jsx'),
     Spinner = require('../modules/Spinner.jsx'),
@@ -14,6 +15,7 @@ var React = require('react'),
 var Posts = React.createClass({
 
   mixins: [
+    PureRenderMixin,
     Reflux.listenTo(postsStore, 'onStoreUpdate'),
     Reflux.listenTo(postActions.updateSortBy, 'updateSortBy')
   ],

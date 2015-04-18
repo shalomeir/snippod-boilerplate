@@ -2,6 +2,7 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     Immutable = require('immutable'),
     DocumentTitle = require('react-document-title'),
     { RouteHandler } = require('react-router'),
@@ -20,6 +21,7 @@ var React = require('react'),
 
 var App = React.createClass({
   mixins: [
+    PureRenderMixin,
     DomContol,
     Reflux.listenTo(userStore,'onUserUpdate'),
     Reflux.listenTo(uiActions.showOverlay, 'showOverlay'),
