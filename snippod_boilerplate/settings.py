@@ -44,8 +44,8 @@ INSTALLED_APPS = (
     'rest_framework',
     'argonauts',
     'authentication',
-    'myapp',
     'main',
+    'myapp',
     'posts',
 )
 
@@ -137,11 +137,20 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
     ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'utils.api.renderers.CamelCaseJSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'utils.api.parsers.CamelCaseJSONRenderer',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+    ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+# Honor the 'X-Forwarded-Proto' navbar for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers

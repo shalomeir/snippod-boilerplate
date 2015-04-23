@@ -38,7 +38,7 @@ var expressConfig = function(app, express, db) {
   // Get current server environment
   var env = app.get('env');
 
-  // Remove x-powered-by header (doesn't let clients know we are using Express)
+  // Remove x-powered-by navbar (doesn't let clients know we are using Express)
   app.disable('x-powered-by');
 
   // Setup port for server to run on
@@ -87,7 +87,7 @@ var expressConfig = function(app, express, db) {
    */
   app.use(methodOverride('_method'));
 
-  // override with the X-HTTP-Method-Override header in the request
+  // override with the X-HTTP-Method-Override navbar in the request
   app.use(methodOverride('X-HTTP-Method-Override'));
 
   /**

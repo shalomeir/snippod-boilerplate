@@ -31,7 +31,7 @@ var readAccount = function(req, res, next) {
 
 /**
  * POST /user
- * Create a new local account.
+ * Create a new local authentication.
  * @param email
  * @param password
  * @param confirmPassword
@@ -166,7 +166,7 @@ var updatePassword = function(req, res, next) {
 
 /**
  * DELETE /user
- * Delete current user account.
+ * Delete current user authentication.
  */
 
 var deleteAccount = function(req, res, next) {
@@ -176,7 +176,7 @@ var deleteAccount = function(req, res, next) {
     }
     res.status(200).json({
       info: [{
-        msg: 'Your account has been deleted.'
+        msg: 'Your authentication has been deleted.'
       }]
     });
   });

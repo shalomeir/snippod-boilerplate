@@ -6,7 +6,7 @@
 'use strict';
 
 var React = require('react');
-var LoginComponent = React.createFactory(require('../../../../client/scripts/components/account/login.jsx'));
+var LoginComponent = React.createFactory(require('../../../../client/scripts/components/authentication/login.jsx'));
 
 describe('Login Component', function() {
 

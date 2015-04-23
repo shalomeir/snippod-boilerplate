@@ -2,18 +2,13 @@
 
 var React = require('react'),
     router = require('./router'),
-    messagesActions = require('./actions/messagesActions'),
-    uiActions = require('./actions/uiActions');
+    UIActions = require('./actions/commons/UIActions');
 
 var attachFastClick = require('fastclick');
 
 
 /* jshint ignore:start */
 router.run((Handler, state) => {
-  // Clear out any existing messages
-  messagesActions.setMessages({});
-  uiActions.hideOverlay();
-
   React.render(<Handler {...state} />, document.getElementById('app-wrapper'));
 });
 /* jshint ignore:end */

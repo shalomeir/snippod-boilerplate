@@ -5,7 +5,7 @@
 
 'use strict';
 
-var messagesStore = require('../../../client/scripts/stores/messagesStore');
+var messagesStore = require('../../../client/scripts/stores/subs/GlobalMessagesStore');
 
 describe('Messages Store', function() {
 

@@ -6,7 +6,7 @@
 'use strict';
 
 var React = require('react');
-var ForgotComponent = React.createFactory(require('../../../../client/scripts/components/account/forgot.jsx'));
+var ForgotComponent = React.createFactory(require('../../../../client/scripts/components/authentication/Forgot.jsx'));
 
 describe('Forgot Component', function() {
 

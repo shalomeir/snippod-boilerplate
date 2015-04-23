@@ -6,7 +6,7 @@
 'use strict';
 
 var React = require('react');
-var NavbarComponent = React.createFactory(require('../../../../client/scripts/components/subs/navbar.jsx'));
+var NavbarComponent = React.createFactory(require('../../../../client/scripts/components/navbar/Navbar.jsx'));
 
 describe('Navbar Component', function() {
 

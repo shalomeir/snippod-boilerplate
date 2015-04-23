@@ -3,29 +3,32 @@
 var React = require('react'),
     Reflux = require('reflux'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    Immutable = require('immutable'),
     DocumentTitle = require('react-document-title'),
     { RouteHandler } = require('react-router'),
     { PropTypes } = React,
     $ = require('jquery'),
     cx = require('classnames'),
-    NavBar = require('./subs/navbar.jsx'),
-    Login = require('./subs/Login.jsx'),
-    Register = require('./subs/Register.jsx'),
-    Messages = require('./modules/messages.jsx'),
-    DomContol = require('../utils/domControl'),
-    userStore = require('../stores/userStore'),
-    userActions = require('../actions/userActions'),
-    uiActions = require('../actions/uiActions');
-
+    NavBar = require('./navbar/Navbar.jsx'),
+    Login = require('./authentication/Login.jsx'),
+    Register = require('./authentication/Register.jsx'),
+    Messages = require('./subs/Messages.jsx'),
+    DomContol = require('../utils/DomControl'),
+    AccountStore = require('../stores/authentication/AccountStore'),
+    AuthStore = require('../stores/authentication/AuthStore'),
+    PageStore = require('../stores/commons/PageStore'),
+    AuthStoreJoinTrailer = require('../stores/authentication/AuthStoreJoinTrailer'),
+    AuthAccountActions = require('../actions/authentication/AuthAccountActions'),
+    MessagesActions = require('../actions/subs/MessagesActions'),
+    UIActions = require('../actions/commons/UIActions');
 
 var App = React.createClass({
   mixins: [
     PureRenderMixin,
     DomContol,
-    Reflux.listenTo(userStore,'onUserUpdate'),
-    Reflux.listenTo(uiActions.showOverlay, 'showOverlay'),
-    Reflux.listenTo(uiActions.hideOverlay, 'hideOverlay')
+    Reflux.listenTo(AccountStore,'onAccountUpdate'),
+    Reflux.listenTo(AuthStore,'onAuthUpdate'),
+    Reflux.listenTo(UIActions.showOverlay, 'showOverlay'),
+    Reflux.listenTo(UIActions.hideOverlay, 'hideOverlay')
   ],
 
   propTypes: {
@@ -34,28 +37,35 @@ var App = React.createClass({
   },
 
   getInitialState: function() {
-    var form = document.createElement('form');
-    form.setAttribute('action', '/auth/login/');
-    userActions.login(form);
+
+    AuthAccountActions.preLogin();
 
     return {
-      user: userStore.getUser(),
+      auth: AuthStore.getAuth(),
+      account: AccountStore.getAccount(),
       showOverlay: false,
-      overlayType: 'login',
-      testcomp: Immutable.Map({'kkk':'vvv','k2':'v2','k3':3,'k4':4})
+      overlayType: 'login'
     };
   },
 
-  onUserUpdate: function(user) {
+  onAccountUpdate: function(account) {
     this.setState({
-      user: user,
+      account: account
+    });
+  },
+
+  onAuthUpdate: function(auth) {
+    this.setState({
+      auth: auth,
       showOverlay: false
     });
   },
 
   showOverlay: function(type) {
+    MessagesActions.resetComponentMessages();
     var overlay = this.refs.overlay.getDOMNode();
     overlay.addEventListener('click', this.hideOverlayListener);
+
     this.setState({
       overlayType: type,
       showOverlay: true
@@ -81,10 +91,12 @@ var App = React.createClass({
     this.setState({
       showOverlay: false
     });
+    MessagesActions.resetComponentMessages();
   },
 
   render: function() {
-    var user = this.state.user;
+    var account = this.state.account;
+    var auth = this.state.auth;
 
     var overlayCx = cx({
       'md-overlay': true,
@@ -103,11 +115,11 @@ var App = React.createClass({
       <DocumentTitle title='App Main'>
         <div className='App wrapper full-height' id='app'>
           <header className='header'>
-            <NavBar {...this.props} user={user} />
+            <NavBar {...this.props} account={account} auth={auth} />
           </header>
           <main id='content' className='full-height inner'>
             <Messages />
-            <RouteHandler {...this.props} user={user} />
+            <RouteHandler {...this.props} account={account} auth={auth} />
           </main>
           <div className={ overlayCx } ref="overlay">{ overlayContent }</div>
         </div>

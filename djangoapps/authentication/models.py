@@ -14,7 +14,7 @@ class AccountManager(BaseUserManager):
     def _create_user(self, email, username, password,
                      is_staff, is_superuser, **extra_fields):
         """
-        Creates and saves a User with the given email, username and password.
+        Creates and saves a Account with the given email, username and password.
         """
         now = timezone.now()
 
@@ -25,7 +25,6 @@ class AccountManager(BaseUserManager):
             raise ValueError('The given username must be set')
 
         email = self.normalize_email(email)
-        del extra_fields['confirm_password']
         account = self.model(email=email, username=username,
                              is_staff=is_staff, is_active=True,
                              is_superuser=is_superuser, last_login=now,
@@ -56,7 +55,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
                 help_text=_('Required. 30 characters or fewer. Letters, digits'
                             ' and ./+/-/_ only.'),
                 validators=[
-                    validators.RegexValidator(r'^[\w.+-]+$', _('Enter a valid username.'), 'invalid')
+                    validators.RegexValidator(r'^[\w.+-]+$', _('Enter a valid username jebal.'), 'invalid')
                 ])
 
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
@@ -84,6 +83,12 @@ class Account(AbstractBaseUser, PermissionsMixin):
         swappable = 'AUTH_USER_MODEL'
 
     def __unicode__(self):
+        return self.email
+
+    def get_email_id(self):
+        """
+        Returns account id.
+        """
         return self.email
 
     def get_full_name(self):

@@ -36,8 +36,8 @@ module.exports = function(grunt) {
   var includeAll = require('include-all');
 
 
-  // Loads Grunt configuration modules from the specified
-  // relative path. These modules should export a function
+  // Loads Grunt configuration commons from the specified
+  // relative path. These commons should export a function
   // that, when run, should either load/configure or register
   // a Grunt task.
   function loadTasks(relPath) {

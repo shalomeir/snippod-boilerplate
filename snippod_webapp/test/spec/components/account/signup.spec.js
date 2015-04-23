@@ -6,7 +6,7 @@
 'use strict';
 
 var React = require('react');
-var SignupComponent = React.createFactory(require('../../../../client/scripts/components/account/signup.jsx'));
+var SignupComponent = React.createFactory(require('../../../../client/scripts/components/authentication/signup.jsx'));
 
 describe('Signup Component', function() {
 

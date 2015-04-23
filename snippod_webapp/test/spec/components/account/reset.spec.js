@@ -6,7 +6,7 @@
 'use strict';
 
 var React = require('react');
-var ResetComponent = React.createFactory(require('../../../../client/scripts/components/account/reset.jsx'));
+var ResetComponent = React.createFactory(require('../../../../client/scripts/components/authentication/reset.jsx'));
 
 describe('Reset Component', function() {
 

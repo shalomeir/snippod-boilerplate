@@ -1,13 +1,13 @@
 'use strict';
-var userStore = require('../stores/userStore'),
-    pageActions = require('../actions/pageActions');
+var AuthStore = require('../stores/authentication/AuthStore'),
+    PageActions = require('../actions/commons/PageActions');
 
 var Authentication = {
   statics: {
     willTransitionTo: function (transition) {
 
-      if (!userStore.getUser().loggedIn) {
-        pageActions.setReturnpage(transition);
+      if (!AuthStore.getAuth().loggedIn) {
+        PageActions.setPage(transition);
         transition.redirect('/login');
       }
     }

@@ -21,3 +21,6 @@ staticfiles/
 
 # vrtualenv
 venv/
+
+#backup
+backup/

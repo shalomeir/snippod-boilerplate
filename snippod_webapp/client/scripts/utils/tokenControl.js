@@ -6,7 +6,7 @@
 var cookie = require('cookie');
     //jQuery = require('jquery');
 
-var tokenControl = {
+var TokenControl = {
 
   getToken: function() {
     var cookies = cookie.parse(document.cookie);
@@ -40,4 +40,4 @@ var tokenControl = {
 };
 
 
-module.exports = tokenControl;
+module.exports = TokenControl;

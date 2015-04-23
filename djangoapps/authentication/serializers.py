@@ -16,10 +16,6 @@ class AccountSerializer(serializers.ModelSerializer):
                   'confirm_password',)
         read_only_fields = ('date_joined', 'updated_at',)
 
-    # def validate_email(self, value):
-    #     if not validate_email(value):
-    #         raise serializers.ValidationError("This value is not a Email form.")
-    #     return value
 
     def validate(self, attrs):
         if 'password' in attrs:

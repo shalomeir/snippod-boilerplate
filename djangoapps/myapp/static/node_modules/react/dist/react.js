@@ -2576,7 +2576,7 @@ module.exports = EventConstants;
 var emptyFunction = _dereq_("./emptyFunction");
 
 /**
- * Upstream version of event listener. Does not take into account specific
+ * Upstream version of event listener. Does not take into authentication specific
  * nature of platform.
  */
 var EventListener = {
@@ -2770,7 +2770,7 @@ var EventPluginHub = {
     injectEventPluginOrder: EventPluginRegistry.injectEventPluginOrder,
 
     /**
-     * @param {object} injectedNamesToPlugins Map from names to plugin modules.
+     * @param {object} injectedNamesToPlugins Map from names to plugin commons.
      */
     injectEventPluginsByName: EventPluginRegistry.injectEventPluginsByName
 
@@ -2938,7 +2938,7 @@ var invariant = _dereq_("./invariant");
 var EventPluginOrder = null;
 
 /**
- * Injectable mapping from names to event plugin modules.
+ * Injectable mapping from names to event plugin commons.
  */
 var namesToPlugins = {};
 
@@ -3105,7 +3105,7 @@ var EventPluginRegistry = {
    *
    * Plugins can be injected as part of page initialization or on-the-fly.
    *
-   * @param {object} injectedNamesToPlugins Map from names to plugin modules.
+   * @param {object} injectedNamesToPlugins Map from names to plugin commons.
    * @internal
    * @see {EventPluginHub.injection.injectEventPluginsByName}
    */
@@ -4283,7 +4283,7 @@ var isEventSupported = _dereq_("./isEventSupported");
  *    ReactEventListener, which is injected and can therefore support pluggable
  *    event sources. This is the only work that occurs in the main thread.
  *
- *  - We normalize and de-duplicate events to account for browser quirks. This
+ *  - We normalize and de-duplicate events to authentication for browser quirks. This
  *    may be done in the worker thread.
  *
  *  - Forward these native events (with the associated top-level type used to
@@ -8746,7 +8746,7 @@ function inject() {
   );
 
   /**
-   * Inject modules for resolving DOM hierarchy and plugin ordering.
+   * Inject commons for resolving DOM hierarchy and plugin ordering.
    */
   ReactInjection.EventPluginHub.injectEventPluginOrder(DefaultEventPluginOrder);
   ReactInjection.EventPluginHub.injectInstanceHandle(ReactInstanceHandles);
@@ -15366,7 +15366,7 @@ var invariant = _dereq_("./invariant");
  * - and a `close` method that accepts the precomputation. `close` is invoked
  *   when the wrapped process is completed, or has failed.
  *
- * @param {Array<TransactionalWrapper>} transactionWrapper Wrapper modules
+ * @param {Array<TransactionalWrapper>} transactionWrapper Wrapper commons
  * that implement `initialize` and `close`.
  * @return {Transaction} Single transaction for reuse in thread.
  *

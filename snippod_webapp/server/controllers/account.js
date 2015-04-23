@@ -171,7 +171,7 @@ var postReset = function(req, res, next) {
         from: 'snippod@yoururl.com',
         subject: 'Your snippod password has been changed',
         text: 'Hello,\n\n' +
-          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+          'This is a confirmation that the password for your authentication ' + user.email + ' has just been changed.\n'
       };
       // Send email
       transporter.sendMail(mailOptions, function(err) {
@@ -240,7 +240,7 @@ var postForgot = function(req, res, next) {
         if (!user) {
           res.status(404).json({
             errors: [{
-              msg: 'No account with that email address exists.'
+              msg: 'No authentication with that email address exists.'
             }]
           });
         }
@@ -248,7 +248,7 @@ var postForgot = function(req, res, next) {
         user.resetPasswordToken = token;
         user.resetPasswordExpires = new Date(new Date().getTime() + 3600000); // 1 hour
 
-        // Save token to user account
+        // Save token to user authentication
         user.save(function(err) {
           done(err, token, user);
         });
@@ -262,7 +262,7 @@ var postForgot = function(req, res, next) {
         to: user.email,
         from: 'admin@test.com',
         subject: 'Reset your password on boilerplate',
-        text: 'You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n' +
+        text: 'You are receiving this email because you (or someone else) have requested the reset of the password for your authentication.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
           'http://' + req.headers.host + '/reset/' + token + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'

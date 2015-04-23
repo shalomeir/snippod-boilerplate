@@ -42,14 +42,18 @@ class AccountViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             if serializer.checkPassword(serializer.validated_data):
-                account = Account.objects.create_user(**serializer.validated_data)
+                Account.objects.create_user(**serializer.validated_data)
+                account = authenticate(email=serializer.validated_data['email'],
+                                       password=serializer.validated_data['password'])
+                login(request, account)
                 serialized = AccountSerializer(account)
                 return Response({
-                    'user': serialized.data
+                    'account': serialized.data
                 }, status=status.HTTP_201_CREATED)
         return Response({
             'status': 'Bad request',
-            'message': 'Account could not be created with received data.'
+            'message': 'Account could not be created with received data.',
+            'errors': serializer.errors
         }, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -58,24 +62,25 @@ class AccountViewSet(viewsets.ModelViewSet):
         return self.create(request)
 
     def destroy(self, request, pk=None):
-        user = self.get_object()
-        user.email = str(user.id)+'_nonactive'+'@snippod.com'
-        user.firstname = ''
-        user.lastname = ''
-        user.is_active = False
-        user.save()
+        account = self.get_object()
+        account.email = str(account.id)+'_nonactive'+'@snippod.com'
+        account.first_name = ''
+        account.last_name = ''
+        account.is_active = False
+        account.save()
 
-        LogoutView.as_view()(self.request)
+        logout(request)
+
         # return self.delete(request)
         return Response({'status':'deleted clean'})
 
     @detail_route(methods=['patch'])
     def set_password(self, request, pk=None):
-        user = self.get_object()
-        serializer = self.serializer_class(user, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.update(user, serializer.validated_data)
-            update_session_auth_hash(request, user)
+        account = self.get_object()
+        serializer = self.serializer_class(account, data=request.data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            serializer.update(account, serializer.validated_data)
+            update_session_auth_hash(request, account)
             return Response({'status': 'password set'})
         else:
             return Response(serializer.errors,
@@ -99,18 +104,18 @@ class LoginView(views.APIView):
                 login(request, account)
                 serialized = AccountSerializer(account)
                 return Response({
-                    'user': serialized.data
+                    'account': serialized.data
                 })
             else:
                 return Response({
                     'status': 'Unauthorized',
-                    'message': 'This account has been disabled.'
+                    'message': 'This authentication has been disabled.'
                 }, status=status.HTTP_401_UNAUTHORIZED)
         else:
             if request.user.is_active:
                 serialized = AccountSerializer(request.user)
                 return Response({
-                    'user': serialized.data
+                    'account': serialized.data
                 })
             return Response({
                 'status': 'Unauthorized',

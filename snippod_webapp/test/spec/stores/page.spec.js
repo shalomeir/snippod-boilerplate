@@ -5,7 +5,7 @@
 
 'use strict';
 
-var pageStore = require('../../../client/scripts/stores/pageStore');
+var pageStore = require('../../../client/scripts/stores/commons/PageStore');
 
 describe('Page Store', function() {
 

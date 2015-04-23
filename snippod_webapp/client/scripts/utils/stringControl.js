@@ -5,7 +5,7 @@
 
 //var jQuery = require('jquery');
 
-var stringControl = {
+var StringControl = {
 
   getParameterByName : function(string, key) {
     key = key.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -17,4 +17,4 @@ var stringControl = {
 };
 
 
-module.exports = stringControl;
+module.exports = StringControl;

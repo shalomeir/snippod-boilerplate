@@ -6,7 +6,7 @@
 'use strict';
 
 var React = require('react');
-var SettingsComponent = React.createFactory(require('../../../../client/scripts/components/account/settings.jsx'));
+var SettingsComponent = React.createFactory(require('../../../../client/scripts/components/authentication/Settings.jsx'));
 
 describe('Settings Component', function() {
 

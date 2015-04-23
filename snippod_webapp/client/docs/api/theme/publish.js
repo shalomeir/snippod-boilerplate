@@ -156,7 +156,7 @@ function generateSourceFiles(sourceFiles, encoding) {
 }
 
 /**
- * Look for classes or functions with the same name as modules (which indicates that the module
+ * Look for classes or functions with the same name as commons (which indicates that the module
  * exports only that class or function), then attach the classes or functions to the `module`
  * property of the appropriate module doclets. The name of each class or function is also updated
  * for display purposes. This function mutates the original arrays.
@@ -189,7 +189,7 @@ function attachModuleSymbols(doclets, modules) {
  * @param {array<object>} members.externals
  * @param {array<object>} members.globals
  * @param {array<object>} members.mixins
- * @param {array<object>} members.modules
+ * @param {array<object>} members.commons
  * @param {array<object>} members.namespaces
  * @param {array<object>} members.tutorials
  * @param {array<object>} members.events

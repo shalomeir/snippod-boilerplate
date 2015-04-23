@@ -5,7 +5,7 @@
 
 'use strict';
 
-var messagesActions = require('../../../client/scripts/actions/messagesActions');
+var messagesActions = require('../../../client/scripts/actions/subs/MessagesActions');
 
 describe('Messages Actions', function() {
 

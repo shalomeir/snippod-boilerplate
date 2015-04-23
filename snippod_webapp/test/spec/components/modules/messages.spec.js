@@ -6,7 +6,7 @@
 'use strict';
 
 var React = require('react');
-var MessagesComponent = React.createFactory(require('../../../../client/scripts/components/modules/messages.jsx'));
+var MessagesComponent = React.createFactory(require('../../../../client/scripts/components/subs/Messages.jsx'));
 
 describe('Messages Component', function() {
 

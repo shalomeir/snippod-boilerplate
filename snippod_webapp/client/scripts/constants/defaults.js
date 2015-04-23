@@ -4,30 +4,41 @@ var Defaults = {
 
   route: '/',
 
-  apiPath: 'api/v1',
+  apiPath: '/api/v1',
 
   page: {
     title: 'Home',
     description: 'Page Component - default',
     keywords: null,
     location: '/',
-    returnpage: '/'
+    returnpage: null,
+    transition: null
   },
 
-  user: {
-    loggedIn: false,
-    email: 'anonymous@snippod.com',
-    first_name: '',
-    last_name: '',
-    username: 'anonymous',
+  account: {
     id:'',
-    profile: {
-      upvoted: {}
-    }
+    email: '',
+    username: '',
+    firstName: '',
+    lastName: ''
   },
 
-  messages: {
-    overlayMessages: null
+  auth: {
+    loggedIn: false,
+    language: 'en-us'
+  },
+
+  globalMessages: {
+    overlayMessages: null,
+    info: null,
+    success: null,
+    errors: null
+  },
+
+  componentMessages: {
+    progressed: null,
+    completed: null,
+    failed: null
   },
 
   topic: {

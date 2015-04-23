@@ -16,7 +16,7 @@ from django.contrib import admin
 # router.register(r'postsold', PostViewSet)
 #
 # accounts_router = routers.NestedSimpleRouter(
-#     router, r'accounts', lookup='account'
+#     router, r'accounts', lookup='authentication'
 # )
 # accounts_router.register(r'postsold', AccountPostsViewSet)
 
