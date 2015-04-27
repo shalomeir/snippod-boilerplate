@@ -82,7 +82,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _('users')
         swappable = 'AUTH_USER_MODEL'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.email
 
     def get_email_id(self):

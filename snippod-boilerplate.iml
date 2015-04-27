@@ -26,10 +26,10 @@
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/scripts" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/venv_old" />
     </content>
     <orderEntry type="jdk" jdkName="snippod-boilerplate/venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="snippod-boilerplate/venv interpreter library" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

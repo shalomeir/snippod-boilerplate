@@ -5,13 +5,15 @@ from authentication.models import Account
 
 class PostQuerySet(models.QuerySet):
     def upvotes(self):
-        return self.annotate(Count('postupvote')).order_by('-postupvote__count')
+        return self.annotate(Count('postupvote'))\
+            .order_by('-postupvote__count','-created_at')
 
     def newest(self):
         return self.order_by('-created_at')
 
     def comments(self):
-        return self.annotate(Count('comment')).order_by('-comment__count')
+        return self.annotate(Count('comment'))\
+            .order_by('-comment__count','-created_at')
 
 
 class Post(models.Model):
@@ -25,7 +27,7 @@ class Post(models.Model):
     objects = models.Manager()
     sorted_objects = PostQuerySet.as_manager()
 
-    def __unicode__(self):
+    def __str__(self):
         return '{0}'.format(self.title)
 
     def _get_comment_count(self):
@@ -42,7 +44,8 @@ class Post(models.Model):
 
 class CommentQuerySet(models.QuerySet):
     def upvotes(self):
-        return self.annotate(Count('commentupvote')).order_by('-commentupvote__count')
+        return self.annotate(Count('commentupvote'))\
+            .order_by('-commentupvote__count','-created_at')
 
     def newest(self):
         return self.order_by('-created_at')
@@ -58,7 +61,7 @@ class Comment(models.Model):
     objects = models.Manager()
     sorted_objects = CommentQuerySet.as_manager()
 
-    def __unicode__(self):
+    def __str__(self):
         return '{0}'.format(self.content)
 
     def _get_upvote_count(self):
