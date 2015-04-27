@@ -47,3 +47,12 @@ class AccountSerializer(serializers.ModelSerializer):
         if password and confirm_password and password == confirm_password:
             return True
         return False
+
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Account
+        fields = ('id', 'email', 'username',)
+        read_only_fields = ('id', 'email', 'username',)

@@ -1,31 +1,150 @@
 from rest_framework import permissions, viewsets
 from rest_framework.response import Response
+from rest_framework import status
 
-from posts.models import Post
-from posts.permissions import IsAuthorOfPost
-from posts.serializers import PostSerializer
-
+from posts.models import Post, Comment, PostUpvote, CommentUpvote
+from posts.permissions import IsAuthor, IsOwner
+from posts.serializers import PostSerializer, CommentSerializer, \
+                                PostUpvoteSerializer, CommentUpvoteSerializer
+from rest_framework.decorators import detail_route
+from django.core.exceptions import ObjectDoesNotExist
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.order_by('-created_at')
     serializer_class = PostSerializer
+
+    def get_queryset(self):
+        sorting = self.request.QUERY_PARAMS.get('sorting', None)
+        if sorting == 'upvotes':
+            return Post.sorted_objects.upvotes()
+        elif sorting == 'newest':
+            return Post.sorted_objects.newest()
+        elif sorting == 'comments' :
+            return Post.sorted_objects.comments()
+        else:
+            return Post.sorted_objects.upvotes()
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
             return (permissions.AllowAny(),)
-        return (permissions.IsAuthenticated(), IsAuthorOfPost(),)
+        return (permissions.IsAuthenticated(), IsAuthor(),)
 
     def perform_create(self, serializer):
         instance = serializer.save(author=self.request.user)
-
         return super(PostViewSet, self).perform_create(serializer)
 
-# class AccountPostsViewSet(viewsets.ViewSet):
-#     queryset = Post.objects.select_related('author').order_by('-created_at')
-#     serializer_class = PostSerializer
+    @detail_route(methods=['post'], permission_classes=[permissions.IsAuthenticated])
+    def upvote(self, request, pk=None):
+        serializer = PostUpvoteSerializer(data={'post':pk},
+                                          context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
+
+    @detail_route(methods=['post'], permission_classes=[permissions.IsAuthenticated])
+    def cancel_upvote(self, request, pk=None):
+        try:
+            post =Post.objects.get(pk=pk)
+            instance = PostUpvote.objects.get(post=post, voter=self.request.user)
+            self.perform_destroy(instance)
+            return Response({'status': 'Cancel upvote success.'},
+                            status=status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response({
+                'status': 'Not Fount',
+                'message': 'This upvote is not exist.'
+            }, status=status.HTTP_404_NOT_FOUND)
+
+
+
+class UserPostsViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        user_id = self.kwargs['userid']
+        sorting = self.request.QUERY_PARAMS.get('sorting', None)
+        if sorting == 'upvotes':
+            return Post.sorted_objects.upvotes().filter(author=user_id)
+        elif sorting == 'newest':
+            return Post.sorted_objects.newest().filter(author=user_id)
+        elif sorting == 'comments' :
+            return Post.sorted_objects.comments().filter(author=user_id)
+        else:
+            return Post.sorted_objects.upvotes().filter(author=user_id)
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        sorting = self.request.QUERY_PARAMS.get('sorting', None)
+        if sorting == 'upvotes':
+            return Comment.sorted_objects.upvotes()
+        elif sorting == 'newest':
+            return Comment.sorted_objects.newest()
+        else:
+            return Comment.sorted_objects.upvotes()
+
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:
+            return (permissions.AllowAny(),)
+        return (permissions.IsAuthenticated(), IsAuthor(),)
+
+    def perform_create(self, serializer):
+        instance = serializer.save(author=self.request.user)
+        return super(CommentViewSet, self).perform_create(serializer)
+
+    @detail_route(methods=['post'], permission_classes=[permissions.IsAuthenticated])
+    def upvote(self, request, pk=None):
+        serializer = CommentUpvoteSerializer(data={'comment':pk},
+                                          context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
+
+    @detail_route(methods=['post'], permission_classes=[permissions.IsAuthenticated])
+    def cancel_upvote(self, request, pk=None):
+        try:
+            comment =Comment.objects.get(pk=pk)
+            instance = CommentUpvote.objects.get(comment=comment, voter=self.request.user)
+            self.perform_destroy(instance)
+            return Response({'status': 'Cancel upvote success.'},
+                            status=status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response({
+                'status': 'Not Fount',
+                'message': 'This upvote is not exist.'
+            }, status=status.HTTP_404_NOT_FOUND)
+
+
+# class PostUpvoteViewSet(viewsets.ModelViewSet):
+#     queryset = PostUpvote.objects.all()
+#     serializer_class = PostUpvoteSerializer
 #
-#     def list(self, request, account_username=None):
-#         queryset = self.queryset.filter(author__username=account_username)
-#         serializer = self.serializer_class(queryset, many=True)
+#     def get_permissions(self):
+#         if self.request.method in permissions.SAFE_METHODS:
+#             return (permissions.AllowAny(),)
+#         return (permissions.IsAuthenticated(), IsOwner(),)
 #
-#         return Response(serializer.data)
+#     def perform_create(self, serializer):
+#         instance = serializer.save(voter=self.request.user)
+#         return super(PostUpvoteViewSet, self).perform_create(serializer)
+#
+#
+# class CommentUpvoteViewSet(viewsets.ModelViewSet):
+#     queryset = PostUpvote.objects.all()
+#     serializer_class = CommentUpvoteSerializer
+#
+#     def get_permissions(self):
+#         if self.request.method in permissions.SAFE_METHODS:
+#             return (permissions.AllowAny(),)
+#         return (permissions.IsAuthenticated(), IsOwner(),)
+#
+#     def perform_create(self, serializer):
+#         instance = serializer.save(voter=self.request.user)
+#         return super(PostUpvoteViewSet, self).perform_create(serializer)

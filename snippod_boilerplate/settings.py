@@ -91,6 +91,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+DATABASE_OPTIONS = {'charset': 'utf8'}
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
