@@ -33,10 +33,10 @@ var PostListStore = Reflux.createStore({
     return this._sorting.currentSorting;
   },
 
-  getObjects: function() {
+  getObjects: function(sorting) {
     return {
-      posts: this.getPosts(),
-      pagenatedList: this.getPagenatedList(),
+      posts: this.getPosts(sorting),
+      pagenatedList: this.getPagenatedList(sorting),
       currentSortOption: this.getCurrentSorting()
     };
   },
@@ -45,21 +45,30 @@ var PostListStore = Reflux.createStore({
    ===============================*/
   setSortBy: function(value) {
     this._sorting.currentSorting = value;
-    this.trigger(this.getObjects());
   },
 
   setPostList: function(sorting, posts) {
-    var postListArray = posts.toArray();
+    var postsArray = posts.results;
+    var postsLength = postsArray.length;
+    var postsListArray = [];
+    for (var i = 0; i < postsLength; i++) {
+      postsListArray.push(postsArray[i].id);
+    }
     var nextPageUrl = posts.next;
     var pagenatedList = this._postLists.get(sorting);
     if (typeof pagenatedList === 'undefined') {
       pagenatedList = new PagenatedList();
     }
+    pagenatedList.receivePage(postsListArray, nextPageUrl);
+    this._postLists = this._postLists.set(sorting, pagenatedList);
+  },
 
-    pagenatedList.receivePage(postListArray, nextPageUrl);
-
-    this._postLists.set(sorting, pagenatedList);
-    this.trigger(this.getObjects());
+  thenGetPostsCompleted: function(response) {
+    var sorting = response.req._query.sorting || this._sorting.defaultSorting;
+    this.setSortBy(sorting);
+    var posts = response.body;
+    this.setPostList(sorting, posts);
+    this.trigger(this.getObjects(sorting));
   }
 
 });

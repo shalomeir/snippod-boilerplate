@@ -12,8 +12,11 @@ var Upvote = React.createClass({
   mixins:[PureRenderMixin],
 
   propTypes: {
+    params: PropTypes.object.isRequired,
+    query: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
-    post: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    post : PropTypes.object.isRequired
   },
 
   getInitialState: function() {
@@ -37,7 +40,7 @@ var Upvote = React.createClass({
   //},
 
   upvote: throttle(function(userId, itemId) {
-    if (!this.props.user.loggedIn) {
+    if (!this.props.auth.loggedIn) {
       UIActions.showOverlay('login');
       return;
     }

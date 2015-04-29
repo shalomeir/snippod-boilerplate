@@ -8,7 +8,7 @@ class PaginatedList {
   constructor(idsArray) {
     this._ids = Im.OrderedSet(idsArray) || Im.OrderedSet();
     this._pageCount = 0;
-    this._nextPageUrl = true;
+    this._nextPageUrl = '/';
     //this._isExpectingPage = false;
   }
 
@@ -51,7 +51,7 @@ class PaginatedList {
   //}
 
   receivePage(newIdsArray, nextPageUrl) {
-    invariant(this._isExpectingPage, 'Cannot call receivePage without prior expectPage call.');
+    //invariant(this._isExpectingPage, 'Cannot call receivePage without prior expectPage call.');
 
     if (newIdsArray.length) {
       this._ids = this._ids.union(newIdsArray);

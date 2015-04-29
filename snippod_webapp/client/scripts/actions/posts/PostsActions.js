@@ -29,7 +29,10 @@ var PostsActions = Reflux.createActions({
   'addComment': {},
   'deleteComment': {},
 
-  'setSortBy':{}
+  'setSortBy':{},
+
+  // for guarrentee sequencial processing store update
+  'thenGetPostsCompleted': {}
 
 });
 
@@ -40,11 +43,6 @@ PostsActions.getPosts.preEmit = function(requestUrl, query, callback) {
   requestGet(requestUrl,query,callback)
     .then(this.completed)
     .catch(this.failed);
-};
-
-PostsActions.getPosts.completed.preEmit = function(response) {
-
-  return response.body;
 };
 
 PostsActions.getPosts.failed.preEmit = function(response) {

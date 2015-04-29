@@ -14,7 +14,7 @@ var PostStore = Reflux.createStore({
   },
 
   get: function(id) {
-    return this._posts.get(id).toJS();
+    return this._posts.get(id);
   },
 
   contains(id, fields) {
@@ -35,9 +35,9 @@ var PostStore = Reflux.createStore({
     this.trigger(this._posts.get(post.id).toJS());
   },
 
-  onGetPostsCompleted: function(resData) {
-    this.setPosts(resData.results);
-    this.trigger(resData);
+  onGetPostsCompleted: function(response) {
+    this.setPosts(response.body.results);
+    PostsActions.thenGetPostsCompleted(response);
   }
 
 });

@@ -57,15 +57,16 @@ var Posts = React.createClass({
   render: function() {
     var posts = this.state.posts;
     var account = this.props.account;
+    var auth = this.props.auth;
     var sortOption = this.state.sortOption;
     // possible sort values (defined in constants/defaults.js)
     var sortValues = Object.keys(sortingOptionDefault);
 
     posts = posts.map(function(post) {
       /* jshint ignore:start */
-      return <Post post={ post } account={ account } key={ post.id } />;
+      return <Post post={ post } {...this.props} key={ post.id } />;
       /* jshint ignore:end */
-    });
+    }.bind(this));
 
     var options = sortValues.map(function(optionText, i) {
       /* jshint ignore:start */
@@ -147,7 +148,7 @@ var Posts = React.createClass({
     var query = {
       sorting: this.props.params.sorting
     };
-    if ( nextPageUrl ) {
+    if ( nextPageUrl && nextPageUrl !== '/' ) {
       PostsActions.getPosts(nextPageUrl,query);
     }
     PostsActions.getPosts(action,query);
