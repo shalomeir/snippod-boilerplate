@@ -5,6 +5,7 @@
 'use strict';
 
 var React = require('react'),
+    { PropTypes } = React,
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
     Authentication = require('../../utils/Authentication') ;
@@ -12,6 +13,13 @@ var React = require('react'),
 var Account = React.createClass({
 
   mixins:[PureRenderMixin, Authentication],
+
+  propTypes: {
+    params: PropTypes.object.isRequired,
+    query: PropTypes.object.isRequired,
+    account: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
+  },
 
   //getInitialState: function() {
   //  return getState();

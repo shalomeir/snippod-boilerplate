@@ -1,7 +1,6 @@
 'use strict';
 
 var Reflux = require('reflux'),
-    router = require('../../router'),
     Im = require('immutable'),
     accountDefault = require('../../constants/defaults').account,
     AuthAccountActions = require('../../actions/authentication/AuthAccountActions');
@@ -15,24 +14,24 @@ var AccountStore = Reflux.createStore({
   },
 
   getAccount: function() {
-    return this.account.toObject();
+    return this.account.toJS();
   },
 
   /* Listen AuthAccountActions
    ===============================*/
   _mergeAccountData: function(resData) {
     this.account = this.account.merge(Im.Map(resData));
-    this.trigger(this.account.toObject());
+    this.trigger(this.account.toJS());
   },
 
   onLoginCompleted: function(resData) {
     this.account = this.account.merge(Im.Map(resData.account));
-    this.trigger(this.account.toObject());
+    this.trigger(this.account.toJS());
   },
 
   onPreLoginCompleted: function(resData) {
     this.account = this.account.merge(Im.Map(resData.account));
-    this.trigger(this.account.toObject());
+    this.trigger(this.account.toJS());
   },
 
   onRegisterCompleted: function(resData) {
@@ -45,7 +44,7 @@ var AccountStore = Reflux.createStore({
 
   setAccount: function(accountData) {
     this.account = this.account.merge(Im.Map(accountData));
-    this.trigger(this.account.toObject());
+    this.trigger(this.account.toJS());
   }
 });
 

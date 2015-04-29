@@ -15,7 +15,7 @@ var AuthStore = Reflux.createStore({
   },
 
   getAuth: function() {
-    return this.auth.toObject();
+    return this.auth.toJS();
   },
 
 
@@ -23,7 +23,7 @@ var AuthStore = Reflux.createStore({
    ===============================*/
   onLoginCompleted: function(resData) {
     this.auth = this.auth.set('loggedIn', true);
-    this.trigger(this.auth.toObject());
+    this.trigger(this.auth.toJS());
   },
 
   onLoginFailed: function(resData) {
@@ -32,7 +32,7 @@ var AuthStore = Reflux.createStore({
 
   onPreLoginCompleted: function(resData) {
     this.auth = this.auth.set('loggedIn', true);
-    this.trigger(this.auth.toObject());
+    this.trigger(this.auth.toJS());
   },
 
   onPreLoginFailed: function(resData) {
@@ -41,12 +41,12 @@ var AuthStore = Reflux.createStore({
 
   onRegisterCompleted: function(resData) {
     this.auth = this.auth.set('loggedIn', true);
-    this.trigger(this.auth.toObject());
+    this.trigger(this.auth.toJS());
   },
 
   setAuth: function(authData, transitionTo) {
     this.auth = this.auth.merge(Im.Map(authData));
-    this.trigger(this.auth.toObject());
+    this.trigger(this.auth.toJS());
 
     if (transitionTo) {
       router.transitionTo(transitionTo);

@@ -5,7 +5,7 @@
 
 var $ = require('jquery'),
   router = require('../router'),
-  { getParameterByName } = require('./StringControl'),
+  { getParameterByName, checkAbsoluteURL } = require('./StringControl'),
   Cookies = require('cookies-js'),
   request = require('superagent'),
   csrf = require('superagent-csrf'),
@@ -20,7 +20,7 @@ var RESTCall = {
   //This function should be called in Async Action
   //  which have options.asyncResult = true.
   //Beacuse this call action.completed() or action.failed()
-  postForm: function(form, callback) {
+  requestPostForm: function(form, callback) {
 
     return new Promise((resolve, reject) => {
 
@@ -44,41 +44,38 @@ var RESTCall = {
         .end(function(response) {
           if (response.ok) {
             resolve(response);
-
             if (callback && callback.success) {
               callback.success(response);
             }
           }
           else {
             reject(response);
-
             if (callback && callback.error) {
               callback.error(response);
             }
-
           }
-
           if (callback && callback.complete) {
             callback.complete(response);
           }
         });
-
     });
 
   },
 
-  postObject: function(object, postUrl, callback) {
+  requestPost: function(object, requestUrl, callback) {
 
     return new Promise((resolve, reject) => {
 
       var postData = object;
-      var postUrl = postUrl || window.location.pathname;
-      var method = getParameterByName(postUrl, '_method') || 'POST';
-      postUrl = apiPath + postUrl;
+      var requestUrl = requestUrl || window.location.pathname;
+      var method = getParameterByName(requestUrl, '_method') || 'POST';
+      if(!checkAbsoluteURL(requestUrl)){
+        requestUrl = apiPath + requestUrl;
+      }
       var csrftoken = Cookies.get('csrftoken');
 
       request
-        .post(postUrl)
+        .post(requestUrl)
         .type('json')
         .accept('json')
         .set({
@@ -91,28 +88,62 @@ var RESTCall = {
         .end(function(response) {
           if (response.ok) {
             resolve(response);
-
             if (callback && callback.success) {
               callback.success(response);
             }
           }
           else {
             reject(response);
-
             if (callback && callback.error) {
               callback.error(response);
             }
-
           }
-
           if (callback && callback.complete) {
             callback.complete(response);
           }
         });
-
     });
+  },
 
+  requestGet: function(requestUrl, query, callback) {
+
+    return new Promise((resolve, reject) => {
+
+      if(!checkAbsoluteURL(requestUrl)){
+        requestUrl = apiPath + requestUrl;
+      }
+      var csrftoken = Cookies.get('csrftoken');
+
+      request
+        .get(requestUrl)
+        .type('json')
+        .accept('json')
+        .query(query)
+        .set({
+          //'authorization': 'Bearer ' + token,
+          'X-CSRFToken': csrftoken,
+          'X-Requested-With': 'XMLHttpRequest',
+        })
+        .end(function(response) {
+          if (response.ok) {
+            resolve(response);
+            if (callback && callback.success) {
+              callback.success(response);
+            }
+          }
+          else {
+            reject(response);
+            if (callback && callback.error) {
+              callback.error(response);
+            }
+          }
+          if (callback && callback.complete) {
+            callback.complete(response);
+          }
+        });
+    });
   }
+
 
 };
 

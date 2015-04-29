@@ -59,7 +59,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 
-class UserPostsViewSet(viewsets.ReadOnlyModelViewSet):
+class UserPostViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PostSerializer
 
     def get_queryset(self):

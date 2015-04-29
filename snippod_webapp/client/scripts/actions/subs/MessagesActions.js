@@ -14,6 +14,10 @@ var MessagesActions = Reflux.createActions({
   'setRegisterSuccessMessages':{},
   'setUpdateSettingsSuccessMessages':{},
   'setUpdatePasswordSuccessMessages':{},
+
+  //from action to current component directly
+  'sendComponentMessages':{}
+
 });
 
 module.exports = MessagesActions;

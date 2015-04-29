@@ -46,6 +46,7 @@
     "superagent": "~0.21.0",
     "superagent-csrf": "^1.0.0",
     "superagent-prefix": "0.0.2",
+    "underscore": "~1.8.3",
     "validator": "~3.19.1"
   },
   "devDependencies": {

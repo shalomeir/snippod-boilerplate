@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react'),
+    { PropTypes } = React,
     Reflux = require('reflux'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
@@ -16,6 +17,13 @@ var Settings = React.createClass({
     Authentication,
     Reflux.listenTo(ComponentMessageStore, 'onErrorMessage')
   ],
+
+  propTypes: {
+    params: PropTypes.object.isRequired,
+    query: PropTypes.object.isRequired,
+    account: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
+  },
 
   getInitialState: function() {
     return {

@@ -3,15 +3,11 @@
 var Reflux = require('reflux'),
     $ = require('jquery'),
     router = require('../../router'),
-    { postForm }= require('../../utils/RESTCall'),
+    { requestPostForm }= require('../../utils/RESTCall'),
     Cookies = require('cookies-js'),
-    request = require('superagent'),
-    csrf = require('superagent-csrf'),
     accountDefault = require('../../constants/defaults').account,
     authDefault = require('../../constants/defaults').auth;
 //var prefix = require('superagent-prefix')(apiPath);
-
-require('../../utils/serialization');
 
 var MessagesActions = require('./../subs/MessagesActions'),
     UIActions = require('./../commons/UIActions'),
@@ -37,7 +33,7 @@ var AuthAccountActions = Reflux.createActions({
 /* Auth Actions
  ===============================*/
 AuthAccountActions.login.preEmit = function(form, callback) {
-  postForm(form, callback)
+  requestPostForm(form, callback)
     .then(this.completed)
     .catch(this.failed);
 };
@@ -56,7 +52,7 @@ AuthAccountActions.login.failed.preEmit = function(response) {
 AuthAccountActions.preLogin.preEmit = function(form, callback) {
   var newForm = form || document.createElement('form');
   newForm.setAttribute('action', '/auth/login/');
-  postForm(newForm, callback)
+  requestPostForm(newForm, callback)
     .then(this.completed)
     .catch(this.failed);
 };
@@ -74,7 +70,7 @@ AuthAccountActions.logout.preEmit = function() {
   PageActions.setReturnpage(window.location.pathname);
   var form = document.createElement('form');
   form.setAttribute('action', '/auth/logout/');
-  postForm(form)
+  requestPostForm(form)
     .then(this.completed)
     .catch(this.completed);
 };
@@ -91,7 +87,7 @@ AuthAccountActions.logout.completed.preEmit = function() {
 };
 
 AuthAccountActions.register.preEmit = function(form, callback) {
-  postForm(form, callback)
+  requestPostForm(form, callback)
     .then(this.completed)
     .catch(this.failed);
 };
@@ -108,7 +104,7 @@ AuthAccountActions.register.failed.preEmit = function(response) {
 
 AuthAccountActions.forgot.preEmit = function(form, callback) {
   alert('This feature is not implemented yet.');
-  //postForm(form, cb);
+  //requestPostForm(form, cb);
 };
 
 
@@ -116,7 +112,7 @@ AuthAccountActions.forgot.preEmit = function(form, callback) {
  ===============================*/
 // from setting component
 AuthAccountActions.destroy.preEmit= function(form, callback) {
-  postForm(form, callback)
+  requestPostForm(form, callback)
     .then(this.completed)
     .catch(this.failed);
 };
@@ -133,7 +129,7 @@ AuthAccountActions.destroy.failed.preEmit = function(response) {
 
 
 AuthAccountActions.updateSettings.preEmit = function(form, callback) {
-  postForm(form, callback)
+  requestPostForm(form, callback)
     .then(this.completed)
     .catch(this.failed);
 };
@@ -148,7 +144,7 @@ AuthAccountActions.updateSettings.failed.preEmit = function(response) {
 
 
 AuthAccountActions.updatePassword.preEmit = function(form, callback) {
-  postForm(form, callback)
+  requestPostForm(form, callback)
     .then(this.completed)
     .catch(this.failed);
 };

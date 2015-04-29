@@ -15,7 +15,7 @@ var GlobalMessagesStore = Reflux.createStore({
   },
 
   getGlobalMessages: function() {
-    return this.globalMessages.toObject();
+    return this.globalMessages.toJS();
   },
 
 
@@ -23,13 +23,13 @@ var GlobalMessagesStore = Reflux.createStore({
    ===============================*/
   resetGlobalMessages: function() {
     this.globalMessages = Im.Map(globalMessagesDefault);
-    this.trigger(this.globalMessages.toObject());
+    this.trigger(this.globalMessages.toJS());
   },
 
   setGlobalMessages: function(messages) {
     messages = Im.Map(messages);
     this.globalMessages= this.globalMessages.merge(Im.Map(messages));
-    this.trigger(this.globalMessages.toObject());
+    this.trigger(this.globalMessages.toJS());
   },
 
   setLoginSuccessMessages: function(resData) {
@@ -37,7 +37,7 @@ var GlobalMessagesStore = Reflux.createStore({
       success:'Login Success!'
     });
     this.globalMessages = Im.Map(globalMessagesDefault).merge(msgs);
-    this.trigger(this.globalMessages.toObject());
+    this.trigger(this.globalMessages.toJS());
   },
 
   setLoginErrorsMessages: function(resData) {
@@ -45,7 +45,7 @@ var GlobalMessagesStore = Reflux.createStore({
       errors:'Login Failed!'
     });
     this.globalMessages = Im.Map(globalMessagesDefault).merge(msgs);
-    this.trigger(this.globalMessages.toObject());
+    this.trigger(this.globalMessages.toJS());
   },
 
   setRegisterSuccessMessages: function(resData) {
@@ -53,7 +53,7 @@ var GlobalMessagesStore = Reflux.createStore({
       success:'Register ID Success!'
     });
     this.globalMessages = Im.Map(globalMessagesDefault).merge(msgs);
-    this.trigger(this.globalMessages.toObject());
+    this.trigger(this.globalMessages.toJS());
   },
 
   setUpdateSettingsSuccessMessages: function(resData) {
@@ -61,7 +61,7 @@ var GlobalMessagesStore = Reflux.createStore({
       success:'Updated Your Information.'
     });
     this.globalMessages = Im.Map(globalMessagesDefault).merge(msgs);
-    this.trigger(this.globalMessages.toObject());
+    this.trigger(this.globalMessages.toJS());
   },
 
   setUpdatePasswordSuccessMessages: function(resData) {
@@ -69,7 +69,7 @@ var GlobalMessagesStore = Reflux.createStore({
       success:'Updated your Password'
     });
     this.globalMessages = Im.Map(globalMessagesDefault).merge(msgs);
-    this.trigger(this.globalMessages.toObject());
+    this.trigger(this.globalMessages.toJS());
   }
 
 });

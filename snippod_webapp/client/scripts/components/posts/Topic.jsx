@@ -5,32 +5,36 @@
 'use strict';
 
 var React = require('react'),
+    { PropTypes } = React,
     Reflux = require('reflux'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
-    Router = require('react-router'),
 
     //components
-    TopicCard = require('./topicCard.jsx'),
-    Posts = require('./posts.jsx'),
-    ComposerBox = require('./ComposerBox.jsx'),
+    TopicCard = require('./postlist/TopicCard.jsx'),
+    Posts = require('./postlist/Posts.jsx'),
+    ComposerBox = require('./postlist/ComposerBox.jsx'),
     //actions
-    postActions = require('../../actions/posts/PostActions');
+    PostsActions = require('../../actions/posts/PostsActions');
+
 
 var Topic = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    Router.Navigation,
   ],
 
   statics: {
-    willTransitionTo: function(transition, params) {
-      postActions.listenToPosts(+params.pageNum || 1);
-    },
-    willTransitionFrom: function() {
-      postActions.stopListeningToPosts();
+    willTransitionTo: function(transition, params, query) {
+      PostsActions.setSortBy(query.sorting);
     }
+  },
+
+  propTypes: {
+    params: PropTypes.object.isRequired,
+    query: PropTypes.object.isRequired,
+    account: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
   },
 
   render: function() {

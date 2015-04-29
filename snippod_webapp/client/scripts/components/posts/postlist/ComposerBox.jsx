@@ -1,17 +1,18 @@
 'use strict';
 
 var React = require('react'),
+    { PropTypes } = React,
     Reflux = require('reflux'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     cx = require('classnames'),
     //components
-    Spinner = require('../commons/Spinner.jsx'),
+    Spinner = require('../../commons/Spinner.jsx'),
     //store
-    postsStore = require('../../stores/posts/postsStore'),
+    postsStore = require('../../../stores/posts/PostListStore'),
     //actions
-    UIActions = require('../../actions/commons/UIActions'),
-    messagesActions = require('../../actions/subs/MessagesActions'),
-    postActions = require('../../actions/posts/PostActions');
+    UIActions = require('../../../actions/commons/UIActions'),
+    messagesActions = require('../../../actions/subs/MessagesActions'),
+    postActions = require('../../../actions/posts/PostsActions');
 
 
 var ComposerBox = React.createClass({
@@ -21,6 +22,13 @@ var ComposerBox = React.createClass({
     //Reflux.listenTo(postsStore, 'resetForm'),
     //Reflux.listenTo(messagesActions.setError, 'onErrorMessage')
   ],
+
+  propTypes: {
+    params: PropTypes.object.isRequired,
+    query: PropTypes.object.isRequired,
+    account: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
+  },
 
   getInitialState: function() {
     return {

@@ -12,8 +12,16 @@ var StringControl = {
     var regex = new RegExp('[\\?&]' + key + '=([^&#]*)'),
       results = regex.exec(string);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-  }
+  },
 
+  checkAbsoluteURL : function(urlString) {
+    var pat = /^https?:\/\//i;
+    if (pat.test(urlString)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 };
 
 

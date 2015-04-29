@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react'),
+    { PropTypes } = React,
     Reflux = require('reflux'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     AuthAccountActions = require('../../actions/authentication/AuthAccountActions'),
@@ -12,6 +13,13 @@ var React = require('react'),
 var NavBar = React.createClass({
 
   mixins: [PureRenderMixin],
+
+  propTypes: {
+    params: PropTypes.object.isRequired,
+    query: PropTypes.object.isRequired,
+    account: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
+  },
 
   render: function() {
     var account = this.props.account;

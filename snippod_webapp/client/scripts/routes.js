@@ -20,7 +20,6 @@ var routes = (
     <Route name='forgot' path='/login/forgot' handler={Forgot} />
     <Route name='settings' path='/settings' handler={Settings} />
     <Route name='me' path='/me' handler={Account} />
-    <Route name='topic' path='/:topic' handler={Topic} />
     <Route name='empty' path='/empty' handler={Empty} />
   </Route>
   /* jshint ignore:end */

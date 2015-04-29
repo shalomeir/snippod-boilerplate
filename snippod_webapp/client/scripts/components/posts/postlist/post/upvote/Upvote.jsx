@@ -1,14 +1,20 @@
 'use strict';
 
 var React = require('react'),
+    { PropTypes } = React,
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     cx = require('classnames'),
     throttle = require('lodash/function/throttle'),
-    UIActions =require('../../../actions/commons/UIActions');
+    UIActions =require('../../../../../actions/commons/UIActions');
 
 var Upvote = React.createClass({
 
   mixins:[PureRenderMixin],
+
+  propTypes: {
+    account: PropTypes.object.isRequired,
+    post: PropTypes.object.isRequired
+  },
 
   getInitialState: function() {
     return {
@@ -52,11 +58,11 @@ var Upvote = React.createClass({
 
   render: function() {
 
-    var userId = this.props.user.uid;
-    var itemId = this.props.itemId;
-    var upvotes = this.props.upvotes;
+    var userId = this.props.account.id;
+    var postId = this.props.post.id;
+    var upvoteCount = this.props.post.upvoteCount;
 
-    var upvoted = this.state.upvoted;
+    var upvoted = this.props.post.isUpvotedMe;
     var upvoteCx = cx({
       'upvote': true,
       'upvoted': upvoted
@@ -64,8 +70,8 @@ var Upvote = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <a className={ upvoteCx } onClick={ this.upvote.bind(this, userId, itemId) }>
-        { upvotes } <i className="fa fa-arrow-up"></i>
+      <a className={ upvoteCx } onClick={ this.upvote.bind(this, userId, postId) }>
+        { upvoteCount } <i className="fa fa-arrow-up"></i>
       </a>
       /* jshint ignore:end */
 

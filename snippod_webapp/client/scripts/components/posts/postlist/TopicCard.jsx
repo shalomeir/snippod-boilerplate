@@ -4,13 +4,9 @@
 
 'use strict';
 
-var React = require('react'),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin;
-
+var React = require('react');
 
 var TopicCard = React.createClass({
-
-  mixins:[PureRenderMixin],
 
   render: function() {
     return (
@@ -18,7 +14,7 @@ var TopicCard = React.createClass({
           <div className="main-info topic-card" id="topic-card">
             <h1>Welcome to Snippod's boilerplate!</h1>
             <p>
-              Take a look at the <a href="https://github.com/shalomeir/generator-snippod-hackathon">
+              Take a look at the <a href="https://github.com/shalomeir/snippod-boilerplate">
               documentation</a> and start mixing up something awesome.
             </p>
             <p>

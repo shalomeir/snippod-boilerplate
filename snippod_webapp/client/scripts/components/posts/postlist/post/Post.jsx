@@ -4,27 +4,33 @@
 'use strict';
 
 var React = require('react'),
+    { PropTypes } = React,
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
 
     // actions
-    postActions = require('../../../actions/posts/PostActions'),
+    PostsActions = require('../../../../actions/posts/PostsActions'),
     // components
-    Upvote = require('./upvote.jsx');
+    Upvote = require('./upvote/Upvote.jsx');
 
 var Post = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    require('../../mixins/pluralize'),
-    require('../../mixins/abbreviateNumber'),
-    require('../../mixins/hostNameFromUrl'),
-    require('../../mixins/timeAgo')
+    require('../../../mixins/pluralize'),
+    require('../../../mixins/abbreviateNumber'),
+    require('../../../mixins/hostNameFromUrl'),
+    require('../../../mixins/timeAgo')
   ],
 
+  propTypes: {
+    account: PropTypes.object.isRequired,
+    post: PropTypes.object.isRequired
+  },
+
   render: function() {
-    var user = this.props.user;
+    var account = this.props.account;
     var post = this.props.post;
-    var commentCount = post.commentCount || 0;
+    var commentCount = post.commentCount;
     var deleteOption = '';
 
     if (post.isDeleted) {
@@ -41,40 +47,34 @@ var Post = React.createClass({
     }
 
     // add delete option if creator is logged in
-    if (user.uid === post.creatorUID) {
+    if (post.isAuthorMe) {
       deleteOption = (
+        /* jshint ignore:start */
         <span className="delete post-info-item">
-          <a onClick={ postActions.deletePost.bind(this, post.id) }>delete</a>
+          <a onClick={ PostsActions.deletePost.bind(this, post.id) }>delete</a>
         </span>
+        /* jshint ignore:end */
       );
     }
-
-    var upvoteActions = {
-      upvote: postActions.upvotePost,
-      downvote: postActions.downvotePost
-    };
 
     return (
       /* jshint ignore:start */
       <div className="post">
         <div className="post-link">
-          <a className="post-title" href={ post.url }>{ post.title }</a>
+          <a className="post-title" href={ post.link }>{ post.title }</a>
           <span className="hostname">
-            (<a href={ post.url }>{ this.hostnameFromUrl(post.url) }</a>)
+            (<a href={ post.link }>{ this.hostnameFromUrl(post.link) }</a>)
           </span>
         </div>
         <div className="post-info">
           <div className="posted-by">
-            <Upvote
-              upvoteActions= { upvoteActions }
-              user={ user }
-              itemId={ post.id }
-              upvotes={ post.upvotes ? this.abbreviateNumber(post.upvotes) : 0 } />
+            <Upvote { ...this.props} />
             <span className="post-info-item">
-              <span to="profile" params={{ username: post.creator }}>{ post.creator }</span>
+              <span to="profile" params={{ user: post.author.id }}>
+                { post.author.username }</span>
             </span>
             <span className="post-info-item">
-                            { this.timeAgo(post.time) }
+                            { this.timeAgo(post.createdAt) }
             </span>
             <span className="post-info-item">
               <span to="post" params={{ postId: post.id }}>

@@ -15,7 +15,7 @@ var ComponentMessageStore = Reflux.createStore({
   },
 
   getComponentMessages: function() {
-    return this.componentMessages.toObject();
+    return this.componentMessages.toJS();
   },
 
 
@@ -24,12 +24,12 @@ var ComponentMessageStore = Reflux.createStore({
   setComponentMessages: function(messages) {
     this.componentMessages = messages ? Im.Map(messages)
                                       : Im.Map(componentMessagesDefault);
-    this.trigger(this.componentMessages.toObject());
+    this.trigger(this.componentMessages.toJS());
   },
 
   resetComponentMessages: function() {
     this.componentMessages = Im.Map(componentMessagesDefault);
-    this.trigger(this.componentMessages.toObject());
+    this.trigger(this.componentMessages.toJS());
   }
 
 });

@@ -2,10 +2,10 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    { PropTypes } = React,
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
     { RouteHandler } = require('react-router'),
-    { PropTypes } = React,
     $ = require('jquery'),
     cx = require('classnames'),
     NavBar = require('./navbar/Navbar.jsx'),

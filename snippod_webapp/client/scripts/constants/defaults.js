@@ -41,6 +41,16 @@ var Defaults = {
     failed: null
   },
 
+  sortingOption: {
+    defaultSorting: 'upvotes',
+    currentSorting: 'upvotes',
+    optionValues: {
+      'upvotes': 'upvotes',
+      'newest': 'newest',
+      'comments': 'comments'
+    }
+  },
+
   topic: {
     tid: 'root',
     name: 'Snippod Root',
