@@ -39,13 +39,11 @@ AuthAccountActions.login.preEmit = function(form, callback) {
     .catch(this.failed);
 };
 AuthAccountActions.login.completed.preEmit = function(response) {
-  MessagesActions.setLoginSuccessMessages(response.body);
   UIActions.hideOverlay();
   PostsActions.clearAllPostsStore();
   PageActions.transitionToReturnpage();
 };
 AuthAccountActions.login.failed.preEmit = function(response) {
-  //MessagesActions.setLoginErrorsMessages(response.body);
   MessagesActions.setComponentMessages(response.body);
 };
 
@@ -57,7 +55,6 @@ AuthAccountActions.preLogin.preEmit = function(form, callback) {
     .catch(this.failed);
 };
 AuthAccountActions.preLogin.completed.preEmit = function(response) {
-  MessagesActions.setLoginSuccessMessages(response.body);
   PageActions.transitionToReturnpage();
 };
 
@@ -89,13 +86,11 @@ AuthAccountActions.register.preEmit = function(form, callback) {
     .catch(this.failed);
 };
 AuthAccountActions.register.completed.preEmit = function(response) {
-  MessagesActions.setRegisterSuccessMessages(response.body);
   UIActions.hideOverlay();
 };
 AuthAccountActions.register.failed.preEmit = function(response) {
   MessagesActions.setComponentMessages(response.body);
 };
-
 
 AuthAccountActions.forgot.preEmit = function(form, callback) {
   alert('This feature is not implemented yet.');
@@ -112,39 +107,20 @@ AuthAccountActions.destroy.preEmit= function(form, callback) {
     .catch(this.failed);
 };
 AuthAccountActions.destroy.completed.preEmit = function(response) {
-  MessagesActions.setRegisterSuccessMessages(response.body);
   router.transitionTo('/');
   AuthAccountActions.logout();
 };
-AuthAccountActions.destroy.failed.preEmit = function(response) {
-  MessagesActions.setComponentMessages(response.body);
-};
-
 
 AuthAccountActions.updateSettings.preEmit = function(form, callback) {
   requestPostForm(form, callback)
     .then(this.completed)
     .catch(this.failed);
 };
-AuthAccountActions.updateSettings.completed.preEmit = function(response) {
-  MessagesActions.setUpdateSettingsSuccessMessages(response.body);
-};
-AuthAccountActions.updateSettings.failed.preEmit = function(response) {
-  MessagesActions.setComponentMessages(response.body);
-};
-
 
 AuthAccountActions.updatePassword.preEmit = function(form, callback) {
   requestPostForm(form, callback)
     .then(this.completed)
     .catch(this.failed);
 };
-AuthAccountActions.updatePassword.completed.preEmit = function(response) {
-  MessagesActions.setUpdatePasswordSuccessMessages(response.body);
-};
-AuthAccountActions.updatePassword.failed.preEmit = function(response) {
-  MessagesActions.setComponentMessages(response.body);
-};
-
 
 module.exports = AuthAccountActions;

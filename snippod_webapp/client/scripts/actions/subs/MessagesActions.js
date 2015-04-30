@@ -8,13 +8,6 @@ var MessagesActions = Reflux.createActions({
   'setComponentMessages':{},
   'resetComponentMessages':{},
 
-  //From AuthAccountActions
-  'setLoginSuccessMessages':{},
-  'setLoginErrorsMessages':{},
-  'setRegisterSuccessMessages':{},
-  'setUpdateSettingsSuccessMessages':{},
-  'setUpdatePasswordSuccessMessages':{},
-
   //from action to current component directly
   'sendComponentMessages':{}
 

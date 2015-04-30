@@ -3,12 +3,14 @@
 var Reflux = require('reflux'),
     Im = require('immutable'),
     globalMessagesDefault = require('../../constants/defaults').globalMessages,
-    MessagesActions = require('../../actions/subs/MessagesActions');
+    MessagesActions = require('../../actions/subs/MessagesActions'),
+    AuthAccountActions = require('../../actions/authentication/AuthAccountActions'),
+    PostsActions = require('../../actions/posts/PostsActions');
 
 
 var GlobalMessagesStore = Reflux.createStore({
 
-  listenables: MessagesActions,
+  listenables: [ MessagesActions, AuthAccountActions, PostsActions ],
 
   init: function() {
     this.globalMessages = Im.Map(globalMessagesDefault);
@@ -32,7 +34,10 @@ var GlobalMessagesStore = Reflux.createStore({
     this.trigger(this.globalMessages.toJS());
   },
 
-  setLoginSuccessMessages: function(response) {
+
+  /* AuthAccount Actions
+   ===============================*/
+  onLoginCompleted: function(response) {
     var msgs = Im.Map({
       success:'Login Success!'
     });
@@ -40,7 +45,7 @@ var GlobalMessagesStore = Reflux.createStore({
     this.trigger(this.globalMessages.toJS());
   },
 
-  setLoginErrorsMessages: function(response) {
+  onLoginFailed: function(response) {
     var msgs = Im.Map({
       errors:'Login Failed!'
     });
@@ -48,7 +53,7 @@ var GlobalMessagesStore = Reflux.createStore({
     this.trigger(this.globalMessages.toJS());
   },
 
-  setRegisterSuccessMessages: function(response) {
+  onRegisterCompleted: function(response) {
     var msgs = Im.Map({
       success:'Register ID Success!'
     });
@@ -56,7 +61,15 @@ var GlobalMessagesStore = Reflux.createStore({
     this.trigger(this.globalMessages.toJS());
   },
 
-  setUpdateSettingsSuccessMessages: function(response) {
+  onDestroyCompleted: function(response) {
+    var msgs = Im.Map({
+      success:'Your account was deleted.'
+    });
+    this.globalMessages = Im.Map(globalMessagesDefault).merge(msgs);
+    this.trigger(this.globalMessages.toJS());
+  },
+
+  onUpdateSettingsCompleted: function(response) {
     var msgs = Im.Map({
       success:'Updated Your Information.'
     });
@@ -64,9 +77,19 @@ var GlobalMessagesStore = Reflux.createStore({
     this.trigger(this.globalMessages.toJS());
   },
 
-  setUpdatePasswordSuccessMessages: function(response) {
+  onUpdatePasswordCompleted: function(response) {
     var msgs = Im.Map({
       success:'Updated your Password'
+    });
+    this.globalMessages = Im.Map(globalMessagesDefault).merge(msgs);
+    this.trigger(this.globalMessages.toJS());
+  },
+
+  /* Posts Actions
+   ===============================*/
+  onSubmitPostCompleted: function(response) {
+    var msgs = Im.Map({
+      success:'Your Link post submission was Success!'
     });
     this.globalMessages = Im.Map(globalMessagesDefault).merge(msgs);
     this.trigger(this.globalMessages.toJS());
