@@ -24,22 +24,22 @@ var AccountStore = Reflux.createStore({
     this.trigger(this.account.toJS());
   },
 
-  onLoginCompleted: function(resData) {
-    this.account = this.account.merge(Im.Map(resData.account));
+  onLoginCompleted: function(response) {
+    this.account = this.account.merge(Im.Map(response.body.account));
     this.trigger(this.account.toJS());
   },
 
-  onPreLoginCompleted: function(resData) {
-    this.account = this.account.merge(Im.Map(resData.account));
+  onPreLoginCompleted: function(response) {
+    this.account = this.account.merge(Im.Map(response.body.account));
     this.trigger(this.account.toJS());
   },
 
-  onRegisterCompleted: function(resData) {
-    this.onLoginCompleted(resData);
+  onRegisterCompleted: function(response) {
+    this.onLoginCompleted(response);
   },
 
-  onUpdateSettingsCompleted: function(resData) {
-    this._mergeAccountData(resData);
+  onUpdateSettingsCompleted: function(response) {
+    this._mergeAccountData(response.body);
   },
 
   setAccount: function(accountData) {

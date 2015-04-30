@@ -32,7 +32,7 @@ var GlobalMessagesStore = Reflux.createStore({
     this.trigger(this.globalMessages.toJS());
   },
 
-  setLoginSuccessMessages: function(resData) {
+  setLoginSuccessMessages: function(response) {
     var msgs = Im.Map({
       success:'Login Success!'
     });
@@ -40,7 +40,7 @@ var GlobalMessagesStore = Reflux.createStore({
     this.trigger(this.globalMessages.toJS());
   },
 
-  setLoginErrorsMessages: function(resData) {
+  setLoginErrorsMessages: function(response) {
     var msgs = Im.Map({
       errors:'Login Failed!'
     });
@@ -48,7 +48,7 @@ var GlobalMessagesStore = Reflux.createStore({
     this.trigger(this.globalMessages.toJS());
   },
 
-  setRegisterSuccessMessages: function(resData) {
+  setRegisterSuccessMessages: function(response) {
     var msgs = Im.Map({
       success:'Register ID Success!'
     });
@@ -56,7 +56,7 @@ var GlobalMessagesStore = Reflux.createStore({
     this.trigger(this.globalMessages.toJS());
   },
 
-  setUpdateSettingsSuccessMessages: function(resData) {
+  setUpdateSettingsSuccessMessages: function(response) {
     var msgs = Im.Map({
       success:'Updated Your Information.'
     });
@@ -64,7 +64,7 @@ var GlobalMessagesStore = Reflux.createStore({
     this.trigger(this.globalMessages.toJS());
   },
 
-  setUpdatePasswordSuccessMessages: function(resData) {
+  setUpdatePasswordSuccessMessages: function(response) {
     var msgs = Im.Map({
       success:'Updated your Password'
     });

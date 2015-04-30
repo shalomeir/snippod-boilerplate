@@ -50,12 +50,6 @@ PostsActions.getPosts.preEmit = function(requestUrl, query, callback) {
     .catch(this.failed);
 };
 
-PostsActions.getPosts.failed.preEmit = function(response) {
-  MessagesActions.sendComponentMessages(response.body);
-  return response.body;
-};
-
-
 
 
 
@@ -68,14 +62,6 @@ PostsActions.submitPost.preEmit = function(form, callback) {
     .then(this.completed)
     .catch(this.failed);
 };
-PostsActions.submitPost.completed.preEmit = function(response) {
-  MessagesActions.setSubmitPostSuccessMessages(response.body);
-  return response.body;
-};
-PostsActions.submitPost.failed.preEmit = function(response) {
-  MessagesActions.setComponentMessages(response.body);
-  return response.body;
-};
 
 // Upvote, Cancel_Upvote post
 PostsActions.upvotePost.preEmit= function(postId) {
@@ -85,11 +71,6 @@ PostsActions.upvotePost.preEmit= function(postId) {
     .catch(this.failed);
 };
 
-PostsActions.upvotePost.failed.preEmit = function(response) {
-  MessagesActions.setComponentMessages(response.body);
-  return response.body;
-};
-
 PostsActions.cancelUpvotePost.preEmit= function(postId) {
   var requestUrl = '/posts/'+postId+'/cancel_upvote/';
   requestPost(requestUrl)
@@ -97,23 +78,12 @@ PostsActions.cancelUpvotePost.preEmit= function(postId) {
     .catch(this.failed);
 };
 
-PostsActions.cancelUpvotePost.failed.preEmit = function(response) {
-  MessagesActions.setComponentMessages(response.body);
-  return response.body;
-};
-
-
 // Delete post
 PostsActions.deletePost.preEmit= function(postId) {
   var requestUrl = '/posts/'+postId+'/'+'?_method=DELETE';
   requestPost(requestUrl)
     .then(this.completed)
     .catch(this.failed);
-};
-
-PostsActions.deletePost.failed.preEmit = function(response) {
-  MessagesActions.setComponentMessages(response.body);
-  return response.body;
 };
 
 

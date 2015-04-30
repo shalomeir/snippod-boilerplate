@@ -43,12 +43,10 @@ AuthAccountActions.login.completed.preEmit = function(response) {
   UIActions.hideOverlay();
   PostsActions.clearAllPostsStore();
   PageActions.transitionToReturnpage();
-  return response.body;
 };
 AuthAccountActions.login.failed.preEmit = function(response) {
   //MessagesActions.setLoginErrorsMessages(response.body);
   MessagesActions.setComponentMessages(response.body);
-  return response.body;
 };
 
 AuthAccountActions.preLogin.preEmit = function(form, callback) {
@@ -61,10 +59,6 @@ AuthAccountActions.preLogin.preEmit = function(form, callback) {
 AuthAccountActions.preLogin.completed.preEmit = function(response) {
   MessagesActions.setLoginSuccessMessages(response.body);
   PageActions.transitionToReturnpage();
-  return response.body;
-};
-AuthAccountActions.preLogin.failed.preEmit = function(response) {
-  return response.body;
 };
 
 
@@ -97,11 +91,9 @@ AuthAccountActions.register.preEmit = function(form, callback) {
 AuthAccountActions.register.completed.preEmit = function(response) {
   MessagesActions.setRegisterSuccessMessages(response.body);
   UIActions.hideOverlay();
-  return response.body;
 };
 AuthAccountActions.register.failed.preEmit = function(response) {
   MessagesActions.setComponentMessages(response.body);
-  return response.body;
 };
 
 
@@ -123,11 +115,9 @@ AuthAccountActions.destroy.completed.preEmit = function(response) {
   MessagesActions.setRegisterSuccessMessages(response.body);
   router.transitionTo('/');
   AuthAccountActions.logout();
-  return response.body;
 };
 AuthAccountActions.destroy.failed.preEmit = function(response) {
   MessagesActions.setComponentMessages(response.body);
-  return response.body;
 };
 
 
@@ -138,11 +128,9 @@ AuthAccountActions.updateSettings.preEmit = function(form, callback) {
 };
 AuthAccountActions.updateSettings.completed.preEmit = function(response) {
   MessagesActions.setUpdateSettingsSuccessMessages(response.body);
-  return response.body;
 };
 AuthAccountActions.updateSettings.failed.preEmit = function(response) {
   MessagesActions.setComponentMessages(response.body);
-  return response.body;
 };
 
 
@@ -153,11 +141,9 @@ AuthAccountActions.updatePassword.preEmit = function(form, callback) {
 };
 AuthAccountActions.updatePassword.completed.preEmit = function(response) {
   MessagesActions.setUpdatePasswordSuccessMessages(response.body);
-  return response.body;
 };
 AuthAccountActions.updatePassword.failed.preEmit = function(response) {
   MessagesActions.setComponentMessages(response.body);
-  return response.body;
 };
 
 

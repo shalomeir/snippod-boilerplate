@@ -21,25 +21,25 @@ var AuthStore = Reflux.createStore({
 
   /* Listen AuthAccountActions
    ===============================*/
-  onLoginCompleted: function(resData) {
+  onLoginCompleted: function(response) {
     this.auth = this.auth.set('loggedIn', true);
     this.trigger(this.auth.toJS());
   },
 
-  onLoginFailed: function(resData) {
+  onLoginFailed: function(response) {
     this.auth = this.auth.set('loggedIn', false);
   },
 
-  onPreLoginCompleted: function(resData) {
+  onPreLoginCompleted: function(response) {
     this.auth = this.auth.set('loggedIn', true);
     this.trigger(this.auth.toJS());
   },
 
-  onPreLoginFailed: function(resData) {
+  onPreLoginFailed: function(response) {
     this.auth = this.auth.set('loggedIn', false);
   },
 
-  onRegisterCompleted: function(resData) {
+  onRegisterCompleted: function(response) {
     this.auth = this.auth.set('loggedIn', true);
     this.trigger(this.auth.toJS());
   },
