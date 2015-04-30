@@ -62,20 +62,20 @@ var RESTCall = {
 
   },
 
-  requestPost: function(object, requestUrl, callback) {
+  requestPost: function(requestUrl, object, callback) {
 
     return new Promise((resolve, reject) => {
 
       var postData = object;
-      var requestUrl = requestUrl || window.location.pathname;
-      var method = getParameterByName(requestUrl, '_method') || 'POST';
-      if(!checkAbsoluteURL(requestUrl)){
-        requestUrl = apiPath + requestUrl;
+      var postUrl = requestUrl || window.location.pathname;
+      var method = getParameterByName(postUrl, '_method') || 'POST';
+      if(!checkAbsoluteURL(postUrl)){
+        postUrl = apiPath + postUrl;
       }
       var csrftoken = Cookies.get('csrftoken');
 
       request
-        .post(requestUrl)
+        .post(postUrl)
         .type('json')
         .accept('json')
         .set({

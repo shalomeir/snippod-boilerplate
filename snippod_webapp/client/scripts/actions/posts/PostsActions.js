@@ -6,7 +6,7 @@
 var Reflux = require('reflux'),
     $ = require('jquery'),
     router = require('../../router'),
-    { requestGet }= require('../../utils/RESTCall');
+    { requestGet, requestPost, requestPostForm }= require('../../utils/RESTCall');
 
 var MessagesActions = require('./../subs/MessagesActions');
 
@@ -18,10 +18,11 @@ var PostsActions = Reflux.createActions({
   'getComments': {},
 
   // post actions
-  'upvotePost':{},
+  'submitPost':{ asyncResult: true },
+  'upvotePost':{ asyncResult: true },
+  'cancelUpvotePost':{ asyncResult: true },
   //'downvotePost':{},
-  'submitPost':{},
-  'deletePost':{},
+  'deletePost':{ asyncResult: true },
 
   // comment actions
   'upvoteComment': {},
@@ -32,12 +33,16 @@ var PostsActions = Reflux.createActions({
   'setSortBy':{},
 
   // for guarrentee sequencial processing store update
-  'thenGetPostsCompleted': {}
+  'thenGetPostsCompleted': {},
+  'clearAllPostsStore': {},
+
+  // for component view update directly
+  'thenSubmitPostCompleted': {}
 
 });
 
 
-/* API Actions
+/* API Get Actions
  ===============================*/
 PostsActions.getPosts.preEmit = function(requestUrl, query, callback) {
   requestGet(requestUrl,query,callback)
@@ -53,8 +58,65 @@ PostsActions.getPosts.failed.preEmit = function(response) {
 
 
 
+
+
+
 /* Post Actions
  ===============================*/
+PostsActions.submitPost.preEmit = function(form, callback) {
+  requestPostForm(form, callback)
+    .then(this.completed)
+    .catch(this.failed);
+};
+PostsActions.submitPost.completed.preEmit = function(response) {
+  MessagesActions.setSubmitPostSuccessMessages(response.body);
+  return response.body;
+};
+PostsActions.submitPost.failed.preEmit = function(response) {
+  MessagesActions.setComponentMessages(response.body);
+  return response.body;
+};
+
+// Upvote, Cancel_Upvote post
+PostsActions.upvotePost.preEmit= function(postId) {
+  var requestUrl = '/posts/'+postId+'/upvote/';
+  requestPost(requestUrl)
+    .then(this.completed)
+    .catch(this.failed);
+};
+
+PostsActions.upvotePost.failed.preEmit = function(response) {
+  MessagesActions.setComponentMessages(response.body);
+  return response.body;
+};
+
+PostsActions.cancelUpvotePost.preEmit= function(postId) {
+  var requestUrl = '/posts/'+postId+'/cancel_upvote/';
+  requestPost(requestUrl)
+    .then(this.completed)
+    .catch(this.failed);
+};
+
+PostsActions.cancelUpvotePost.failed.preEmit = function(response) {
+  MessagesActions.setComponentMessages(response.body);
+  return response.body;
+};
+
+
+// Delete post
+PostsActions.deletePost.preEmit= function(postId) {
+  var requestUrl = '/posts/'+postId+'/'+'?_method=DELETE';
+  requestPost(requestUrl)
+    .then(this.completed)
+    .catch(this.failed);
+};
+
+PostsActions.deletePost.failed.preEmit = function(response) {
+  MessagesActions.setComponentMessages(response.body);
+  return response.body;
+};
+
+
 //
 //PostsActions.submitPost.listen(function(form,callback) {
 //  var cb = callback || function() {};

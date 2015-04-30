@@ -8,19 +8,18 @@ var React = require('react'),
     //components
     Spinner = require('../../commons/Spinner.jsx'),
     //store
-    postsStore = require('../../../stores/posts/PostListStore'),
+    ComponentMessageStore = require('../../../stores/subs/ComponentMessageStore'),
     //actions
-    UIActions = require('../../../actions/commons/UIActions'),
-    messagesActions = require('../../../actions/subs/MessagesActions'),
-    postActions = require('../../../actions/posts/PostsActions');
+    PostsActions = require('../../../actions/posts/PostsActions'),
+    UIActions = require('../../../actions/commons/UIActions');
 
 
 var ComposerBox = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    //Reflux.listenTo(postsStore, 'resetForm'),
-    //Reflux.listenTo(messagesActions.setError, 'onErrorMessage')
+    Reflux.listenTo(PostsActions.thenSubmitPostCompleted, 'resetForm'),
+    Reflux.listenTo(ComponentMessageStore, 'onErrorMessage')
   ],
 
   propTypes: {
@@ -90,7 +89,7 @@ var ComposerBox = React.createClass({
       submitted: true
     });
 
-    postActions.submitPost(form);
+    PostsActions.submitPost(form);
 
   },
 

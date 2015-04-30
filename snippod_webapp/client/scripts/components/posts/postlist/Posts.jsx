@@ -13,6 +13,7 @@ var React = require('react'),
 
     //store
     PostListStore = require('../../../stores/posts/PostListStore'),
+    PostStore = require('../../../stores/posts/PostStore'),
     //actions
     PostsActions = require('../../../actions/posts/PostsActions');
 
@@ -21,7 +22,8 @@ var Posts = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    Reflux.listenTo(PostListStore, 'onPostsUpdate')
+    Reflux.listenTo(PostListStore, 'onPostsUpdate'),
+    Reflux.listenTo(PostStore, 'onPostUpdate')
   ],
 
   propTypes: {
@@ -51,6 +53,14 @@ var Posts = React.createClass({
   },
 
   onPostsUpdate: function(postListObjects) {
+    if (postListObjects.pagenatedList.getPageCount()===0) {
+      this._callPostsActions();
+    }
+    this.setState(this._parsePostListObjects(postListObjects));
+  },
+
+  onPostUpdate: function(postObject) {
+    var postListObjects = PostListStore.getObjects(this.props.params.sorting);
     this.setState(this._parsePostListObjects(postListObjects));
   },
 
@@ -150,8 +160,9 @@ var Posts = React.createClass({
     };
     if ( nextPageUrl && nextPageUrl !== '/' ) {
       PostsActions.getPosts(nextPageUrl,query);
+    } else {
+      PostsActions.getPosts(action,query);
     }
-    PostsActions.getPosts(action,query);
   }
 
 });

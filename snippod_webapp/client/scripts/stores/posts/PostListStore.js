@@ -69,6 +69,11 @@ var PostListStore = Reflux.createStore({
     var posts = response.body;
     this.setPostList(sorting, posts);
     this.trigger(this.getObjects(sorting));
+  },
+
+  clearAllPostsStore: function() {
+    this._postLists = Im.Map({});
+    this.trigger(this.getObjects());
   }
 
 });

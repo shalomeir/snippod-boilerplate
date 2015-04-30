@@ -7,7 +7,7 @@ from posts.models import Post, Comment, PostUpvote, CommentUpvote
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = UserSerializer(read_only=True, required=False)
+    author = UserSerializer(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Post
@@ -15,10 +15,6 @@ class PostSerializer(serializers.ModelSerializer):
                   'comment_count', 'upvote_count')
         read_only_fields = ('id', 'created_at', 'updated_at',
                             'comment_count', 'upvote_count')
-
-    def get_validation_exclusions(self, *args, **kwargs):
-        exclusions = super(PostSerializer, self).get_validation_exclusions()
-        return exclusions + ['author']
 
     def to_representation(self, obj):
         returnObj = super(PostSerializer,self).to_representation(obj)
@@ -38,17 +34,13 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    author = UserSerializer(read_only=True, required=False)
+    author = UserSerializer(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Comment
         fields = ('id', 'post', 'author', 'content', 'created_at', 'updated_at',
                   'upvote_count')
         read_only_fields = ('id', 'created_at', 'updated_at', 'upvote_count')
-
-    def get_validation_exclusions(self, *args, **kwargs):
-        exclusions = super(CommentSerializer, self).get_validation_exclusions()
-        return exclusions + ['author']
 
     def to_representation(self, obj):
         returnObj = super(CommentSerializer,self).to_representation(obj)

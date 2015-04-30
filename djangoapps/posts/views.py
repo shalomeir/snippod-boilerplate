@@ -28,17 +28,14 @@ class PostViewSet(viewsets.ModelViewSet):
             return (permissions.AllowAny(),)
         return (permissions.IsAuthenticated(), IsAuthor(),)
 
-    def perform_create(self, serializer):
-        instance = serializer.save(author=self.request.user)
-        return super(PostViewSet, self).perform_create(serializer)
-
     @detail_route(methods=['post'], permission_classes=[permissions.IsAuthenticated])
     def upvote(self, request, pk=None):
         serializer = PostUpvoteSerializer(data={'post':pk},
                                           context={'request': request})
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            post = Post.objects.get(pk=pk)
+            return Response(PostSerializer(post, context={'request': request}).data)
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
@@ -46,17 +43,15 @@ class PostViewSet(viewsets.ModelViewSet):
     @detail_route(methods=['post'], permission_classes=[permissions.IsAuthenticated])
     def cancel_upvote(self, request, pk=None):
         try:
-            post =Post.objects.get(pk=pk)
+            post = Post.objects.get(pk=pk)
             instance = PostUpvote.objects.get(post=post, voter=self.request.user)
             self.perform_destroy(instance)
-            return Response({'status': 'Cancel upvote success.'},
-                            status=status.HTTP_200_OK)
+            return Response(PostSerializer(post, context={'request': request}).data)
         except ObjectDoesNotExist:
             return Response({
                 'status': 'Not Fount',
                 'message': 'This upvote is not exist.'
             }, status=status.HTTP_404_NOT_FOUND)
-
 
 
 class UserPostViewSet(viewsets.ReadOnlyModelViewSet):
@@ -102,19 +97,20 @@ class CommentViewSet(viewsets.ModelViewSet):
                                           context={'request': request})
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            comment = Comment.objects.get(pk=pk)
+            return Response(CommentSerializer(comment, context={'request': request}).data)
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
 
+
     @detail_route(methods=['post'], permission_classes=[permissions.IsAuthenticated])
     def cancel_upvote(self, request, pk=None):
         try:
-            comment =Comment.objects.get(pk=pk)
+            comment = Comment.objects.get(pk=pk)
             instance = CommentUpvote.objects.get(comment=comment, voter=self.request.user)
             self.perform_destroy(instance)
-            return Response({'status': 'Cancel upvote success.'},
-                            status=status.HTTP_200_OK)
+            return Response(CommentSerializer(comment, context={'request': request}).data)
         except ObjectDoesNotExist:
             return Response({
                 'status': 'Not Fount',

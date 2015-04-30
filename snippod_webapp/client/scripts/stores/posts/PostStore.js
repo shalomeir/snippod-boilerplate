@@ -32,12 +32,36 @@ var PostStore = Reflux.createStore({
 
   set: function(post) {
     this._posts = this._posts.set(post.id, post);
-    this.trigger(this._posts.get(post.id).toJS());
   },
 
   onGetPostsCompleted: function(response) {
     this.setPosts(response.body.results);
     PostsActions.thenGetPostsCompleted(response);
+  },
+
+  onUpvotePostCompleted: function(response) {
+    this.set(response.body);
+    this.trigger(this._posts.get(response.body.id));
+  },
+
+  onCancelUpvotePostCompleted: function(response) {
+    this.set(response.body);
+    this.trigger(this._posts.get(response.body.id));
+  },
+
+  onDeletePostCompleted: function(response) {
+    var urlArray = response.req.url.split('/');
+    var postId = Number(urlArray[urlArray.length - 2]);
+    var deletedPost = {
+      isDeleted: true,
+      id: postId
+    };
+    this.set(deletedPost);
+    this.trigger(this._posts.get(postId));
+  },
+
+  clearAllPostsStore: function() {
+    this.init();
   }
 
 });

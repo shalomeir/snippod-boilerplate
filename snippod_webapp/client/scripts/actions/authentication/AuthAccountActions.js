@@ -10,6 +10,7 @@ var Reflux = require('reflux'),
 //var prefix = require('superagent-prefix')(apiPath);
 
 var MessagesActions = require('./../subs/MessagesActions'),
+    PostsActions = require('./../../actions/posts/PostsActions'),
     UIActions = require('./../commons/UIActions'),
     PageActions = require('./../commons/PageActions');
 
@@ -40,6 +41,7 @@ AuthAccountActions.login.preEmit = function(form, callback) {
 AuthAccountActions.login.completed.preEmit = function(response) {
   MessagesActions.setLoginSuccessMessages(response.body);
   UIActions.hideOverlay();
+  PostsActions.clearAllPostsStore();
   PageActions.transitionToReturnpage();
   return response.body;
 };
@@ -78,6 +80,7 @@ AuthAccountActions.logout.completed.preEmit = function() {
   // Reset account to defaults
   AuthAccountActions.setAuth(authDefault);
   AuthAccountActions.setAccount(accountDefault);
+  PostsActions.clearAllPostsStore();
   // Delete Cookies
   Cookies.expire('csrftoken');
   Cookies.expire('sessionid');

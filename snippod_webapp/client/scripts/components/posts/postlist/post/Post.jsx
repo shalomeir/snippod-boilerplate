@@ -64,9 +64,9 @@ var Post = React.createClass({
       /* jshint ignore:start */
       <div className="post">
         <div className="post-link">
-          <a className="post-title" href={ post.link }>{ post.title }</a>
+          <a className="post-title" href={ post.link } target="_blank">{ post.title }</a>
           <span className="hostname">
-            (<a href={ post.link }>{ this.hostnameFromUrl(post.link) }</a>)
+            (<a href={ post.link } target="_blank">{ this.hostnameFromUrl(post.link) }</a>)
           </span>
         </div>
         <div className="post-info">

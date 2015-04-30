@@ -5,6 +5,8 @@ var React = require('react'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     cx = require('classnames'),
     throttle = require('lodash/function/throttle'),
+    // actions
+    PostsActions = require('../../../../../actions/posts/PostsActions'),
     UIActions =require('../../../../../actions/commons/UIActions');
 
 var Upvote = React.createClass({
@@ -19,49 +21,22 @@ var Upvote = React.createClass({
     post : PropTypes.object.isRequired
   },
 
-  getInitialState: function() {
-    return {
-      upvoted: false
-    };
-  },
-
-  //componentDidMount: function() {
-  //  var upvoted = this.props.user.profile.upvoted;
-  //  this.setState({
-  //    upvoted: upvoted[this.props.itemId]
-  //  });
-  //},
-
-  //componentWillReceiveProps: function(nextProps) {
-  //  var upvoted = nextProps.user.profile.upvoted;
-  //  this.setState({
-  //    upvoted: upvoted[nextProps.itemId]
-  //  });
-  //},
-
-  upvote: throttle(function(userId, itemId) {
+  upvoteClick: throttle(function(postId) {
     if (!this.props.auth.loggedIn) {
       UIActions.showOverlay('login');
       return;
     }
 
-    var upvoted = this.state.upvoted;
-    var upvoteActions = this.props.upvoteActions;
-
-    if (upvoted) {
-      upvoteActions.downvote(userId, itemId);
+    if (this.props.post.isUpvotedMe) {
+      PostsActions.cancelUpvotePost(postId);
     } else {
-      upvoteActions.upvote(userId, itemId);
+      PostsActions.upvotePost(postId);
     }
 
-    this.setState({
-      upvoted: !upvoted
-    });
   }, 300, { trailing: false }),
 
   render: function() {
 
-    var userId = this.props.account.id;
     var postId = this.props.post.id;
     var upvoteCount = this.props.post.upvoteCount;
 
@@ -73,7 +48,7 @@ var Upvote = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <a className={ upvoteCx } onClick={ this.upvote.bind(this, userId, postId) }>
+      <a className={ upvoteCx } onClick={ this.upvoteClick.bind(this, postId) } disabled={ upvoted }>
         { upvoteCount } <i className="fa fa-arrow-up"></i>
       </a>
       /* jshint ignore:end */
