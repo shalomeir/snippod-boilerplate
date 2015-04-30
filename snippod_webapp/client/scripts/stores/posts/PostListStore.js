@@ -71,6 +71,14 @@ var PostListStore = Reflux.createStore({
     this.trigger(this.getObjects(sorting));
   },
 
+  thenSubmitPostCompleted: function(response) {
+    var iterator = this._postLists.keys();
+    var pagenatedList = this._postLists.get('upvotes');
+    if (typeof pagenatedList !== 'undefined') {
+      PagenatedList.set(response.body.id);
+    }
+  },
+
   clearAllPostsStore: function() {
     this._postLists = Im.Map({});
     this.trigger(this.getObjects());

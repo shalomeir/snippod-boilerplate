@@ -61,11 +61,11 @@ var ComposerBox = React.createClass({
   submitPost: function(e) {
     e.preventDefault();
     var form = e.currentTarget;
-    var user = this.props.user;
+    var auth = this.props.auth;
     var titleEl = this.refs.title.getDOMNode();
     var linkEl = this.refs.link.getDOMNode();
 
-    if (!user.loggedIn) {
+    if (!auth.loggedIn) {
       UIActions.showOverlay('login');
       return;
     }

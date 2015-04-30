@@ -7,7 +7,7 @@ from posts.models import Post, Comment, PostUpvote, CommentUpvote
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = UserSerializer(default=serializers.CurrentUserDefault())
+    author = UserSerializer(default=serializers.CurrentUserDefault(), read_only=True)
 
     class Meta:
         model = Post
@@ -34,7 +34,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    author = UserSerializer(default=serializers.CurrentUserDefault())
+    author = UserSerializer(default=serializers.CurrentUserDefault(), read_only=True)
 
     class Meta:
         model = Comment
@@ -60,7 +60,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class PostUpvoteSerializer(serializers.ModelSerializer):
-    voter = UserSerializer(default=serializers.CurrentUserDefault())
+    voter = UserSerializer(default=serializers.CurrentUserDefault(), read_only=True)
 
     class Meta:
         model = PostUpvote
@@ -69,7 +69,7 @@ class PostUpvoteSerializer(serializers.ModelSerializer):
 
 
 class CommentUpvoteSerializer(serializers.ModelSerializer):
-    voter = UserSerializer(default=serializers.CurrentUserDefault())
+    voter = UserSerializer(default=serializers.CurrentUserDefault(), read_only=True)
 
     class Meta:
         model = CommentUpvote

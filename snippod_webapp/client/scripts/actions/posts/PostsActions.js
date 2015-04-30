@@ -34,10 +34,10 @@ var PostsActions = Reflux.createActions({
 
   // for guarrentee sequencial processing store update
   'thenGetPostsCompleted': {},
-  'clearAllPostsStore': {},
+  'thenSubmitPostCompleted': {},
+  'clearAllPostsStore': {}
 
   // for component view update directly
-  'thenSubmitPostCompleted': {}
 
 });
 

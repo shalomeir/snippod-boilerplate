@@ -39,6 +39,11 @@ var PostStore = Reflux.createStore({
     PostsActions.thenGetPostsCompleted(response);
   },
 
+  onSubmitPostCompleted: function(response) {
+    this.set(response.body);
+    PostsActions.thenSubmitPostCompleted(response);
+  },
+
   onUpvotePostCompleted: function(response) {
     this.set(response.body);
     this.trigger(this._posts.get(response.body.id));
@@ -59,6 +64,7 @@ var PostStore = Reflux.createStore({
     this.set(deletedPost);
     this.trigger(this._posts.get(postId));
   },
+
 
   clearAllPostsStore: function() {
     this.init();
