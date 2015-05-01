@@ -148,10 +148,10 @@ var Posts = React.createClass({
     this.setState({ loading: true });
     var action = '/posts/';
     var query = {
-      sorting: this.props.query.sorting
+      sorting: this.props.query.sorting || sortingOptionDefault.defaultSorting
     };
     if ( nextPageUrl && nextPageUrl !== '/' ) {
-      PostsActions.getPosts(nextPageUrl,query);
+      PostsActions.getPosts(nextPageUrl);
     } else {
       PostsActions.getPosts(action,query);
     }

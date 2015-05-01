@@ -24,15 +24,6 @@ var StringControl = {
     }
   },
 
-  extractSortingFromResponse: function(response) {
-    var query = response.req._query[0];
-    if (typeof query === 'undefined') {
-      return defaultSorting;
-    } else {
-      return query.split('=')[1];
-    }
-  },
-
   extractPostIdFromResponse: function(response) {
     var param = response.req.path[0];
     return param.split('=')[1];

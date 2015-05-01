@@ -4,7 +4,7 @@ var Reflux = require('reflux'),
     Im = require('immutable'),
     PagenatedList = require('../utils/PaginatedList'),
     sortingOptionDefault = require('../../constants/defaults').sortingOption,
-    { extractSortingFromResponse } = require('../../utils/StringControl'),
+    { getParameterByName } = require('../../utils/StringControl'),
     PostStore = require('./PostStore'),
     PostsActions = require('../../actions/posts/PostsActions');
 
@@ -33,7 +33,7 @@ var PostListStore = Reflux.createStore({
   getObjects: function(sorting) {
     return {
       posts: this.getPosts(sorting),
-      pagenatedList: this.getPagenatedList(sorting),
+      pagenatedList: this.getPagenatedList(sorting)
     };
   },
 
@@ -60,7 +60,7 @@ var PostListStore = Reflux.createStore({
   },
 
   thenGetPostsCompleted: function(response) {
-    var sorting = extractSortingFromResponse(response);
+    var sorting = getParameterByName(response.req.url,'sorting');
     var posts = response.body;
     this.setPostList(sorting, posts);
     this.trigger();
