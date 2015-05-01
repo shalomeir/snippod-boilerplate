@@ -6,13 +6,13 @@
 var React = require('react'),
     { PropTypes } = React,
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    Link = require('react-router').Link,
+
     // actions
     PostsActions = require('../../../../actions/posts/PostsActions'),
     // components
-    Upvote = require('./upvote/Upvote.jsx');
+    Upvote = require('../post/upvote/Upvote.jsx');
 
-var Post = React.createClass({
+var Comment = React.createClass({
 
   mixins: [
     PureRenderMixin,
@@ -64,8 +64,7 @@ var Post = React.createClass({
       /* jshint ignore:start */
       <div className="post">
         <div className="post-link">
-          <Link to="singlePost" params={{ postId: post.id }}
-                className="post-title" >{ post.title }</Link>
+          <a className="post-title" href={ post.link } target="_blank">{ post.title }</a>
           <span className="hostname">
             (<a href={ post.link } target="_blank">{ this.hostnameFromUrl(post.link) }</a>)
           </span>
@@ -81,9 +80,9 @@ var Post = React.createClass({
                             { this.timeAgo(post.createdAt) }
             </span>
             <span className="post-info-item">
-              <Link to="singlePost" params={{ postId: post.id }}>
+              <span to="post" params={{ postId: post.id }}>
                 { this.pluralize(commentCount, 'comment') }
-              </Link>
+              </span>
             </span>
             { deleteOption }
           </div>
@@ -95,4 +94,4 @@ var Post = React.createClass({
 
 });
 
-module.exports = Post;
+module.exports = Comment;

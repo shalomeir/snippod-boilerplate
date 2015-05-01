@@ -8,14 +8,12 @@ var Reflux = require('reflux'),
     router = require('../../router'),
     { requestGet, requestPost, requestPostForm }= require('../../utils/RESTCall');
 
-var MessagesActions = require('./../subs/MessagesActions');
-
 var PostsActions = Reflux.createActions({
 
   // API GET actions
   'getPosts': { asyncResult: true },
-  'getPost': {},
-  'getComments': {},
+  'getPost': { asyncResult: true },
+  'getComments': { asyncResult: true },
 
   // post actions
   'submitPost':{ asyncResult: true },
@@ -35,9 +33,8 @@ var PostsActions = Reflux.createActions({
   // for guarrentee sequencial processing store update
   'thenGetPostsCompleted': {},
   'thenSubmitPostCompleted': {},
-  'clearAllPostsStore': {}
-
-  // for component view update directly
+  'clearAllPostsStore': {},
+  'clearAllCommentsStore': {}
 
 });
 
@@ -50,9 +47,18 @@ PostsActions.getPosts.preEmit = function(requestUrl, query, callback) {
     .catch(this.failed);
 };
 
+// TODO : Check {} undefined value pass this request
+PostsActions.getPost.preEmit = function(requestUrl, callback) {
+  requestGet(requestUrl,{},callback)
+    .then(this.completed)
+    .catch(this.failed);
+};
 
-
-
+PostsActions.getComments.preEmit = function(requestUrl, callback) {
+  requestGet(requestUrl,{},callback)
+    .then(this.completed)
+    .catch(this.failed);
+};
 
 
 /* Post Actions

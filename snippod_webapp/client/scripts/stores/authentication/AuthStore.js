@@ -23,7 +23,7 @@ var AuthStore = Reflux.createStore({
    ===============================*/
   onLoginCompleted: function(response) {
     this.auth = this.auth.set('loggedIn', true);
-    this.trigger(this.auth.toJS());
+    this.trigger();
   },
 
   onLoginFailed: function(response) {
@@ -32,7 +32,7 @@ var AuthStore = Reflux.createStore({
 
   onPreLoginCompleted: function(response) {
     this.auth = this.auth.set('loggedIn', true);
-    this.trigger(this.auth.toJS());
+    this.trigger();
   },
 
   onPreLoginFailed: function(response) {
@@ -41,12 +41,12 @@ var AuthStore = Reflux.createStore({
 
   onRegisterCompleted: function(response) {
     this.auth = this.auth.set('loggedIn', true);
-    this.trigger(this.auth.toJS());
+    this.trigger();
   },
 
   setAuth: function(authData, transitionTo) {
     this.auth = this.auth.merge(Im.Map(authData));
-    this.trigger(this.auth.toJS());
+    this.trigger();
 
     if (transitionTo) {
       router.transitionTo(transitionTo);

@@ -27,8 +27,8 @@ var Register = React.createClass({
 
   getInitialState: function() {
     return {
-      errors: '',
-      errorMessage: '',
+      errorPrescriptions: null,
+      errors: null,
       submitted: false
     };
   },
@@ -44,17 +44,16 @@ var Register = React.createClass({
     });
   },
 
-  onErrorMessage: function(errorMessages) {
+  onErrorMessage: function() {
+    var errorMessage = ComponentMessageStore.getComponentMessages();
     this.refs.submit.getDOMNode().disabled = false;
-    var errorSentence;
-    if (typeof errorMessages.message !== 'undefined') {
-      errorSentence = errorMessages.message;
-    } else {
-      errorSentence = null;
+    var errorSentence = null;
+    if (typeof errorMessage.message !== 'undefined') {
+      errorSentence = errorMessage.message;
     }
     this.setState({
-      errors: errorMessages.errors,
-      errorMessage: errorSentence,
+      errorPrescriptions: errorMessage.errors,
+      errors: errorSentence,
       submitted: false
     });
   },
@@ -73,25 +72,27 @@ var Register = React.createClass({
 
   render: function() {
 
-    var errorMessage = null;
-    var errors = {};
-    var stateErrors = this.state.errors;
-    if (this.state.errorMessage) {
-      errorMessage = (
+    var errors = null;
+    var errorLines = {};
+    var errorPrescriptions = this.state.errorPrescriptions;
+
+    if (this.state.errors) {
+      errors = (
         /* jshint ignore:start */
         <div className="error login-error">
-          { this.state.errorMessage }
+          { this.state.errors }
         </div>
         /* jshint ignore:end */
       );
     }
-    if (stateErrors) {
-      for (var key in stateErrors) {
-        if(stateErrors.hasOwnProperty(key)) {
-          errors[key] = (
+
+    if (errorPrescriptions) {
+      for (var key in errorPrescriptions) {
+        if(errorPrescriptions.hasOwnProperty(key)) {
+          errorLines[key] = (
             /* jshint ignore:start */
             <div className="error login-error">
-              { stateErrors[key] }
+              { errorPrescriptions[key] }
             </div>
             /* jshint ignore:end */
           );
@@ -106,22 +107,22 @@ var Register = React.createClass({
           <h1>Register</h1>
           <label htmlFor="email">Email</label><br />
           <input type="text" name="email" id="email" placeholder="Email" ref="email" />
-          { errors['email'] }<br />
+          { errorLines['email'] }<br />
           <label htmlFor="username">Username</label><br />
           <input type="text" name="username" id="username" placeholder="Username" ref="username" />
-          { errors['username'] }<br />
+          { errorLines['username'] }<br />
           <label htmlFor="password">Password</label><br />
           <input type="password" name="password" placeholder="Password" id="password" ref="password" />
-          { errors['password'] }<br />
+          { errorLines['password'] }<br />
           <label htmlFor="confirmPassword">Confirm Password</label><br />
           <input type="password" name="confirmPassword" placeholder="Confirm Password" id="confirmPassword" ref="confirmPassword" />
-          { errors['confirmPassword'] }<br />
-          { errors['nonFieldErrors'] }<br />
+          { errorLines['confirmPassword'] }<br />
+          { errorLines['nonFieldErrors'] }<br />
           <button type="submit" className="button button-primary" ref="submit">
             { this.state.submitted ? <Spinner /> : 'Register' }
           </button>
         </form>
-        { errorMessage }
+        { errors }
       </div>
       /* jshint ignore:end */
     );

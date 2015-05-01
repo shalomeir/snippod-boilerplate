@@ -43,7 +43,7 @@ var Defaults = {
 
   sortingOption: {
     defaultSorting: 'upvotes',
-    currentSorting: 'upvotes',
+    //currentSorting: 'upvotes',
     optionValues: {
       'upvotes': 'upvotes',
       'newest': 'newest',

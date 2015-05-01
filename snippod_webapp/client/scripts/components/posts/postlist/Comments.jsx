@@ -5,26 +5,25 @@ var React = require('react'),
     Reflux = require('reflux'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     router = require('../../../router'),
-    sortingOptionDefault = require('../../../constants/defaults')
-                            .sortingOption,
+
     //components
-    Post = require('./post/Post.jsx'),
+    Comment = require('./comment/Comment.jsx'),
     Spinner = require('../../commons/Spinner.jsx'),
 
     //store
-    PostListStore = require('../../../stores/posts/PostListStore'),
-    PostStore = require('../../../stores/posts/PostStore'),
+    CommentListStore = require('../../../stores/posts/CommentListStore'),
+    CommentStore = require('../../../stores/posts/CommentStore'),
     //actions
     PostsActions = require('../../../actions/posts/PostsActions');
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-var Posts = React.createClass({
+var Comments = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    Reflux.listenTo(PostListStore, 'onPostsUpdate'),
-    Reflux.listenTo(PostStore, 'onPostsUpdate')
+    Reflux.listenTo(CommentListStore, 'onCommentsUpdate'),
+    Reflux.listenTo(CommentStore, 'onCommentUpdate')
   ],
 
   propTypes: {
@@ -65,11 +64,15 @@ var Posts = React.createClass({
     };
   },
 
-  onPostsUpdate: function() {
-    var postListObjects = PostListStore.getObjects(this.props.query.sorting);
+  onPostsUpdate: function(postListObjects) {
     if (postListObjects.pagenatedList.getPageCount()===0) {
       this._callPostsActions();
     }
+    this.setState(this._parsePostListObjects(postListObjects));
+  },
+
+  onPostUpdate: function(postObject) {
+    var postListObjects = PostListStore.getObjects(this.props.query.sorting);
     this.setState(this._parsePostListObjects(postListObjects));
   },
 
@@ -159,4 +162,4 @@ var Posts = React.createClass({
 
 });
 
-module.exports = Posts;
+module.exports = Comments;

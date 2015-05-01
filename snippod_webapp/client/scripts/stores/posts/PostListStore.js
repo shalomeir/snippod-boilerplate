@@ -2,11 +2,13 @@
 
 var Reflux = require('reflux'),
     Im = require('immutable'),
-    { isInBag } = require('../utils/StoreUtils'),
     PagenatedList = require('../utils/PaginatedList'),
     sortingOptionDefault = require('../../constants/defaults').sortingOption,
+    { extractSortingFromResponse } = require('../../utils/StringControl'),
     PostStore = require('./PostStore'),
     PostsActions = require('../../actions/posts/PostsActions');
+
+// This post list mapped by each sorting type.
 
 var PostListStore = Reflux.createStore({
 
@@ -14,38 +16,32 @@ var PostListStore = Reflux.createStore({
 
   init: function() {
     this._postLists = Im.Map({});
-    this._sorting = sortingOptionDefault;
   },
 
   getPosts: function(sorting) {
-    var option = sorting || this._sorting.currentSorting;
+    var option = sorting || sortingOptionDefault.defaultSorting;
     var pagenatedList = this._postLists.get(option) || new PagenatedList();
     return pagenatedList.getIds().map(PostStore.get).toArray();
   },
 
   getPagenatedList: function(sorting) {
-    var option = sorting || this._sorting.currentSorting;
+    var option = sorting || sortingOptionDefault.defaultSorting;
     var pagenatedList = this._postLists.get(option) || new PagenatedList();
     return pagenatedList;
-  },
-
-  getCurrentSorting: function() {
-    return this._sorting.currentSorting;
   },
 
   getObjects: function(sorting) {
     return {
       posts: this.getPosts(sorting),
       pagenatedList: this.getPagenatedList(sorting),
-      currentSortOption: this.getCurrentSorting()
     };
   },
 
   /* Listen PostsActions
    ===============================*/
-  setSortBy: function(value) {
-    this._sorting.currentSorting = value;
-  },
+  //setSortBy: function(value) {
+  //  this._sorting.currentSorting = value;
+  //},
 
   setPostList: function(sorting, posts) {
     var postsArray = posts.results;
@@ -64,24 +60,20 @@ var PostListStore = Reflux.createStore({
   },
 
   thenGetPostsCompleted: function(response) {
-    var sorting = response.req._query.sorting || this._sorting.defaultSorting;
-    this.setSortBy(sorting);
+    var sorting = extractSortingFromResponse(response);
     var posts = response.body;
     this.setPostList(sorting, posts);
-    this.trigger(this.getObjects(sorting));
+    this.trigger();
   },
 
   thenSubmitPostCompleted: function(response) {
-    var iterator = this._postLists.keys();
-    var pagenatedList = this._postLists.get('upvotes');
-    if (typeof pagenatedList !== 'undefined') {
-      PagenatedList.set(response.body.id);
-    }
+    this.clearAllPostsStore();
+    this.trigger();
   },
 
   clearAllPostsStore: function() {
     this._postLists = Im.Map({});
-    this.trigger(this.getObjects());
+    this.trigger();
   }
 
 });

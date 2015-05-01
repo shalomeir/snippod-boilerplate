@@ -23,7 +23,7 @@ var PageStore = Reflux.createStore({
   setPage: function(transition) {
     this.page.transition = transition;
     this.page.returnpage = transition.path;
-    this.trigger(this.page);
+    this.trigger();
   },
 
   setReturnpage: function(path) {

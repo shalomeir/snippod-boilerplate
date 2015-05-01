@@ -3,8 +3,11 @@
 var React = require('react'),
     { PropTypes } = React,
     Reflux = require('reflux'),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     cx = require('classnames'),
+    //Mixins
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
+    ResetMessageAtWillUnmountMixin = require('../../mixins/ResetMessageAtWillUnmountMixin'),
+
     //components
     Spinner = require('../../commons/Spinner.jsx'),
     //store
@@ -18,6 +21,7 @@ var ComposerBox = React.createClass({
 
   mixins: [
     PureRenderMixin,
+    ResetMessageAtWillUnmountMixin,
     Reflux.listenTo(PostsActions.thenSubmitPostCompleted, 'resetForm'),
     Reflux.listenTo(ComponentMessageStore, 'onErrorMessage')
   ],
@@ -31,6 +35,7 @@ var ComposerBox = React.createClass({
 
   getInitialState: function() {
     return {
+      error: null,
       submitted: false
     };
   },
@@ -44,13 +49,18 @@ var ComposerBox = React.createClass({
     });
   },
 
-  onErrorMessage: function(errorMessage) {
+  onErrorMessage: function() {
+    var errorMessage = ComponentMessageStore.getComponentMessages();
+    var errorSentence = null;
     this.refs.submit.getDOMNode().disabled = false;
-    var errorSentence;
-    if (typeof errorMessage.info !== 'undefined') {
-      errorSentence = errorMessage.info[0].msg;
-    } else {
-      errorSentence = null;
+    if( errorMessage.failed !== null ) {
+      errorSentence = "";
+      for (var key in errorMessage.failed) {
+        if (errorMessage.failed.hasOwnProperty(key)) {
+          var errorMsg = errorMessage.failed[key][0];
+          errorSentence = errorSentence.concat(errorMsg);
+        }
+      }
     }
     this.setState({
       error: errorSentence,
@@ -124,9 +134,9 @@ var ComposerBox = React.createClass({
       /* jshint ignore:start */
       <div id="composer-box" className="composer-box">
         <div id="header-panel" className="header-panel text-center">
-          <form method="post" action="/posts" onSubmit={ this.submitPost } className="panel-form">
+          <form method="post" action="/posts/" onSubmit={ this.submitPost } className="panel-form">
             <input type="text" name="title" className={ titleInputCx } placeholder="Title" ref="title" id="title"/>
-            <input type="url" name="url" className={ linkInputCx } placeholder="Link" ref="link" id="url"/>
+            <input type="url" name="link" className={ linkInputCx } placeholder="Link" ref="link" id="link"/>
             <button type="submit" className="button panel-button button-outline" ref="submit">
               { this.state.submitted ? <Spinner /> : 'Submit' }
             </button>

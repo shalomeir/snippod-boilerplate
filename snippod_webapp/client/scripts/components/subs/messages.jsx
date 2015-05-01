@@ -24,9 +24,9 @@ var Messages = React.createClass({
     };
   },
 
-  onMessagesUpdate: function(messages) {
+  onMessagesUpdate: function() {
     this.setState({
-      messages: messages
+      messages: GloabalMessagesStore.getGlobalMessages()
     });
 
     setTimeout(function(){

@@ -3,18 +3,22 @@
 var React = require('react'),
     { PropTypes } = React,
     Reflux = require('reflux'),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
     $ = require('jquery'),
     AuthAccountActions = require('../../actions/authentication/AuthAccountActions'),
     ComponentMessageStore = require('../../stores/subs/ComponentMessageStore'),
-    Authentication = require('../../utils/Authentication') ;
+    //Mixins
+    Authentication = require('../../utils/Authentication'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
+    ResetMessageAtWillUnmountMixin = require('../mixins/ResetMessageAtWillUnmountMixin');
 
 
 var Settings = React.createClass({
 
   mixins: [
     Authentication,
+    PureRenderMixin,
+    ResetMessageAtWillUnmountMixin,
     Reflux.listenTo(ComponentMessageStore, 'onErrorMessage')
   ],
 
@@ -27,22 +31,21 @@ var Settings = React.createClass({
 
   getInitialState: function() {
     return {
-      errors: '',
-      errorMessage: '',
+      errorPrescriptions: null,
+      errors: null,
       submitted: false
     };
   },
 
-  onErrorMessage: function(errorMessages) {
-    var errorSentence;
-    if (typeof errorMessages.message !== 'undefined') {
-      errorSentence = errorMessages.message;
-    } else {
-      errorSentence = null;
+  onErrorMessage: function() {
+    var errorMessage = ComponentMessageStore.getComponentMessages();
+    var errorSentence = null;
+    if (typeof errorMessage.message !== 'undefined') {
+      errorSentence = errorMessage.message;
     }
     this.setState({
-      errors: errorMessages.errors,
-      errorMessage: errorSentence,
+      errorPrescriptions: errorMessage.errors,
+      errors: errorSentence,
       submitted: false
     });
   },
@@ -52,6 +55,18 @@ var Settings = React.createClass({
     var profileActionUrl = '/accounts/'+account.id+'/?_method=PATCH',
         passwordSetActionUrl = '/accounts/'+account.id+'/set_password/?_method=PATCH',
         deleteAccountActionUrl = '/accounts/'+account.id+'/?_method=DELETE';
+
+    var errors = null;
+
+    if (this.state.errors) {
+      errors = (
+        /* jshint ignore:start */
+        <div className="error login-error">
+          { this.state.errors }
+        </div>
+        /* jshint ignore:end */
+      );
+    }
 
     return (
       /* jshint ignore:start */
@@ -109,6 +124,7 @@ var Settings = React.createClass({
           <form id="delete-form" action={deleteAccountActionUrl} method="post" onSubmit={this.handleDestroy}>
             <button>Delete my account</button>
           </form>
+          { errors }
         </div>
       </DocumentTitle>
       /* jshint ignore:end */

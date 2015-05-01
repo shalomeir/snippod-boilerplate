@@ -118,6 +118,20 @@ class CommentViewSet(viewsets.ModelViewSet):
             }, status=status.HTTP_404_NOT_FOUND)
 
 
+class PostCommentViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        post_id = self.kwargs['postid']
+        sorting = self.request.QUERY_PARAMS.get('sorting', None)
+        if sorting == 'upvotes':
+            return Comment.sorted_objects.upvotes().filter(post=post_id)
+        elif sorting == 'newest':
+            return Comment.sorted_objects.newest().filter(post=post_id)
+        else:
+            return Comment.sorted_objects.upvotes().filter(post=post_id)
+
+
 # class PostUpvoteViewSet(viewsets.ModelViewSet):
 #     queryset = PostUpvote.objects.all()
 #     serializer_class = PostUpvoteSerializer

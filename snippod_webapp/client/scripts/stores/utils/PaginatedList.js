@@ -36,6 +36,10 @@ class PaginatedList {
     this._ids = this._ids.toList().unshift(id).toOrderedSet();
   }
 
+  push(id) {
+    this._ids = this._ids.add(id);
+  }
+
   remove(id) {
     this._ids = this._ids.delete(id);
   }

@@ -10,9 +10,6 @@ var React = require('react'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
 
-    sortingOptionDefault = require('../../constants/defaults')
-      .sortingOption.optionValues,
-
     //components
     TopicCard = require('./postlist/TopicCard.jsx'),
     Posts = require('./postlist/Posts.jsx'),
@@ -26,15 +23,6 @@ var Topic = React.createClass({
   mixins: [
     PureRenderMixin,
   ],
-
-  statics: {
-    willTransitionTo: function(transition, params, query) {
-      var sortValues = Object.keys(sortingOptionDefault);
-      if (sortValues.indexOf(query.sorting) > -1) {
-        PostsActions.setSortBy(query.sorting);
-      }
-    }
-  },
 
   propTypes: {
     params: PropTypes.object.isRequired,

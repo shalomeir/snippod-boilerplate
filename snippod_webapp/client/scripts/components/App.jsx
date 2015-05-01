@@ -48,15 +48,15 @@ var App = React.createClass({
     };
   },
 
-  onAccountUpdate: function(account) {
+  onAccountUpdate: function() {
     this.setState({
-      account: account
+      account: AccountStore.getAccount()
     });
   },
 
-  onAuthUpdate: function(auth) {
+  onAuthUpdate: function() {
     this.setState({
-      auth: auth,
+      auth: AuthStore.getAuth(),
       showOverlay: false
     });
   },

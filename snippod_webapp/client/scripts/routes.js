@@ -9,7 +9,8 @@ var React = require('react'),
     Settings = require('./components/authentication/Settings.jsx'),
     Account = require('./components/authentication/Account.jsx'),
     Empty = require('./components/subs/Empty.jsx'),
-    Topic = require('./components/posts/Topic.jsx');
+    Topic = require('./components/posts/Topic.jsx'),
+    SinglePost = require('./components/posts/SinglePost.jsx');
 
 var routes = (
   /* jshint ignore:start */
@@ -20,6 +21,7 @@ var routes = (
     <Route name='forgot' path='/login/forgot' handler={Forgot} />
     <Route name='settings' path='/settings' handler={Settings} />
     <Route name='me' path='/me' handler={Account} />
+    <Route name='singlePost' path='/post/:postId' handler={SinglePost} />
     <Route name='empty' path='/empty' handler={Empty} />
   </Route>
   /* jshint ignore:end */

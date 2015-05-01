@@ -33,7 +33,8 @@ var Login = React.createClass({
     };
   },
 
-  resetForm: function(auth) {
+  resetForm: function() {
+    var auth = AuthStore.getAuth();
     if(this.state.loggedIn !== auth.loggedIn){
       this.refs.email.getDOMNode().value = '';
       this.refs.password.getDOMNode().value = '';
@@ -46,13 +47,12 @@ var Login = React.createClass({
     }
   },
 
-  onErrorMessage: function(errorMessages) {
+  onErrorMessage: function() {
+    var errorMessage = ComponentMessageStore.getComponentMessages();
     this.refs.submit.getDOMNode().disabled = false;
-    var errorSentence;
-    if (typeof errorMessages.message !== 'undefined') {
-      errorSentence = errorMessages.message;
-    } else {
-      errorSentence = null;
+    var errorSentence = null;
+    if (typeof errorMessage.message !== 'undefined') {
+      errorSentence = errorMessage.message;
     }
     this.setState({
       errors: errorSentence,

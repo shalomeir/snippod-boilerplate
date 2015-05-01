@@ -21,17 +21,17 @@ var AccountStore = Reflux.createStore({
    ===============================*/
   _mergeAccountData: function(resData) {
     this.account = this.account.merge(Im.Map(resData));
-    this.trigger(this.account.toJS());
+    this.trigger();
   },
 
   onLoginCompleted: function(response) {
     this.account = this.account.merge(Im.Map(response.body.account));
-    this.trigger(this.account.toJS());
+    this.trigger();
   },
 
   onPreLoginCompleted: function(response) {
     this.account = this.account.merge(Im.Map(response.body.account));
-    this.trigger(this.account.toJS());
+    this.trigger();
   },
 
   onRegisterCompleted: function(response) {
@@ -44,7 +44,7 @@ var AccountStore = Reflux.createStore({
 
   setAccount: function(accountData) {
     this.account = this.account.merge(Im.Map(accountData));
-    this.trigger(this.account.toJS());
+    this.trigger();
   }
 });
 
