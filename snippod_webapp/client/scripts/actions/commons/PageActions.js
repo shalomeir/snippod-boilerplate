@@ -7,6 +7,7 @@ var pageActions = Reflux.createActions({
   //by pass to store
   'setPage':{},
   'setReturnpage':{},
+  'resetReturnpage':{},
   'transitionToReturnpage':{}
 });
 

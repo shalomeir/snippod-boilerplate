@@ -4,13 +4,13 @@
 'use strict';
 
 var $ = require('jquery'),
-  router = require('../router'),
-  { getParameterByName, checkAbsoluteURL } = require('./StringControl'),
-  Cookies = require('cookies-js'),
-  request = require('superagent'),
-  csrf = require('superagent-csrf'),
-  apiPath = require('../constants/defaults').apiPath;
-  //var prefix = require('superagent-prefix')(apiPath);
+    router = require('../router'),
+    { getParameterByName, checkAbsoluteURL } = require('./StringControl'),
+    Cookies = require('cookies-js'),
+    request = require('superagent'),
+    csrf = require('superagent-csrf'),
+    apiPath = require('../constants/defaults').apiPath;
+    //var prefix = require('superagent-prefix')(apiPath);
 
 require('./serialization');
 

@@ -31,7 +31,6 @@ var Post = React.createClass({
   },
 
   render: function() {
-    var account = this.props.account;
     var post = this.props.post;
     var commentCount = post.commentCount;
     var deleteOption = '';

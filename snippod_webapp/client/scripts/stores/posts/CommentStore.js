@@ -36,7 +36,7 @@ var CommentStore = Reflux.createStore({
 
   onGetCommentsCompleted: function(response) {
     this.setComments(response.body.results);
-    PostsActions.thenGetPostsCompleted(response);
+    PostsActions.thenGetCommentsCompleted(response);
   },
 
   onSubmitCommentCompleted: function(response) {
@@ -65,8 +65,9 @@ var CommentStore = Reflux.createStore({
     this.trigger();
   },
 
-  clearAllCommentsStore: function() {
+  clearCommentStore: function(callback) {
     this.init();
+    if(typeof callback !== 'undefined') { callback(); }
   }
 
 });

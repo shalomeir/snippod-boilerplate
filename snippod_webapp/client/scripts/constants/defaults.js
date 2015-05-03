@@ -12,6 +12,7 @@ var Defaults = {
     keywords: null,
     location: '/',
     returnpage: null,
+    returnquery: null,
     transition: null
   },
 

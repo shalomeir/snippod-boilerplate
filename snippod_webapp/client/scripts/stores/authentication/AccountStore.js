@@ -42,9 +42,10 @@ var AccountStore = Reflux.createStore({
     this._mergeAccountData(response.body);
   },
 
-  setAccount: function(accountData) {
+  setAccount: function(accountData, callback) {
     this.account = this.account.merge(Im.Map(accountData));
     this.trigger();
+    if(typeof callback !== 'undefined') { callback(); }
   }
 });
 

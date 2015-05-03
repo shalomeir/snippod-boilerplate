@@ -44,13 +44,14 @@ var AuthStore = Reflux.createStore({
     this.trigger();
   },
 
-  setAuth: function(authData, transitionTo) {
+  setAuth: function(authData, transitionTo, callback) {
     this.auth = this.auth.merge(Im.Map(authData));
     this.trigger();
 
     if (transitionTo) {
       router.transitionTo(transitionTo);
     }
+    if(typeof callback !== 'undefined') { callback(); }
   }
 });
 

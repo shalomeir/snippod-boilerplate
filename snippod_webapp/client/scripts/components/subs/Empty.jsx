@@ -8,6 +8,7 @@ var React = require('react'),
     { PropTypes } = React,
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
+    PageActions = require('../../actions/commons/PageActions'),
     UIActions = require('../../actions/commons/UIActions');
 
 
@@ -24,6 +25,10 @@ var Empty = React.createClass({
 
   componentDidMount: function() {
     this._checkOverlay();
+  },
+
+  componentWillUnmount: function() {
+    PageActions.resetReturnpage();
   },
 
   _checkOverlay: function() {

@@ -66,14 +66,9 @@ var PostListStore = Reflux.createStore({
     this.trigger();
   },
 
-  thenSubmitPostCompleted: function(response) {
-    this.clearAllPostsStore();
-    this.trigger();
-  },
-
-  clearAllPostsStore: function() {
+  clearPostListStore: function(callback) {
     this._postLists = Im.Map({});
-    this.trigger();
+    if(typeof callback !== 'undefined') { callback(); }
   }
 
 });

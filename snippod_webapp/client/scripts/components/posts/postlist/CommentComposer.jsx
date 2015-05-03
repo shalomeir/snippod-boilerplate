@@ -4,6 +4,8 @@ var React = require('react'),
     { PropTypes } = React,
     Reflux = require('reflux'),
     cx = require('classnames'),
+    { appendKeyValueToForm } = require('../../../utils/StringControl'),
+
     //Mixins
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     ResetMessageAtWillUnmountMixin = require('../../mixins/ResetMessageAtWillUnmountMixin'),
@@ -17,12 +19,12 @@ var React = require('react'),
     UIActions = require('../../../actions/commons/UIActions');
 
 
-var ComposerBox = React.createClass({
+var CommentComposer = React.createClass({
 
   mixins: [
     PureRenderMixin,
     ResetMessageAtWillUnmountMixin,
-    Reflux.listenTo(PostsActions.thenSubmitPostCompleted, 'resetForm'),
+    Reflux.listenTo(PostsActions.thenSubmitCommentCompleted, 'resetForm'),
     Reflux.listenTo(ComponentMessageStore, 'onErrorMessage')
   ],
 
@@ -30,7 +32,8 @@ var ComposerBox = React.createClass({
     params: PropTypes.object.isRequired,
     query: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    post: PropTypes.object.isRequired
   },
 
   getInitialState: function() {
@@ -41,8 +44,7 @@ var ComposerBox = React.createClass({
   },
 
   resetForm: function() {
-    this.refs.title.getDOMNode().value = '';
-    this.refs.link.getDOMNode().value = '';
+    this.refs.commentText.getDOMNode().value = '';
     this.refs.submit.getDOMNode().disabled = false;
     this.setState({
       submitted: false
@@ -54,7 +56,7 @@ var ComposerBox = React.createClass({
     var errorSentence = null;
     this.refs.submit.getDOMNode().disabled = false;
     if( errorMessage.failed !== null ) {
-      errorSentence = "";
+      errorSentence = '';
       for (var key in errorMessage.failed) {
         if (errorMessage.failed.hasOwnProperty(key)) {
           var errorMsg = errorMessage.failed[key][0];
@@ -68,28 +70,19 @@ var ComposerBox = React.createClass({
     });
   },
 
-  submitPost: function(e) {
+  submitComment: function(e) {
     e.preventDefault();
     var form = e.currentTarget;
-    var auth = this.props.auth;
-    var titleEl = this.refs.title.getDOMNode();
-    var linkEl = this.refs.link.getDOMNode();
+    var commentTextEl = this.refs.commentText.getDOMNode();
 
-    if (!auth.loggedIn) {
+    if (!this.props.auth.loggedIn) {
       UIActions.showOverlay('login');
       return;
     }
 
-    if (titleEl.value.trim() === '') {
+    if (commentTextEl.value.trim() === '') {
       this.setState({
-        'postError': 'title_error'
-      });
-      return;
-    }
-
-    if (linkEl.value.trim() === '') {
-      this.setState({
-        'postError': 'link_error'
+        commentError: 'text_error'
       });
       return;
     }
@@ -99,24 +92,17 @@ var ComposerBox = React.createClass({
       submitted: true
     });
 
-    PostsActions.submitPost(form);
-
+    PostsActions.submitComment(form);
   },
-
 
 
   render: function() {
 
-    var postError = this.state.postError;
-
-    var titleInputCx = cx({
-      'panel-input': true,
-      'input-error': postError === 'title_error'
-    });
-
-    var linkInputCx = cx({
-      'panel-input': true,
-      'input-error': postError === 'link_error'
+    var commentError = this.state.commentError;
+    var commentTextInputCx = cx({
+      'comment-input': true,
+      'full-width': true,
+      'input-error': commentError === 'text_error'
     });
 
     var error = null;
@@ -132,23 +118,20 @@ var ComposerBox = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <div id="composer-box" className="composer-box">
-        <div id="header-panel" className="header-panel text-center">
-          <form method="post" action="/posts/" onSubmit={ this.submitPost } className="panel-form">
-            <input type="text" name="title" className={ titleInputCx } placeholder="Title" ref="title" id="title"/>
-            <input type="url" name="link" className={ linkInputCx } placeholder="Link" ref="link" id="link"/>
-            <button type="submit" className="button panel-button button-outline" ref="submit">
-              { this.state.submitted ? <Spinner /> : 'Submit' }
-            </button>
-          </form>
-        </div>
+      <div id="comment-composer" className="comment-composer">
+        <form method="post" action="/comments/" onSubmit={ this.submitComment } className="comment-form">
+          <textarea name="content" autofocus="autofocus" placeholder="Post a Comment" ref="commentText" className={ commentTextInputCx }></textarea>
+          <button type="submit" className="button button-primary" ref="submit">
+            { this.state.submitted ? <Spinner /> : 'Submit' }
+          </button>
+          <input type="hidden" name="post" value={ this.props.post.id } />
+        </form>
         { error }
       </div>
       /* jshint ignore:end */
-
     );
   }
 
 });
 
-module.exports = ComposerBox;
+module.exports = CommentComposer;

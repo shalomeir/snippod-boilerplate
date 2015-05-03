@@ -3,11 +3,10 @@
 var Reflux = require('reflux'),
     Im = require('immutable'),
     PagenatedList = require('../utils/PaginatedList'),
-    { extractPostIdFromResponse } = require('../../utils/StringControl'),
     CommentStore = require('./CommentStore'),
     PostsActions = require('../../actions/posts/PostsActions');
 
-// This comment list mapped by each post id.
+// This comment list mapped by each post id. So input parameter is postId
 var CommentListStore = Reflux.createStore({
 
   listenables: PostsActions,
@@ -53,23 +52,25 @@ var CommentListStore = Reflux.createStore({
   },
 
   thenGetCommentsCompleted: function(response) {
-    var postId = extractPostIdFromResponse(response);
+    var postId = response.body.post;
     var comments = response.body;
     this.setCommentList(postId, comments);
     this.trigger();
   },
 
   thenSubmitCommentCompleted: function(response) {
-    var postId = extractPostIdFromResponse(response);
-    this._commentLists.get(postId).push(postId);
+    var postId = response.body.post;
+    var updatedPagenatedList = this.getPagenatedList(postId).push(postId);
+    this._commentLists = this._commentLists.set(postId, updatedPagenatedList);
     this.trigger();
   },
 
-  clearAllCommentsStore: function(response) {
-    var postId = extractPostIdFromResponse(response);
+  clearCommentListStore: function(callback) {
     this._commentLists = Im.Map({});
-    this.trigger();
+    if(typeof callback !== 'undefined') { callback(); }
   }
+
+
 
 });
 

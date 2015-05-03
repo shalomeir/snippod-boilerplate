@@ -16,6 +16,7 @@ var React = require('react'),
     //components
     Post = require('./postlist/post/Post.jsx'),
     Comments = require('./postlist/Comments.jsx'),
+    CommentComposer = require('./postlist/CommentComposer.jsx'),
     Spinner = require('../commons/Spinner.jsx'),
     //actions
     PostsActions = require('../../actions/posts/PostsActions'),
@@ -29,7 +30,8 @@ var SinglePost = React.createClass({
     PureRenderMixin,
     ResetMessageAtWillUnmountMixin,
     Reflux.listenTo(PostStore, 'onPostUpdate'),
-    Reflux.listenTo(ComponentMessageStore, 'onErrorMessage')
+    Reflux.listenTo(ComponentMessageStore, 'onErrorMessage'),
+    Reflux.listenTo(PostsActions.refreshDataFromStore, 'onPostUpdate')
   ],
 
   propTypes: {
@@ -53,12 +55,14 @@ var SinglePost = React.createClass({
     }
   },
 
-  onPostUpdate: function() {
+  onPostUpdate: function(args) {
     this.setState({
       post: PostStore.get(Number(this.props.params.postId)),
       loading: false
     });
-    this.componentDidMount();
+    if(typeof this.state.post === 'undefined' ) {
+      this._callPostActions();
+    }
   },
 
   onErrorMessage: function() {
@@ -83,15 +87,6 @@ var SinglePost = React.createClass({
     var commentsComp = null;
     var error = null;
 
-    if ( typeof this.state.post !== 'undefined' ) {
-      commentsComp = (
-        /* jshint ignore:start */
-        <Post post={ this.state.post } {...this.props} />
-
-        /* jshint ignore:end */
-      );
-    }
-
     if (this.state.error) {
       error = (
         /* jshint ignore:start */
@@ -107,7 +102,8 @@ var SinglePost = React.createClass({
       <DocumentTitle title='Single Post'>
         <div className="singlepost main-container content full-width">
           { this.state.loading ? <Spinner /> : null }
-          { commentsComp }
+          { this.state.post ? <Post post={ this.state.post } {...this.props} /> : null }
+          { this.state.post ? <CommentComposer post={ this.state.post } {...this.props} /> : null }
           { error }
         </div>
       </DocumentTitle>

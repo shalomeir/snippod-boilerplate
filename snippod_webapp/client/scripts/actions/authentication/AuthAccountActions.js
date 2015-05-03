@@ -40,9 +40,7 @@ AuthAccountActions.login.preEmit = function(form, callback) {
 };
 AuthAccountActions.login.completed.preEmit = function(response) {
   UIActions.hideOverlay();
-  PostsActions.clearAllPostsStore(response);
-  PostsActions.clearAllCommentsStore(response);
-
+  PostsActions.clearAllPostsCommentsStore(PostsActions.refreshDataFromStore);
   PageActions.transitionToReturnpage();
 };
 AuthAccountActions.login.failed.preEmit = function(response) {
@@ -57,6 +55,7 @@ AuthAccountActions.preLogin.preEmit = function(form, callback) {
     .catch(this.failed);
 };
 AuthAccountActions.preLogin.completed.preEmit = function(response) {
+  PostsActions.clearAllPostsCommentsStore(PostsActions.refreshDataFromStore);
   PageActions.transitionToReturnpage();
 };
 
@@ -73,15 +72,15 @@ AuthAccountActions.logout.completed.preEmit = function(response) {
   // Reset account to defaults
   AuthAccountActions.setAuth(authDefault);
   AuthAccountActions.setAccount(accountDefault);
-  PostsActions.clearAllPostsStore(response);
-  PostsActions.clearAllCommentsStore(response);
 
   // Delete Cookies
   Cookies.expire('csrftoken');
   Cookies.expire('sessionid');
   // Redirect to returnpage
-  router.transitionTo('/empty');
+  router.replaceWith('/empty');
+  PostsActions.clearAllPostsCommentsStore(PostsActions.refreshDataFromStore);
   PageActions.transitionToReturnpage();
+
 };
 
 AuthAccountActions.register.preEmit = function(form, callback) {

@@ -24,7 +24,8 @@ var Posts = React.createClass({
   mixins: [
     PureRenderMixin,
     Reflux.listenTo(PostListStore, 'onPostsUpdate'),
-    Reflux.listenTo(PostStore, 'onPostsUpdate')
+    Reflux.listenTo(PostStore, 'onPostsUpdate'),
+    Reflux.listenTo(PostsActions.refreshDataFromStore, 'onPostsUpdate')
   ],
 
   propTypes: {
@@ -67,10 +68,10 @@ var Posts = React.createClass({
 
   onPostsUpdate: function() {
     var postListObjects = PostListStore.getObjects(this.props.query.sorting);
+    this.setState(this._parsePostListObjects(postListObjects));
     if (postListObjects.pagenatedList.getPageCount()===0) {
       this._callPostsActions();
     }
-    this.setState(this._parsePostListObjects(postListObjects));
   },
 
   render: function() {

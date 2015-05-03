@@ -24,11 +24,33 @@ var StringControl = {
     }
   },
 
-  extractPostIdFromResponse: function(response) {
-    var param = response.req.path[0];
-    return param.split('=')[1];
-  }
+  appendKeyValueToForm: function(form, key, value) {
+    var virtualEl = document.createElement('input');
+    virtualEl.setAttribute('type','hidden');
+    virtualEl.setAttribute('name',key);
+    virtualEl.setAttribute('value',value);
+    form.appendChild(virtualEl);
+    return this;
+  },
 
+  searchToObject: function(query) {
+    if(!query) {
+      return null;
+    }
+    var pairs = query.substring(1).split('&'),
+      obj = {},
+      pair,
+      i;
+
+    for ( i in pairs ) {
+      if (pairs.hasOwnProperty(i)){
+        if (pairs[i] === '') { continue; }
+        pair = pairs[i].split('=');
+        obj[ decodeURIComponent( pair[0] ) ] = decodeURIComponent( pair[1] );
+      }
+    }
+    return obj;
+  }
 };
 
 
