@@ -113,8 +113,7 @@ var SinglePost = React.createClass({
 
   _callPostActions: function() {
     this.setState({ loading: true });
-    var action = '/posts/'+this.props.params.postId+'/';
-    PostsActions.getPost(action);
+    PostsActions.getPost(this.props.params.postId);
   }
 
 });

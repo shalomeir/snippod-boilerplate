@@ -59,9 +59,9 @@ PostsActions.getPosts.preEmit = function(requestUrl, query, callback) {
     .catch(this.failed);
 };
 
-// TODO : Check {} undefined value pass this request
-PostsActions.getPost.preEmit = function(requestUrl, callback) {
-  requestGet(requestUrl,{},callback)
+PostsActions.getPost.preEmit = function(postId, callback) {
+  var action = '/posts/'+postId+'/';
+  requestGet(action,{},callback)
     .then(this.completed)
     .catch(this.failed);
 };

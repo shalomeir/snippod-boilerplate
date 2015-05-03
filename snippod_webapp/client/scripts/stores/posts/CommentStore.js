@@ -42,6 +42,7 @@ var CommentStore = Reflux.createStore({
   onSubmitCommentCompleted: function(response) {
     this.set(response.body);
     PostsActions.thenSubmitCommentCompleted(response);
+    PostsActions.getPost(response.body.post);
   },
 
   onUpvoteCommentCompleted: function(response) {
