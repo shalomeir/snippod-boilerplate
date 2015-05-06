@@ -4,12 +4,13 @@ var Reflux = require('reflux'),
     Im = require('immutable'),
     componentMessagesDefault = require('../../constants/defaults').componentMessages,
     MessagesActions = require('../../actions/subs/MessagesActions'),
-    PostsActions = require('../../actions/posts/PostsActions');
+    PostsActions = require('../../actions/posts/PostsActions'),
+    UsersActions = require('../../actions/users/UsersActions');
 
 
 var ComponentMessageStore = Reflux.createStore({
 
-  listenables: [ MessagesActions, PostsActions ],
+  listenables: [ MessagesActions, PostsActions, UsersActions ],
 
   init: function() {
     this.componentMessages = Im.Map(componentMessagesDefault);
@@ -48,9 +49,17 @@ var ComponentMessageStore = Reflux.createStore({
   onSubmitPostFailed: function(response) {
     this.componentMessages = this.componentMessages.set('failed',response.body);
     this.trigger();
+  },
+
+  onSubmitCommentFailed: function(response) {
+    this.componentMessages = this.componentMessages.set('failed',response.body);
+    this.trigger();
+  },
+
+  onGetUserFailed: function(response) {
+    this.componentMessages = this.componentMessages.set('failed',response.body);
+    this.trigger();
   }
-
-
 
 
 

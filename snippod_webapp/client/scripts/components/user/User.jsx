@@ -1,6 +1,6 @@
 /**
-*   Topic Component Description
-*/
+ *   Topic Component Description
+ */
 
 'use strict';
 
@@ -9,30 +9,31 @@ var React = require('react'),
     Reflux = require('reflux'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
-    Link = require('react-router').Link,
 
     //Mixins
     ResetMessageAtWillUnmountMixin = require('../mixins/ResetMessageAtWillUnmountMixin'),
 
-    //components
-    Post = require('./list/post/Post.jsx'),
-    Comments = require('./list/Comments.jsx'),
-    CommentComposer = require('./list/CommentComposer.jsx'),
-    Spinner = require('../commons/Spinner.jsx'),
     //actions
+    UsersActions = require('../../actions/users/UsersActions'),
     PostsActions = require('../../actions/posts/PostsActions'),
     //stores
-    PostStore = require('../../stores/posts/PostStore'),
-    ComponentMessageStore = require('../../stores/subs/ComponentMessageStore');
+    UserStore = require('../../stores/users/UserStore'),
+    ComponentMessageStore = require('../../stores/subs/ComponentMessageStore'),
+    //components
+    Profile = require('./profile/Profile.jsx'),
+    UserPosts = require('./list/UserPosts.jsx'),
+    UserComments = require('./list/UserComments.jsx'),
+    Spinner = require('../commons/Spinner.jsx');
 
-var SinglePost = React.createClass({
+
+var User = React.createClass({
 
   mixins: [
     PureRenderMixin,
     ResetMessageAtWillUnmountMixin,
-    Reflux.listenTo(PostStore, 'onPostUpdate'),
+    Reflux.listenTo(UserStore, 'onUserUpdate'),
+    Reflux.listenTo(PostsActions.refreshDataFromStore, 'onUserUpdate'),
     Reflux.listenTo(ComponentMessageStore, 'onErrorMessage'),
-    Reflux.listenTo(PostsActions.refreshDataFromStore, 'onPostUpdate')
   ],
 
   propTypes: {
@@ -44,25 +45,25 @@ var SinglePost = React.createClass({
 
   getInitialState: function() {
     return {
-      post: PostStore.get(Number(this.props.params.postId)),
+      user: UserStore.get(Number(this.props.params.userId)),
       loading: false,
       error: null
     };
   },
 
   componentDidMount: function() {
-    if(typeof this.state.post === 'undefined' ) {
-      this._callPostsActions();
+    if(typeof this.state.user === 'undefined' ) {
+      this._callUsersActions();
     }
   },
 
-  onPostUpdate: function(args) {
+  onUserUpdate: function(args) {
     this.setState({
-      post: PostStore.get(Number(this.props.params.postId)),
+      user: UserStore.get(Number(this.props.params.userId)),
       loading: false
     });
-    if(typeof this.state.post === 'undefined' ) {
-      this._callPostsActions();
+    if(typeof this.state.user === 'undefined' ) {
+      this._callUsersActions();
     }
   },
 
@@ -85,20 +86,7 @@ var SinglePost = React.createClass({
   },
 
   render: function() {
-
-    var post = this.state.post;
-    if (typeof post !== 'undefined' && post.isDeleted) {
-      return (
-        /* jshint ignore:start */
-        <DocumentTitle title='Single Post'>
-          <div className="singlepost main-container content full-width">
-            { this.state.post ? <Post post={ this.state.post } {...this.props} /> : null }
-            Go to <Link to="app"> Snippod's Home </Link>
-          </div>
-        </DocumentTitle>
-        /* jshint ignore:end */
-      );
-    }
+    var user = this.state.user;
 
     var error = null;
     if (this.state.error) {
@@ -113,12 +101,12 @@ var SinglePost = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <DocumentTitle title='Single Post'>
-        <div className="singlepost main-container content full-width">
+      <DocumentTitle title='User Profile'>
+        <div className="user main-container content full-width">
           { this.state.loading ? <Spinner /> : null }
-          { this.state.post ? <Post post={ this.state.post } {...this.props} /> : null }
-          { this.state.post ? <CommentComposer post={ this.state.post } {...this.props} /> : null }
-          { this.state.post ? <Comments post={ this.state.post } {...this.props} /> : null }
+          { user ? <Profile user={ user } { ...this.props } /> : null }
+          { user ? <UserPosts user={ user } { ...this.props } /> : null }
+          { user ? <UserComments user={ user } { ...this.props } /> : null }
           { error }
         </div>
       </DocumentTitle>
@@ -126,11 +114,11 @@ var SinglePost = React.createClass({
     );
   },
 
-  _callPostsActions: function() {
+  _callUsersActions: function() {
     this.setState({ loading: true });
-    PostsActions.getPost(this.props.params.postId);
+    UsersActions.getUser(this.props.params.userId);
   }
 
 });
 
-module.exports = SinglePost;
+module.exports = User;

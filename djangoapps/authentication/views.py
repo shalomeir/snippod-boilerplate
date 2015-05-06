@@ -31,10 +31,10 @@ class AccountViewSet(viewsets.ModelViewSet):
         page = self.paginate_queryset(recent_users)
 
         if page is not None:
-            serializer = self.get_serializer(page, many=True)
+            serializer = self.get_serializer(page, context={'request': request}, many=True)
             return self.get_paginated_response(serializer.data)
 
-        serializer = self.get_serializer(recent_users, many=True)
+        serializer = self.get_serializer(recent_users, context={'request': request}, many=True)
         return Response(serializer.data)
 
 
@@ -46,7 +46,7 @@ class AccountViewSet(viewsets.ModelViewSet):
                 account = authenticate(email=serializer.validated_data['email'],
                                        password=serializer.validated_data['password'])
                 login(request, account)
-                serialized = AccountSerializer(account)
+                serialized = self.serializer_class(account, context={'request': request})
                 return Response({
                     'account': serialized.data
                 }, status=status.HTTP_201_CREATED)
@@ -101,7 +101,7 @@ class LoginView(views.APIView):
         if account is not None:
             if account.is_active:
                 login(request, account)
-                serialized = AccountSerializer(account)
+                serialized = AccountSerializer(account, context={'request': request})
                 return Response({
                     'account': serialized.data
                 })
@@ -112,7 +112,7 @@ class LoginView(views.APIView):
                 }, status=status.HTTP_401_UNAUTHORIZED)
         else:
             if request.user.is_active:
-                serialized = AccountSerializer(request.user)
+                serialized = AccountSerializer(request.user, context={'request': request})
                 return Response({
                     'account': serialized.data
                 })

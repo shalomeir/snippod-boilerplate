@@ -6,15 +6,16 @@ from authentication.models import Account
 
 
 class AccountSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(write_only=True)
     password = serializers.CharField(write_only=True, required=False)
     confirm_password = serializers.CharField(write_only=True, required=False)
 
     class Meta:
         model = Account
         fields = ('id', 'email', 'username', 'date_joined', 'updated_at',
-                  'first_name', 'last_name', 'password',
+                  'first_name', 'last_name', 'full_name', 'password',
                   'confirm_password',)
-        read_only_fields = ('date_joined', 'updated_at',)
+        read_only_fields = ('date_joined', 'updated_at', 'full_name')
 
 
     def validate(self, attrs):
@@ -22,6 +23,17 @@ class AccountSerializer(serializers.ModelSerializer):
             if attrs['password'] != attrs['confirm_password']:
                 raise serializers.ValidationError("Password is not matched with a confirm password")
         return attrs
+
+    def to_representation(self, obj):
+        returnObj = super(AccountSerializer,self).to_representation(obj)
+
+        # if isinstance(self.context['request'].user, Account):
+        if self.context['request'].user.id == obj.id:
+            newObj = {
+                'email': obj.email
+            }
+            returnObj.update(newObj)
+        return returnObj
 
 
     def update(self, instance, validated_data):
@@ -54,5 +66,5 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ('id', 'email', 'username',)
-        read_only_fields = ('id', 'email', 'username',)
+        fields = ('id', 'username',)
+        read_only_fields = ('id', 'username',)

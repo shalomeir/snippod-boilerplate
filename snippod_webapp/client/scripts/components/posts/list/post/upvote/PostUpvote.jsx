@@ -9,14 +9,11 @@ var React = require('react'),
     PostsActions = require('../../../../../actions/posts/PostsActions'),
     UIActions =require('../../../../../actions/commons/UIActions');
 
-var Upvote = React.createClass({
+var PostUpvote = React.createClass({
 
   mixins:[PureRenderMixin],
 
   propTypes: {
-    params: PropTypes.object.isRequired,
-    query: PropTypes.object.isRequired,
-    account: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     post : PropTypes.object.isRequired
   },
@@ -58,4 +55,4 @@ var Upvote = React.createClass({
 
 });
 
-module.exports = Upvote;
+module.exports = PostUpvote;

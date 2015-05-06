@@ -43,9 +43,8 @@ INSTALLED_APPS = (
     'compressor',
     'rest_framework',
     'argonauts',
-    'authentication',
     'main',
-    'myapp',
+    'authentication',
     'posts',
 )
 

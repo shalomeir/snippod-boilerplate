@@ -14,6 +14,8 @@ var PostsActions = Reflux.createActions({
   'getPosts': { asyncResult: true },
   'getPost': { asyncResult: true },
   'getComments': { asyncResult: true },
+  'getUserPosts': { asyncResult: true },
+  'getUserComments': { asyncResult: true },
 
   // post actions
   'submitPost':{ asyncResult: true },
@@ -39,11 +41,15 @@ var PostsActions = Reflux.createActions({
   'thenGetPostsCompleted': {},
   'thenGetCommentsCompleted': {},
   'thenSubmitCommentCompleted': {},
+  'thenGetUserPostsCompleted': {},
+  'thenGetUserCommentsCompleted': {},
 
   'clearPostStore': {},
   'clearPostListStore': {},
+  'clearUserPostListStore': {},
   'clearCommentStore': {},
   'clearCommentListStore': {},
+  'clearUserCommentListStore': {},
 
   //All clear store and notify clean process end and refresh data.
   'refreshDataFromStore': {}
@@ -67,6 +73,18 @@ PostsActions.getPost.preEmit = function(postId, callback) {
 };
 
 PostsActions.getComments.preEmit = function(requestUrl, callback) {
+  requestGet(requestUrl,{},callback)
+    .then(this.completed)
+    .catch(this.failed);
+};
+
+PostsActions.getUserPosts.preEmit = function(requestUrl, query, callback) {
+  requestGet(requestUrl,query,callback)
+    .then(this.completed)
+    .catch(this.failed);
+};
+
+PostsActions.getUserComments.preEmit = function(requestUrl, callback) {
   requestGet(requestUrl,{},callback)
     .then(this.completed)
     .catch(this.failed);
@@ -122,7 +140,7 @@ PostsActions.upvoteComment.preEmit= function(commentId) {
 };
 
 PostsActions.cancelUpvoteComment.preEmit= function(commentId) {
-  var requestUrl = '/posts/'+commentId+'/cancel_upvote/';
+  var requestUrl = '/comments/'+commentId+'/cancel_upvote/';
   requestPost(requestUrl)
     .then(this.completed)
     .catch(this.failed);
@@ -130,7 +148,7 @@ PostsActions.cancelUpvoteComment.preEmit= function(commentId) {
 
 // Delete post
 PostsActions.deleteComment.preEmit= function(commentId) {
-  var requestUrl = '/posts/'+commentId+'/'+'?_method=DELETE';
+  var requestUrl = '/comments/'+commentId+'/'+'?_method=DELETE';
   requestPost(requestUrl)
     .then(this.completed)
     .catch(this.failed);
@@ -150,13 +168,17 @@ PostsActions.clearAllPostsCommentsStore.listen(function(callback) {
 });
 
 PostsActions.clearAllPostsStore.listen(function(callback) {
-  PostsActions.clearPostListStore(function(){
-    PostsActions.clearPostStore(callback);
+  PostsActions.clearUserPostListStore(function(){
+    PostsActions.clearPostListStore(function(){
+      PostsActions.clearPostStore(callback);
+    });
   });
 });
 PostsActions.clearAllCommentsStore.listen(function(callback) {
-  PostsActions.clearCommentListStore(function(){
-    PostsActions.clearCommentStore(callback);
+  PostsActions.clearUserCommentListStore(function(){
+    PostsActions.clearCommentListStore(function(){
+      PostsActions.clearCommentStore(callback);
+    });
   });
 });
 

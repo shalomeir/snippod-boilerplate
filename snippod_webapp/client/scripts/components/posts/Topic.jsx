@@ -11,9 +11,9 @@ var React = require('react'),
     DocumentTitle = require('react-document-title'),
 
     //components
-    TopicCard = require('./postlist/TopicCard.jsx'),
-    Posts = require('./postlist/Posts.jsx'),
-    PostComposer = require('./postlist/PostComposer.jsx'),
+    TopicCard = require('./list/TopicCard.jsx'),
+    Posts = require('./list/Posts.jsx'),
+    PostComposer = require('./list/PostComposer.jsx'),
     //actions
     PostsActions = require('../../actions/posts/PostsActions');
 

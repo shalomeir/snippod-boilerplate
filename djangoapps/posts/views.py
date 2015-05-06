@@ -132,6 +132,20 @@ class PostCommentViewSet(viewsets.ReadOnlyModelViewSet):
             return Comment.sorted_objects.upvotes().filter(post=post_id)
 
 
+class UserCommentViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        user_id = self.kwargs['userid']
+        sorting = self.request.QUERY_PARAMS.get('sorting', None)
+        if sorting == 'upvotes':
+            return Comment.sorted_objects.upvotes().filter(author=user_id)
+        elif sorting == 'newest':
+            return Comment.sorted_objects.newest().filter(author=user_id)
+        else:
+            return Comment.sorted_objects.upvotes().filter(author=user_id)
+
+
 # class PostUpvoteViewSet(viewsets.ModelViewSet):
 #     queryset = PostUpvote.objects.all()
 #     serializer_class = PostUpvoteSerializer

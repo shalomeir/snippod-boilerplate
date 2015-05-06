@@ -12,6 +12,7 @@ var Reflux = require('reflux'),
 var MessagesActions = require('./../subs/MessagesActions'),
     PostsActions = require('./../../actions/posts/PostsActions'),
     UIActions = require('./../commons/UIActions'),
+    UsersActions = require('./../users/UsersActions'),
     PageActions = require('./../commons/PageActions');
 
 var AuthAccountActions = Reflux.createActions({
@@ -118,6 +119,10 @@ AuthAccountActions.updateSettings.preEmit = function(form, callback) {
   requestPostForm(form, callback)
     .then(this.completed)
     .catch(this.failed);
+};
+AuthAccountActions.updateSettings.completed.preEmit = function(response) {
+  PostsActions.clearAllPostsCommentsStore(PostsActions.refreshDataFromStore);
+  UsersActions.clearUserStore(PostsActions.refreshDataFromStore);
 };
 
 AuthAccountActions.updatePassword.preEmit = function(form, callback) {

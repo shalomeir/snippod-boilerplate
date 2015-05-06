@@ -6,8 +6,8 @@ var Reflux = require('reflux'),
     CommentStore = require('./CommentStore'),
     PostsActions = require('../../actions/posts/PostsActions');
 
-// This comment list mapped by each post id. So input parameter is postId
-var CommentListStore = Reflux.createStore({
+// This comment list mapped by each user id. So input parameter is userId
+var UserCommentListStore = Reflux.createStore({
 
   listenables: PostsActions,
 
@@ -15,27 +15,27 @@ var CommentListStore = Reflux.createStore({
     this._commentLists = Im.Map({});
   },
 
-  getComments: function(postId) {
-    var pagenatedList = this._commentLists.get(postId) || new PagenatedList();
+  getComments: function(userId) {
+    var pagenatedList = this._commentLists.get(userId) || new PagenatedList();
     return pagenatedList.getIds().map(CommentStore.get).toArray();
   },
 
-  getPagenatedList: function(postId) {
-    var pagenatedList = this._commentLists.get(postId) || new PagenatedList();
+  getPagenatedList: function(userId) {
+    var pagenatedList = this._commentLists.get(userId) || new PagenatedList();
     return pagenatedList;
   },
 
-  getObjects: function(postId) {
+  getObjects: function(userId) {
     return {
-      comments: this.getComments(postId),
-      pagenatedList: this.getPagenatedList(postId)
+      comments: this.getComments(userId),
+      pagenatedList: this.getPagenatedList(userId)
     };
   },
 
   /* Listen PostsActions
    ===============================*/
 
-  setCommentList: function(postId, comments) {
+  setCommentList: function(userId, comments) {
     var commentsArray = comments.results;
     var commentsLength = commentsArray.length;
     var commentsListArray = [];
@@ -43,37 +43,33 @@ var CommentListStore = Reflux.createStore({
       commentsListArray.push(commentsArray[i].id);
     }
     var nextPageUrl = comments.next;
-    var pagenatedList = this._commentLists.get(postId);
+    var pagenatedList = this._commentLists.get(userId);
     if (typeof pagenatedList === 'undefined') {
       pagenatedList = new PagenatedList();
     }
     pagenatedList.receivePage(commentsListArray, nextPageUrl);
-    this._commentLists = this._commentLists.set(postId, pagenatedList);
+    this._commentLists = this._commentLists.set(userId, pagenatedList);
   },
 
-  thenGetCommentsCompleted: function(response) {
+  thenGetUserCommentsCompleted: function(response) {
     var reqUrlArray = response.req.url.split('/');
-    var postId = Number(reqUrlArray[reqUrlArray.length-3]);
+    var userId = Number(reqUrlArray[reqUrlArray.length-3]);
     var comments = response.body;
-    this.setCommentList(postId, comments);
+    this.setCommentList(userId, comments);
     this.trigger();
   },
 
   thenSubmitCommentCompleted: function(response) {
-    var postId = response.body.post;
-    var updatedPagenatedList = this.getPagenatedList(postId);
-    updatedPagenatedList.prepend(response.body.id);
-    this._commentLists = this._commentLists.set(postId, updatedPagenatedList);
+    var userId = response.body.author.id;
+    this._commentLists = this._commentLists.remove(userId);
     this.trigger();
   },
 
-  clearCommentListStore: function(callback) {
+  clearUserCommentListStore: function(callback) {
     this._commentLists = Im.Map({});
     if(typeof callback !== 'undefined') { callback(); }
   }
 
-
-
 });
 
-module.exports = CommentListStore;
+module.exports = UserCommentListStore;

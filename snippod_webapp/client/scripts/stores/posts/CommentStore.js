@@ -39,6 +39,11 @@ var CommentStore = Reflux.createStore({
     PostsActions.thenGetCommentsCompleted(response);
   },
 
+  onGetUserCommentsCompleted: function(response) {
+    this.setComments(response.body.results);
+    PostsActions.thenGetUserCommentsCompleted(response);
+  },
+
   onSubmitCommentCompleted: function(response) {
     this.set(response.body);
     PostsActions.thenSubmitCommentCompleted(response);
@@ -58,12 +63,14 @@ var CommentStore = Reflux.createStore({
   onDeleteCommentCompleted: function(response) {
     var urlArray = response.req.url.split('/');
     var commentId = Number(urlArray[urlArray.length - 2]);
+    var postIdOfDeletedComment = this.get(commentId).post;
     var deletedComment = {
       isDeleted: true,
       id: commentId
     };
     this.set(deletedComment);
     this.trigger();
+    PostsActions.getPost(postIdOfDeletedComment);
   },
 
   clearCommentStore: function(callback) {

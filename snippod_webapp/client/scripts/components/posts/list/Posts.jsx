@@ -5,25 +5,27 @@ var React = require('react'),
     Reflux = require('reflux'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     router = require('../../../router'),
-
+    sortingOptionDefault = require('../../../constants/defaults')
+                            .sortingOption,
     //components
-    Comment = require('./comment/Comment.jsx'),
+    Post = require('./post/Post.jsx'),
     Spinner = require('../../commons/Spinner.jsx'),
 
     //store
-    CommentListStore = require('../../../stores/posts/CommentListStore'),
-    CommentStore = require('../../../stores/posts/CommentStore'),
+    PostListStore = require('../../../stores/posts/PostListStore'),
+    PostStore = require('../../../stores/posts/PostStore'),
     //actions
     PostsActions = require('../../../actions/posts/PostsActions');
 
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+//var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-var Comments = React.createClass({
+var Posts = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    Reflux.listenTo(CommentListStore, 'onCommentsUpdate'),
-    Reflux.listenTo(CommentStore, 'onCommentUpdate')
+    Reflux.listenTo(PostListStore, 'onPostsUpdate'),
+    Reflux.listenTo(PostStore, 'onPostsUpdate'),
+    Reflux.listenTo(PostsActions.refreshDataFromStore, 'onPostsUpdate')
   ],
 
   propTypes: {
@@ -64,21 +66,16 @@ var Comments = React.createClass({
     };
   },
 
-  onPostsUpdate: function(postListObjects) {
+  onPostsUpdate: function() {
+    var postListObjects = PostListStore.getObjects(this.props.query.sorting);
+    this.setState(this._parsePostListObjects(postListObjects));
     if (postListObjects.pagenatedList.getPageCount()===0) {
       this._callPostsActions();
     }
-    this.setState(this._parsePostListObjects(postListObjects));
-  },
-
-  onPostUpdate: function(postObject) {
-    var postListObjects = PostListStore.getObjects(this.props.query.sorting);
-    this.setState(this._parsePostListObjects(postListObjects));
   },
 
   render: function() {
     var posts = this.state.posts;
-    var account = this.props.account;
     var auth = this.props.auth;
     var sortOption = this.props.query.sorting || sortingOptionDefault.defaultSorting;
     // possible sort values (defined in constants/defaults.js)
@@ -86,7 +83,7 @@ var Comments = React.createClass({
 
     posts = posts.map(function(post) {
       /* jshint ignore:start */
-      return <Post post={ post } {...this.props} key={ post.id } />;
+      return <Post post={ post } auth={ auth } key={ post.id } />;
       /* jshint ignore:end */
     }.bind(this));
 
@@ -151,10 +148,10 @@ var Comments = React.createClass({
     this.setState({ loading: true });
     var action = '/posts/';
     var query = {
-      sorting: this.props.query.sorting
+      sorting: this.props.query.sorting || sortingOptionDefault.defaultSorting
     };
     if ( nextPageUrl && nextPageUrl !== '/' ) {
-      PostsActions.getPosts(nextPageUrl,query);
+      PostsActions.getPosts(nextPageUrl);
     } else {
       PostsActions.getPosts(action,query);
     }
@@ -162,4 +159,4 @@ var Comments = React.createClass({
 
 });
 
-module.exports = Comments;
+module.exports = Posts;
