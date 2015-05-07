@@ -14,7 +14,7 @@ var errorHandler = require('errorhandler');
 var flash = require('express-flash');
 var expressValidator = require('express-validator');
 var passport = require('passport');
-var auth = require('../auth');
+//var auth = require('../auth');
 var session = require('express-session');
 var exphbs = require('express-handlebars');
 
@@ -23,7 +23,7 @@ var secrets = require('./secrets');
 var settings = require('./env/default');
 var security = require('./security');
 
-var expressConfig = function(app, express, db) {
+var expressConfig = function(app, express) {
 
   var hour = 3600000;
   var day = hour * 24;
@@ -104,9 +104,9 @@ var expressConfig = function(app, express, db) {
   }));
 
   // Initialize Authentication
-  auth.init(db.user);
-  app.use(passport.initialize());
-  app.use(passport.session());
+  //auth.init(db.user);
+  //app.use(passport.initialize());
+  //app.use(passport.session());
 
   // Initialize server validation flash messages
   app.use(flash());

@@ -31,21 +31,21 @@ var defaults = {
       'bower_components'
     ]
   },
-  database: {
-    // URL to connect to database
-    url: process.env.DBURL || 'mongodb://snippod@localhost:27017/snippod_webapp_db',
-    // Mongoose database options
-    options: {
-      server: {
-        socketOptions: {
-          // Keep connection alive while server is running
-          keepAlive: 1
-        }
-      },
-      // Attempt to reconnect if connection is lost
-      auto_reconnect: true
-    }
-  },
+  //database: {
+  //  // URL to connect to database
+  //  url: process.env.DBURL || 'mongodb://snippod@localhost:27017/snippod_webapp_db',
+  //  // Mongoose database options
+  //  options: {
+  //    server: {
+  //      socketOptions: {
+  //        // Keep connection alive while server is running
+  //        keepAlive: 1
+  //      }
+  //    },
+  //    // Attempt to reconnect if connection is lost
+  //    auto_reconnect: true
+  //  }
+  //},
   root: path.normalize(__dirname + '/../../..'),
   staticAssets: 'client',
   security: {

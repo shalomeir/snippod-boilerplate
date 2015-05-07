@@ -5,7 +5,6 @@
 
 // Module dependencies.
 var express = require('express');
-var mongoose = require('mongoose');
 
 // Add coloring for console output
 require('colors');
@@ -14,18 +13,18 @@ require('colors');
 var app = express();
 
 // Database configuration
-var db = require('./server/config/database')(app);
+//var db = require('./server/config/database')(app);
 
 // Express configuration
-require('./server/config/express')(app, express, db);
+require('./server/config/express')(app, express);
 // Verify database connection
-mongoose.connection.on('connected', function() {
-  console.log('✔ MongoDB Connection Success!'.green);
-});
+//mongoose.connection.on('connected', function() {
+//  console.log('✔ MongoDB Connection Success!'.green);
+//});
 
-mongoose.connection.on('error', function() {
-  throw '✗ MongoDB Connection Error. Please make sure MongoDB is running.'.red;
-});
+//mongoose.connection.on('error', function() {
+//  throw '✗ MongoDB Connection Error. Please make sure MongoDB is running.'.red;
+//});
 
 // Start Express server.
 app.listen(app.get('port'), function() {

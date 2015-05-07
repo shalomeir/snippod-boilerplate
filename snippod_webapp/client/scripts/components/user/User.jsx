@@ -57,7 +57,17 @@ var User = React.createClass({
     }
   },
 
-  onUserUpdate: function(args) {
+  componentDidUpdate: function(prevProps, prevState) {
+    if(prevProps.params.userId !== this.props.params.userId) {
+      var nextState = this.getInitialState();
+      this.setState(nextState);
+      if(typeof nextState.user === 'undefined') {
+        this._callUsersActions();
+      }
+    }
+  },
+
+  onUserUpdate: function() {
     this.setState({
       user: UserStore.get(Number(this.props.params.userId)),
       loading: false

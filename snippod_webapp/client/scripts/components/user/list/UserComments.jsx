@@ -45,6 +45,16 @@ var UserPosts = React.createClass({
     }
   },
 
+  componentDidUpdate: function(prevProps, prevState) {
+    if(prevProps.user.id !== this.props.user.id) {
+      var nextState = this.getInitialState();
+      this.setState(nextState);
+      if(nextState.pageCount === 0) {
+        this._callPostsActions();
+      }
+    }
+  },
+
   _parseUserCommentListObjects: function(userCommentListObjects) {
     var comments = userCommentListObjects.comments;
     return {
