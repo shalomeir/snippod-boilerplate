@@ -5,6 +5,7 @@ var React = require('react'),
     { PropTypes } = React,
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
+    GoogleAnalytics = require('react-g-analytics'),
     { RouteHandler } = require('react-router'),
     $ = require('jquery'),
     cx = require('classnames'),
@@ -118,6 +119,7 @@ var App = React.createClass({
             <NavBar {...this.props} account={account} auth={auth} />
           </header>
           <main id='content' className='full-height inner'>
+            <GoogleAnalytics id="UA-*******-**" />
             <Messages />
             <RouteHandler {...this.props} account={account} auth={auth} />
           </main>

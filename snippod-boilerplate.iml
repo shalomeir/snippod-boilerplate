@@ -4,7 +4,7 @@
     <facet type="django" name="Django">
       <configuration>
         <option name="rootFolder" value="$MODULE_DIR$" />
-        <option name="settingsModule" value="snippod_boilerplate/settings.py" />
+        <option name="settingsModule" value="snippod_boilerplate/settings/dev.py" />
         <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
       </configuration>
@@ -25,6 +25,7 @@
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/dist" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/scripts" />
+      <excludeFolder url="file://$MODULE_DIR$/staticfiles" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="jdk" jdkName="snippod-boilerplate/venv" jdkType="Python SDK" />
