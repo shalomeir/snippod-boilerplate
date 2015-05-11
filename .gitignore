@@ -13,6 +13,7 @@ snippod_boilerplate/settings/prod.py
 
 # python fabric
 fabric/
+fabfile/
 
 # Python compiled byte code
 *.pyc
