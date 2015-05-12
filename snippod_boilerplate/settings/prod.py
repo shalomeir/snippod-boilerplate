@@ -15,7 +15,7 @@ from snippod_boilerplate.settings.common import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -74,10 +74,10 @@ DATABASE_OPTIONS = {'charset': 'utf8'}
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATIC_ROOT = 'staticfiles'
 
-AWS_STORAGE_BUCKET_NAME = "snippod-boilerplate-bucket"
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-STATIC_URL = S3_URL
+# AWS_STORAGE_BUCKET_NAME = "snippod-boilerplate-bucket"
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+# STATIC_URL = S3_URL
 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', True)
 

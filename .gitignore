@@ -21,7 +21,7 @@ fabfile/
 *.sqlite3
 
 # Staticfiles
-staticfiles/
+#staticfiles/
 
 # vrtualenv
 venv/
