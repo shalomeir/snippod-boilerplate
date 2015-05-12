@@ -61,6 +61,9 @@ DATABASES = {
         'PASSWORD': os.environ['RDS_PASSWORD'],
         'HOST': os.environ['RDS_HOSTNAME'],
         'PORT': os.environ['RDS_PORT'],
+        'OPTIONS': {
+            'autocommit': True,
+        },
     }
 }
 
@@ -69,8 +72,6 @@ DATABASE_OPTIONS = {'charset': 'utf8'}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_ROOT = 'staticfiles'
-
 AWS_STORAGE_BUCKET_NAME = "snippod-boilerplate-bucket"
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
