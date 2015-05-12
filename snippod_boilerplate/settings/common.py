@@ -84,6 +84,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
+STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -91,13 +92,8 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-STATIC_ROOT = 'staticfiles'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
-    os.path.join(BASE_DIR, 'snippod_webapp/dist/client'), #grunt
-    # os.path.join(BASE_DIR, 'static'),
-)
+#MEDIA FILE (user uploaded files)
+MEDIA_URL = '/media/'
 
 
 # TEMPLATE_DIRS = (
