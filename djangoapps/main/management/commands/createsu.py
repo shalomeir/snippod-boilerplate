@@ -6,6 +6,6 @@ from authentication.models import Account
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        if not Account.objects.filter(username="admin").exists():
+        if not Account.objects.filter(email="admin@admin.com").exists():
             Account.objects.create_superuser("admin@admin.com", "admin", "admin")
 
