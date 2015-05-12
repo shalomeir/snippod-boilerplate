@@ -9,7 +9,6 @@ snippod_webapp/.grunt
 snippod_webapp/.yo-rc.json
 
 snippod_boilerplate/.DS_Store
-snippod_boilerplate/settings/prod.py
 
 # python fabric
 fabric/
