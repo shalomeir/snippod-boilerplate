@@ -4,7 +4,6 @@ dj-static==0.0.6
 django-appconf==0.6
 django-argonauts==1.0.1
 django-compressor==1.4
-django-toolbelt==0.0.1
 djangorestframework==3.1.1
 drf-nested-routers==0.9.0
 requests==2.6.2
