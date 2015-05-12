@@ -25,7 +25,11 @@ class AccountManager(BaseUserManager):
             raise ValueError('The given username must be set')
 
         email = self.normalize_email(email)
-        del extra_fields['confirm_password']
+        try:
+            del extra_fields['confirm_password']
+        except KeyError:
+            pass
+
         account = self.model(email=email, username=username,
                              is_staff=is_staff, is_active=True,
                              is_superuser=is_superuser, last_login=now,
