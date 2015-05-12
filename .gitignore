@@ -4,6 +4,7 @@ snippod_webapp/node_modules
 snippod_webapp/*.log
 snippod_webapp/dist/server
 snippod_webapp/dist/client/.map
+snippod_webapp/dist/client/docs
 snippod_webapp/client/bower_components
 snippod_webapp/.tmp
 snippod_webapp/.grunt
