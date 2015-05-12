@@ -73,7 +73,7 @@ STATICFILES_DIRS = (
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 #MEDIA FILE (user uploaded files)
-MEDIA_ROOT = os.path.join(BASE_DIR, "..", "www", "media")
+MEDIA_ROOT = 'mediafiles'
 
 # TEMPLATE_DIRS = (
 #     os.path.join(BASE_DIR, 'djangoapps/templates'),

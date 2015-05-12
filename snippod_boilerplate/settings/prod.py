@@ -74,6 +74,12 @@ DATABASE_OPTIONS = {'charset': 'utf8'}
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATIC_ROOT = 'staticfiles'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
+    os.path.join(BASE_DIR, 'snippod_webapp/dist/client'), #grunt
+    # os.path.join(BASE_DIR, 'static'),
+)
+
 # AWS_STORAGE_BUCKET_NAME = "snippod-boilerplate-bucket"
 # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 # S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
@@ -82,7 +88,7 @@ STATIC_ROOT = 'staticfiles'
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', True)
 
 #MEDIA FILE (user uploaded files)
-MEDIA_ROOT = os.path.join(BASE_DIR, "..", "www", "media")
+MEDIA_ROOT = 'mediafiles'
 
 # TEMPLATE_DIRS = (
 #     os.path.join(BASE_DIR, 'djangoapps/templates'),
