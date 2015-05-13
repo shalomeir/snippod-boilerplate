@@ -37,4 +37,4 @@ backup/
 !.elasticbeanstalk/*.global.yml
 
 #log
-#logs/
+logs/
