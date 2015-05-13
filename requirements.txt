@@ -10,3 +10,14 @@ requests==2.6.2
 six==1.9.0
 sqlparse==0.1.14
 static3==0.5.1
+bcdoc==0.14.0
+django-toolbelt==0.0.1
+ecdsa==0.13
+paramiko==1.15.2
+pathspec==0.3.3
+pycrypto==2.6.1
+python-dateutil==2.4.2
+rsa==3.1.4
+ssh==1.8.0
+texttable==0.8.3
+websocket-client==0.30.0
