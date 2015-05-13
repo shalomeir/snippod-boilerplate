@@ -16,7 +16,7 @@ SECRET_KEY = '$6(x*g_2g9l_*g8peb-@anl5^*8q!1w)k&e&2!i)t6$s8kia93'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', True)
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -65,7 +65,7 @@ DATABASE_OPTIONS = {'charset': 'utf8'}
 STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
+    # os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
     os.path.join(BASE_DIR, 'snippod_webapp/dist/client'), #grunt
     # os.path.join(BASE_DIR, 'static'),
 )

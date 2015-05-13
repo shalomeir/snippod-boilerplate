@@ -35,3 +35,6 @@ backup/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+#log
+#logs/

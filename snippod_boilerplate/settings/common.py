@@ -130,3 +130,23 @@ AUTH_USER_MODEL = 'authentication.Account'
 
 # Node server is important for React Server-side rendering.
 NODE_SERVER = 'http://0.0.0.0:3000/'
+
+#LOG
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': './logs/debug.log',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
