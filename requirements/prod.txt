@@ -2,4 +2,4 @@ gunicorn==19.3.0
 django-storages==1.1.8
 boto==2.38.0
 botocore==0.107.0
-
+psycopg2==2.6
