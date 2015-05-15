@@ -31,7 +31,7 @@ class AccountManager(BaseUserManager):
             pass
 
         account = self.model(email=email, username=username,
-                             is_staff=is_staff, is_active=True,
+                             is_staff=is_staff, is_active=True, is_authenticated=True,
                              is_superuser=is_superuser, last_login=now,
                              date_joined=now, **extra_fields)
 
@@ -71,6 +71,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
+    is_authenticated = models.BooleanField(_('authenticated'), default=True,
+        help_text=_('Designates whether this user be authenticated.'))
 
     # Use date_joined than created_at plz.
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
