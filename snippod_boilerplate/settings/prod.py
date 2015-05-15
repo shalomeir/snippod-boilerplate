@@ -81,7 +81,7 @@ STATICFILES_DIRS = (
 # S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 # STATIC_URL = S3_URL
 
-COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', True)
+# COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', True)
 
 #MEDIA FILE (user uploaded files)
 MEDIA_ROOT = 'mediafiles'
