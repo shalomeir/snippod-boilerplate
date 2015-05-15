@@ -95,7 +95,7 @@ STATICFILES_FINDERS = (
 #MEDIA FILE (user uploaded files)
 MEDIA_ROOT = 'mediafiles'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/mediafiles/'
 
 
 # TEMPLATE_DIRS = (
