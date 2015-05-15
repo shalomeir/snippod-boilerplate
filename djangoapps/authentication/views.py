@@ -67,7 +67,6 @@ class AccountViewSet(viewsets.ModelViewSet):
         account.first_name = ''
         account.last_name = ''
         account.is_active = False
-        account.is_authenticated = False
         account.save()
 
         logout(request)

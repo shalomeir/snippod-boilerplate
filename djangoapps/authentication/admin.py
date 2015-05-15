@@ -126,7 +126,7 @@ class AccountAdmin(UserAdmin):
     # that reference specific fields on auth.User.
     list_display = ('email', 'username', 'first_name', 'last_name',
                     'is_staff', 'is_superuser', 'date_joined')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'is_authenticated', 'groups')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
     search_fields = ('email', 'username', 'first_name', 'last_name')
 
     filter_horizontal = ('groups', 'user_permissions',)
@@ -134,7 +134,7 @@ class AccountAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (_('Personal info'), {'fields': ('username', 'first_name', 'last_name', 'date_joined')}),
-        (_('Permissions'), {'fields': ('is_active', 'is_authenticated' 'is_staff', 'is_superuser',
+        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
     )
 
