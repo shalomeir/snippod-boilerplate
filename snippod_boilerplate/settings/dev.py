@@ -63,7 +63,6 @@ DATABASE_OPTIONS = {'charset': 'utf8'}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
     # os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
@@ -74,7 +73,6 @@ STATICFILES_DIRS = (
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 #MEDIA FILE (user uploaded files)
-MEDIA_ROOT = 'mediafiles'
 
 # TEMPLATE_DIRS = (
 #     os.path.join(BASE_DIR, 'djangoapps/templates'),
