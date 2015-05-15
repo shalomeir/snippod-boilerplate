@@ -96,6 +96,7 @@ GZIP_CONTENT_TYPES = (
 AWS_STORAGE_BUCKET_NAME = 'snippodboilerplatebucket'
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_QUERYSTRING_AUTH = False
 
 # The OrdinaryCallingFormat is required for dotted bucket names.
 # AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
