@@ -28,7 +28,7 @@ var NavBar = React.createClass({
       /* jshint ignore:start */
       <div className="nav-list float-right">
         <span className="nav-item">
-          Hello <Link to="user" params={{ userId: account.id }}>{account.username ? account.username : account.email}</Link>
+          Hi, <Link to="user" params={{ userId: account.id }}>{account.username ? account.username : account.email}</Link>
         </span>
         <span className="nav-item">
           <Link to="settings">My Account</Link>
