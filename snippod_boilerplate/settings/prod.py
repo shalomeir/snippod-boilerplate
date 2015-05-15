@@ -76,10 +76,21 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'snippod_webapp/dist/client'), #grunt
 )
 
-# AWS_STORAGE_BUCKET_NAME = "snippod-boilerplate-bucket"
-# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-# S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-# STATIC_URL = S3_URL
+
+# AWS S3 to Store Static files
+# see https://www.caktusgroup.com/blog/2014/11/10/Using-Amazon-S3-to-store-your-Django-sites-static-and-media-files/
+AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
+                 'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+                 'Cache-Control': 'max-age=94608000',
+}
+
+AWS_STORAGE_BUCKET_NAME = "s3.snipod-boilerplate.com"
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+STATIC_URL = S3_URL
 
 # COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', True)
 
