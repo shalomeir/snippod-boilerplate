@@ -152,3 +152,15 @@ LOGGING = {
         },
     },
 }
+
+#For python-social-auth
+# SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+# SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['email', 'username']
+
+# AUTHENTICATION_BACKENDS = (
+#     'social.backends.facebook.FacebookOAuth2',
+#     'social.backends.google.GoogleOAuth2',
+#     # 'social.backends.twitter.TwitterOAuth',
+#     'django.contrib.auth.backends.ModelBackend',
+# )

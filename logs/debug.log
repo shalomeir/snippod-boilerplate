@@ -787,3 +787,704 @@ Traceback (most recent call last):
   File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/permissions.py", line 46, in has_permission
     return request.user and request.user.is_authenticated()
 TypeError: 'bool' object is not callable
+Internal Server Error: /login/twitter/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 19, in auth
+    return do_auth(request.backend, redirect_name=REDIRECT_FIELD_NAME)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 28, in do_auth
+    return backend.start()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 36, in start
+    return self.strategy.redirect(self.auth_url())
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 165, in auth_url
+    token = self.set_unauthorized_token()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 221, in set_unauthorized_token
+    token = self.unauthorized_token()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 245, in unauthorized_token
+    method=self.REQUEST_TOKEN_METHOD
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 225, in request
+    response.raise_for_status()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/requests/models.py", line 851, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Authorization Required
+Internal Server Error: /login/twitter/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 19, in auth
+    return do_auth(request.backend, redirect_name=REDIRECT_FIELD_NAME)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 28, in do_auth
+    return backend.start()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 36, in start
+    return self.strategy.redirect(self.auth_url())
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 165, in auth_url
+    token = self.set_unauthorized_token()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 221, in set_unauthorized_token
+    token = self.unauthorized_token()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 245, in unauthorized_token
+    method=self.REQUEST_TOKEN_METHOD
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 225, in request
+    response.raise_for_status()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/requests/models.py", line 851, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Authorization Required
+Internal Server Error: /login/twitter/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 19, in auth
+    return do_auth(request.backend, redirect_name=REDIRECT_FIELD_NAME)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 28, in do_auth
+    return backend.start()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 36, in start
+    return self.strategy.redirect(self.auth_url())
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 165, in auth_url
+    token = self.set_unauthorized_token()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 221, in set_unauthorized_token
+    token = self.unauthorized_token()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 245, in unauthorized_token
+    method=self.REQUEST_TOKEN_METHOD
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 225, in request
+    response.raise_for_status()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/requests/models.py", line 851, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Authorization Required
+Internal Server Error: /login/twitter/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 19, in auth
+    return do_auth(request.backend, redirect_name=REDIRECT_FIELD_NAME)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 28, in do_auth
+    return backend.start()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 36, in start
+    return self.strategy.redirect(self.auth_url())
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 165, in auth_url
+    token = self.set_unauthorized_token()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 221, in set_unauthorized_token
+    token = self.unauthorized_token()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 245, in unauthorized_token
+    method=self.REQUEST_TOKEN_METHOD
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 225, in request
+    response.raise_for_status()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/requests/models.py", line 851, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Authorization Required
+Internal Server Error: /complete/twitter/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 182, in auth_complete
+    return self.do_auth(access_token, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 193, in do_auth
+    return self.strategy.authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/django_strategy.py", line 76, in authenticate
+    return authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/auth/__init__.py", line 60, in authenticate
+    user = backend.authenticate(**credentials)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 82, in authenticate
+    return self.pipeline(pipeline, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 85, in pipeline
+    out = self.run_pipeline(pipeline, pipeline_index, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 112, in run_pipeline
+    result = func(*args, **out) or {}
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/pipeline/user.py", line 70, in create_user
+    'user': strategy.create_user(**fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/base.py", line 53, in create_user
+    return self.storage.user.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/storage/django_orm.py", line 60, in create_user
+    return cls.user_model().objects.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 44, in create_user
+    **extra_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 22, in _create_user
+    raise ValueError('Users must have a valid email address.')
+ValueError: Users must have a valid email address.
+Internal Server Error: /complete/twitter/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 182, in auth_complete
+    return self.do_auth(access_token, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 193, in do_auth
+    return self.strategy.authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/django_strategy.py", line 76, in authenticate
+    return authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/auth/__init__.py", line 60, in authenticate
+    user = backend.authenticate(**credentials)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 82, in authenticate
+    return self.pipeline(pipeline, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 85, in pipeline
+    out = self.run_pipeline(pipeline, pipeline_index, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 112, in run_pipeline
+    result = func(*args, **out) or {}
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/pipeline/user.py", line 70, in create_user
+    'user': strategy.create_user(**fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/base.py", line 53, in create_user
+    return self.storage.user.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/storage/django_orm.py", line 60, in create_user
+    return cls.user_model().objects.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 44, in create_user
+    **extra_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 22, in _create_user
+    raise ValueError('Users must have a valid email address.')
+ValueError: Users must have a valid email address.
+Internal Server Error: /complete/twitter/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 182, in auth_complete
+    return self.do_auth(access_token, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 193, in do_auth
+    return self.strategy.authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/django_strategy.py", line 76, in authenticate
+    return authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/auth/__init__.py", line 60, in authenticate
+    user = backend.authenticate(**credentials)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 82, in authenticate
+    return self.pipeline(pipeline, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 85, in pipeline
+    out = self.run_pipeline(pipeline, pipeline_index, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 112, in run_pipeline
+    result = func(*args, **out) or {}
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/pipeline/user.py", line 70, in create_user
+    'user': strategy.create_user(**fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/base.py", line 53, in create_user
+    return self.storage.user.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/storage/django_orm.py", line 60, in create_user
+    return cls.user_model().objects.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 44, in create_user
+    **extra_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 22, in _create_user
+    raise ValueError('Users must have a valid email address.')
+ValueError: Users must have a valid email address.
+Internal Server Error: /complete/twitter/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 179, in auth_complete
+    self.validate_state()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/oauth.py", line 88, in validate_state
+    raise AuthStateMissing(self, 'state')
+social.exceptions.AuthStateMissing: Session value state missing.
+Not Found: /login/twitter/
+Internal Server Error: /complete/facebook/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: authentication_account.email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 87, in auth_complete
+    return self.do_auth(access_token, response, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 119, in do_auth
+    return self.strategy.authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/django_strategy.py", line 76, in authenticate
+    return authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/auth/__init__.py", line 60, in authenticate
+    user = backend.authenticate(**credentials)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 82, in authenticate
+    return self.pipeline(pipeline, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 85, in pipeline
+    out = self.run_pipeline(pipeline, pipeline_index, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 112, in run_pipeline
+    result = func(*args, **out) or {}
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/pipeline/user.py", line 70, in create_user
+    'user': strategy.create_user(**fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/base.py", line 53, in create_user
+    return self.storage.user.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/storage/django_orm.py", line 60, in create_user
+    return cls.user_model().objects.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 44, in create_user
+    **extra_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 39, in _create_user
+    account.save(using=self._db)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 589, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 617, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 698, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 731, in _do_insert
+    using=using, raw=raw)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/query.py", line 921, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/sql/compiler.py", line 920, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/sql/tracking.py", line 159, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/sql/tracking.py", line 101, in _record
+    return method(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/utils/six.py", line 658, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: authentication_account.email
+Internal Server Error: /complete/facebook/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: authentication_account.email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 87, in auth_complete
+    return self.do_auth(access_token, response, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 119, in do_auth
+    return self.strategy.authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/django_strategy.py", line 76, in authenticate
+    return authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/auth/__init__.py", line 60, in authenticate
+    user = backend.authenticate(**credentials)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 82, in authenticate
+    return self.pipeline(pipeline, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 85, in pipeline
+    out = self.run_pipeline(pipeline, pipeline_index, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 112, in run_pipeline
+    result = func(*args, **out) or {}
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/pipeline/user.py", line 70, in create_user
+    'user': strategy.create_user(**fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/base.py", line 53, in create_user
+    return self.storage.user.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/storage/django_orm.py", line 60, in create_user
+    return cls.user_model().objects.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 44, in create_user
+    **extra_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 39, in _create_user
+    account.save(using=self._db)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 589, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 617, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 698, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 731, in _do_insert
+    using=using, raw=raw)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/query.py", line 921, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/sql/compiler.py", line 920, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/sql/tracking.py", line 159, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/sql/tracking.py", line 101, in _record
+    return method(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/utils/six.py", line 658, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: authentication_account.email
+Internal Server Error: /complete/facebook/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: authentication_account.email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 87, in auth_complete
+    return self.do_auth(access_token, response, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 119, in do_auth
+    return self.strategy.authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/django_strategy.py", line 76, in authenticate
+    return authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/auth/__init__.py", line 60, in authenticate
+    user = backend.authenticate(**credentials)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 82, in authenticate
+    return self.pipeline(pipeline, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 85, in pipeline
+    out = self.run_pipeline(pipeline, pipeline_index, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 112, in run_pipeline
+    result = func(*args, **out) or {}
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/pipeline/user.py", line 70, in create_user
+    'user': strategy.create_user(**fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/base.py", line 53, in create_user
+    return self.storage.user.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/storage/django_orm.py", line 60, in create_user
+    return cls.user_model().objects.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 44, in create_user
+    **extra_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 39, in _create_user
+    account.save(using=self._db)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 589, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 617, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 698, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 731, in _do_insert
+    using=using, raw=raw)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/query.py", line 921, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/sql/compiler.py", line 920, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/sql/tracking.py", line 159, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/sql/tracking.py", line 101, in _record
+    return method(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/utils/six.py", line 658, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: authentication_account.email
+Internal Server Error: /complete/facebook/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: authentication_account.email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 87, in auth_complete
+    return self.do_auth(access_token, response, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 119, in do_auth
+    return self.strategy.authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/django_strategy.py", line 76, in authenticate
+    return authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/auth/__init__.py", line 60, in authenticate
+    user = backend.authenticate(**credentials)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 82, in authenticate
+    return self.pipeline(pipeline, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 85, in pipeline
+    out = self.run_pipeline(pipeline, pipeline_index, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 112, in run_pipeline
+    result = func(*args, **out) or {}
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/pipeline/user.py", line 70, in create_user
+    'user': strategy.create_user(**fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/base.py", line 53, in create_user
+    return self.storage.user.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/storage/django_orm.py", line 60, in create_user
+    return cls.user_model().objects.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 44, in create_user
+    **extra_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 39, in _create_user
+    account.save(using=self._db)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 589, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 617, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 698, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 731, in _do_insert
+    using=using, raw=raw)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/query.py", line 921, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/sql/compiler.py", line 920, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/sql/tracking.py", line 159, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/sql/tracking.py", line 101, in _record
+    return method(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/utils/six.py", line 658, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: authentication_account.email
+Internal Server Error: /complete/facebook/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 77, in auth_complete
+    'code': self.data['code']
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 225, in request
+    response.raise_for_status()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/requests/models.py", line 851, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 232, in wrapper
+    raise AuthCanceled(args[0])
+social.exceptions.AuthCanceled: Authentication process canceled
+Internal Server Error: /complete/facebook/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: authentication_account.email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/cache.py", line 52, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 87, in auth_complete
+    return self.do_auth(access_token, response, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/facebook.py", line 119, in do_auth
+    return self.strategy.authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/django_strategy.py", line 76, in authenticate
+    return authenticate(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/auth/__init__.py", line 60, in authenticate
+    user = backend.authenticate(**credentials)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 82, in authenticate
+    return self.pipeline(pipeline, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 85, in pipeline
+    out = self.run_pipeline(pipeline, pipeline_index, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/backends/base.py", line 112, in run_pipeline
+    result = func(*args, **out) or {}
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/pipeline/user.py", line 70, in create_user
+    'user': strategy.create_user(**fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/strategies/base.py", line 53, in create_user
+    return self.storage.user.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/social/storage/django_orm.py", line 60, in create_user
+    return cls.user_model().objects.create_user(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 44, in create_user
+    **extra_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/authentication/models.py", line 39, in _create_user
+    account.save(using=self._db)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 589, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 617, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 698, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/base.py", line 731, in _do_insert
+    using=using, raw=raw)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/manager.py", line 92, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/query.py", line 921, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/models/sql/compiler.py", line 920, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/sql/tracking.py", line 159, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/sql/tracking.py", line 101, in _record
+    return method(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/utils/six.py", line 658, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: authentication_account.email

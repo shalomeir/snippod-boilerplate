@@ -8,6 +8,7 @@ https://github.com/shalomeir/snippod-boilerplate
 
 """
 from snippod_boilerplate.settings.common import *
+# from snippod_boilerplate.settings.config_dev import *
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -42,10 +43,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                ],
-            },
+            ],
         },
-    ]
+    },
+]
 
 
 # Database
