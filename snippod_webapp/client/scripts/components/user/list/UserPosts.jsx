@@ -23,7 +23,9 @@ var UserPosts = React.createClass({
     PureRenderMixin,
     Reflux.listenTo(UserPostListStore, 'onUserPostsUpdate'),
     Reflux.listenTo(PostStore, 'onUserPostsUpdate'),
-    Reflux.listenTo(PostsActions.refreshDataFromStore, 'onUserPostsUpdate')
+    Reflux.listenTo(PostsActions.refreshDataFromStore, 'onUserPostsUpdate'),
+
+    require('../../mixins/pluralize')
   ],
 
   propTypes: {
@@ -61,6 +63,7 @@ var UserPosts = React.createClass({
       posts: posts,
       nextPage: userPostListObjects.pagenatedList.getNextPageUrl(),
       pageCount: userPostListObjects.pagenatedList.getPageCount(),
+      totalCount: userPostListObjects.totalCount,
       loading: false
     };
   },
@@ -76,6 +79,7 @@ var UserPosts = React.createClass({
   render: function() {
     var user = this.props.user,
         posts = this.state.posts,
+        totalCount = this.state.totalCount,
         auth = this.props.auth;
 
     posts = posts.map(function(post) {
@@ -98,6 +102,7 @@ var UserPosts = React.createClass({
       /* jshint ignore:start */
       <div className="user-posts">
         <h3>{ user.username }'s Posts</h3>
+        <h4>{ totalCount || totalCount === 0 ? this.pluralize(totalCount, 'Post') : null }</h4>
         { posts }
         { this.state.loading ? <Spinner /> : null }
         <br />

@@ -23,7 +23,9 @@ var UserPosts = React.createClass({
     PureRenderMixin,
     Reflux.listenTo(UserCommentListStore, 'onUserCommentsUpdate'),
     Reflux.listenTo(CommentStore, 'onUserCommentsUpdate'),
-    Reflux.listenTo(PostsActions.refreshDataFromStore, 'onUserCommentsUpdate')
+    Reflux.listenTo(PostsActions.refreshDataFromStore, 'onUserCommentsUpdate'),
+
+    require('../../mixins/pluralize')
   ],
 
   propTypes: {
@@ -61,6 +63,7 @@ var UserPosts = React.createClass({
       comments: comments,
       nextPage: userCommentListObjects.pagenatedList.getNextPageUrl(),
       pageCount: userCommentListObjects.pagenatedList.getPageCount(),
+      totalCount: userCommentListObjects.totalCount,
       loading: false
     };
   },
@@ -76,6 +79,7 @@ var UserPosts = React.createClass({
   render: function() {
     var user = this.props.user,
         comments = this.state.comments,
+        totalCount = this.state.totalCount,
         auth = this.props.auth;
 
     comments = comments.map(function(comment) {
@@ -98,6 +102,7 @@ var UserPosts = React.createClass({
       /* jshint ignore:start */
       <div className="user-comments">
         <h3>{ user.username }'s Comments</h3>
+        <h4>{ totalCount || totalCount === 0 ? this.pluralize(totalCount, 'Comment') : null }</h4>
         { comments }
         { this.state.loading ? <Spinner /> : null }
         <nav className="pagination">
