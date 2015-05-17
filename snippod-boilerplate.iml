@@ -20,6 +20,7 @@
       <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/grunt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/server" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/backup" />
+      <excludeFolder url="file://$MODULE_DIR$/logs" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/client/bower_components" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/dist" />
