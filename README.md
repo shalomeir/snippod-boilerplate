@@ -7,6 +7,7 @@ We'd like to this service based on full stack single page web application archit
 Snippod's architecture used a this kind of technology, **React + Flux (RefluxJS) + django REST framewrok + RDBMS**.
 [This stack](https://www.gliffy.com/go/publish/7756603) is presented by diagram too.
 
+![Alt stack image](https://raw.githubusercontent.com/shalomeir/snippod-boilerplate/master/snippod-boilerplate-stack.png "Stack Diagram")
 
 ## Base Repository, Module
 
