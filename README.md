@@ -66,19 +66,19 @@ In the ['snippod-server' Root](https://github.com/shalomeir/snippod-boilerplate)
 
 ## Description
 ### Front side
-Almost main javascript source are located (**'./snippod_webapp/client/scripts/'** directory)[https://github.com/shalomeir/snippod-boilerplate/tree/master/snippod_webapp/client/scripts].
+Almost main javascript source are located [**'./snippod_webapp/client/scripts/'** directory](https://github.com/shalomeir/snippod-boilerplate/tree/master/snippod_webapp/client/scripts).
 Since, We'd like to apply node server for react server-side rendering, but didn't make yet.
 
 This front side ajax call usually doing in Actions. Reflux provide async auto generation for action. We use this and Promise.
 
 ### Server side
 Django Rest framework provide browserble API. So you can see all get json by browserble API address too.
-- account list: ['/api/v1/accounts/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/accounts/)
-- post list: ['/api/v1/posts/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/posts/)
-- post list sorted by upvote count: ['/api/v1/posts/?sorting=upvotes'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/posts/?sorting=upvotes)
-- comment list: ['/api/v1/comments/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/comments/)
-- single account, post or comment like this ['/api/v1/posts/:postId/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/posts/4/)
-- user's post or comment like this ['/api/v1/user/:userId/posts/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/user/4/posts/)
+- account list: ['~/api/v1/accounts/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/accounts/)
+- post list: ['~/api/v1/posts/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/posts/)
+- post list sorted by upvote count: ['~/api/v1/posts/?sorting=upvotes'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/posts/?sorting=upvotes)
+- comment list: ['~/api/v1/comments/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/comments/)
+- single account, post or comment like this ['~/api/v1/posts/:postId/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/posts/4/)
+- user's post or comment like this ['~/api/v1/user/:userId/posts/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/user/4/posts/)
 
 ## Reference
 ### Front side
