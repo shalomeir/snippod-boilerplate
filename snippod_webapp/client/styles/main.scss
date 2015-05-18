@@ -32,6 +32,7 @@ $line: 2px;
 
 // dimensions
 $nav-height: 4rem;
+$composer-height: 5rem;
 $footer-height: $nav-height;
 $content-width: 700px;
 
@@ -94,12 +95,14 @@ $text-small: 0.76em;
 
 html {
     height: 100%;
+    width: 100%;
     max-height: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
     height: 100%;
+    width: 100%;
     max-height: 100%;
     line-height: $line-height;
     color: $dark-gray;
@@ -127,7 +130,7 @@ body {
 .content {
     position: relative;
     display: inline-block;
-    padding: $medium $small;
+    padding: $small $small;
     background: #fff;
 }
 
@@ -474,15 +477,30 @@ textarea {
     background: lighten($panel, 15%);;
 //    transition: transform 0.3s;
 //    transform: translateY($nav-height);
-    font-size: 0;
+//    font-size: 0;
     color: #fff;
     a { color: #fff; }
+}
 
+.composer-panel {
+    left: 0;
+    right: 0;
+    height: $composer-height;
+    position: relative;
+    padding: $small;
+    padding-top: 4px;
+    background: lighten($panel, 15%);;
+    //    transition: transform 0.3s;
+    //    transform: translateY($nav-height);
+    //    font-size: 0;
+    color: #fff;
+    a { color: #fff; }
 }
 
 .panel-form {
     display: inline-block;
     height: 100%;
+    width: 100%;
     text-align: center;
     font-size: initial;
     > * {
@@ -495,8 +513,7 @@ textarea {
 }
 
 .panel-input {
-    height: 100%;
-    width: 36%;
+    width: 38%;
     color: $dark-gray;
     border: $line solid #fff !important;
     &:focus {
@@ -508,9 +525,7 @@ textarea {
 }
 
 .panel-button {
-    width: 24%;
-    line-height: 0;
-    padding: 0.8rem 0 0.9rem 0;
+    width: 20%;
     &:hover {
         background: darken($panel, 5%);
     }
@@ -527,7 +542,9 @@ textarea {
 
 }
 
-
+.margin-bottom-0 {
+    margin-bottom: 0;
+}
 
 /* Posts
 ====================================== */
