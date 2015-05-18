@@ -71,9 +71,9 @@ var Defaults = {
         'comments': 'commentCount'
       }
     }
-  }
+  },
 
-
+  GA_TRACKING_ID : 'UA-63089389-1'
 
 };
 

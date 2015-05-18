@@ -3,6 +3,7 @@
 var Reflux = require('reflux'),
     $ = require('jquery'),
     router = require('../../router'),
+    ga = require('react-ga'),
     { requestPostForm }= require('../../utils/RESTCall'),
     Cookies = require('cookies-js'),
     accountDefault = require('../../constants/defaults').account,
@@ -35,16 +36,31 @@ var AuthAccountActions = Reflux.createActions({
 /* Auth Actions
  ===============================*/
 AuthAccountActions.login.preEmit = function(form, callback) {
+  ga.event({
+    category: 'AuthAccountActions',
+    action: 'loginPreEmit'
+  });
+
   requestPostForm(form, callback)
     .then(this.completed)
     .catch(this.failed);
 };
 AuthAccountActions.login.completed.preEmit = function(response) {
+  ga.event({
+    category: 'AuthAccountActions',
+    action: 'loginCompleted'
+  });
+
   UIActions.hideOverlay();
   PostsActions.clearAllPostsCommentsStore(PostsActions.refreshDataFromStore);
   PageActions.transitionToReturnpage();
 };
 AuthAccountActions.login.failed.preEmit = function(response) {
+  ga.event({
+    category: 'AuthAccountActions',
+    action: 'loginFailed'
+  });
+
   MessagesActions.setComponentMessages(response.body);
 };
 
@@ -62,6 +78,11 @@ AuthAccountActions.preLogin.completed.preEmit = function(response) {
 
 
 AuthAccountActions.logout.preEmit = function() {
+  ga.event({
+    category: 'AuthAccountActions',
+    action: 'logout'
+  });
+
   PageActions.setReturnpage(window.location.pathname);
   var form = document.createElement('form');
   form.setAttribute('action', '/auth/logout/');
@@ -70,6 +91,7 @@ AuthAccountActions.logout.preEmit = function() {
     .catch(this.completed);
 };
 AuthAccountActions.logout.completed.preEmit = function(response) {
+
   // Reset account to defaults
   AuthAccountActions.setAuth(authDefault);
   AuthAccountActions.setAccount(accountDefault);
@@ -85,14 +107,29 @@ AuthAccountActions.logout.completed.preEmit = function(response) {
 };
 
 AuthAccountActions.register.preEmit = function(form, callback) {
+  ga.event({
+    category: 'AuthAccountActions',
+    action: 'registerPreEmit'
+  });
+
   requestPostForm(form, callback)
     .then(this.completed)
     .catch(this.failed);
 };
 AuthAccountActions.register.completed.preEmit = function(response) {
+  ga.event({
+    category: 'AuthAccountActions',
+    action: 'registerCompleted'
+  });
+
   UIActions.hideOverlay();
 };
 AuthAccountActions.register.failed.preEmit = function(response) {
+  ga.event({
+    category: 'AuthAccountActions',
+    action: 'registerFailed'
+  });
+
   MessagesActions.setComponentMessages(response.body);
 };
 
