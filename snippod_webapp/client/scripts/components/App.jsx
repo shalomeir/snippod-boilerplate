@@ -119,7 +119,7 @@ var App = React.createClass({
             <NavBar {...this.props} account={account} auth={auth} />
           </header>
           <main id='content' className='full-height inner'>
-            <GoogleAnalytics id="UA-*******-**" />
+            <GoogleAnalytics id="UA-56478996-2" />
             <Messages />
             <RouteHandler {...this.props} account={account} auth={auth} />
           </main>
