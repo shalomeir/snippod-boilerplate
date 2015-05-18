@@ -1,12 +1,13 @@
 from django.core.validators import validate_email
 
-from rest_framework import serializers
+from rest_framework import serializers, validators
 
 from authentication.models import Account
 
 
 class AccountSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(write_only=True)
+    email = serializers.EmailField(write_only=True,
+            validators=[validators.UniqueValidator(queryset=Account.objects.all())])
     password = serializers.CharField(write_only=True, required=False)
     confirm_password = serializers.CharField(write_only=True, required=False)
 

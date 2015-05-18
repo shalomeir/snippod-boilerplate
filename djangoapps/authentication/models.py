@@ -18,11 +18,11 @@ class AccountManager(BaseUserManager):
         """
         now = timezone.now()
 
-        # if not email:
-        #     raise ValueError('Users must have a valid email address.')
-        #
-        # if not username:
-        #     raise ValueError('The given username must be set')
+        if not email:
+            raise ValueError('Users must have a valid email address.')
+
+        if not username:
+            raise ValueError('The given username must be set')
 
         email = self.normalize_email(email)
         try:
