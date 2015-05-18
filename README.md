@@ -51,7 +51,6 @@ In the ['snippod-server' Root](https://github.com/shalomeir/snippod-boilerplate)
 - `python manage.py makemigrations && python manage.py migrate`
 - `python manage.py createsuperuser`
 
-
 ### Usage for frontend WebApp
 In the ['snippod-webapp'](https://github.com/shalomeir/snippod-boilerplate/tree/master/snippod_webapp) directory **'./snippod_webapp/'**
 
@@ -59,7 +58,6 @@ In the ['snippod-webapp'](https://github.com/shalomeir/snippod-boilerplate/tree/
  (If you want live debugging, un-comment [django dev setting file](https://github.com/shalomeir/snippod-boilerplate/blob/master/snippod_boilerplate/settings/dev.py) 69 line
  and install [LiveReload chrome extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei).)
 - `grunt build` for build site/app for django 'collectstatic' command.
-
 
 ### Usage for REST API Server 
 In the ['snippod-server' Root](https://github.com/shalomeir/snippod-boilerplate) directory **'./'**
