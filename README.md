@@ -1,8 +1,10 @@
 # **Snippod-Boilerplate**
 
+[![Join the chat at https://gitter.im/shalomeir/snippod-boilerplate](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/shalomeir/snippod-boilerplate?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Overview
 
-[**Snippod-Boilerplate**](https://github.com/shalomeir/snippod-boilerplate) is a webapp baseline boilerplate using react+flux and django REST architectures. This boilerplate was made for **Snippod's baseline**.
+[**Snippod-Boilerplate**](https://github.com/shalomeir/snippod-boilerplate) is a webapp baseline sample program using react+flux and django REST architectures. This program was made for **Snippod's baseline**.
 We'd like to build this starter kit based on full stack single page web application architecture.
 Snippod's architecture used a this kind of technology, **React + Flux (RefluxJS) + django REST framewrok + RDBMS**.
 [This stack](https://www.gliffy.com/go/publish/7756603) is presented by diagram too.
@@ -13,9 +15,8 @@ You can check out the hosted version [**DEMO**](http://snippod-boilerplate-dev.e
 
 ## Base Repository, Module
 
-Frontside [Snippod-Boilerplate](https://github.com/shalomeir/snippod-boilerplate) is based on [Yeogurt Generator](https://github.com/larsonjj/generator-yeogurt). 
-And we recommend to check this [react-tweets](https://github.com/scotch-io/react-tweets) examples.
-Also serverside are maded by [django REST framework](http://www.django-rest-framework.org/). We recommend to check this [blog post](https://thinkster.io/django-angularjs-tutorial/) and [repository](https://github.com/brwr/thinkster-django-angular) for server side.
+Frontside [Snippod-Boilerplate](https://github.com/shalomeir/snippod-boilerplate) is based on a [Yeogurt Generator](https://github.com/larsonjj/generator-yeogurt)and a [React news](https://github.com/echenley/react-news) clone like [Hacker news](https://news.ycombinator.com/) site.  
+Also serverside are maded by [django REST framework](http://www.django-rest-framework.org/).
 
 We made this using these technologies.
 

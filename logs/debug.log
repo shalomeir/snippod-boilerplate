@@ -2219,3 +2219,54 @@ Traceback (most recent call last):
   File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/db/backends/sqlite3/base.py", line 485, in execute
     return Database.Cursor.execute(self, query, params)
 django.db.utils.IntegrityError: UNIQUE constraint failed: authentication_account.email
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 204, in get_response
+    response = middleware_method(request, response)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/middleware.py", line 94, in process_response
+    new_response = panel.process_response(request, response)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/staticfiles.py", line 126, in process_response
+    'staticfiles_finders': self.get_staticfiles_finders(),
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/staticfiles.py", line 137, in get_staticfiles_finders
+    for path, finder_storage in finder.list([]):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/staticfiles/finders.py", line 111, in list
+    for path in utils.get_files(storage, ignore_patterns):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/staticfiles/utils.py", line 27, in get_files
+    directories, files = storage.listdir(location)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/files/storage.py", line 270, in listdir
+    for entry in os.listdir(path):
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/snippod_webapp/.tmp'
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 204, in get_response
+    response = middleware_method(request, response)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/middleware.py", line 94, in process_response
+    new_response = panel.process_response(request, response)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/staticfiles.py", line 126, in process_response
+    'staticfiles_finders': self.get_staticfiles_finders(),
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/staticfiles.py", line 137, in get_staticfiles_finders
+    for path, finder_storage in finder.list([]):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/staticfiles/finders.py", line 111, in list
+    for path in utils.get_files(storage, ignore_patterns):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/staticfiles/utils.py", line 27, in get_files
+    directories, files = storage.listdir(location)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/files/storage.py", line 270, in listdir
+    for entry in os.listdir(path):
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/snippod_webapp/.tmp'
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 204, in get_response
+    response = middleware_method(request, response)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/middleware.py", line 94, in process_response
+    new_response = panel.process_response(request, response)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/staticfiles.py", line 126, in process_response
+    'staticfiles_finders': self.get_staticfiles_finders(),
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/debug_toolbar/panels/staticfiles.py", line 137, in get_staticfiles_finders
+    for path, finder_storage in finder.list([]):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/staticfiles/finders.py", line 111, in list
+    for path in utils.get_files(storage, ignore_patterns):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/contrib/staticfiles/utils.py", line 27, in get_files
+    directories, files = storage.listdir(location)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/files/storage.py", line 270, in listdir
+    for entry in os.listdir(path):
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/snippod_webapp/.tmp'
