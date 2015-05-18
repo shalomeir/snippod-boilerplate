@@ -1,10 +1,10 @@
-# **Snippod-Boilerplate** readme
+# **Snippod-Boilerplate**
 
 ## Overview
 
 [**Snippod-Boilerplate**](https://github.com/shalomeir/snippod-boilerplate) is a starter kit like [yeogurt](https://github.com/larsonjj/generator-yeogurt) boilerplate. This boilerplate was made for **Snippod's baseline**.
 We'd like to this service based on full stack single page web application architecture.
-Snippod's architecture used a this kind of technology, **React + Flux (RefluxJS) + django REST framewrok + rdbms**.
+Snippod's architecture used a this kind of technology, **React + Flux (RefluxJS) + django REST framewrok + RDBMS**.
 [This stack](https://www.gliffy.com/go/publish/7756603) is presented by diagram too.
 
 

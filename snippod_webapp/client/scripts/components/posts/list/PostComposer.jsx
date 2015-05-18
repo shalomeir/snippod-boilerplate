@@ -133,8 +133,9 @@ var PostComposer = React.createClass({
     return (
       /* jshint ignore:start */
       <div id="post-composer" className="post-composer">
-        <div id="header-panel" className="header-panel text-center">
-          <form method="post" action="/posts/" onSubmit={ this.submitPost } className="panel-form">
+        <div id="composer-panel" className="composer-panel">
+          <div>Submit any post link!</div>
+          <form method="post" action="/posts/" onSubmit={ this.submitPost } className="panel-form text-center">
             <input type="text" name="title" className={ titleInputCx } placeholder="Title" ref="title" id="title"/>
             <input type="url" name="link" className={ linkInputCx } placeholder="Link" ref="link" id="link"/>
             <button type="submit" className="button panel-button button-outline" ref="submit">

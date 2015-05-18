@@ -15,10 +15,7 @@ var TopicCard = React.createClass({
             <h1>Welcome to Snippod's boilerplate!</h1>
             <p>
               Take a look at the <a href="https://github.com/shalomeir/snippod-boilerplate">
-              documentation</a> and start mixing up something awesome.
-            </p>
-            <p>
-              <img src="static/images/snippod-swirl.png" width="75px" className="logo" />
+              github repository</a> and start mixing up something awesome.
             </p>
           </div>
       /* jshint ignore:end */
