@@ -1,5 +1,7 @@
 # **Snippod-Boilerplate**
 
+[![Join the chat at https://gitter.im/shalomeir/snippod-boilerplate](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/shalomeir/snippod-boilerplate?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Overview
 
 [**Snippod-Boilerplate**](https://github.com/shalomeir/snippod-boilerplate) is a webapp baseline boilerplate using react+flux and django REST architectures. This boilerplate was made for **Snippod's baseline**.
