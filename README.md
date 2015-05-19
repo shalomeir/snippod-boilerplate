@@ -15,7 +15,7 @@ You can check out the hosted version [**DEMO**](http://snippod-boilerplate-dev.e
 
 ## Base Repository, Module
 
-Frontside [Snippod-Boilerplate](https://github.com/shalomeir/snippod-boilerplate) is based on a [Yeogurt Generator](https://github.com/larsonjj/generator-yeogurt)and a [React news](https://github.com/echenley/react-news) clone like [Hacker news](https://news.ycombinator.com/) site.  
+Frontside [Snippod-Boilerplate](https://github.com/shalomeir/snippod-boilerplate) is based on a [Yeogurt Generator](https://github.com/larsonjj/generator-yeogurt) and a [React news](https://github.com/echenley/react-news) clone like [Hacker news](https://news.ycombinator.com/) site.  
 Also serverside are maded by [django REST framework](http://www.django-rest-framework.org/).
 
 We made this using these technologies.
