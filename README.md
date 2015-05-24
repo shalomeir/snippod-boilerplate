@@ -66,6 +66,7 @@ In the ['snippod-server' Root](https://github.com/shalomeir/snippod-boilerplate)
 - `python manage.py runserver`
 
 ## Description
+
 ### Front side
 Almost main javascript source are located [**'./snippod_webapp/client/scripts/'** directory](https://github.com/shalomeir/snippod-boilerplate/tree/master/snippod_webapp/client/scripts).
 Since, We'd like to apply node server for react server-side rendering, but didn't make yet.
@@ -80,6 +81,10 @@ Django Rest framework provide browserble API. So you can see all get json by bro
 - comment list: ['~/api/v1/comments/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/comments/)
 - single account, post or comment like this ['~/api/v1/posts/:postId/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/posts/10/)
 - user's posts or comments like this ['~/api/v1/user/:userId/posts/'](http://snippod-boilerplate-dev.elasticbeanstalk.com/api/v1/user/7/posts/)
+
+
+More information is available at [**this blog post**](http://www.shalomeir.com/2015/05/snippod-boilerplate-1-full-stack-react-flux-django/) written in **Korean**.
+
 
 ## Reference
 ### Front side
