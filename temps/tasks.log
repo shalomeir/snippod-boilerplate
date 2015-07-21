@@ -1,0 +1,608 @@
+[2015-06-27 18:56:56,899: ERROR/Worker-1] Process Worker-1
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 320, in __get__
+    return obj.__dict__[self.__name__]
+KeyError: 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/process.py", line 292, in _bootstrap
+    self.run()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 288, in run
+    self.after_fork()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 391, in after_fork
+    self.initializer(*self.initargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/concurrency/prefork.py", line 81, in process_initializer
+    app=app)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 161, in build_tracer
+    backend = task.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 919, in backend
+    return self.app.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 322, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 625, in backend
+    return self._get_backend()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 444, in _get_backend
+    return backend(app=self, url=url)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/amqp.py", line 71, in __init__
+    super(AMQPBackend, self).__init__(app, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/base.py", line 102, in __init__
+    self.encoder) = serializer_registry._encoders[self.serializer]
+KeyError: ('json',)
+[2015-06-27 18:56:56,903: ERROR/Worker-5] Process Worker-5
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 320, in __get__
+    return obj.__dict__[self.__name__]
+KeyError: 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/process.py", line 292, in _bootstrap
+    self.run()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 288, in run
+    self.after_fork()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 391, in after_fork
+    self.initializer(*self.initargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/concurrency/prefork.py", line 81, in process_initializer
+    app=app)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 161, in build_tracer
+    backend = task.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 919, in backend
+    return self.app.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 322, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 625, in backend
+    return self._get_backend()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 444, in _get_backend
+    return backend(app=self, url=url)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/amqp.py", line 71, in __init__
+    super(AMQPBackend, self).__init__(app, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/base.py", line 102, in __init__
+    self.encoder) = serializer_registry._encoders[self.serializer]
+KeyError: ('json',)
+[2015-06-27 18:56:56,899: ERROR/Worker-2] Process Worker-2
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 320, in __get__
+    return obj.__dict__[self.__name__]
+KeyError: 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/process.py", line 292, in _bootstrap
+    self.run()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 288, in run
+    self.after_fork()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 391, in after_fork
+    self.initializer(*self.initargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/concurrency/prefork.py", line 81, in process_initializer
+    app=app)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 161, in build_tracer
+    backend = task.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 919, in backend
+    return self.app.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 322, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 625, in backend
+    return self._get_backend()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 444, in _get_backend
+    return backend(app=self, url=url)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/amqp.py", line 71, in __init__
+    super(AMQPBackend, self).__init__(app, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/base.py", line 102, in __init__
+    self.encoder) = serializer_registry._encoders[self.serializer]
+KeyError: ('json',)
+[2015-06-27 18:56:56,903: ERROR/Worker-3] Process Worker-3
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 320, in __get__
+    return obj.__dict__[self.__name__]
+KeyError: 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/process.py", line 292, in _bootstrap
+    self.run()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 288, in run
+    self.after_fork()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 391, in after_fork
+    self.initializer(*self.initargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/concurrency/prefork.py", line 81, in process_initializer
+    app=app)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 161, in build_tracer
+    backend = task.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 919, in backend
+    return self.app.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 322, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 625, in backend
+    return self._get_backend()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 444, in _get_backend
+    return backend(app=self, url=url)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/amqp.py", line 71, in __init__
+    super(AMQPBackend, self).__init__(app, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/base.py", line 102, in __init__
+    self.encoder) = serializer_registry._encoders[self.serializer]
+KeyError: ('json',)
+[2015-06-27 18:56:56,902: ERROR/Worker-4] Process Worker-4
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 320, in __get__
+    return obj.__dict__[self.__name__]
+KeyError: 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/process.py", line 292, in _bootstrap
+    self.run()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 288, in run
+    self.after_fork()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 391, in after_fork
+    self.initializer(*self.initargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/concurrency/prefork.py", line 81, in process_initializer
+    app=app)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 161, in build_tracer
+    backend = task.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 919, in backend
+    return self.app.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 322, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 625, in backend
+    return self._get_backend()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 444, in _get_backend
+    return backend(app=self, url=url)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/amqp.py", line 71, in __init__
+    super(AMQPBackend, self).__init__(app, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/base.py", line 102, in __init__
+    self.encoder) = serializer_registry._encoders[self.serializer]
+KeyError: ('json',)
+[2015-06-27 18:56:56,906: ERROR/Worker-6] Process Worker-6
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 320, in __get__
+    return obj.__dict__[self.__name__]
+KeyError: 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/process.py", line 292, in _bootstrap
+    self.run()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 288, in run
+    self.after_fork()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 391, in after_fork
+    self.initializer(*self.initargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/concurrency/prefork.py", line 81, in process_initializer
+    app=app)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 161, in build_tracer
+    backend = task.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 919, in backend
+    return self.app.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 322, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 625, in backend
+    return self._get_backend()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 444, in _get_backend
+    return backend(app=self, url=url)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/amqp.py", line 71, in __init__
+    super(AMQPBackend, self).__init__(app, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/base.py", line 102, in __init__
+    self.encoder) = serializer_registry._encoders[self.serializer]
+KeyError: ('json',)
+[2015-06-27 18:56:56,908: ERROR/Worker-7] Process Worker-7
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 320, in __get__
+    return obj.__dict__[self.__name__]
+KeyError: 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/process.py", line 292, in _bootstrap
+    self.run()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 288, in run
+    self.after_fork()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 391, in after_fork
+    self.initializer(*self.initargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/concurrency/prefork.py", line 81, in process_initializer
+    app=app)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 161, in build_tracer
+    backend = task.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 919, in backend
+    return self.app.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 322, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 625, in backend
+    return self._get_backend()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 444, in _get_backend
+    return backend(app=self, url=url)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/amqp.py", line 71, in __init__
+    super(AMQPBackend, self).__init__(app, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/base.py", line 102, in __init__
+    self.encoder) = serializer_registry._encoders[self.serializer]
+KeyError: ('json',)
+[2015-06-27 18:56:56,911: ERROR/Worker-8] Process Worker-8
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 320, in __get__
+    return obj.__dict__[self.__name__]
+KeyError: 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/process.py", line 292, in _bootstrap
+    self.run()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 288, in run
+    self.after_fork()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/billiard/pool.py", line 391, in after_fork
+    self.initializer(*self.initargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/concurrency/prefork.py", line 81, in process_initializer
+    app=app)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 161, in build_tracer
+    backend = task.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 919, in backend
+    return self.app.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 322, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 625, in backend
+    return self._get_backend()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 444, in _get_backend
+    return backend(app=self, url=url)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/amqp.py", line 71, in __init__
+    super(AMQPBackend, self).__init__(app, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/base.py", line 102, in __init__
+    self.encoder) = serializer_registry._encoders[self.serializer]
+KeyError: ('json',)
+[2015-06-27 18:56:56,921: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2015-06-27 18:56:56,932: INFO/MainProcess] mingle: searching for neighbors
+[2015-06-27 18:56:57,943: INFO/MainProcess] mingle: all alone
+[2015-06-27 18:56:57,947: ERROR/MainProcess] Unrecoverable error: KeyError(('json',),)
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 320, in __get__
+    return obj.__dict__[self.__name__]
+KeyError: 'backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/worker/__init__.py", line 206, in start
+    self.blueprint.start(self)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/bootsteps.py", line 123, in start
+    step.start(parent)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/bootsteps.py", line 374, in start
+    return self.obj.start()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/worker/consumer.py", line 278, in start
+    blueprint.start(self)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/bootsteps.py", line 123, in start
+    step.start(parent)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/worker/consumer.py", line 595, in start
+    c.update_strategies()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/worker/consumer.py", line 439, in update_strategies
+    app=self.app)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 161, in build_tracer
+    backend = task.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 919, in backend
+    return self.app.backend
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 322, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 625, in backend
+    return self._get_backend()
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/base.py", line 444, in _get_backend
+    return backend(app=self, url=url)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/amqp.py", line 71, in __init__
+    super(AMQPBackend, self).__init__(app, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/backends/base.py", line 102, in __init__
+    self.encoder) = serializer_registry._encoders[self.serializer]
+KeyError: ('json',)
+[2015-06-27 18:58:52,080: WARNING/MainProcess] /Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/apps/worker.py:161: CDeprecationWarning: 
+Starting from version 3.2 Celery will refuse to accept pickle by default.
+
+The pickle serializer is a security concern as it may give attackers
+the ability to execute any command.  It's important to secure
+your broker from unauthorized access when using pickle, so we think
+that enabling pickle should require a deliberate action and not be
+the default choice.
+
+If you depend on pickle then you should set a setting to disable this
+warning and to be sure that everything will continue working
+when you upgrade to Celery 3.2::
+
+    CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
+
+You must only enable the serializers that you will actually use.
+
+
+  warnings.warn(CDeprecationWarning(W_PICKLE_DEPRECATED))
+[2015-06-27 18:58:52,127: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2015-06-27 18:58:52,138: INFO/MainProcess] mingle: searching for neighbors
+[2015-06-27 18:58:53,150: INFO/MainProcess] mingle: all alone
+[2015-06-27 18:58:53,166: WARNING/MainProcess] tasks@Seonggyus-MBR.local ready.
+[2015-06-27 18:58:54,143: INFO/MainProcess] Received task: tasks.add[b339666a-7e35-4885-a565-5833c85523eb]
+[2015-06-27 18:58:54,175: INFO/MainProcess] Task tasks.add[b339666a-7e35-4885-a565-5833c85523eb] succeeded in 0.029620930999953998s: 8
+[2015-06-27 18:58:57,863: INFO/MainProcess] Received task: tasks.add[c644de18-9b03-4549-8f3b-c9a220811263]
+[2015-06-27 18:58:57,893: INFO/MainProcess] Task tasks.add[c644de18-9b03-4549-8f3b-c9a220811263] succeeded in 0.02859382499809726s: 8
+[2015-06-27 18:59:16,680: INFO/MainProcess] Received task: tasks.add[49f00b6b-36c0-44ea-b58f-12e09bcaa6ef]
+[2015-06-27 18:59:16,710: INFO/MainProcess] Task tasks.add[49f00b6b-36c0-44ea-b58f-12e09bcaa6ef] succeeded in 0.029438031000609044s: 8
+[2015-06-27 18:59:58,135: INFO/MainProcess] Received task: tasks.add[38de8020-cb86-4a3d-a2f0-b8a1ba8cf314]
+[2015-06-27 18:59:58,164: INFO/MainProcess] Task tasks.add[38de8020-cb86-4a3d-a2f0-b8a1ba8cf314] succeeded in 0.027802409000287298s: 8
+[2015-06-27 18:59:59,507: INFO/MainProcess] Received task: tasks.add[0fedc26b-2e2c-41ec-8278-c962fc5db34a]
+[2015-06-27 18:59:59,536: INFO/MainProcess] Task tasks.add[0fedc26b-2e2c-41ec-8278-c962fc5db34a] succeeded in 0.027582320999499643s: 8
+[2015-06-27 23:30:37,727: INFO/MainProcess] Received task: tasks.add[41add3e5-fa24-4cc3-8907-b7deb843d837]
+[2015-06-27 23:30:37,807: INFO/MainProcess] Task tasks.add[41add3e5-fa24-4cc3-8907-b7deb843d837] succeeded in 0.046220486001402605s: 4
+[2015-06-27 23:31:01,925: INFO/MainProcess] Received task: tasks.add[c6613b98-61e8-4a2a-a7fd-c32a48e44967]
+[2015-06-27 23:31:01,958: INFO/MainProcess] Task tasks.add[c6613b98-61e8-4a2a-a7fd-c32a48e44967] succeeded in 0.031975097001122776s: 3
+[2015-06-27 23:31:12,178: INFO/MainProcess] Received task: tasks.add[e707bcb8-223e-49b0-802e-4eefe092a241]
+[2015-06-27 23:31:12,210: INFO/MainProcess] Task tasks.add[e707bcb8-223e-49b0-802e-4eefe092a241] succeeded in 0.030632920999778435s: 3
+[2015-06-27 23:31:23,291: INFO/MainProcess] Received task: tasks.add[7a41cfe9-8be4-4ecf-a681-8dc10faf876e]
+[2015-06-27 23:31:23,307: INFO/MainProcess] Task tasks.add[7a41cfe9-8be4-4ecf-a681-8dc10faf876e] succeeded in 0.01514673399651656s: 13
+[2015-06-27 23:33:31,875: INFO/MainProcess] Received task: tasks.add[ed663efb-6750-4099-9550-47d419f2fbf0]
+[2015-06-27 23:33:31,875: INFO/MainProcess] Received task: tasks.add[79473111-c5a0-444e-9626-a5b0ce5f5417]
+[2015-06-27 23:33:31,876: INFO/MainProcess] Received task: tasks.add[9a6f9a4a-5329-4549-b2c0-0d1f5ed285d9]
+[2015-06-27 23:33:31,876: INFO/MainProcess] Received task: tasks.add[fa687365-7b3a-4db2-b3c3-7c05aa648d74]
+[2015-06-27 23:33:31,877: INFO/MainProcess] Received task: tasks.add[98d89f2e-6d7f-4701-9856-c8b825d32f5b]
+[2015-06-27 23:33:31,877: INFO/MainProcess] Received task: tasks.add[74298f6e-7ef6-4d05-a2ae-ddcf6c82545c]
+[2015-06-27 23:33:31,877: INFO/MainProcess] Received task: tasks.add[d64a83f1-995b-4ead-af98-5b943f290fb3]
+[2015-06-27 23:33:31,878: INFO/MainProcess] Received task: tasks.add[072e459b-03ed-4daa-9d84-ddfa501c3d53]
+[2015-06-27 23:33:31,878: INFO/MainProcess] Received task: tasks.add[f6ef0a5e-91ee-4547-8de8-664797bc8c65]
+[2015-06-27 23:33:31,878: INFO/MainProcess] Received task: tasks.add[9a6fd04b-8eb8-4a02-9a40-c0232e3cc6e4]
+[2015-06-27 23:33:31,902: INFO/MainProcess] Task tasks.add[fa687365-7b3a-4db2-b3c3-7c05aa648d74] succeeded in 0.023262905997398775s: 6
+[2015-06-27 23:33:31,903: INFO/MainProcess] Task tasks.add[d64a83f1-995b-4ead-af98-5b943f290fb3] succeeded in 0.02329927100072382s: 12
+[2015-06-27 23:33:31,903: INFO/MainProcess] Task tasks.add[79473111-c5a0-444e-9626-a5b0ce5f5417] succeeded in 0.024142119000316598s: 2
+[2015-06-27 23:33:31,904: INFO/MainProcess] Task tasks.add[98d89f2e-6d7f-4701-9856-c8b825d32f5b] succeeded in 0.024597519004601054s: 8
+[2015-06-27 23:33:31,904: INFO/MainProcess] Task tasks.add[072e459b-03ed-4daa-9d84-ddfa501c3d53] succeeded in 0.0233498929956113s: 14
+[2015-06-27 23:33:31,904: INFO/MainProcess] Task tasks.add[74298f6e-7ef6-4d05-a2ae-ddcf6c82545c] succeeded in 0.025155317001917865s: 10
+[2015-06-27 23:33:31,904: INFO/MainProcess] Task tasks.add[ed663efb-6750-4099-9550-47d419f2fbf0] succeeded in 0.025230138999177143s: 0
+[2015-06-27 23:33:31,905: INFO/MainProcess] Task tasks.add[9a6f9a4a-5329-4549-b2c0-0d1f5ed285d9] succeeded in 0.02552535099675879s: 4
+[2015-06-27 23:33:31,928: INFO/MainProcess] Task tasks.add[9a6fd04b-8eb8-4a02-9a40-c0232e3cc6e4] succeeded in 0.02291668899852084s: 18
+[2015-06-27 23:33:31,928: INFO/MainProcess] Task tasks.add[f6ef0a5e-91ee-4547-8de8-664797bc8c65] succeeded in 0.023450143002264667s: 16
+[2015-06-27 23:36:51,278: INFO/MainProcess] Received task: tasks.add[5fbea2de-2f2b-4173-a71d-9cb94e9e9a4f]
+[2015-06-27 23:36:51,279: INFO/MainProcess] Received task: tasks.add[f6f322b9-e67d-41ee-aa79-9e5d6c2ff68e]
+[2015-06-27 23:36:51,279: INFO/MainProcess] Received task: tasks.add[0ac02c5d-fda8-475f-8abe-e3f9a1baa70b]
+[2015-06-27 23:36:51,280: INFO/MainProcess] Received task: tasks.add[921c946b-602e-46f1-934b-22759ffb94dd]
+[2015-06-27 23:36:51,281: INFO/MainProcess] Received task: tasks.add[1fea2c17-99a5-465f-879c-5b625de0b69f]
+[2015-06-27 23:36:51,281: INFO/MainProcess] Received task: tasks.add[c20a7640-db01-413e-85a8-2dc98420033d]
+[2015-06-27 23:36:51,282: INFO/MainProcess] Received task: tasks.add[cda9d3b1-85c6-488d-baca-db0f656b6789]
+[2015-06-27 23:36:51,282: INFO/MainProcess] Received task: tasks.add[5c26023a-2f45-4e2b-811c-4112e46f5465]
+[2015-06-27 23:36:51,283: INFO/MainProcess] Received task: tasks.add[9d63d090-b631-41cb-a61c-ba2a59f2bf4d]
+[2015-06-27 23:36:51,283: INFO/MainProcess] Received task: tasks.add[6385991e-3aa5-4941-a8d1-deed5fd96940]
+[2015-06-27 23:36:51,303: INFO/MainProcess] Task tasks.add[5fbea2de-2f2b-4173-a71d-9cb94e9e9a4f] succeeded in 0.019373590999748558s: 0
+[2015-06-27 23:36:51,312: INFO/MainProcess] Task tasks.add[1fea2c17-99a5-465f-879c-5b625de0b69f] succeeded in 0.02795453299768269s: 8
+[2015-06-27 23:36:51,312: INFO/MainProcess] Task tasks.add[0ac02c5d-fda8-475f-8abe-e3f9a1baa70b] succeeded in 0.028421225004422013s: 4
+[2015-06-27 23:36:51,313: INFO/MainProcess] Task tasks.add[5c26023a-2f45-4e2b-811c-4112e46f5465] succeeded in 0.027975811004580464s: 14
+[2015-06-27 23:36:51,313: INFO/MainProcess] Task tasks.add[921c946b-602e-46f1-934b-22759ffb94dd] succeeded in 0.029012092993070837s: 6
+[2015-06-27 23:36:51,313: INFO/MainProcess] Task tasks.add[c20a7640-db01-413e-85a8-2dc98420033d] succeeded in 0.028775383994798176s: 10
+[2015-06-27 23:36:51,314: INFO/MainProcess] Task tasks.add[cda9d3b1-85c6-488d-baca-db0f656b6789] succeeded in 0.029008159006480128s: 12
+[2015-06-27 23:36:51,314: INFO/MainProcess] Task tasks.add[f6f322b9-e67d-41ee-aa79-9e5d6c2ff68e] succeeded in 0.03007719699962763s: 2
+[2015-06-27 23:36:51,331: INFO/MainProcess] Task tasks.add[9d63d090-b631-41cb-a61c-ba2a59f2bf4d] succeeded in 0.027123706000566017s: 16
+[2015-06-27 23:36:51,336: INFO/MainProcess] Task tasks.add[6385991e-3aa5-4941-a8d1-deed5fd96940] succeeded in 0.021705769999243785s: 18
+[2015-06-27 23:37:05,187: INFO/MainProcess] Received task: tasks.add[4e3cc905-3b0b-4a27-b44e-c99b164f3eed]
+[2015-06-27 23:37:05,188: INFO/MainProcess] Received task: tasks.add[a2625167-f9a7-47a5-9053-706919d4f6b9]
+[2015-06-27 23:37:05,189: INFO/MainProcess] Received task: tasks.add[3c4f6cab-0b04-49b4-9c5b-4e1327f2a58e]
+[2015-06-27 23:37:05,189: INFO/MainProcess] Received task: tasks.add[5e81a309-a0a9-4849-a2ca-ac01a958b48a]
+[2015-06-27 23:37:05,190: INFO/MainProcess] Received task: tasks.add[5555bea8-e113-4814-87c6-b32b5430c914]
+[2015-06-27 23:37:05,190: INFO/MainProcess] Received task: tasks.add[c0f365ec-d4bd-46db-8e0b-fc9cbb9221c5]
+[2015-06-27 23:37:05,191: INFO/MainProcess] Received task: tasks.add[56138408-436a-4ae5-b1ca-a1084ce95885]
+[2015-06-27 23:37:05,191: INFO/MainProcess] Received task: tasks.add[ba7fdac1-85e0-4790-acda-39f8ce12a7f6]
+[2015-06-27 23:37:05,193: INFO/MainProcess] Received task: tasks.add[a241fc08-4dc9-4ffe-b24a-ae636a3b8686]
+[2015-06-27 23:37:05,194: INFO/MainProcess] Received task: tasks.add[8ef14543-2c65-4f31-b863-bdd0b16f4ac9]
+[2015-06-27 23:37:05,213: INFO/MainProcess] Task tasks.add[3c4f6cab-0b04-49b4-9c5b-4e1327f2a58e] succeeded in 0.021508756006369367s: 13
+[2015-06-27 23:37:05,221: INFO/MainProcess] Task tasks.add[56138408-436a-4ae5-b1ca-a1084ce95885] succeeded in 0.028591332003998104s: 17
+[2015-06-27 23:37:05,222: INFO/MainProcess] Task tasks.add[4e3cc905-3b0b-4a27-b44e-c99b164f3eed] succeeded in 0.030107062004390173s: 11
+[2015-06-27 23:37:05,222: INFO/MainProcess] Task tasks.add[c0f365ec-d4bd-46db-8e0b-fc9cbb9221c5] succeeded in 0.02950453999801539s: 16
+[2015-06-27 23:37:05,222: INFO/MainProcess] Task tasks.add[a2625167-f9a7-47a5-9053-706919d4f6b9] succeeded in 0.03060721600195393s: 12
+[2015-06-27 23:37:05,222: INFO/MainProcess] Task tasks.add[5e81a309-a0a9-4849-a2ca-ac01a958b48a] succeeded in 0.030893825001840014s: 14
+[2015-06-27 23:37:05,223: INFO/MainProcess] Task tasks.add[ba7fdac1-85e0-4790-acda-39f8ce12a7f6] succeeded in 0.030119435003143735s: 18
+[2015-06-27 23:37:05,226: INFO/MainProcess] Task tasks.add[5555bea8-e113-4814-87c6-b32b5430c914] succeeded in 0.03480125499481801s: 15
+[2015-06-27 23:37:05,246: INFO/MainProcess] Task tasks.add[a241fc08-4dc9-4ffe-b24a-ae636a3b8686] succeeded in 0.02517343499494018s: 19
+[2015-06-27 23:37:05,248: INFO/MainProcess] Task tasks.add[8ef14543-2c65-4f31-b863-bdd0b16f4ac9] succeeded in 0.0026246039997204207s: 20
+[2015-06-28 22:06:21,122: INFO/MainProcess] Received task: tasks.add[444d1a1e-78a1-4e12-8df5-f3e542583774]
+[2015-06-28 22:06:21,147: INFO/MainProcess] Task tasks.add[444d1a1e-78a1-4e12-8df5-f3e542583774] succeeded in 0.023163901001680642s: 8
+[2015-06-28 22:10:09,957: INFO/MainProcess] Received task: tasks.add[cd75bf78-494a-4201-9aeb-af8b6733ce1f]
+[2015-06-28 22:10:09,973: INFO/MainProcess] Task tasks.add[cd75bf78-494a-4201-9aeb-af8b6733ce1f] succeeded in 0.015081506993738003s: 8
+[2015-06-28 22:11:25,268: INFO/MainProcess] Received task: tasks.add[6018b5fd-9bcc-4060-952b-53e398954707]
+[2015-06-28 22:11:25,283: INFO/MainProcess] Task tasks.add[6018b5fd-9bcc-4060-952b-53e398954707] succeeded in 0.014512911002384499s: 4
+[2015-06-28 22:12:08,902: WARNING/MainProcess] /Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/apps/worker.py:161: CDeprecationWarning: 
+Starting from version 3.2 Celery will refuse to accept pickle by default.
+
+The pickle serializer is a security concern as it may give attackers
+the ability to execute any command.  It's important to secure
+your broker from unauthorized access when using pickle, so we think
+that enabling pickle should require a deliberate action and not be
+the default choice.
+
+If you depend on pickle then you should set a setting to disable this
+warning and to be sure that everything will continue working
+when you upgrade to Celery 3.2::
+
+    CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
+
+You must only enable the serializers that you will actually use.
+
+
+  warnings.warn(CDeprecationWarning(W_PICKLE_DEPRECATED))
+[2015-06-28 22:12:08,941: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2015-06-28 22:12:08,952: INFO/MainProcess] mingle: searching for neighbors
+[2015-06-28 22:12:09,963: INFO/MainProcess] mingle: all alone
+[2015-06-28 22:12:09,979: WARNING/MainProcess] tasks@Seonggyus-MBR.local ready.
+[2015-06-28 22:12:38,499: INFO/MainProcess] Received task: tasks.add[cea823a3-2e0a-4b09-a5b4-47caeeb263ac]
+[2015-06-28 22:12:38,528: INFO/MainProcess] Task tasks.add[cea823a3-2e0a-4b09-a5b4-47caeeb263ac] succeeded in 0.027345668997440953s: 4
+[2015-06-28 22:12:53,677: INFO/MainProcess] Received task: tasks.add[b0c852f1-ef56-41c0-94eb-1f3c11f094c1]
+[2015-06-28 22:12:53,709: INFO/MainProcess] Task tasks.add[b0c852f1-ef56-41c0-94eb-1f3c11f094c1] succeeded in 0.030839107996143866s: 8
+[2015-06-28 22:13:34,425: WARNING/MainProcess] /Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/apps/worker.py:161: CDeprecationWarning: 
+Starting from version 3.2 Celery will refuse to accept pickle by default.
+
+The pickle serializer is a security concern as it may give attackers
+the ability to execute any command.  It's important to secure
+your broker from unauthorized access when using pickle, so we think
+that enabling pickle should require a deliberate action and not be
+the default choice.
+
+If you depend on pickle then you should set a setting to disable this
+warning and to be sure that everything will continue working
+when you upgrade to Celery 3.2::
+
+    CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
+
+You must only enable the serializers that you will actually use.
+
+
+  warnings.warn(CDeprecationWarning(W_PICKLE_DEPRECATED))
+[2015-06-28 22:13:34,460: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2015-06-28 22:13:34,475: INFO/MainProcess] mingle: searching for neighbors
+[2015-06-28 22:13:35,487: INFO/MainProcess] mingle: all alone
+[2015-06-28 22:13:35,500: WARNING/MainProcess] tasks@Seonggyus-MBR.local ready.
+[2015-06-28 22:14:57,840: WARNING/MainProcess] /Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/apps/worker.py:161: CDeprecationWarning: 
+Starting from version 3.2 Celery will refuse to accept pickle by default.
+
+The pickle serializer is a security concern as it may give attackers
+the ability to execute any command.  It's important to secure
+your broker from unauthorized access when using pickle, so we think
+that enabling pickle should require a deliberate action and not be
+the default choice.
+
+If you depend on pickle then you should set a setting to disable this
+warning and to be sure that everything will continue working
+when you upgrade to Celery 3.2::
+
+    CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
+
+You must only enable the serializers that you will actually use.
+
+
+  warnings.warn(CDeprecationWarning(W_PICKLE_DEPRECATED))
+[2015-06-28 22:14:57,879: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2015-06-28 22:14:57,891: INFO/MainProcess] mingle: searching for neighbors
+[2015-06-28 22:14:58,900: INFO/MainProcess] mingle: all alone
+[2015-06-28 22:14:58,917: WARNING/MainProcess] tasks@Seonggyus-MBR.local ready.
+[2015-06-28 22:15:09,864: WARNING/MainProcess] /Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/apps/worker.py:161: CDeprecationWarning: 
+Starting from version 3.2 Celery will refuse to accept pickle by default.
+
+The pickle serializer is a security concern as it may give attackers
+the ability to execute any command.  It's important to secure
+your broker from unauthorized access when using pickle, so we think
+that enabling pickle should require a deliberate action and not be
+the default choice.
+
+If you depend on pickle then you should set a setting to disable this
+warning and to be sure that everything will continue working
+when you upgrade to Celery 3.2::
+
+    CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
+
+You must only enable the serializers that you will actually use.
+
+
+  warnings.warn(CDeprecationWarning(W_PICKLE_DEPRECATED))
+[2015-06-28 22:15:09,901: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2015-06-28 22:15:09,912: INFO/MainProcess] mingle: searching for neighbors
+[2015-06-28 22:15:10,923: INFO/MainProcess] mingle: all alone
+[2015-06-28 22:15:10,938: WARNING/MainProcess] tasks@Seonggyus-MBR.local ready.
+[2015-06-28 22:15:52,836: WARNING/MainProcess] /Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/apps/worker.py:161: CDeprecationWarning: 
+Starting from version 3.2 Celery will refuse to accept pickle by default.
+
+The pickle serializer is a security concern as it may give attackers
+the ability to execute any command.  It's important to secure
+your broker from unauthorized access when using pickle, so we think
+that enabling pickle should require a deliberate action and not be
+the default choice.
+
+If you depend on pickle then you should set a setting to disable this
+warning and to be sure that everything will continue working
+when you upgrade to Celery 3.2::
+
+    CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
+
+You must only enable the serializers that you will actually use.
+
+
+  warnings.warn(CDeprecationWarning(W_PICKLE_DEPRECATED))
+[2015-06-28 22:15:52,872: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2015-06-28 22:15:52,883: INFO/MainProcess] mingle: searching for neighbors
+[2015-06-28 22:15:53,895: INFO/MainProcess] mingle: all alone
+[2015-06-28 22:15:53,909: WARNING/MainProcess] tasks@Seonggyus-MBR.local ready.
+[2015-06-28 22:16:58,031: ERROR/Worker-1] Error: KeyError('url',)
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/contrib/batches.py", line 126, in apply_batches_task
+    result = task(*args)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 439, in __protected_call__
+    return orig(self, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 420, in __call__
+    return self.run(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/temps/tasks.py", line 13, in count_click
+    count = Counter(request.kwargs['url'] for request in requests)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/collections/__init__.py", line 465, in __init__
+    self.update(iterable, **kwds)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/collections/__init__.py", line 545, in update
+    _count_elements(self, iterable)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/temps/tasks.py", line 13, in <genexpr>
+    count = Counter(request.kwargs['url'] for request in requests)
+KeyError: 'url'
+[2015-06-28 22:17:23,964: ERROR/Worker-5] Error: KeyError('url',)
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/contrib/batches.py", line 126, in apply_batches_task
+    result = task(*args)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 439, in __protected_call__
+    return orig(self, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 420, in __call__
+    return self.run(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/temps/tasks.py", line 13, in count_click
+    count = Counter(request.kwargs['url'] for request in requests)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/collections/__init__.py", line 465, in __init__
+    self.update(iterable, **kwds)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/collections/__init__.py", line 545, in update
+    _count_elements(self, iterable)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/temps/tasks.py", line 13, in <genexpr>
+    count = Counter(request.kwargs['url'] for request in requests)
+KeyError: 'url'
+[2015-06-28 22:19:09,033: ERROR/Worker-3] Error: KeyError('url',)
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/contrib/batches.py", line 126, in apply_batches_task
+    result = task(*args)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 439, in __protected_call__
+    return orig(self, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 420, in __call__
+    return self.run(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/temps/tasks.py", line 13, in count_click
+    count = Counter(request.kwargs['url'] for request in requests)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/collections/__init__.py", line 465, in __init__
+    self.update(iterable, **kwds)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/collections/__init__.py", line 545, in update
+    _count_elements(self, iterable)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/temps/tasks.py", line 13, in <genexpr>
+    count = Counter(request.kwargs['url'] for request in requests)
+KeyError: 'url'
+[2015-06-28 22:19:19,041: ERROR/Worker-4] Error: KeyError('url',)
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/contrib/batches.py", line 126, in apply_batches_task
+    result = task(*args)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 439, in __protected_call__
+    return orig(self, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 420, in __call__
+    return self.run(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/temps/tasks.py", line 13, in count_click
+    count = Counter(request.kwargs['url'] for request in requests)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/collections/__init__.py", line 465, in __init__
+    self.update(iterable, **kwds)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/collections/__init__.py", line 545, in update
+    _count_elements(self, iterable)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/temps/tasks.py", line 13, in <genexpr>
+    count = Counter(request.kwargs['url'] for request in requests)
+KeyError: 'url'
+[2015-06-28 22:22:08,668: ERROR/Worker-2] Error: KeyError('url',)
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/contrib/batches.py", line 126, in apply_batches_task
+    result = task(*args)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/trace.py", line 439, in __protected_call__
+    return orig(self, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/celery/app/task.py", line 420, in __call__
+    return self.run(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/temps/tasks.py", line 13, in count_click
+    count = Counter(request.kwargs['url'] for request in requests)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/collections/__init__.py", line 465, in __init__
+    self.update(iterable, **kwds)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/collections/__init__.py", line 545, in update
+    _count_elements(self, iterable)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/temps/tasks.py", line 13, in <genexpr>
+    count = Counter(request.kwargs['url'] for request in requests)
+KeyError: 'url'
