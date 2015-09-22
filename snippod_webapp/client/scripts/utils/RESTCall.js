@@ -41,7 +41,7 @@ var RESTCall = {
           'X-HTTP-Method-Override': method
         })
         .send(postData)
-        .end(function(response) {
+        .end(function(error, response) {
           if (response.ok) {
             resolve(response);
             if (callback && callback.success) {
@@ -85,7 +85,7 @@ var RESTCall = {
           'X-HTTP-Method-Override': method
         })
         .send(postData)
-        .end(function(response) {
+        .end(function(error, response) {
           if (response.ok) {
             resolve(response);
             if (callback && callback.success) {
@@ -124,7 +124,7 @@ var RESTCall = {
           'X-CSRFToken': csrftoken,
           'X-Requested-With': 'XMLHttpRequest',
         })
-        .end(function(response) {
+        .end(function(error, response ) {
           if (response.ok) {
             resolve(response);
             if (callback && callback.success) {
