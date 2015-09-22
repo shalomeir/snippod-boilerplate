@@ -12,10 +12,10 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'link', 'author', 'created_at', 'updated_at')
     search_fields = ('link', 'title')
 
-    fieldsets = (
-        (None, {'fields': ('title', 'link')}),
-        (_('Writer'), {'fields': ('author')}),
-    )
+    # fieldsets = (
+    #     (None, {'fields': ('title', 'link')}),
+    #     (_('Writer'), {'fields': ('author')}),
+    # )
     ordering = ('-created_at',)
 
 

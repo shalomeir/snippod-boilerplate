@@ -2270,3 +2270,108 @@ Traceback (most recent call last):
   File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/files/storage.py", line 270, in listdir
     for entry in os.listdir(path):
 FileNotFoundError: [Errno 2] No such file or directory: '/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/snippod_webapp/.tmp'
+Internal Server Error: /api/v1/posts/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/views.py", line 464, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/views.py", line 461, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/mixins.py", line 40, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/posts/views.py", line 16, in get_queryset
+    sorting = self.request.QUERY_PARAMS.get('sorting', None)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/request.py", line 444, in __getattribute__
+    return super(Request, self).__getattribute__(attr)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/request.py", line 469, in QUERY_PARAMS
+    '`request.QUERY_PARAMS` has been deprecated in favor of `request.query_params` '
+NotImplementedError: `request.QUERY_PARAMS` has been deprecated in favor of `request.query_params` since version 3.0, and has been fully removed as of version 3.2.
+Internal Server Error: /api/v1/posts/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/views.py", line 464, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/views.py", line 461, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/mixins.py", line 40, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/posts/views.py", line 16, in get_queryset
+    sorting = self.request.QUERY_PARAMS.get('sorting', None)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/request.py", line 444, in __getattribute__
+    return super(Request, self).__getattribute__(attr)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/request.py", line 469, in QUERY_PARAMS
+    '`request.QUERY_PARAMS` has been deprecated in favor of `request.query_params` '
+NotImplementedError: `request.QUERY_PARAMS` has been deprecated in favor of `request.query_params` since version 3.0, and has been fully removed as of version 3.2.
+Internal Server Error: /api/v1/posts/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/views.py", line 464, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/views.py", line 461, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/mixins.py", line 40, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/posts/views.py", line 16, in get_queryset
+    sorting = self.request.QUERY_PARAMS.get('sorting', None)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/request.py", line 444, in __getattribute__
+    return super(Request, self).__getattribute__(attr)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/request.py", line 469, in QUERY_PARAMS
+    '`request.QUERY_PARAMS` has been deprecated in favor of `request.query_params` '
+NotImplementedError: `request.QUERY_PARAMS` has been deprecated in favor of `request.query_params` since version 3.0, and has been fully removed as of version 3.2.
+Internal Server Error: /api/v1/posts/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/views.py", line 464, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/views.py", line 461, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/mixins.py", line 40, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/posts/views.py", line 16, in get_queryset
+    sorting = self.request.QUERY_PARAMS.get('sorting', None)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/request.py", line 444, in __getattribute__
+    return super(Request, self).__getattribute__(attr)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/request.py", line 469, in QUERY_PARAMS
+    '`request.QUERY_PARAMS` has been deprecated in favor of `request.query_params` '
+NotImplementedError: `request.QUERY_PARAMS` has been deprecated in favor of `request.query_params` since version 3.0, and has been fully removed as of version 3.2.
+Internal Server Error: /api/v1/posts/
+Traceback (most recent call last):
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/views.py", line 464, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/views.py", line 461, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/mixins.py", line 40, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/djangoapps/posts/views.py", line 16, in get_queryset
+    sorting = self.request.QUERY_PARAMS.get('sorting', None)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/request.py", line 444, in __getattribute__
+    return super(Request, self).__getattribute__(attr)
+  File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/rest_framework/request.py", line 469, in QUERY_PARAMS
+    '`request.QUERY_PARAMS` has been deprecated in favor of `request.query_params` '
+NotImplementedError: `request.QUERY_PARAMS` has been deprecated in favor of `request.query_params` since version 3.0, and has been fully removed as of version 3.2.

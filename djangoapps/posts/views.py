@@ -13,7 +13,7 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
 
     def get_queryset(self):
-        sorting = self.request.QUERY_PARAMS.get('sorting', None)
+        sorting = self.request.query_params.get('sorting', None)
         if sorting == 'upvotes':
             return Post.sorted_objects.upvotes()
         elif sorting == 'newest':
@@ -59,7 +59,7 @@ class UserPostViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         user_id = self.kwargs['userid']
-        sorting = self.request.QUERY_PARAMS.get('sorting', None)
+        sorting = self.request.query_params.get('sorting', None)
         if sorting == 'upvotes':
             return Post.sorted_objects.upvotes().filter(author=user_id)
         elif sorting == 'newest':
@@ -74,7 +74,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
 
     def get_queryset(self):
-        sorting = self.request.QUERY_PARAMS.get('sorting', None)
+        sorting = self.request.query_params.get('sorting', None)
         if sorting == 'upvotes':
             return Comment.sorted_objects.upvotes()
         elif sorting == 'newest':
@@ -123,7 +123,7 @@ class PostCommentViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         post_id = self.kwargs['postid']
-        sorting = self.request.QUERY_PARAMS.get('sorting', None)
+        sorting = self.request.query_params.get('sorting', None)
         if sorting == 'upvotes':
             return Comment.sorted_objects.upvotes().filter(post=post_id)
         elif sorting == 'newest':
@@ -137,7 +137,7 @@ class UserCommentViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         user_id = self.kwargs['userid']
-        sorting = self.request.QUERY_PARAMS.get('sorting', None)
+        sorting = self.request.query_params.get('sorting', None)
         if sorting == 'upvotes':
             return Comment.sorted_objects.upvotes().filter(author=user_id)
         elif sorting == 'newest':

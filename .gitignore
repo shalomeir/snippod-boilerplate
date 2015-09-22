@@ -16,11 +16,17 @@ snippod_boilerplate/.DS_Store
 fabric/
 fabfile/
 
+# django migrations
+djangoapps/*/migrations
+
 # Python compiled byte code
 *.pyc
 
 # SQLite3 database
 *.sqlite3
+
+# IDE
+.idea/*
 
 # Staticfiles
 #staticfiles/
@@ -34,7 +40,7 @@ staticfiles/
 
 
 #log
-logs/
+logs/*
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

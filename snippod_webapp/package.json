@@ -53,7 +53,7 @@
     "bower": "~1.3.3",
     "browserify": "~6.2.0",
     "connect-livereload": "~0.5.2",
-    "grunt": "~0.4.2",
+    "grunt": "~0.4.5",
     "grunt-autoprefixer": "~1.0.1",
     "grunt-browserify": "~3.2.0",
     "grunt-concurrent": "~1.0.0",

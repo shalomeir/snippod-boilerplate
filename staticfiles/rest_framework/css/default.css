@@ -3,7 +3,7 @@
 content running up underneath it. */
 
 h1 {
-  font-weight: 500;
+  font-weight: 300;
 }
 
 h2, h3 {
@@ -13,6 +13,7 @@ h2, h3 {
 .resource-description, .response-info {
   margin-bottom: 2em;
 }
+
 .version:before {
   content: "v";
   opacity: 0.6;
@@ -32,12 +33,12 @@ h2, h3 {
   margin-right: 1em;
 }
 
-ul.breadcrumb {
-  margin: 70px 0 0 0;
+td.nested {
+  padding: 0 !important;
 }
 
-.breadcrumb li.active a {
-  color: #777;
+td.nested > table {
+  margin: 0;
 }
 
 form select, form input, form textarea {
