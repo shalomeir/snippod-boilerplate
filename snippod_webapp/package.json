@@ -1,6 +1,8 @@
 {
   "name": "snippod_webapp",
-  "version": "0.0.1",
+  "version": "0.1.1",
+  "description": "snippod web application using React boilerplate for starter",
+  "main": "client/scripts/main.js",
   "dependencies": {
     "async": "^1.4.2",
     "bcrypt-nodejs": "~0.0.3",
@@ -102,6 +104,22 @@
     "start": "NODE_ENV=production node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shalomeir/snippod-boilerplate"
+  },
+  "keywords": [
+    "snippod",
+    "boilerplate",
+    "django",
+    "react",
+    "flux",
+    "webapp",
+    "spa",
+    "starter"
+  ],
+  "author": "Seonggyu Lee",
+  "license": "MIT",
   "engines": {
     "node": ">=0.10.0 <0.12"
   }
