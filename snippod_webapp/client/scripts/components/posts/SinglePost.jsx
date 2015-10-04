@@ -37,7 +37,6 @@ var SinglePost = React.createClass({
 
   propTypes: {
     params: PropTypes.object.isRequired,
-    query: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
   },
@@ -93,7 +92,7 @@ var SinglePost = React.createClass({
         <DocumentTitle title='Single Post'>
           <div className="singlepost main-container content full-width">
             { this.state.post ? <Post post={ this.state.post } {...this.props} /> : null }
-            Go to <Link to="app"> Snippod's Home </Link>
+            Go to <Link to="/"> Snippod's Home </Link>
           </div>
         </DocumentTitle>
         /* jshint ignore:end */

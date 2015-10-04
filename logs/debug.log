@@ -2409,3 +2409,5 @@ Traceback (most recent call last):
   File "/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/venv/lib/python3.4/site-packages/django/core/files/storage.py", line 300, in listdir
     for entry in os.listdir(path):
 FileNotFoundError: [Errno 2] No such file or directory: '/Users/shalomeir/IdeaProjects/Snippod/snippod-boilerplate/snippod_webapp/.tmp'
+Method Not Allowed (POST): /api/v1/accounts//
+Forbidden (CSRF token missing or incorrect.): /comments/

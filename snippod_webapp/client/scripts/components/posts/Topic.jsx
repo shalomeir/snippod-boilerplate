@@ -26,7 +26,6 @@ var Topic = React.createClass({
 
   propTypes: {
     params: PropTypes.object.isRequired,
-    query: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
   },

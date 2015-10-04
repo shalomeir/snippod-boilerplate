@@ -3,8 +3,7 @@
  */
 'use strict';
 
-var Reflux = require('reflux'),
-    router = require('../../router');
+var Reflux = require('reflux');
 
 var UIActions = Reflux.createActions({
   //from component to component directly.

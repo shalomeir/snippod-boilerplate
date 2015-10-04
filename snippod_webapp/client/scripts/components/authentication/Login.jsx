@@ -81,7 +81,7 @@ var Login = React.createClass({
         <div className="error login-error">
           { this.state.errors }
           <br/>
-          <Link to="forgot">Forgot your password? </Link>
+          <Link to="/login/forgot">Forgot your password? </Link>
         </div>
         /* jshint ignore:end */
       );

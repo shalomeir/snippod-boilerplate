@@ -66,7 +66,7 @@ DATABASE_OPTIONS = {'charset': 'utf8'}
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
+    # os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
     os.path.join(BASE_DIR, 'snippod_webapp/dist/client'), #grunt
     # os.path.join(BASE_DIR, 'static'),
 )

@@ -99,7 +99,7 @@ var Comment = React.createClass({
       postLink = (
         /* jshint ignore:start */
         <span className="post-info-item">
-          <Link to="singlePost" params={{ postId: post.id }}> { post.title } </Link>
+          <Link to={`/post/${post.id}`}> { post.title } </Link>
         </span>
         /* jshint ignore:end */
       );
@@ -115,7 +115,7 @@ var Comment = React.createClass({
           <div className="posted-by float-left">
             <CommentUpvote comment = { comment } auth = { auth } />
             <span className="post-info-item">
-              <Link to="user" params={{ userId: comment.author.id }}>
+              <Link to={`/user/${comment.author.id}`}>
                 { comment.author.username } </Link>
             </span>
             <span className="post-info-item">

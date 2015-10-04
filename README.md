@@ -23,6 +23,7 @@ We made this using these technologies.
 * [React](http://facebook.github.io/react/)
 * [Reflux](https://github.com/spoike/refluxjs)
 * [Immutable js](http://facebook.github.io/immutable-js/)
+* [React Router](https://github.com/rackt/react-router) v1.0.0-rc1
 * [Django](https://www.djangoproject.com/) and [Djnago REST Framework](http://www.django-rest-framework.org/)
 
 ## Getting Started
@@ -39,7 +40,7 @@ git clone https://github.com/shalomeir/snippod-boilerplate
 ### Installation for frontend WebApp
 In the ['snippod-webapp'](https://github.com/shalomeir/snippod-boilerplate/tree/master/snippod_webapp) directory **'./snippod_webapp/'**
 
-There are a few dependencies that this project relies on: Node.js, Grunt & Bower
+There are a few dependencies that this project relies on: Node.js (v.0.10.36), Grunt & Bower
 
 - `npm install && bower install`
 

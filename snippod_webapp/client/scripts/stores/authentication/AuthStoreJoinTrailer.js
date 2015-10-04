@@ -1,7 +1,8 @@
 'use strict';
 
+import history from '../../utils/History.js'
+
 var Reflux = require('reflux'),
-    router = require('../../router'),
     AuthAccountActions = require('../../actions/authentication/AuthAccountActions'),
     AuthStore = require('./AuthStore'),
     AccountStore = require('./AccountStore');
@@ -15,7 +16,7 @@ var AuthStoreJoinTrailer = Reflux.createStore({
   },
 
   redirectTo: function(){
-    router.transitionTo('/settings');
+    history.pushState('/settings')
   }
 
 });

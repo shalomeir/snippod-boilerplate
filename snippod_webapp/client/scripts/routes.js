@@ -1,8 +1,12 @@
 'use strict';
 
-var React = require('react'),
-    { Route, DefaultRoute } = require('react-router'),
-    App = require('./components/App.jsx'),
+import React from 'react'
+import { Route, IndexRoute, Link } from 'react-router'
+
+//var React = require('react'),
+//    { Route, DefaultRoute } = require('react-router'),
+
+var App = require('./components/App.jsx'),
     //Login = require('./components/authentication/login.jsx'),
     //SignUp = require('./components/authentication/signup.jsx'),
     Forgot = require('./components/authentication/Forgot.jsx'),
@@ -11,19 +15,20 @@ var React = require('react'),
     Empty = require('./components/subs/Empty.jsx'),
     User = require('./components/user/User.jsx'),
     Topic = require('./components/posts/Topic.jsx'),
-    SinglePost = require('./components/posts/SinglePost.jsx');
+    SinglePost = require('./components/posts/SinglePost.jsx'),
+    requireAuth = require('./utils/requireAuth');
 
 var routes = (
   /* jshint ignore:start */
-  <Route name='app' path='/' handler={App}>
-    <DefaultRoute handler={Topic} />
-    <Route name='login' path='/login' handler={Empty} />
-    <Route name='register' path='/register' handler={Empty} />
-    <Route name='forgot' path='/login/forgot' handler={Forgot} />
-    <Route name='settings' path='/settings' handler={Settings} />
-    <Route name='user' path='/user/:userId' handler={User} />
-    <Route name='singlePost' path='/post/:postId' handler={SinglePost} />
-    <Route name='empty' path='/empty' handler={Empty} />
+  <Route path='/' component={App}>
+    <IndexRoute component={Topic} />
+    <Route path='/login' component={Empty} />
+    <Route path='/register' component={Empty} />
+    <Route path='/login/forgot' component={Forgot} />
+    <Route path='/settings' component={Settings} onEnter={requireAuth}/>
+    <Route path='/user/:userId' component={User} />
+    <Route path='/post/:postId' component={SinglePost} />
+    <Route path='/empty' component={Empty} />
   </Route>
 
   /* jshint ignore:end */

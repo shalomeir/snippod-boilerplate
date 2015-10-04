@@ -60,7 +60,7 @@ var Post = React.createClass({
       /* jshint ignore:start */
       <div className="post">
         <div className="post-link">
-          <Link to="singlePost" params={{ postId: post.id }}
+          <Link to={`/post/${post.id}`}
                 className="post-title" >{ post.title }</Link>
           <span className="hostname">
             (<a href={ post.link } target="_blank">{ this.hostnameFromUrl(post.link) }</a>)
@@ -70,14 +70,14 @@ var Post = React.createClass({
           <div className="posted-by">
             <PostUpvote { ...this.props} />
             <span className="post-info-item">
-              <Link to="user" params={{ userId: post.author.id }}>
+              <Link to={`/user/${post.author.id}`}>
                 { post.author.username } </Link>
             </span>
             <span className="post-info-item">
                             { this.timeAgo(post.createdAt) }
             </span>
             <span className="post-info-item">
-              <Link to="singlePost" params={{ postId: post.id }}>
+              <Link to={`/post/${post.id}`}>
                 { this.pluralize(commentCount, 'comment') }
               </Link>
             </span>

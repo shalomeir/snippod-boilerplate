@@ -18,7 +18,6 @@ var Empty = React.createClass({
 
   propTypes: {
     params: PropTypes.object.isRequired,
-    query: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
   },
@@ -32,7 +31,7 @@ var Empty = React.createClass({
   },
 
   _checkOverlay: function() {
-    var pathString = this.props.path.toLowerCase().trim();
+    var pathString = this.props.location.pathname.toLowerCase().trim();
     if (pathString === String('/login')) {
       UIActions.showOverlay('login');
     } else if (pathString === String('/register')) {

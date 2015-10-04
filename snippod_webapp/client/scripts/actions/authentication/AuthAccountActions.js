@@ -1,8 +1,9 @@
 'use strict';
 
+import history from '../../utils/History.js'
+
 var Reflux = require('reflux'),
     $ = require('jquery'),
-    router = require('../../router'),
     ga = require('react-ga'),
     { requestPostForm }= require('../../utils/RESTCall'),
     Cookies = require('cookies-js'),
@@ -100,7 +101,7 @@ AuthAccountActions.logout.completed.preEmit = function(response) {
   Cookies.expire('csrftoken');
   Cookies.expire('sessionid');
   // Redirect to returnpage
-  router.replaceWith('/empty');
+  history.replaceState(null, '/empty');
   PostsActions.clearAllPostsCommentsStore(PostsActions.refreshDataFromStore);
   PageActions.transitionToReturnpage();
 
@@ -148,7 +149,7 @@ AuthAccountActions.destroy.preEmit= function(form, callback) {
     .catch(this.failed);
 };
 AuthAccountActions.destroy.completed.preEmit = function(response) {
-  router.transitionTo('/');
+  history.pushState('/')
   AuthAccountActions.logout();
 };
 

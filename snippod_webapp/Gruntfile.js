@@ -57,8 +57,8 @@ module.exports = function(grunt) {
     }
   }
 
-  //for ES6 (By Shalomeir)
-  grunt.loadNpmTasks('grunt-esnext');
+  //for ES6 (By Shalomeir) -> using bebel in browserify
+  //grunt.loadNpmTasks('grunt-esnext');
 
   // Load task functions
   var utilConfig = loadTasks('./grunt/config/util');

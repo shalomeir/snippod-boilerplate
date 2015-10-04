@@ -1,7 +1,7 @@
 'use strict';
+import history from '../../utils/History.js'
 
 var Reflux = require('reflux'),
-    router = require('../../router'),
     { searchToObject } = require('../../utils/StringControl'),
     pageDefaults = require('../../constants/defaults').page,
     pageActions = require('../../actions/commons/PageActions');
@@ -44,8 +44,9 @@ var PageStore = Reflux.createStore({
 
   transitionToReturnpage: function(callback) {
     if (this.page.returnpage) {
-      router.replaceWith(this.page.returnpage, null,
-        searchToObject(this.page.returnquery));
+      history.replaceState(null, this.page.returnpage, searchToObject(this.page.returnquery));
+      //router.replaceWith(this.page.returnpage, null,
+      //  searchToObject(this.page.returnquery));
       this.resetReturnpage();
     }
     if(typeof callback !== 'undefined') { callback(); }

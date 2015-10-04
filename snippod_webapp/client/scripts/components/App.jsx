@@ -5,7 +5,7 @@ var React = require('react'),
     { PropTypes } = React,
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     DocumentTitle = require('react-document-title'),
-    { RouteHandler } = require('react-router'),
+    //{ RouteHandler } = require('react-router'),
     $ = require('jquery'),
     cx = require('classnames'),
     NavBar = require('./navbar/Navbar.jsx'),
@@ -33,7 +33,6 @@ var App = React.createClass({
 
   propTypes: {
     params: PropTypes.object.isRequired,
-    query: PropTypes.object.isRequired
   },
 
   getInitialState: function() {
@@ -119,7 +118,7 @@ var App = React.createClass({
           </header>
           <main id='content' className='full-height inner'>
             <Messages />
-            <RouteHandler {...this.props} account={account} auth={auth} />
+            {React.cloneElement(this.props.children, {account: account, auth:auth })}
           </main>
           <div className={ overlayCx } ref="overlay">{ overlayContent }</div>
         </div>

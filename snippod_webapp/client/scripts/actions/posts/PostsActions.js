@@ -5,7 +5,6 @@
 
 var Reflux = require('reflux'),
     $ = require('jquery'),
-    router = require('../../router'),
     { requestGet, requestPost, requestPostForm }= require('../../utils/RESTCall');
 
 var PostsActions = Reflux.createActions({

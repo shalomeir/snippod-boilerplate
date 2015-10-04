@@ -1,10 +1,12 @@
 'use strict';
 
+
+
 var React = require('react'),
     { PropTypes } = React,
+    { History } = require('react-router'),
     Reflux = require('reflux'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    router = require('../../../router'),
     sortingOptionDefault = require('../../../constants/defaults')
                             .sortingOption,
     //components
@@ -23,6 +25,7 @@ var Posts = React.createClass({
 
   mixins: [
     PureRenderMixin,
+    History,
     Reflux.listenTo(PostListStore, 'onPostsUpdate'),
     Reflux.listenTo(PostStore, 'onPostsUpdate'),
     Reflux.listenTo(PostsActions.refreshDataFromStore, 'onPostsUpdate')
@@ -30,13 +33,12 @@ var Posts = React.createClass({
 
   propTypes: {
     params: PropTypes.object.isRequired,
-    query: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
   },
 
   getInitialState: function() {
-    var postListObjects = PostListStore.getObjects(this.props.query.sorting);
+    var postListObjects = PostListStore.getObjects(this.props.location.query.sorting);
     return this._parsePostListObjects(postListObjects);
   },
 
@@ -47,7 +49,7 @@ var Posts = React.createClass({
   },
 
   componentDidUpdate: function(prevProps, prevState) {
-    if(prevProps.query.sorting !== this.props.query.sorting) {
+    if(prevProps.location.query.sorting !== this.props.location.query.sorting) {
       var nextState = this.getInitialState();
       this.setState(nextState);
       if(nextState.pageCount === 0) {
@@ -67,7 +69,7 @@ var Posts = React.createClass({
   },
 
   onPostsUpdate: function() {
-    var postListObjects = PostListStore.getObjects(this.props.query.sorting);
+    var postListObjects = PostListStore.getObjects(this.props.location.query.sorting);
     this.setState(this._parsePostListObjects(postListObjects));
     if (postListObjects.pagenatedList.getPageCount()===0) {
       this._callPostsActions();
@@ -77,7 +79,7 @@ var Posts = React.createClass({
   render: function() {
     var posts = this.state.posts;
     var auth = this.props.auth;
-    var sortOption = this.props.query.sorting || sortingOptionDefault.defaultSorting;
+    var sortOption = this.props.location.query.sorting || sortingOptionDefault.defaultSorting;
     // possible sort values (defined in constants/defaults.js)
     var sortValues = Object.keys(sortingOptionDefault.optionValues);
 
@@ -137,7 +139,8 @@ var Posts = React.createClass({
   updateSortBy: function(e) {
     e.preventDefault();
     var query = { sorting : this.refs.sortBy.getDOMNode().value };
-    router.transitionTo('app', null, query);
+    //router.transitionTo('app', null, query);
+    this.history.pushState(null, '/', query);
   },
 
   handleLoadMoreClick: function() {
@@ -148,7 +151,7 @@ var Posts = React.createClass({
     this.setState({ loading: true });
     var action = '/posts/';
     var query = {
-      sorting: this.props.query.sorting || sortingOptionDefault.defaultSorting
+      sorting: this.props.location.query.sorting || sortingOptionDefault.defaultSorting
     };
     if ( nextPageUrl && nextPageUrl !== '/' ) {
       PostsActions.getPosts(nextPageUrl);

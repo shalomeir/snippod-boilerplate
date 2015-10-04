@@ -4,7 +4,6 @@
 'use strict';
 
 var $ = require('jquery'),
-    router = require('../router'),
     { getParameterByName, checkAbsoluteURL } = require('./StringControl'),
     Cookies = require('cookies-js'),
     request = require('superagent'),

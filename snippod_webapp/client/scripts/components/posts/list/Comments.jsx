@@ -4,7 +4,6 @@ var React = require('react'),
     { PropTypes } = React,
     Reflux = require('reflux'),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    router = require('../../../router'),
 
     //components
     Comment = require('./comment/Comment.jsx'),
@@ -31,7 +30,6 @@ var Comments = React.createClass({
 
   propTypes: {
     params: PropTypes.object.isRequired,
-    query: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     post: PropTypes.object.isRequired

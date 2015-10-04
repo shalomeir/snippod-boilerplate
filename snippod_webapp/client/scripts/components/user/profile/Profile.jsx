@@ -12,7 +12,6 @@ var Profile = React.createClass({
 
   propTypes: {
     params: PropTypes.object.isRequired,
-    query: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired
@@ -27,7 +26,7 @@ var Profile = React.createClass({
     if (auth.loggedIn && account.id === user.id) {
       linkSetting = (
         /* jshint ignore:start */
-        <Link to="settings"> [setting] </Link>
+        <Link to="/settings"> [setting] </Link>
         /* jshint ignore:end */
       );
     }

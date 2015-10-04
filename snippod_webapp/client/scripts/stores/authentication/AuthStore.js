@@ -1,7 +1,8 @@
 'use strict';
 
+import history from '../../utils/History.js'
+
 var Reflux = require('reflux'),
-    router = require('../../router'),
     Im = require('immutable'),
     authDefault = require('../../constants/defaults').auth,
     AuthAccountActions = require('../../actions/authentication/AuthAccountActions');
@@ -49,7 +50,7 @@ var AuthStore = Reflux.createStore({
     this.trigger();
 
     if (transitionTo) {
-      router.transitionTo(transitionTo);
+      history.pushState(transitionTo)
     }
     if(typeof callback !== 'undefined') { callback(); }
   }
