@@ -1,0 +1,15 @@
+{
+  "name": "test",
+  "dependencies": {
+    "fake": "x"
+  },
+  "overrides": {
+    "fake": {
+      "main": 
+      [
+      	"override_path/fake.js",
+      	"override_path/fake.css"
+      ]
+    }
+  }
+}

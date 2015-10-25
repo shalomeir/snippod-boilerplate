@@ -1,0 +1,6 @@
+{
+  "js": [
+    "/test/fixtures/script.js",
+    "/test/fixtures/script2.js"
+  ]
+}

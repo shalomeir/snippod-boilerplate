@@ -1,0 +1,14 @@
+{
+  "name": "superagent-csrf",
+  "repo": "segmentio/superagent-csrf",
+  "description": "Adds CSRF headers to client-side superagent requests",
+  "version": "1.0.0",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": [
+    "lib/index.js"
+  ]
+}
