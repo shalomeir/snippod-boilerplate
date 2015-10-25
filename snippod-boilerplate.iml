@@ -15,17 +15,17 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/djangoapps" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/snippod_boilerplate" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/client/scripts" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/client/styles" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/grunt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp/server" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/client/scripts" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/client/styles" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/grunt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/server" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/backup" />
       <excludeFolder url="file://$MODULE_DIR$/logs" />
-      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/.tmp" />
-      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/client/bower_components" />
-      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/node_modules" />
-      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp/scripts" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/client/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/scripts" />
       <excludeFolder url="file://$MODULE_DIR$/staticfiles" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>

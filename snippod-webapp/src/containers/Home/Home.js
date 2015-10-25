@@ -16,7 +16,7 @@ export default class Home extends Component {
                 <img src={logoImage}/>
               </p>
             </div>
-            <h1>React Redux Example</h1>
+            <h1>Snippod React Redux Example</h1>
 
             <h2>All the modern best practices in one example.</h2>
 

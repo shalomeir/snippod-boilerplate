@@ -1,14 +1,14 @@
 {
-  "name": "react-redux-universal-hot-example",
-  "description": "Example of an isomorphic (universal) webapp using react redux and hot reloading",
-  "author": "Erik Rasmussen <rasmussenerik@gmail.com> (http://github.com/erikras)",
+  "name": "snippod-webapp-boilerplate",
+  "description": "Snippod frontend webapp boilerplate using react redux and hot reloading",
+  "author": "Seonggyu Lee <shalomeir@gmail.com> (http://github.com/shalomeir)",
   "license": "MIT",
-  "version": "0.0.5",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/erikras/react-redux-universal-hot-example"
+    "url": ""
   },
-  "homepage": "https://github.com/erikras/react-redux-universal-hot-example",
+  "homepage": "http://www.shalomeir.com",
   "keywords": [
     "react",
     "isomorphic",
@@ -20,7 +20,8 @@
     "redux",
     "starter",
     "boilerplate",
-    "babel"
+    "babel",
+    "snippod"
   ],
   "main": "bin/server.js",
   "scripts": {
@@ -165,6 +166,6 @@
     "webpack-hot-middleware": "^2.4.1"
   },
   "engines": {
-    "node": "4.1.1"
+    "node": "4.2.1"
   }
 }

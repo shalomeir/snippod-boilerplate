@@ -3,11 +3,16 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/bin" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/public" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/routes" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/views" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/auto_default_code/bin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/auto_default_code/public" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/auto_default_code/routes" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/auto_default_code/views" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/api" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/static" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/webpack" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/static/dist" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Node.js v4.2.1 Core Modules" level="application" />

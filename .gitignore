@@ -1,14 +1,26 @@
+# Copy all gitignore from snippod-webapp
+
 .DS_Store
-snippod_webapp/.DS_Store
-snippod_webapp/node_modules
-snippod_webapp/*.log
-snippod_webapp/dist/server
-snippod_webapp/dist/client/.map
-snippod_webapp/dist/client/docs
-snippod_webapp/client/bower_components
-snippod_webapp/.tmp
-snippod_webapp/.grunt
-snippod_webapp/.yo-rc.json
+.idea
+
+node_modules/
+dist/
+*.iml
+webpack-stats.json
+npm-debug.log
+auto_default_code/
+
+
+snippod_webapp_reflux/.DS_Store
+snippod_webapp_reflux/node_modules
+snippod_webapp_reflux/*.log
+snippod_webapp_reflux/dist/server
+snippod_webapp_reflux/dist/client/.map
+snippod_webapp_reflux/dist/client/docs
+snippod_webapp_reflux/client/bower_components
+snippod_webapp_reflux/.tmp
+snippod_webapp_reflux/.grunt
+snippod_webapp_reflux/.yo-rc.json
 
 snippod_boilerplate/.DS_Store
 
@@ -25,9 +37,6 @@ djangoapps/*/migrations
 # SQLite3 database
 *.sqlite3
 
-# IDE
-.idea/*
-
 # Staticfiles
 #staticfiles/
 
@@ -41,6 +50,7 @@ staticfiles/
 
 #log
 logs/*
+logs/*.log
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

@@ -1,6 +1,9 @@
-.idea/
+.DS_Store
+.idea
+
 node_modules/
 dist/
 *.iml
 webpack-stats.json
 npm-debug.log
+auto_default_code/

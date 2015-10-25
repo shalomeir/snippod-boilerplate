@@ -7,7 +7,7 @@ import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/module
 import { InfoBar } from 'components';
 import { pushState } from 'redux-router';
 
-const title = 'React Redux Example';
+const title = 'Snippod React Redux Example';
 const description = 'All the modern best practices in one example.';
 const image = 'https://react-redux.herokuapp.com/logo.jpg';
 
@@ -97,7 +97,7 @@ export default class App extends Component {
           <div className="container">
             <NavbarLink to="/" className="navbar-brand" component={IndexLink}>
               <div className={styles.brand}/>
-              React Redux Example
+              Snippod React Redux Example
             </NavbarLink>
 
             <ul className="nav navbar-nav">
