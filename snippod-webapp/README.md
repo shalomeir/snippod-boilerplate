@@ -1,41 +1,18 @@
-# React Redux Universal Hot Example
+# **Snippod-Webapp-Boilerplate**
 
-[![build status](https://img.shields.io/travis/erikras/react-redux-universal-hot-example/master.svg?style=flat-square)](https://travis-ci.org/erikras/react-redux-universal-hot-example)
-[![react-redux-universal channel on slack](https://img.shields.io/badge/slack-react--redux--universal%40reactiflux-blue.svg)](http://www.reactiflux.com)
-[![Demo on Heroku](https://img.shields.io/badge/demo-heroku-lightgrey.png)](https://react-redux.herokuapp.com)
-[![Dependency Status](https://david-dm.org/erikras/react-redux-universal-hot-example.svg)](https://david-dm.org/erikras/react-redux-universal-hot-example)
-[![devDependency Status](https://david-dm.org/erikras/react-redux-universal-hot-example/dev-status.svg)](https://david-dm.org/erikras/react-redux-universal-hot-example#info=devDependencies)
-[![PayPal donate button](http://img.shields.io/paypal/donate.png?color=yellowgreen)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2LK57ZQ9YRMN)
 
 ---
 
 ## About
 
-This is a starter boiler plate app I've put together using the following technologies:
+This is a starter boiler plate web app for client side of [**Snippod-Boilerplate**](https://github.com/shalomeir/snippod-boilerplate).
+This is combined based on the following repositories: 
 
-* ~~Isomorphic~~ [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) rendering
-* Both client and server make calls to load data from separate API server
-* [React](https://github.com/facebook/react)
-* [React Router](https://github.com/rackt/react-router)
-* [Express](http://expressjs.com)
-* [Babel](http://babeljs.io) for ES6 and ES7 magic
-* [Webpack](http://webpack.github.io) for bundling
-* [Webpack Dev Middleware](http://webpack.github.io/docs/webpack-dev-middleware.html)
-* [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
-* [Redux](https://github.com/rackt/redux)'s futuristic [Flux](https://facebook.github.io/react/blog/2014/05/06/flux.html) implementation
-* [Redux Dev Tools](https://github.com/gaearon/redux-devtools) for next generation DX (developer experience). Watch [Dan Abramov's talk](https://www.youtube.com/watch?v=xsSnOQynTHs).
-* [Redux Router](https://github.com/rackt/redux-router) Keep your router state in your Redux store
-* [ESLint](http://eslint.org) to maintain a consistent code style
-* [redux-form](https://github.com/erikras/redux-form) to manage form state in Redux
-* [lru-memoize](https://github.com/erikras/lru-memoize) to speed up form validation
-* [multireducer](https://github.com/erikras/multireducer) to combine single reducers into one key-based reducer
-* [style-loader](https://github.com/webpack/style-loader), [sass-loader](https://github.com/jtangelder/sass-loader) and [less-loader](https://github.com/webpack/less-loader) to allow import of stylesheets in plain css, sass and less,
-* [bootstrap-sass-loader](https://github.com/shakacode/bootstrap-sass-loader) and [font-awesome-webpack](https://github.com/gowravshekar/font-awesome-webpack) to customize Bootstrap and FontAwesome
-* [react-document-meta](https://github.com/kodyl/react-document-meta) to manage title and meta tag information on both server and client
-* [webpack-isomorphic-tools](https://github.com/halt-hammerzeit/webpack-isomorphic-tools) to allow require() work for statics both on client and server
-* [mocha](https://mochajs.org/) to allow writing unit tests for the project.
+* [React Redux Universal Hot Example](https://github.com/erikras/react-redux-universal-hot-example)
+* [Redux Real-World Example](https://github.com/rackt/redux/tree/master/examples/real-world)
 
-I cobbled this together from a wide variety of similar "starter" repositories. As I post this in June 2015, all of these libraries are right at the bleeding edge of web development. They may fall out of fashion as quickly as they have come into it, but I personally believe that this stack is the future of web development and will survive for several years. I'm building my new projects like this, and I recommend that you do, too.
+And front demo application design is based on [Evan's React News](https://github.com/echenley/react-news).
+We use these repositories and technologies to build front web application and api call with django REST Framework API.
 
 ## Installation
 
@@ -169,7 +146,7 @@ Fear not. [chtefi](https://github.com/chtefi) has figured out [what needs to be 
 
 They will only show in development, but if you want to disable them even there, set `__DEVTOOLS__` to `false` in `/webpack/dev.config.js`.
 
----
-Thanks for checking this out.
+## License
+[MIT License](http://opensource.org/licenses/MIT).
 
-– Erik Rasmussen, [@erikras](https://twitter.com/erikras)
+Copyright 2015 [Seonggyu Lee](http://www.shalomeir.com/).

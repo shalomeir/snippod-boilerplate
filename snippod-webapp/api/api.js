@@ -1,4 +1,5 @@
 require('../server.babel'); // babel registration (runtime transpilation for node)
+//FIXME: Do not use Node.js server now
 
 import express from 'express';
 import session from 'express-session';

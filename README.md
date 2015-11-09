@@ -21,9 +21,8 @@ Also serverside are maded by [django REST framework](http://www.django-rest-fram
 We made this using these technologies.
 
 * [React](http://facebook.github.io/react/)
-* [Reflux](https://github.com/spoike/refluxjs)
+* [Redux](https://github.com/gaearon/redux)
 * [Immutable js](http://facebook.github.io/immutable-js/)
-* [React Router](https://github.com/rackt/react-router) v1.0.0-rc1
 * [Django](https://www.djangoproject.com/) and [Djnago REST Framework](http://www.django-rest-framework.org/)
 
 ## Getting Started

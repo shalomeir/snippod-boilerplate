@@ -123,10 +123,26 @@ class LoginView(views.APIView):
             }, status=status.HTTP_401_UNAUTHORIZED)
 
 
+class LoadAuthView(views.APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def get(self, request, format=None):
+
+        if request.user.is_active:
+            serialized = AccountSerializer(request.user, context={'request': request})
+            return Response({
+                'account': serialized.data
+            })
+        return Response({
+            'status': 'Unauthorized',
+            'message': 'Automation PreLoad Authentication by cookie is failed.'
+        }, status=status.HTTP_204_NO_CONTENT)
+
+
 class LogoutView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
-    def post(self, request, format=None):
+    def get(self, request, format=None):
         logout(request)
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)

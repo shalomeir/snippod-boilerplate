@@ -31,6 +31,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'compressor',
     'rest_framework',
+    'corsheaders',
     'argonauts',
     'main',
     'authentication',
@@ -39,6 +40,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -84,13 +86,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_ROOT = 'staticfiles'
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-)
+#We use node js server for static source.
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#     'compressor.finders.CompressorFinder',
+# )
 
 #MEDIA FILE (user uploaded files)
 MEDIA_ROOT = 'mediafiles'
@@ -128,6 +133,22 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 # ALLOWED_HOSTS = ['*']
 
+# CORS HEADER Setting
+# https://github.com/ottoyiu/django-cors-headers/
+# CORS_ORIGIN_ALLOW_ALL = True #Do Not use this options
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+    '127.0.0.1:3000'
+)
+
+CORS_ORIGIN_REGEX_WHITELIST = ('^(https?://)?(\w+\.)?elasticbeanstalk\.com$', )
+
+CORS_URLS_REGEX = r'^/api/.*$'
+
+CORS_ALLOW_CREDENTIALS = True
+
+
+# USER Model default is changed by this setup.
 AUTH_USER_MODEL = 'authentication.Account'
 
 # Node server is important for React Server-side rendering.

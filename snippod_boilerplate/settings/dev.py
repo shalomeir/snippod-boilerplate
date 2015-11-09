@@ -63,15 +63,16 @@ DATABASE_OPTIONS = {'charset': 'utf8'}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
-    os.path.join(BASE_DIR, 'snippod_webapp/dist/client'), #grunt
-    # os.path.join(BASE_DIR, 'static'),
-)
-
-COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+#Do not use static server
+#
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
+#     os.path.join(BASE_DIR, 'snippod_webapp/dist/client'), #grunt
+#     # os.path.join(BASE_DIR, 'static'),
+# )
+#
+# COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 #MEDIA FILE (user uploaded files)
 

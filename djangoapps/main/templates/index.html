@@ -7,18 +7,9 @@
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>snippod-boilerplate</title>
-  <meta name="description" content=""/>
-  <meta name="author" content=""/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-
-  {% include 'stylesheets.html' %}
-
-  <script src="{% static "scripts/modernizr.js" %}"></script>
-
-  <!-- HTML5 and consolelog shims for IE8 support -->
-  <!--[if lt IE 9]><script src="{% static "scripts/lt-ie9.js" %}"></script><![endif]-->
+  <title>snippod-boilerplate-server</title>
+  <meta name="description" content="This page is not for client. This server is only for the REST API."/>
+  <meta name="author" content="Seonggyu Lee"/>
 
 </head>
 
@@ -27,19 +18,11 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser.
     Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
+  <p> This page is not for the client. This server is only for the REST API.</p>
+  <p> Check this <a href="./api/v1/">url</a>.</p>
 
   <!-- Application loads here -->
   <div id="app-wrapper" ></div>
-
-  <!--[if lt IE 9]>
-    <script src="{% static "scripts/lt-ie9.js" %}"></script>
-  <![endif]-->
-
-
-  {#  main javascript application usgin react + reflux#}
-  <script src="{% static "scripts/main.js" %}"></script>
-
-  {% include 'nodeserverrendering.html' %}
 
 </body>
 </html>

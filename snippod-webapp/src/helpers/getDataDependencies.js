@@ -1,4 +1,4 @@
-const getDataDependency = (component = {}, methodName) => {
+const getDataDependency = (component = {}, methodName = null ) => {
   return component.WrappedComponent ?
     getDataDependency(component.WrappedComponent, methodName) :
     component[methodName];

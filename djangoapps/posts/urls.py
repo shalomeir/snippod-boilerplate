@@ -1,11 +1,12 @@
 from django.conf.urls import include, patterns, url
-from rest_framework_nested import routers
+from rest_framework.routers import DefaultRouter
+
 
 from posts.views import PostViewSet, UserPostViewSet, CommentViewSet, \
                         PostCommentViewSet, UserCommentViewSet
 
 
-router = routers.SimpleRouter()
+router = DefaultRouter()
 router.register(r'posts', PostViewSet, base_name='post')
 router.register(r'user/(?P<userid>[0-9]+)/posts', UserPostViewSet,
                                                 base_name='user-post-list')

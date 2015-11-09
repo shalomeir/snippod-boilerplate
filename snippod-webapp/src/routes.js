@@ -1,23 +1,18 @@
 import React from 'react';
 import {IndexRoute, Route} from 'react-router';
-import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
+import { isLoaded as isAuthLoaded, load as loadAuth } from 'ducks/authentication/auth';
+import App from 'layout/App';
 import {
-    App,
-    Chat,
-    Home,
-    Widgets,
-    About,
-    Login,
-    LoginSuccess,
-    Survey,
     NotFound,
+    Topic,
   } from 'containers';
 
 export default (store) => {
+
   const requireLogin = (nextState, replaceState, cb) => {
     function checkAuth() {
-      const { auth: { user }} = store.getState();
-      if (!user) {
+      const { auth: { account }} = store.getState();
+      if (!account) {
         // oops, not logged in, so can't be here!
         replaceState(null, '/');
       }
@@ -37,19 +32,17 @@ export default (store) => {
   return (
     <Route path="/" component={App}>
       { /* Home (main) route */ }
-      <IndexRoute component={Home}/>
+      <IndexRoute component={Topic}/>
+      { /*<IndexRoute component={Home}/>*/ }
 
       { /* Routes requiring login */ }
       <Route onEnter={requireLogin}>
-        <Route path="chat" component={Chat}/>
-        <Route path="loginSuccess" component={LoginSuccess}/>
+        <Route path="profile" component={Topic}/>
       </Route>
 
       { /* Routes */ }
-      <Route path="about" component={About}/>
-      <Route path="login" component={Login}/>
-      <Route path="survey" component={Survey}/>
-      <Route path="widgets" component={Widgets}/>
+      <Route path="login" component={Topic} />
+      <Route path="register" component={Topic} />
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

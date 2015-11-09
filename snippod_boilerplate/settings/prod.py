@@ -71,11 +71,11 @@ DATABASE_OPTIONS = {'charset': 'utf8'}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATICFILES_DIRS = (
-    # os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
-    os.path.join(BASE_DIR, 'snippod_webapp/dist/client'), #grunt
-    # os.path.join(BASE_DIR, 'static'),
-)
+# STATICFILES_DIRS = (
+#     # os.path.join(BASE_DIR, 'snippod_webapp/.tmp'), # grunt serve
+#     os.path.join(BASE_DIR, 'snippod_webapp/dist/client'), #grunt
+#     # os.path.join(BASE_DIR, 'static'),
+# )
 #
 # COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
@@ -107,13 +107,13 @@ AWS_S3_URL_PROTOCOL = 'http:'
 
 # This setting is used on our custom storage to make
 # all Static files be stored in /static of our Bucket.
-STATICFILES_LOCATION = 'staticfiles'
+# STATICFILES_LOCATION = 'staticfiles'
 
 # CachedS3BotoStorage is our own custom storage.
 # STATICFILES_STORAGE = 'snippod_boilerplate.settings.custom_storages.CachedS3BotoStorage'
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-STATIC_URL = 'http://%s.s3.amazonaws.com/%s/' % (AWS_STORAGE_BUCKET_NAME, STATICFILES_LOCATION)
+# STATIC_URL = 'http://%s.s3.amazonaws.com/%s/' % (AWS_STORAGE_BUCKET_NAME, STATICFILES_LOCATION)
 
 # This setting is used on our custom storage to make
 # all Media files be stored in /media of our Bucket.
@@ -127,13 +127,13 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 # The CachedS3BotoStorage both keep local files saved and uploads
 # to S3. This is used to make the Compressor module be able to see
 # what files have been changed or updated on the temp files on same server
-COMPRESS_ENABLED = True
-COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter', 'compressor.filters.cssmin.CSSMinFilter']
+# COMPRESS_ENABLED = True
+# COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter', 'compressor.filters.cssmin.CSSMinFilter']
 # This will ALWAYS be same as our STATICFILES_STORAGE setting.
-COMPRESS_STORAGE = 'snippod_boilerplate.settings.custom_storages.CachedS3BotoStorage'
+# COMPRESS_STORAGE = 'snippod_boilerplate.settings.custom_storages.CachedS3BotoStorage'
 # This will point to the same folder as all our static files. Since the compressed
 # versions will be uploaded there as well.
-COMPRESS_URL = "http://%s.s3.amazonaws.com/%s/" % (AWS_STORAGE_BUCKET_NAME, STATICFILES_LOCATION)
+# COMPRESS_URL = "http://%s.s3.amazonaws.com/%s/" % (AWS_STORAGE_BUCKET_NAME, STATICFILES_LOCATION)
 
 
 #MEDIA FILE (user uploaded files)
