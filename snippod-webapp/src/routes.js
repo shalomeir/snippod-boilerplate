@@ -11,10 +11,12 @@ export default (store) => {
 
   const requireLogin = (nextState, replaceState, cb) => {
     function checkAuth() {
-      const { auth: { account }} = store.getState();
-      if (!account) {
+      const { auth } = store.getState();
+      if (!auth.loggedIn) {
         // oops, not logged in, so can't be here!
-        replaceState(null, '/');
+        replaceState({
+          nextPathname: nextState.location.pathname
+        }, '/login');
       }
       cb();
     }

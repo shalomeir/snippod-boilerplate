@@ -63,6 +63,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
                     validators.RegexValidator(r'^[\w.+-]+$', _('Enter a valid username jebal.'), 'invalid')
                 ])
 
+    language = models.CharField(_('language'), max_length=5, default="en")
+
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
 

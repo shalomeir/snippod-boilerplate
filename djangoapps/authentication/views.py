@@ -11,6 +11,9 @@ from authentication.models import Account
 from authentication.serializers import AccountSerializer
 from authentication.permissions import IsAccountOwner
 
+from authentication.utils import *
+
+
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
@@ -39,6 +42,7 @@ class AccountViewSet(viewsets.ModelViewSet):
 
 
     def create(self, request):
+        request.data.language = get_language(request)
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             if serializer.checkPassword(serializer.validated_data):

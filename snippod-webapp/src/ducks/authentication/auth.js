@@ -8,10 +8,15 @@ const LOGOUT = 'authentication/auth/LOGOUT';
 const LOGOUT_SUCCESS = 'authentication/auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'authentication/auth/LOGOUT_FAIL';
 
+//TODO: Only works in client Mode. Prepare SSR.
+import getBrowserLocale from '../../helpers/getBrowserLocale.js';
+const browserLocale = getBrowserLocale();
+
 const initialState = {
   loggedIn: false,
   loaded: false,
   loading: false,
+  locale: browserLocale,
   account: null
 };
 
@@ -25,9 +30,11 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD_SUCCESS:
       return {
         ...state,
+        loggedIn: true,
         loading: false,
         loaded: true,
-        account: action.result.account
+        account: action.result.account,
+        locale: action.result.account.language
       };
     case LOAD_FAIL:
       return {
@@ -44,13 +51,14 @@ export default function reducer(state = initialState, action = {}) {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        loggingIn: false,
-        user: action.result.account
+        loggedIn: true,
+        account: action.result.account,
+        locale: action.result.account.language
       };
     case LOGIN_FAIL:
       return {
         ...state,
-        loggingIn: false,
+        loggedIn: false,
         account: null,
         loginError: action.error
       };

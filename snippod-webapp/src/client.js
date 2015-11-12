@@ -9,7 +9,7 @@ import createStore from './store/create';
 import ApiClient from './helpers/ApiClient';
 //import io from 'socket.io-client';
 import {Provider} from 'react-redux';
-import {reduxReactRouter, ReduxRouter} from 'redux-router';
+import {reduxReactRouter} from 'redux-router';
 
 import getRoutes from './routes';
 import makeRouteHooksSafe from './helpers/makeRouteHooksSafe';
@@ -18,6 +18,9 @@ const client = new ApiClient();
 
 const dest = document.getElementById('content');
 const store = createStore(reduxReactRouter, makeRouteHooksSafe(getRoutes), createHistory, client, window.__data);
+
+import Root from './Root';
+
 
 //FIXME: Do not use Node.js server now
 //function initSocket() {
@@ -35,13 +38,9 @@ const store = createStore(reduxReactRouter, makeRouteHooksSafe(getRoutes), creat
 //
 //global.socket = initSocket();
 
-const component = (
-  <ReduxRouter routes={getRoutes(store)} />
-);
-
 ReactDOM.render(
   <Provider store={store} key="provider">
-    {component}
+    <Root/>
   </Provider>,
   dest
 );
@@ -52,17 +51,4 @@ if (process.env.NODE_ENV !== 'production') {
   if (!dest || !dest.firstChild || !dest.firstChild.attributes || !dest.firstChild.attributes['data-react-checksum']) {
     console.error('Server-side React render was discarded. Make sure that your initial render does not contain any client-side code.');
   }
-}
-
-if (__DEVTOOLS__) {
-  const DevTools = require('./containers/DevTools/DevTools');
-  ReactDOM.render(
-    <Provider store={store} key="provider">
-      <div>
-        {component}
-        <DevTools />
-      </div>
-    </Provider>,
-    dest
-  );
 }

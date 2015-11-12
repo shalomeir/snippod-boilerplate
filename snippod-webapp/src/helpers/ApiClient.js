@@ -21,21 +21,25 @@ class ApiClient_ {
             if (options && options.params) {
               request.query(options.params);
             }
+            let csrftoken = null;
             if (__SERVER__) {
               if (req.get('cookie')) {
                 request.set('cookie', req.get('cookie'));
+                // TODO : csrf token get for Server-side Redndering
+                // It's not working. Also couldn't call api server in SERVER Environment.
+                csrftoken = req.get('cookie').get('csrftoken');
               }
             }
             if (__CLIENT__) {
-              const csrftoken = Cookies.get('csrftoken');
-              if (csrftoken) {
-                request.set({
-                  //'authorization': 'Bearer ' + token,
-                  'X-CSRFToken': csrftoken,
-                  //'X-Requested-With': 'XMLHttpRequest',
-                  //'X-HTTP-Method-Override': method
-                });
-              }
+              csrftoken = Cookies.get('csrftoken');
+            }
+            if (csrftoken) {
+              request.set({
+                //'authorization': 'Bearer ' + token,
+                'X-CSRFToken': csrftoken,
+                //'X-Requested-With': 'XMLHttpRequest',
+                //'X-HTTP-Method-Override': method
+              });
             }
             if (options && options.data) {
               request.send(options.data);
