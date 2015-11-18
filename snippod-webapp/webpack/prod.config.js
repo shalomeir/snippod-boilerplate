@@ -1,5 +1,6 @@
+require('babel/polyfill');
+
 // Webpack config for creating the production bundle.
-require('babel-core/polyfill');
 var path = require('path');
 var webpack = require('webpack');
 var CleanPlugin = require('clean-webpack-plugin');
@@ -18,8 +19,9 @@ module.exports = {
   context: path.resolve(__dirname, '..'),
   entry: {
     'main': [
-      //'bootstrap-sass!./src/theme/bootstrap.config.js',
-      'font-awesome-webpack!./src/theme/font-awesome.config.js',
+      //'bootstrap-sass!./src/theme/bootstrap.config.prod.js',
+      './src/theme/hackernews-main.scss',
+      'font-awesome-webpack!./src/theme/font-awesome.config.prod.js',
       './src/client.js'
     ]
   },
@@ -79,8 +81,8 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-          warnings: false
-        }
+        warnings: false
+      }
     }),
 
     webpackIsomorphicToolsPlugin

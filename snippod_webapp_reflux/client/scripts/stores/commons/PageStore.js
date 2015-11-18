@@ -4,7 +4,9 @@ import history from '../../utils/History.js'
 var Reflux = require('reflux'),
     { searchToObject } = require('../../utils/StringControl'),
     pageDefaults = require('../../constants/defaults').page,
-    pageActions = require('../../actions/commons/PageActions');
+    pageActions = require('../../actions/commons/PageActions'),
+    cx = require('classnames');
+
 
 
 var PageStore = Reflux.createStore({

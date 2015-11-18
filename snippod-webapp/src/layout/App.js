@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import connectData from 'helpers/connectData';
 import { pushState } from 'redux-router';
 import DocumentMeta from 'react-document-meta';
 import head from 'constants/head';
@@ -11,6 +12,15 @@ import {
   Footer
 } from '.';
 
+function fetchData(getState, dispatch) {
+  const promises = [];
+  if (!isAuthLoaded(getState())) {
+    promises.push(dispatch(loadAuth()));
+  }
+  return Promise.all(promises);
+}
+
+@connectData(fetchData)
 @connect(
   state => ({auth: state.auth}),
   { pushState }
@@ -36,14 +46,6 @@ export default class App extends Component {
     }
   }
 
-  static fetchData(getState, dispatch) {
-    const promises = [];
-    if (!isAuthLoaded(getState())) {
-      promises.push(dispatch(loadAuth()));
-    }
-    return Promise.all(promises);
-  }
-
   //handleLogout(event) {
   //  event.preventDefault();
   //  this.props.logout();
@@ -54,12 +56,12 @@ export default class App extends Component {
       <div className="app">
         <DocumentMeta {...head}/>
         <ToastMessages/>
-        <ModalWindow/>
         <NavBar/>
         <main id="content" className="full-height inner">
           {this.props.children}
         </main>
         <Footer/>
+        <ModalWindow/>
       </div>
     );
   }

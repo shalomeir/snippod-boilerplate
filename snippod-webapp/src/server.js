@@ -26,7 +26,7 @@ const pretty = new PrettyError();
 const app = new Express();
 const server = new http.Server(app);
 const proxy = httpProxy.createProxyServer({
-  target: 'http://localhost:' + config.apiPort,
+  target: 'http://' + config.apiHost + ':' + config.apiPort,
   ws: true
 });
 
@@ -94,7 +94,7 @@ app.use((req, res) => {
       store.getState().router.then(() => {
         const component = (
           <Provider store={store} key="provider">
-            <Root />
+            <Root/>
           </Provider>
         );
 
@@ -123,8 +123,8 @@ if (config.port) {
     if (err) {
       console.error(err);
     }
-    console.info('----\n==> ✅  %s is running, talking to API server on %s.', config.app.name, config.apiPort);
-    console.info('==> 💻  Open http://localhost:%s in a browser to view the app.', config.port);
+    console.info('----\n==> ✅  %s is running, talking to API server on %s.', config.app.title, config.apiPort);
+    console.info('==> 💻  Open http://%s:%s in a browser to view the app.', config.host, config.port);
   });
 } else {
   console.error('==>     ERROR: No PORT environment variable has been specified');

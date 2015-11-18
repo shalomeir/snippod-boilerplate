@@ -9,18 +9,22 @@ import createStore from './store/create';
 import ApiClient from './helpers/ApiClient';
 //import io from 'socket.io-client';
 import {Provider} from 'react-redux';
-import {reduxReactRouter} from 'redux-router';
+import {reduxReactRouter, ReduxRouter} from 'redux-router';
 
-import getRoutes from './routes';
-import makeRouteHooksSafe from './helpers/makeRouteHooksSafe';
 
 const client = new ApiClient();
 
 const dest = document.getElementById('content');
-const store = createStore(reduxReactRouter, makeRouteHooksSafe(getRoutes), createHistory, client, window.__data);
+
+import getRoutes from './routes';
+
+//TODO: Should be used for SSR.
+//Do Not use for this time.
+//import makeRouteHooksSafe from './helpers/makeRouteHooksSafe';
+//const store = createStore(reduxReactRouter, makeHooksSafe(getRoutes), createHistory, client, window.__data);
+const store = createStore(reduxReactRouter, getRoutes, createHistory, client, window.__data);
 
 import Root from './Root';
-
 
 //FIXME: Do not use Node.js server now
 //function initSocket() {
@@ -38,12 +42,14 @@ import Root from './Root';
 //
 //global.socket = initSocket();
 
+
 ReactDOM.render(
   <Provider store={store} key="provider">
     <Root/>
   </Provider>,
   dest
 );
+
 
 if (process.env.NODE_ENV !== 'production') {
   window.React = React; // enable debugger
@@ -52,3 +58,4 @@ if (process.env.NODE_ENV !== 'production') {
     console.error('Server-side React render was discarded. Make sure that your initial render does not contain any client-side code.');
   }
 }
+

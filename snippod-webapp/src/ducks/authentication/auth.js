@@ -28,13 +28,21 @@ export default function reducer(state = initialState, action = {}) {
         loading: true
       };
     case LOAD_SUCCESS:
+      if (action.result) {
+        return {
+          ...state,
+          loggedIn: true,
+          loading: false,
+          loaded: true,
+          account: action.result.account,
+          locale: action.result.account.language
+        };
+      }
       return {
         ...state,
-        loggedIn: true,
+        loggedIn: false,
         loading: false,
-        loaded: true,
-        account: action.result.account,
-        locale: action.result.account.language
+        loaded: true
       };
     case LOAD_FAIL:
       return {

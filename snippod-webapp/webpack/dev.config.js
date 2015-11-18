@@ -1,11 +1,12 @@
-require('babel-core/polyfill');
+require('babel/polyfill');
+
+// Webpack config for development
 var fs = require('fs');
 var path = require('path');
-
 var webpack = require('webpack');
 var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 var assetsPath = path.resolve(__dirname, '../static/dist');
-var host = 'localhost';
+var host = (process.env.HOST || 'localhost');
 var port = parseInt(process.env.PORT) + 1 || 3001;
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
@@ -51,6 +52,7 @@ module.exports = {
     'main': [
       'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
       //'bootstrap-sass!./src/theme/bootstrap.config.js',
+      './src/theme/hackernews-main.scss',
       'font-awesome-webpack!./src/theme/font-awesome.config.js',
       './src/client.js'
     ]

@@ -25,7 +25,11 @@
     "indent": [2, 2, {"SwitchCase": 1}],
     "spaced-comment": [0, "never"],
     "no-console": 0,
-    "no-alert": 0
+    "no-alert": 0,
+//    "no-unused-vars": [2, {"vars": "all", "args": "after-used"}]
+    "no-unused-vars": [0, {"vars": "all", "args": "after-used"}],
+    "no-trailing-spaces": [2, { "skipBlankLines": true }],
+    "id-length": [2, {"min": 1, "max": 50, "properties": "never", "exceptions": ["x"]}]
   },
   "plugins": [
     "react", "import"

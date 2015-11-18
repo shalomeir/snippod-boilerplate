@@ -1,18 +1,7 @@
 import {ROUTER_DID_CHANGE} from 'redux-router/lib/constants';
-import shallowequal from 'shallowequal';
 import getDataDependencies from '../helpers/getDataDependencies';
 
-const locationsAreEqual = (locA, locB) => {
-  if (!shallowequal(locA.pathname, locB.pathname)) {
-    return false;
-  }
-
-  if (!shallowequal(locA.search, locB.search)) {
-    return false;
-  }
-
-  return true;
-};
+const locationsAreEqual = (locA, locB) => (locA.pathname === locB.pathname) && (locA.search === locB.search);
 
 export default ({getState, dispatch}) => next => action => {
   if (action.type === ROUTER_DID_CHANGE) {
@@ -26,11 +15,21 @@ export default ({getState, dispatch}) => next => action => {
       const doTransition = () => {
         next(action);
         Promise.all(getDataDependencies(components, getState, dispatch, location, params, true))
-          .then(resolve, resolve);
+          .then(resolve)
+          .catch(error => {
+            // TODO: You may want to handle errors for fetchDataDeferred here
+            console.warn('Warning: Error in fetchDataDeferred', error);
+            return resolve();
+          });
       };
 
       Promise.all(getDataDependencies(components, getState, dispatch, location, params))
-        .then(doTransition, doTransition);
+        .then(doTransition)
+        .catch(error => {
+          // TODO: You may want to handle errors for fetchData here
+          console.warn('Warning: Error in fetchData', error);
+          return doTransition();
+        });
     });
 
     if (__SERVER__) {

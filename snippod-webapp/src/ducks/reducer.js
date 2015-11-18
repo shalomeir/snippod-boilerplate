@@ -20,11 +20,13 @@ function entities(state = initialEntitiesState, action = {}) {
 }
 
 import errorMessage from './messages/errorMessage';
+import application from './application/application';
 import auth from './authentication/auth';
 
 export default combineReducers({
   router: routerStateReducer,
   entities,
   messages: errorMessage,
+  application,
   auth
 });

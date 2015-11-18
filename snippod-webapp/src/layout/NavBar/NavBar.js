@@ -1,9 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-//import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 
-//@connect(
-//    state => ({user: state.auth.user}),
-//  {logout, pushState})
+@connect( state => ({auth: state.auth}) )
 export default class NavBar extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired
@@ -41,7 +39,7 @@ export default class NavBar extends Component {
       <nav className="nav-bar">
         <header className="header">
           <div className="navbar">
-              <div className="menu-title">Snippod's Navbar</div>
+            <div className="menu-title">Snippod's Navbar</div>
           </div>
         </header>
       </nav>

@@ -26,6 +26,7 @@ export default function createStore(reduxReactRouter, getRoutes, createHistory, 
 
   const reducer = require('ducks/reducer');
   // TODO: It's not good way. But I coudn't find another way to fix this locale value.
+  // State data is created at Server Side. So initial data which is created in server is not use a browser settings.
   if ( __CLIENT__ ) {
     data.auth.locale = browserLocale;
   }
