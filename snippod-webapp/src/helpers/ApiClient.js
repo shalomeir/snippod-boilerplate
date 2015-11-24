@@ -26,6 +26,7 @@ class _ApiClient {
     methods.forEach((method) =>
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
+        request.withCredentials();
 
         if (params) {
           request.query(params);

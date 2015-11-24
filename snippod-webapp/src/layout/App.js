@@ -2,15 +2,27 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import connectData from 'helpers/connectData';
 import { pushState } from 'redux-router';
+import Radium, { Style } from 'radium';
+import radiumRules from '../theme/radium-rules';
+import themeDecorator from 'material-ui/lib/styles/theme-decorator';
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import SnippodRawTheme from '../theme/snippod-raw-theme-boilerplate';
 import DocumentMeta from 'react-document-meta';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import head from 'constants/head';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'ducks/authentication/auth';
 import {
-  ToastMessages,
-  ModalWindow,
   NavBar,
-  Footer
+  Footer,
+  DialogWindow,
+  Snackbar,
 } from '.';
+
+//Needed for onTouchTap
+//Can go away when react 1.0 release
+//Check this repo:
+//https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 function fetchData(getState, dispatch) {
   const promises = [];
@@ -21,6 +33,8 @@ function fetchData(getState, dispatch) {
 }
 
 @connectData(fetchData)
+@Radium
+@themeDecorator(ThemeManager.getMuiTheme(SnippodRawTheme))
 @connect(
   state => ({auth: state.auth}),
   { pushState }
@@ -36,15 +50,15 @@ export default class App extends Component {
     store: PropTypes.object.isRequired
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.auth.loggedIn && nextProps.auth.loggedIn) {
-      // login
-      this.props.pushState(null, '/loginSuccess');
-    } else if (this.props.auth.account && !nextProps.auth.account) {
-      // logout
-      this.props.pushState(null, '/');
-    }
-  }
+  //componentWillReceiveProps(nextProps) {
+  //  if (!this.props.auth.loggedIn && nextProps.auth.loggedIn) {
+  //    // login
+  //    this.props.pushState(null, '/loginSuccess');
+  //  } else if (this.props.auth.account && !nextProps.auth.account) {
+  //    // logout
+  //    this.props.pushState(null, '/');
+  //  }
+  //}
 
   //handleLogout(event) {
   //  event.preventDefault();
@@ -54,14 +68,15 @@ export default class App extends Component {
   render() {
     return (
       <div className="app">
+        <Style rules={radiumRules}/>
         <DocumentMeta {...head}/>
-        <ToastMessages/>
-        <NavBar/>
-        <main id="content" className="full-height inner">
+        <NavBar auth={this.props.auth} pushState={this.props.pushState} />
+        <main id="content">
           {this.props.children}
         </main>
         <Footer/>
-        <ModalWindow/>
+        <DialogWindow/>
+        <Snackbar/>
       </div>
     );
   }

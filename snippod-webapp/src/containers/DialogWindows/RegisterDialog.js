@@ -6,7 +6,7 @@ const meta = { ...head,
   title: 'Snippod boilerplate Main Page'
 };
 
-export default class RegisterModalWindow extends Component {
+export default class RegisterDialog extends Component {
 
   render() {
     return (

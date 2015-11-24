@@ -1,54 +1,54 @@
-const SHOW_LOGIN_MODAL_WINDOW = 'application/application/SHOW_LOGIN_MODAL_WINDOW';
-const SHOW_REGISTER_MODAL_WINDOW = 'application/application/SHOW_REGISTER_MODAL_WINDOW';
-const CLOSE_MODAL_WINDOW = 'application/application/CLOSE_MODAL_WINDOW';
+const SHOW_LOGIN_DIALOG = 'application/application/SHOW_LOGIN_DIALOG';
+const SHOW_REGISTER_DIALOG = 'application/application/SHOW_REGISTER_DIALOG';
+const CLOSE_DIALOG = 'application/application/CLOSE_DIALOG';
 
 const initialState = {
-  showOverlay: false,
-  loginModalWindow: false,
-  registerModalWindow: false
+  isShowOverlay: false,
+  loginDialog: false,
+  registerDialog: false
 };
 
 
 // Modal Window Overay switch reducers.
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SHOW_LOGIN_MODAL_WINDOW:
+    case SHOW_LOGIN_DIALOG:
       return {
-        showOverlay: true,
-        loginModalWindow: true,
-        registerModalWindow: false
+        isShowOverlay: true,
+        loginDialog: true,
+        registerDialog: false
       };
-    case SHOW_REGISTER_MODAL_WINDOW:
+    case SHOW_REGISTER_DIALOG:
       return {
-        showOverlay: true,
-        loginModalWindow: false,
-        registerModalWindow: true
+        isShowOverlay: true,
+        loginDialog: false,
+        registerDialog: true
       };
-    case CLOSE_MODAL_WINDOW:
+    case CLOSE_DIALOG:
       return {
-        showOverlay: false,
-        loginModalWindow: false,
-        registerModalWindow: false
+        isShowOverlay: false,
+        loginDialog: false,
+        registerDialog: false
       };
     default:
       return state;
   }
 }
 
-export function showLoginModalWindow() {
+export function showLoginDialog() {
   return {
-    type: SHOW_LOGIN_MODAL_WINDOW
+    type: SHOW_LOGIN_DIALOG
   };
 }
 
-export function showRegisterModalWindow() {
+export function showRegisterDialog() {
   return {
-    type: SHOW_REGISTER_MODAL_WINDOW
+    type: SHOW_REGISTER_DIALOG
   };
 }
 
-export function closeModalWindow() {
+export function closeDialog() {
   return {
-    type: CLOSE_MODAL_WINDOW
+    type: CLOSE_DIALOG
   };
 }

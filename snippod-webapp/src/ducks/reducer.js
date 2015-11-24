@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import { routerStateReducer } from 'redux-router';
+import { reducer as formReducer } from 'redux-form';
+import { routerStateReducer as router } from 'redux-router';
 import merge from 'lodash/object/merge';
 //import multireducer from 'multireducer';
 
@@ -24,9 +25,10 @@ import application from './application/application';
 import auth from './authentication/auth';
 
 export default combineReducers({
-  router: routerStateReducer,
   entities,
   messages: errorMessage,
+  auth,
   application,
-  auth
+  form: formReducer,
+  router,
 });

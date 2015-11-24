@@ -16,6 +16,8 @@ const initialState = {
   loggedIn: false,
   loaded: false,
   loading: false,
+  loggingIn: false,
+  loggingOut: false,
   locale: browserLocale,
   account: null
 };
@@ -42,7 +44,8 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loggedIn: false,
         loading: false,
-        loaded: true
+        loaded: true,
+        error: null
       };
     case LOAD_FAIL:
       return {
@@ -60,13 +63,18 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loggedIn: true,
+        loggingIn: false,
+        loaded: true,
         account: action.result.account,
-        locale: action.result.account.language
+        locale: action.result.account.language,
+        loginError: null
       };
     case LOGIN_FAIL:
       return {
         ...state,
         loggedIn: false,
+        loggingIn: false,
+        loaded: true,
         account: null,
         loginError: action.error
       };
@@ -79,7 +87,9 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loggingOut: false,
-        user: null
+        loggedIn: false,
+        account: null,
+        logoutError: null
       };
     case LOGOUT_FAIL:
       return {

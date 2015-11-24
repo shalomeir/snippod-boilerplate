@@ -6,7 +6,12 @@ const defaults = {
 
   apiPort: 8000,
 
-  GA_TRACKING_ID: 'UA-63089389-1'
+  GA_TRACKING_ID: 'UA-63089389-1',
+
+  loginForm: {
+    passwordMinLength: 2,
+    passwordMaxLength: 100,
+  },
 
 };
 

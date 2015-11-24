@@ -1,4 +1,4 @@
-const title = 'Snippod React Redux Example';
+const title = 'Snippod boilerplate';
 const description = 'All the modern best practices in one example.';
 const image = 'https://react-redux.herokuapp.com/logo.jpg';
 

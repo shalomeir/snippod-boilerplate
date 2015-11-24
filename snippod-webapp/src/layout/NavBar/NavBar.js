@@ -1,13 +1,32 @@
 import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
+import Radium from 'radium';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import AppBar from 'material-ui/lib/app-bar';
+const Styles = require('./NavBarStyles');
+const FlatButton = require('material-ui/lib/flat-button');
 
-@connect( state => ({auth: state.auth}) )
+import { showLoginDialog, showRegisterDialog } from 'ducks/application/application';
+import { logout } from 'ducks/authentication/auth';
+
+
+@Radium
+@connect(
+  state => ({}),
+  { showLoginDialog, showRegisterDialog, logout }
+)
 export default class NavBar extends Component {
   static propTypes = {
-    auth: PropTypes.object.isRequired
-  }
+    auth: PropTypes.object.isRequired,
+    pushState: PropTypes.func.isRequired,
+    showLoginDialog: PropTypes.func.isRequired,
+    showRegisterDialog: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+  };
+
   render() {
-    //const auth = this.props.auth;
+
+    const auth = this.props.auth;
     //var navLinks = auth.loggedIn ? (
     //  /* jshint ignore:start */
     //  <div className="nav-list float-right">
@@ -35,11 +54,41 @@ export default class NavBar extends Component {
     //  /* jshint ignore:end */
     //);
 
+    const logo = (
+      <div style={Styles.navBarSubDiv}>
+        <i className="fa fa-home" style={Styles.logo}> Snippod boilerplate</i>
+      </div>
+    );
+
+    const title = (
+      <header className="header" style={Styles.title}> Snippod boilerplate </header>
+    );
+
+    const rightButtons = auth.loggedIn ? (
+      <div style={Styles.navBarSubDiv}>
+        <FlatButton label="User Profile" onTouchTap={this.props.showLoginDialog}
+          {...Styles.flatButton}/>
+        <FlatButton label="Logout" onTouchTap={this.props.logout}
+          {...Styles.flatButton} />
+      </div>
+    ) : (
+      <div style={Styles.navBarSubDiv}>
+        <FlatButton label="Login" onTouchTap={this.props.showLoginDialog}
+                    {...Styles.flatButton}/>
+        <FlatButton label="Register" onTouchTap={this.props.showRegisterDialog}
+                    {...Styles.flatButton} />
+      </div>
+    );
+
     return (
-      <nav className="nav-bar">
+      <nav className="navbar">
+        <AppBar
+          iconElementLeft={logo}
+          title={title}
+          iconElementRight={rightButtons} />
         <header className="header">
           <div className="navbar">
-            <div className="menu-title">Snippod's Navbar</div>
+            <div className="menu-title">Snippod's Navbar2</div>
           </div>
         </header>
       </nav>
