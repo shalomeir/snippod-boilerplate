@@ -7,7 +7,7 @@ import radiumRules from '../theme/radium-rules';
 import themeDecorator from 'material-ui/lib/styles/theme-decorator';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import SnippodRawTheme from '../theme/snippod-raw-theme-boilerplate';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import head from 'constants/head';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'ducks/authentication/auth';
@@ -69,7 +69,7 @@ export default class App extends Component {
     return (
       <div className="app">
         <Style rules={radiumRules}/>
-        <DocumentMeta {...head}/>
+        <Helmet {...head}/>
         <NavBar auth={this.props.auth} pushState={this.props.pushState} />
         <main id="content">
           {this.props.children}

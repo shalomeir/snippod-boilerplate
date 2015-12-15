@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import head from 'constants/head';
 
 const meta = { ...head,
@@ -11,7 +11,7 @@ export default class RegisterDialog extends Component {
   render() {
     return (
       <div className="container">
-        <DocumentMeta {...meta}/>
+        <Helmet {...meta}/>
 
         <div className="topic main-container content full-width">
           { /*<TopicCard/>*/ }

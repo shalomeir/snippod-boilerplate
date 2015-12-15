@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
 import head from 'constants/head';
@@ -20,7 +20,7 @@ export default class Topic extends Component {
   render() {
     return (
       <div className="container">
-        <DocumentMeta {...meta}/>
+        <Helmet {...meta}/>
 
         <div className="topic main-container content full-width">
           { /*<TopicCard/>*/ }

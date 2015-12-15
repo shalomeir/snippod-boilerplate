@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import head from 'constants/head';
 import { connect } from 'react-redux';
 //import { pushState } from 'redux-router';
@@ -26,23 +26,23 @@ export default class DialogWindow extends Component {
   };
 
   render() {
-    let documentMeta = null;
+    let helmet = null;
 
     if (this.props.application.isShowOverlay && this.props.application.loginDialog) {
       const tmeta = { ...meta, title: meta.title + 'Login'};
-      documentMeta = (
-        <DocumentMeta {...tmeta}/>
+      helmet = (
+        <Helmet {...tmeta}/>
       );
     } else if (this.props.application.isShowOverlay && this.props.application.registerDialog) {
       const tmeta = { ...meta, title: meta.title + 'Register'};
-      documentMeta = (
-        <DocumentMeta {...tmeta}/>
+      helmet = (
+        <Helmet {...tmeta}/>
       );
     }
 
     return (
       <div className="dialog-window">
-        {documentMeta}
+        {helmet}
         <LoginDialog />
         <RegisterDialog />
       </div>

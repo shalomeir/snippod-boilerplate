@@ -5,23 +5,23 @@ const image = 'https://react-redux.herokuapp.com/logo.jpg';
 const head = {
   title,
   description,
-  meta: {
-    property: {
-      'og:site_name': title,
-      'og:image': image,
-      'og:locale': 'en_US',
-      'og:title': title,
-      'og:description': description,
-      'twitter:card': 'summary',
-      'twitter:site': '@shalomeir',
-      'twitter:creator': '@shalomeir',
-      'twitter:title': title,
-      'twitter:description': description,
-      'twitter:image': image,
-      'twitter:image:width': '200',
-      'twitter:image:height': '200'
-    }
-  }
+  meta: [
+    {property: 'og:type', content: 'website'},
+    {property: 'og:url', content: 'boilerplate.snippod.com'},
+    {property: 'og:title', content: title},
+    {property: 'og:site_name', content: title},
+    {property: 'og:image', content: image},
+    {property: 'og:locale', content: 'en_US'},
+    {property: 'og:description', content: description},
+    {property: 'twitter:card', content: 'summary'},
+    {property: 'twitter:site', content: '@shalomeir'},
+    {property: 'twitter:creator', content: '@shalomeir'},
+    {property: 'twitter:title', content: title},
+    {property: 'twitter:description', content: description},
+    {property: 'twitter:image', content: image},
+    {property: 'twitter:image:width', content: '200'},
+    {property: 'twitter:image:height', content: '200'},
+  ]
 };
 
 export default head;
