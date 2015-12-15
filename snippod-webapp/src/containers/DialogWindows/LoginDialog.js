@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Radium from 'radium';
+import _ from 'lodash';
 
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
@@ -8,6 +9,7 @@ import {reduxForm} from 'redux-form';
 
 import { closeDialog } from 'ducks/application/application';
 import { login } from 'ducks/authentication/auth';
+import { resetErrorMessage } from 'ducks/messages/errorMessage';
 
 import loginValidation from './loginValidation';
 
@@ -17,83 +19,76 @@ const TextField = require('material-ui/lib/text-field');
 
 const Styles = require('./DialogStyles');
 
-@Radium
 @connect(
   state => ({
     auth: state.auth,
-    application: state.application
+    application: state.application,
+    errorObject: state.messages.errorObject,
   }),
-  { pushState, closeDialog, login })
+  { pushState, closeDialog, login, resetErrorMessage })
 @reduxForm({
   form: 'login',
   fields: ['emailId', 'password'],
   validate: loginValidation,
   //onSubmit: login
 })
+@Radium
 export default class LoginDialog extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
+    errorObject: PropTypes.object,
     pushState: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
+    resetErrorMessage: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
-    error: PropTypes.string,
-    pristine: PropTypes.bool.isRequired,
     submitting: PropTypes.bool.isRequired,
     values: PropTypes.object.isRequired
   };
 
   constructor() {
     super();
-    this.state = {errorText: ''};
+    this.state = {changed: false};
     this.loginSubmit = this.loginSubmit.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.application.isShowOverlay && !prevProps.application.isShowOverlay
-        && this.props.application.loginDialog) {
-      this.autoFocus();
+  componentWillReceiveProps(nextProps) {
+    //FIX ME: I coundn't find better way to fix style temporary.
+    if (!_.isEqual(this.props.values, nextProps.values) && !this.state.changed
+      && this.props.errorObject) {
+      this.setState({
+        changed: true
+      });
     }
+  }
 
-    //FIX ME: I coundn't find better way to fix style temporary.
-    if (this.props.error && !this.state.errorText) {
-      this.setErrorText(this.props.error);
-    }
-    //FIX ME: I coundn't find better way to fix style temporary.
-    if (this.refs.errorText && this.refs.errorText.style.color === 'rgb(244, 67, 54)') {
-      this.refs.errorText.style.color = Styles.errorText.blur.color;
-    }
-    //FIX ME: I coundn't find better way to fix style temporary.
-    if (!this.props.error && this.state.errorText) {
-      this.resetErrorText();
-    }
-
-    if (this.props.auth.loggedIn && !prevProps.auth.loggedIn) {
+  componentWillUpdate(nextProps) {
+    if (!this.props.auth.loggedIn && nextProps.auth.loggedIn) {
       this.props.closeDialog();
       this.props.resetForm();
     }
   }
 
-  setErrorText(error) {
-    this.setState({
-      errorText: error
-    });
+  componentDidUpdate(prevProps) {
+    if (!prevProps.application.isShowOverlay && this.props.application.isShowOverlay
+      && this.props.application.loginDialog) {
+      this.autoFocus();
+    }
   }
 
-  resetErrorText() {
+  resetValueChanged() {
     this.setState({
-      errorText: ''
+      changed: false
     });
   }
 
   autoFocus() {
-    const app = this.props.application;
     if (this.props.fields.emailId.invalid) {
       this.refs.emailId.focus();
       return null;
@@ -104,20 +99,22 @@ export default class LoginDialog extends Component {
       this.refs.emailId.focus();
       return null;
     }
-    this.refs.submitButton.focus();
+
+    //TODO: I couldn't this. Also I couldn't do remotely Click Event.
+    //(for entering in input field to show click submit button event')
+    //this.refs.submitButton.focus();
+
   }
 
   loginSubmit(values, dispatch) {
-    //FIX ME: I coundn't find better way to fix style temporary.
-    this.resetErrorText();
+    this.props.resetErrorMessage();
+    this.resetValueChanged();
 
     //FIX ME: I coundn't make it pefectly.
     //This make 'Unhandled promise rejection issue'
     return this.props.login(values).then(result => {
       if (result && typeof result.error === 'object') {
-        const resultError = result.error;
         return Promise.reject({
-          ...resultError,
           _error: result.error.message
         });
       }
@@ -125,8 +122,10 @@ export default class LoginDialog extends Component {
   }
 
   render() {
-    const { application, fields: {emailId, password}, handleSubmit, invalid,
-      pristine, submitting, values } = this.props;
+    const { application, errorObject, fields: {emailId, password}, handleSubmit, invalid,
+      submitting, values } = this.props;
+
+    const changed = this.state.changed ? 'changed' : 'init';
 
     const loginForm = (
       <div>
@@ -150,7 +149,9 @@ export default class LoginDialog extends Component {
           {...password}
         />
         <br/><br/>
-        {this.state.errorText && <div ref="errorText" style={Styles.errorText.init}> {this.state.errorText} </div> }
+        <div ref="errorText" style={[Styles.errorText.init, Styles.errorText[changed]]}>
+          {errorObject ? this.props.errorObject.message : ''}
+        </div>
       </div>
     );
 
