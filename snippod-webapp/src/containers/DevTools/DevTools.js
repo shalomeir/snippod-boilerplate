@@ -1,11 +1,17 @@
 import React from 'react';
 import { createDevTools } from 'redux-devtools';
 import LogMonitor from 'redux-devtools-log-monitor';
-import DockMonitor from 'redux-devtools-dock-monitor';
+//import DockMonitor from 'redux-devtools-dock-monitor';
 
-export default createDevTools(
-  <DockMonitor toggleVisibilityKey="ctrl-h"
-               changePositionKey="ctrl-q">
-    <LogMonitor />
-  </DockMonitor>
+const DevTools = createDevTools(
+  //Render DevTools in App
+  //<DockMonitor toggleVisibilityKey="ctrl-h"
+  //             changePositionKey="ctrl-q">
+  //  <LogMonitor />
+  //</DockMonitor>
+
+  //Open DevTools in a New Window
+  <LogMonitor />
 );
+
+export default DevTools;

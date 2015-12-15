@@ -21,8 +21,14 @@ function getRootChildren(props, context) {
   ];
 
   if ( typeof(__DEVTOOLS__) && __DEVTOOLS__ ) {
-    const DevTools = require('./containers/DevTools/DevTools');
-    rootChildren.push(<DevTools key="devtools" />);
+    //Render DevTools in App
+    //const DevTools = require('./containers/DevTools/DevTools');
+    //rootChildren.push(<DevTools key="devtools" />);
+
+    //Open DevTools in a New Window
+    const showDevTools = require('./helpers/showDevTools');
+    showDevTools(context.store);
+
   }
   return rootChildren;
 }
