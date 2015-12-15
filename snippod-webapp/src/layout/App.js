@@ -33,12 +33,12 @@ function fetchData(getState, dispatch) {
 }
 
 @connectData(fetchData)
-@Radium
 @themeDecorator(ThemeManager.getMuiTheme(SnippodRawTheme))
 @connect(
   state => ({auth: state.auth}),
   { pushState }
 )
+@Radium
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,

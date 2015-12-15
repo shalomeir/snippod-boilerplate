@@ -1,17 +1,26 @@
 const RESET_ERROR_MESSAGE = 'messages/errorMessage/RESET_ERROR_MESSAGE';
 
+const initialState = {
+  errorObject: null,
+};
+
 // Updates error message to notify about the failed fetches.
-export default function reducer(state = null, action = {}) {
+export default function reducer(state = initialState, action = {}) {
 
-  const { type, error } = action;
-
-  if (type === RESET_ERROR_MESSAGE) {
-    return null;
-  } else if (error) {
-    return action.error;
+  if (action.error) {
+    return {
+      errorObject: action.error
+    };
   }
 
-  return state;
+  switch (action.type) {
+    case RESET_ERROR_MESSAGE:
+      return {
+        errorObject: null,
+      };
+    default:
+      return state;
+  }
 }
 
 // Resets the currently visible error message.

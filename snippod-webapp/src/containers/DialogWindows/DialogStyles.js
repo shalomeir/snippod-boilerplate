@@ -8,7 +8,7 @@ const Styles = {
   },
 
   dialogBodyStyle: {
-    paddingTop: '12',
+    paddingTop: 12
   },
 
   //Material UI Component Style
@@ -25,17 +25,18 @@ const Styles = {
 
   errorText: {
     init: {
-      color: Colors.red500,
+      width: 252,
+      height: 18,
+      color: Colors.red700,
       fontSize: 12,
       textAlign: 'center',
       paddingRight: 12,
-      transition: '1s',
-      transitionDelay: '1s',
+      transitionDuration: '1s',
     },
 
-    blur: {
+    changed: {
       color: Colors.red200,
-    }
+    },
 
   }
 

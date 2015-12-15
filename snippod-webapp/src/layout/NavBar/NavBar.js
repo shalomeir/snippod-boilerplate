@@ -10,11 +10,11 @@ import { showLoginDialog, showRegisterDialog } from 'ducks/application/applicati
 import { logout } from 'ducks/authentication/auth';
 
 
-@Radium
 @connect(
   state => ({}),
   { showLoginDialog, showRegisterDialog, logout }
 )
+@Radium
 export default class NavBar extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
