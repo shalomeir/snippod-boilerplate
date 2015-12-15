@@ -13,7 +13,6 @@
       <excludeFolder url="file://$MODULE_DIR$/static/dist" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Node.js v4.2.1 Core Modules" level="application" />
     <orderEntry type="library" name="react-bootstrap-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="react-dnd-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="react-dom-DefinitelyTyped" level="application" />
