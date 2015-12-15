@@ -51,6 +51,17 @@ ReactDOM.render(
 );
 
 
+if ( typeof(__DEVTOOLS__) && __DEVTOOLS__ && __CLIENT__ ) {
+  //Render DevTools in App
+  //const DevTools = require('./containers/DevTools/DevTools');
+  //rootChildren.push(<DevTools key="devtools" />);
+
+  //Open DevTools in a New Window
+  const showDevTools = require('./helpers/showDevTools');
+  showDevTools(store);
+}
+
+
 if (process.env.NODE_ENV !== 'production') {
   window.React = React; // enable debugger
 

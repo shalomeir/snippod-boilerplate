@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import { routerStateReducer as router } from 'redux-router';
 import merge from 'lodash/object/merge';
 //import multireducer from 'multireducer';
@@ -20,6 +19,7 @@ function entities(state = initialEntitiesState, action = {}) {
   return state;
 }
 
+import reduxForm from './reduxform/reduxForm';
 import errorMessage from './messages/errorMessage';
 import application from './application/application';
 import auth from './authentication/auth';
@@ -29,6 +29,6 @@ export default combineReducers({
   messages: errorMessage,
   auth,
   application,
-  form: formReducer,
+  form: reduxForm,
   router,
 });
