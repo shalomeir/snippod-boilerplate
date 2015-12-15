@@ -20,7 +20,7 @@ function getRootChildren(props, context) {
     </IntlProvider>
   ];
 
-  if ( typeof(__DEVTOOLS__) && __DEVTOOLS__ ) {
+  if ( typeof(__DEVTOOLS__) && __DEVTOOLS__ && __CLIENT__ ) {
     //Render DevTools in App
     //const DevTools = require('./containers/DevTools/DevTools');
     //rootChildren.push(<DevTools key="devtools" />);

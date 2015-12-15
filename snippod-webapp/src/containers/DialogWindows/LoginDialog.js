@@ -11,7 +11,6 @@ import { login } from 'ducks/authentication/auth';
 
 import loginValidation from './loginValidation';
 
-
 const Dialog = require('material-ui/lib/dialog');
 const FlatButton = require('material-ui/lib/flat-button');
 const TextField = require('material-ui/lib/text-field');

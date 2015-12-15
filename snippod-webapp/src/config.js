@@ -1,5 +1,5 @@
-require('babel/polyfill');
-import head from './constants/head';
+require('babel/register');
+const appHead = require('./constants/head');
 
 const environment = {
   development: {
@@ -15,5 +15,5 @@ module.exports = Object.assign({
   port: process.env.PORT,
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
-  app: head,
+  app: appHead
 }, environment);
