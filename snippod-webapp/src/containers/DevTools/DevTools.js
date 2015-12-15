@@ -11,7 +11,7 @@ const DevTools = createDevTools(
   //</DockMonitor>
 
   //Open DevTools in a New Window
-  <LogMonitor />
+  <LogMonitor theme="tomorrow" />
 );
 
 export default DevTools;
