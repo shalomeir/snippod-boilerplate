@@ -24,4 +24,4 @@ const head = {
   ]
 };
 
-export default head;
+module.exports = head;

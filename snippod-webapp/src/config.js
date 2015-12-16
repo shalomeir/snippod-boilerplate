@@ -1,4 +1,4 @@
-require('babel/register');
+require('babel/polyfill');
 const appHead = require('./constants/head');
 
 const environment = {
