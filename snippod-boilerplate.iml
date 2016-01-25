@@ -19,8 +19,14 @@
       <sourceFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/client/styles" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/grunt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/server" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/utils" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod-webapp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod-webapp/static" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod-webapp/resources" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/backup" />
       <excludeFolder url="file://$MODULE_DIR$/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod-webapp/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod-webapp/static/dist" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/client/bower_components" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/dist" />
@@ -37,6 +43,7 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/djangoapps/main/templates" />
+        <option value="$MODULE_DIR$/snippod-webapp/docs" />
       </list>
     </option>
   </component>
