@@ -35,7 +35,7 @@ function fetchData(getState, dispatch) {
 @connectData(fetchData)
 @themeDecorator(ThemeManager.getMuiTheme(SnippodRawTheme))
 @connect(
-  state => ({auth: state.auth}),
+  state => ({ auth: state.auth }),
   { pushState }
 )
 @Radium

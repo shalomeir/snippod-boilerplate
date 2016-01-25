@@ -23,7 +23,7 @@ function getRootChildren(props, context) {
   return rootChildren;
 }
 
-@connect( state => ({auth: state.auth}) )
+@connect(state => ({ auth: state.auth }))
 export default class Root extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired

@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
@@ -67,16 +67,20 @@ export default class NavBar extends Component {
     const rightButtons = auth.loggedIn ? (
       <div style={Styles.navBarSubDiv}>
         <FlatButton label="User Profile" onTouchTap={this.props.showLoginDialog}
-          {...Styles.flatButton}/>
+          {...Styles.flatButton}
+        />
         <FlatButton label="Logout" onTouchTap={this.props.logout}
-          {...Styles.flatButton} />
+          {...Styles.flatButton}
+        />
       </div>
     ) : (
       <div style={Styles.navBarSubDiv}>
         <FlatButton label="Login" onTouchTap={this.props.showLoginDialog}
-                    {...Styles.flatButton}/>
+          {...Styles.flatButton}
+        />
         <FlatButton label="Register" onTouchTap={this.props.showRegisterDialog}
-                    {...Styles.flatButton} />
+          {...Styles.flatButton}
+        />
       </div>
     );
 
@@ -85,7 +89,8 @@ export default class NavBar extends Component {
         <AppBar
           iconElementLeft={logo}
           title={title}
-          iconElementRight={rightButtons} />
+          iconElementRight={rightButtons}
+        />
         <header className="header">
           <div className="navbar">
             <div className="menu-title">Snippod's Navbar2</div>

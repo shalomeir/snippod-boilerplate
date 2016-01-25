@@ -1,15 +1,14 @@
 /**
  * THIS IS THE ENTRY POINT FOR THE CLIENT, JUST LIKE server.js IS THE ENTRY POINT FOR THE SERVER.
  */
-import 'babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createHistory from 'history/lib/createBrowserHistory';
 import createStore from './store/create';
 import ApiClient from './helpers/ApiClient';
 //import io from 'socket.io-client';
-import {Provider} from 'react-redux';
-import {reduxReactRouter, ReduxRouter} from 'redux-router';
+import { Provider } from 'react-redux';
+import { reduxReactRouter, ReduxRouter } from 'redux-router';
 
 
 const client = new ApiClient();
@@ -51,7 +50,7 @@ ReactDOM.render(
 );
 
 
-if ( typeof(__DEVTOOLS__) && __DEVTOOLS__ && __CLIENT__ ) {
+if (typeof(__DEVTOOLS__) && __DEVTOOLS__ && __CLIENT__) {
   //Render DevTools in App
   //const DevTools = require('./containers/DevTools/DevTools');
   //rootChildren.push(<DevTools key="devtools" />);
@@ -69,4 +68,3 @@ if (process.env.NODE_ENV !== 'production') {
     console.error('Server-side React render was discarded. Make sure that your initial render does not contain any client-side code.');
   }
 }
-

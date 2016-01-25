@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
@@ -9,7 +9,7 @@ const meta = { ...head,
 };
 
 @connect(
-    state => ({auth: state.auth})
+    state => ({ auth: state.auth })
 )
 export default class Topic extends Component {
   static propTypes = {

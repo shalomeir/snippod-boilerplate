@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import _ from 'lodash';
 
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
-import {initializeWithKey} from 'redux-form';
-import {reduxForm} from 'redux-form';
+import { initializeWithKey } from 'redux-form';
+import { reduxForm } from 'redux-form';
 
 import { closeDialog } from 'ducks/application/application';
 import { login } from 'ducks/authentication/auth';
@@ -54,7 +54,7 @@ export default class LoginDialog extends Component {
 
   constructor() {
     super();
-    this.state = {changed: false};
+    this.state = { changed: false };
     this.loginSubmit = this.loginSubmit.bind(this);
   }
 
@@ -122,7 +122,7 @@ export default class LoginDialog extends Component {
   }
 
   render() {
-    const { application, errorObject, fields: {emailId, password}, handleSubmit, invalid,
+    const { application, errorObject, fields: { emailId, password }, handleSubmit, invalid,
       submitting, values } = this.props;
 
     const changed = this.state.changed ? 'changed' : 'init';
@@ -158,12 +158,14 @@ export default class LoginDialog extends Component {
     const dialogActions = [
       <FlatButton key="cancelButton"
         label="Cancel"
-        onTouchTap={this.props.closeDialog}/>,
+        onTouchTap={ this.props.closeDialog }
+      />,
       <FlatButton key="submitButton"
-                  ref="submitButton"
+        ref="submitButton"
         label="Submit"
         primary
-        onTouchTap={ handleSubmit(this.loginSubmit) }/>
+        onTouchTap={ handleSubmit(this.loginSubmit) }
+      />
     ];
 
     return (
@@ -176,7 +178,8 @@ export default class LoginDialog extends Component {
           actionFocus="emailId"
           open={application.isShowOverlay && application.loginDialog}
           onRequestClose={this.props.closeDialog}
-          children={loginForm}/>
+          children={loginForm}
+        />
       </div>
     );
   }

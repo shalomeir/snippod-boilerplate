@@ -1,15 +1,15 @@
-import {ROUTER_DID_CHANGE} from 'redux-router/lib/constants';
+import { ROUTER_DID_CHANGE } from 'redux-router/lib/constants';
 import getDataDependencies from '../helpers/getDataDependencies';
 
 const locationsAreEqual = (locA, locB) => (locA.pathname === locB.pathname) && (locA.search === locB.search);
 
-export default ({getState, dispatch}) => next => action => {
+export default ({ getState, dispatch }) => next => action => {
   if (action.type === ROUTER_DID_CHANGE) {
     if (getState().router && locationsAreEqual(action.payload.location, getState().router.location)) {
       return next(action);
     }
 
-    const {components, location, params} = action.payload;
+    const { components, location, params } = action.payload;
     const promise = new Promise((resolve) => {
 
       const doTransition = () => {

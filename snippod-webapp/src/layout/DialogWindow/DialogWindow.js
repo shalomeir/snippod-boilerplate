@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import head from 'constants/head';
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ const meta = { ...head,
 };
 
 @connect(
-  state => ({application: state.application})
+  state => ({ application: state.application })
 )
 export default class DialogWindow extends Component {
 
@@ -29,12 +29,12 @@ export default class DialogWindow extends Component {
     let helmet = null;
 
     if (this.props.application.isShowOverlay && this.props.application.loginDialog) {
-      const tmeta = { ...meta, title: meta.title + 'Login'};
+      const tmeta = { ...meta, title: meta.title + 'Login' };
       helmet = (
         <Helmet {...tmeta}/>
       );
     } else if (this.props.application.isShowOverlay && this.props.application.registerDialog) {
-      const tmeta = { ...meta, title: meta.title + 'Register'};
+      const tmeta = { ...meta, title: meta.title + 'Register' };
       helmet = (
         <Helmet {...tmeta}/>
       );
@@ -49,4 +49,3 @@ export default class DialogWindow extends Component {
     );
   }
 }
-

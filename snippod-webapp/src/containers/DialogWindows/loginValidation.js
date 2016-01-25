@@ -1,4 +1,4 @@
-import {createValidator, required, email, minLength, maxLength} from 'utils/validation';
+import { createValidator, required, email, minLength, maxLength } from 'utils/validation';
 import { loginForm } from 'constants/defaults';
 
 const loginValidation = createValidator({
