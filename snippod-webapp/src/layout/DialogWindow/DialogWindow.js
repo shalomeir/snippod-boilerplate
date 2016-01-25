@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import head from 'constants/head';
 import { connect } from 'react-redux';
 //import { pushState } from 'redux-router';
 import {
@@ -9,9 +8,6 @@ import {
 } from 'containers';
 //import { closeDialog } from 'ducks/application/application';
 
-const meta = { ...head,
-  title: 'Snippod : '
-};
 
 @connect(
   state => ({ application: state.application })
@@ -26,23 +22,17 @@ export default class DialogWindow extends Component {
   };
 
   render() {
-    let helmet = null;
+    let titleText = null;
 
     if (this.props.application.isShowOverlay && this.props.application.loginDialog) {
-      const tmeta = { ...meta, title: meta.title + 'Login' };
-      helmet = (
-        <Helmet {...tmeta}/>
-      );
+      titleText = 'Login';
     } else if (this.props.application.isShowOverlay && this.props.application.registerDialog) {
-      const tmeta = { ...meta, title: meta.title + 'Register' };
-      helmet = (
-        <Helmet {...tmeta}/>
-      );
+      titleText = 'Register';
     }
 
     return (
       <div className="dialog-window">
-        {helmet}
+        <Helmet title={titleText} />
         <LoginDialog />
         <RegisterDialog />
       </div>

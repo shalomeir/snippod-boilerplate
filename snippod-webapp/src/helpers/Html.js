@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
+import Helmet from 'react-helmet';
+import configHead from 'constants/head';
 
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
@@ -19,26 +21,44 @@ export default class Html extends Component {
   }
 
   render() {
-    const {assets, component, store} = this.props;
+    const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
+    const head = component ? Helmet.rewind() : configHead;
+    const helmetComponent = component ? (
+      <div>
+        {head.base.toComponent()}
+        {head.title.toComponent()}
+        {head.meta.toComponent()}
+        {head.link.toComponent()}
+      </div>
+    ) : (
+      <Helmet
+        title={head.title}
+        titleTemplate={head.titleTemplate}
+        base={head.base}
+        meta={head.meta}
+        link={head.link}
+      />
+    );
 
     return (
       <html lang="en-us">
         <head>
-          <meta charSet="utf-8"/>
+          {helmetComponent}
 
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {/* styles (will be present only in production with webpack extract text plugin) */}
           {Object.keys(assets.styles).map((style, key) =>
               <link href={assets.styles[style]} key={key} media="screen, projection"
-                    rel="stylesheet" type="text/css" charSet="UTF-8"/>
+                rel="stylesheet" type="text/css" charSet="UTF-8"
+              />
           )}
 
         </head>
         <body>
-        <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
-        <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
+        <div id="content" dangerouslySetInnerHTML={{ __html: content }}/>
+        <script dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }} charSet="UTF-8"/>
         <script src={assets.javascript.main} charSet="UTF-8"/>
         </body>
       </html>

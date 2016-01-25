@@ -2,12 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
-import head from 'constants/head';
-
-const meta = { ...head,
-  title: 'Snippod boilerplate Main Page'
-};
-
 @connect(
     state => ({ auth: state.auth })
 )
@@ -20,7 +14,7 @@ export default class Topic extends Component {
   render() {
     return (
       <div className="container">
-        <Helmet {...meta}/>
+        <Helmet title="Main Page"/>
 
         <div className="topic main-container content full-width">
           { /*<TopicCard/>*/ }
