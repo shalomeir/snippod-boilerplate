@@ -25,17 +25,17 @@ export default class Html extends Component {
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = component ? Helmet.rewind() : configHead;
     const helmetComponent = component ? (
+      //{head.base.toComponent()}
       <div>
-        {head.base.toComponent()}
         {head.title.toComponent()}
         {head.meta.toComponent()}
         {head.link.toComponent()}
       </div>
     ) : (
+      //base={head.base}
       <Helmet
         title={head.title}
         titleTemplate={head.titleTemplate}
-        base={head.base}
         meta={head.meta}
         link={head.link}
       />

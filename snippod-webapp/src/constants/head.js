@@ -5,7 +5,7 @@ const image = 'https://react-redux.herokuapp.com/logo.jpg';
 const head = {
   title,
   titleTemplate: '%s | Snippod Boilerplate ',
-  base: { 'target': '_blank', 'href': 'http://shalomeir.com/' },
+  //base: { 'target': '_blank', 'href': 'http://shalomeir.com/' },
   link: [
     { 'rel': 'canonical', 'href': 'http://shalomeir.com/' },
     { 'rel': 'apple-touch-icon', 'href': 'http://mysite.com/img/apple-touch-icon-57x57.png' },
