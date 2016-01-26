@@ -3,6 +3,7 @@
 
 node_modules/
 dist/
+_translations
 *.iml
 webpack-stats.json
 webpack-assets.json
