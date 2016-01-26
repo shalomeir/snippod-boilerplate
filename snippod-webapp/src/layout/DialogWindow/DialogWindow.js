@@ -31,7 +31,7 @@ export default class DialogWindow extends Component {
     }
 
     return (
-      <div className="dialog-window">
+      <div className="layout">
         <Helmet title={titleText} />
         <LoginDialog />
         <RegisterDialog />

@@ -67,30 +67,25 @@ export default class NavBar extends Component {
     const rightButtons = auth.loggedIn ? (
       <div style={Styles.navBarSubDiv}>
         <FlatButton label="User Profile" onTouchTap={this.props.showLoginDialog}
-          {...Styles.flatButton}
-        />
+          {...Styles.flatButton} />
         <FlatButton label="Logout" onTouchTap={this.props.logout}
-          {...Styles.flatButton}
-        />
+          {...Styles.flatButton} />
       </div>
     ) : (
       <div style={Styles.navBarSubDiv}>
         <FlatButton label="Login" onTouchTap={this.props.showLoginDialog}
-          {...Styles.flatButton}
-        />
+          {...Styles.flatButton} />
         <FlatButton label="Register" onTouchTap={this.props.showRegisterDialog}
-          {...Styles.flatButton}
-        />
+          {...Styles.flatButton} />
       </div>
     );
 
     return (
-      <nav className="navbar">
+      <nav className="layout">
         <AppBar
           iconElementLeft={logo}
           title={title}
-          iconElementRight={rightButtons}
-        />
+          iconElementRight={rightButtons} />
         <header className="header">
           <div className="navbar">
             <div className="menu-title">Snippod's Navbar2</div>

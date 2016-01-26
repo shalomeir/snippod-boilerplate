@@ -5,7 +5,7 @@ export default class RegisterDialog extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="register-dialog container">
 
         <div className="topic main-container content full-width">
           { /*<TopicCard/>*/ }

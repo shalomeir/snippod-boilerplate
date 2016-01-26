@@ -11,8 +11,8 @@ import getRoutes from './routes';
 
 function getRootChildren(props, context) {
   const intlData = {
-    locale: props.auth.locale,
-    messages: i18n[props.auth.locale]
+    locale: props.application.locale,
+    messages: i18n[props.application.locale]
   };
   const rootChildren = [
     <IntlProvider key="intl" {...intlData}>
@@ -23,10 +23,10 @@ function getRootChildren(props, context) {
   return rootChildren;
 }
 
-@connect(state => ({ auth: state.auth }))
+@connect(state => ({ application: state.application }))
 export default class Root extends Component {
   static propTypes = {
-    auth: PropTypes.object.isRequired
+    application: PropTypes.object.isRequired
   };
 
   static contextTypes = {

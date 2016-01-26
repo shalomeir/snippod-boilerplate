@@ -1,7 +1,7 @@
 /*eslint-disable max-len,quotes*/
 export default {
   "about.librariesIntro": "안녕하세요. 반갑습니다.",
-  "about.specialThanks": "Un particolare ringraziamento a {link} per dare il via all'idea di {redux}!",
+  "about.specialThanks": "이야 한글이여 {link} redux 짱 {redux}!",
   "account.home.intro": "Congratulazioni, sei entrato in un area protetta da login!",
   "account.home.link.superSecretArea": "area super segreta",
   "account.home.steps": "Puoi fare il {logoutLink} o provare ad accedere all'{secretAreaLink} senza l'autorizzazione necessaria.",

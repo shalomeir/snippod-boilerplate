@@ -5,7 +5,7 @@ export default class Topic extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="login container">
         <Helmet title="Login Page"/>
 
         <div className="topic main-container content full-width">

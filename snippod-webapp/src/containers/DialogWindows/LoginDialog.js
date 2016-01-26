@@ -136,8 +136,7 @@ export default class LoginDialog extends Component {
           hintText="Type your email ID."
           errorText={emailId.error && emailId.touched ? emailId.error : ''}
           onEnterKeyDown={ handleSubmit(this.loginSubmit) }
-          {...emailId}
-        />
+          {...emailId} />
         <br/>
         <TextField
           ref="password"
@@ -146,8 +145,7 @@ export default class LoginDialog extends Component {
           errorText={password.error && password.touched ? password.error : ''}
           onEnterKeyDown={ handleSubmit(this.loginSubmit) }
           type="password"
-          {...password}
-        />
+          {...password} />
         <br/><br/>
         <div ref="errorText" style={[Styles.errorText.init, Styles.errorText[changed]]}>
           {errorObject ? this.props.errorObject.message : ''}
@@ -158,18 +156,16 @@ export default class LoginDialog extends Component {
     const dialogActions = [
       <FlatButton key="cancelButton"
         label="Cancel"
-        onTouchTap={ this.props.closeDialog }
-      />,
+        onTouchTap={ this.props.closeDialog } />,
       <FlatButton key="submitButton"
         ref="submitButton"
         label="Submit"
         primary
-        onTouchTap={ handleSubmit(this.loginSubmit) }
-      />
+        onTouchTap={ handleSubmit(this.loginSubmit) } />
     ];
 
     return (
-      <div className="login-dialog">
+      <div className="login-dialog container">
         <Dialog
           contentStyle={Styles.loginDialog}
           bodyStyle={Styles.dialogBodyStyle}
@@ -178,8 +174,7 @@ export default class LoginDialog extends Component {
           actionFocus="emailId"
           open={application.isShowOverlay && application.loginDialog}
           onRequestClose={this.props.closeDialog}
-          children={loginForm}
-        />
+          children={loginForm} />
       </div>
     );
   }

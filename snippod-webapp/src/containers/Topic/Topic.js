@@ -27,7 +27,7 @@ export default class Topic extends Component {
     const redux = (<code>Redux</code>);
 
     return (
-      <div className="container">
+      <div className="topic container">
         <Helmet title="Main Page"/>
 
         <div className="topic main-container content full-width">
@@ -40,8 +40,7 @@ export default class Topic extends Component {
           )}
           <p>
             <FormattedMessage {...messages.aboutThanks}
-              values={{ link, redux }}
-            />
+              values={{ link, redux }} />
           </p>
           { /*<Posts {...this.props} />*/ }
         </div>

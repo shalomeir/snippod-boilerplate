@@ -13,6 +13,10 @@ const defaults = {
     passwordMaxLength: 100,
   },
 
+  v1: {
+    defaultLocale: 'en'
+  }
+
 };
 
 module.exports = defaults;

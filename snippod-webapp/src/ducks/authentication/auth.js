@@ -1,16 +1,26 @@
 const LOAD = 'authentication/auth/LOAD';
 const LOAD_SUCCESS = 'authentication/auth/LOAD_SUCCESS';
 const LOAD_FAIL = 'authentication/auth/LOAD_FAIL';
+
 const LOGIN = 'authentication/auth/LOGIN';
 const LOGIN_SUCCESS = 'authentication/auth/LOGIN_SUCCESS';
 const LOGIN_FAIL = 'authentication/auth/LOGIN_FAIL';
+
 const LOGOUT = 'authentication/auth/LOGOUT';
 const LOGOUT_SUCCESS = 'authentication/auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'authentication/auth/LOGOUT_FAIL';
 
-//TODO: Only works in client Mode. Prepare SSR.
-import getBrowserLocale from '../../helpers/getBrowserLocale.js';
-const browserLocale = getBrowserLocale();
+const UPDATE_ACCOUNT_SETTINGS = 'authentication/auth/UPDATE_ACCOUNT_SETTINGS';
+const UPDATE_ACCOUNT_SETTINGS_SUCCESS = 'authentication/auth/UPDATE_ACCOUNT_SETTINGS_SUCCESS';
+const UPDATE_ACCOUNT_SETTINGS_FAIL = 'authentication/auth/UPDATE_ACCOUNT_SETTINGS_FAIL';
+
+const UPDATE_ACCOUNT_PASSWORD = 'authentication/auth/UPDATE_ACCOUNT_PASSWORD';
+const UPDATE_ACCOUNT_PASSWORD_SUCCESS = 'authentication/auth/UPDATE_ACCOUNT_PASSWORD_SUCCESS';
+const UPDATE_ACCOUNT_PASSWORD_FAIL = 'authentication/auth/UPDATE_ACCOUNT_PASSWORD_FAIL';
+
+const DESTROY_ACCOUNT = 'authentication/auth/DESTROY_ACCOUNT';
+const DESTROY_ACCOUNT_SUCCESS = 'authentication/auth/DESTROY_ACCOUNT_SUCCESS';
+const DESTROY_ACCOUNT_FAIL = 'authentication/auth/DESTROY_ACCOUNT_FAIL';
 
 const initialState = {
   loggedIn: false,
@@ -18,7 +28,6 @@ const initialState = {
   loading: false,
   loggingIn: false,
   loggingOut: false,
-  locale: browserLocale,
   account: null
 };
 
@@ -37,7 +46,6 @@ export default function reducer(state = initialState, action = {}) {
           loading: false,
           loaded: true,
           account: action.result.account,
-          locale: action.result.account.language
         };
       }
       return {
@@ -66,7 +74,6 @@ export default function reducer(state = initialState, action = {}) {
         loggingIn: false,
         loaded: true,
         account: action.result.account,
-        locale: action.result.account.language,
         loginError: null
       };
     case LOGIN_FAIL:
@@ -96,6 +103,19 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loggingOut: false,
         logoutError: action.error
+      };
+    case UPDATE_ACCOUNT_SETTINGS:
+      return state;
+
+    case UPDATE_ACCOUNT_SETTINGS_SUCCESS:
+      return {
+        ...state,
+        account: action.result.account,
+      };
+    case UPDATE_ACCOUNT_SETTINGS_FAIL:
+      return {
+        ...state,
+        error: action.error
       };
     default:
       return state;
@@ -129,5 +149,16 @@ export function logout() {
   return {
     types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
     promise: (client) => client.get('/auth/logout/')
+  };
+}
+
+export function updateAccountSettings(account) {
+  return {
+    types: [UPDATE_ACCOUNT_SETTINGS, UPDATE_ACCOUNT_SETTINGS_SUCCESS, UPDATE_ACCOUNT_SETTINGS_FAIL],
+    promise: (client) => client.patch('/accounts/' + account.id, {
+      data: {
+        account
+      }
+    })
   };
 }

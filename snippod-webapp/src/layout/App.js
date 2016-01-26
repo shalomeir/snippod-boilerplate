@@ -74,7 +74,7 @@ export default class App extends Component {
         <main id="content">
           {this.props.children}
         </main>
-        <Footer/>
+        <Footer />
         <DialogWindow/>
         <Snackbar/>
       </div>
