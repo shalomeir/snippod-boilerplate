@@ -14,11 +14,12 @@ import http from 'http';
 import SocketIo from 'socket.io';
 
 import createHistory from 'history/lib/createMemoryHistory';
-import {reduxReactRouter, match} from 'redux-router/server';
-import {Provider} from 'react-redux';
+import { reduxReactRouter, match } from 'redux-router/server';
+import { Provider } from 'react-redux';
 import qs from 'query-string';
 import getRoutes from './routes';
 import getStatusFromRoutes from './helpers/getStatusFromRoutes';
+import './utils/supportIntl';
 
 import Root from './Root';
 
@@ -47,10 +48,10 @@ proxy.on('error', (error, req, res) => {
     console.error('proxy error', error);
   }
   if (!res.headersSent) {
-    res.writeHead(500, {'content-type': 'application/json'});
+    res.writeHead(500, { 'content-type': 'application/json' });
   }
 
-  json = {error: 'proxy_error', reason: error.message};
+  json = { error: 'proxy_error', reason: error.message };
   res.end(JSON.stringify(json));
 });
 
