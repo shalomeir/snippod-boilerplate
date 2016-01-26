@@ -32,6 +32,7 @@
     "build": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
     "build:i18n": "rimraf _translations && babel --quiet --babelrc .babelrc.i18n src > /dev/null",
     "build:i18n:langs": "npm run build:i18n && babel-node scripts/i18nToXliff.js",
+    "clean": "rimraf static/dist",
     "postinstall": "webpack --display-error-details --config webpack/prod.config.js",
     "lint": "eslint -c .eslintrc src api",
     "start-dev": "better-npm-run start-dev -- --nw",

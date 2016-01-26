@@ -2,6 +2,16 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="ko">
   <file id="f1">
     
+<unit id="about.specialThanks">
+  <notes>
+    <note>Thanks to Dan Abramov for the idea of Redux</note>
+  </notes>
+  <segment state="translated">
+    <source><![CDATA[A special thanks to {link} for kicking out the idea of {redux}!]]></source>
+    <target><![CDATA[Un particolare ringraziamento a {link} per dare il via all'idea di {redux}!]]></target>
+  </segment>
+</unit>
+  
  </file>
 </xliff>
   
