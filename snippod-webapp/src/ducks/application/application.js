@@ -1,4 +1,4 @@
-const debug = require('utils/getDebugger')('hello2');
+const debug = require('utils/getDebugger')('application');
 
 const SHOW_LOGIN_DIALOG = 'application/application/SHOW_LOGIN_DIALOG';
 const SHOW_REGISTER_DIALOG = 'application/application/SHOW_REGISTER_DIALOG';

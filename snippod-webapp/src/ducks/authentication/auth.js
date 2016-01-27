@@ -1,3 +1,7 @@
+const debug = require('utils/getDebugger')('auth');
+import { switchLocale } from 'ducks/application/application';
+
+
 const LOAD = 'authentication/auth/LOAD';
 const LOAD_SUCCESS = 'authentication/auth/LOAD_SUCCESS';
 const LOAD_FAIL = 'authentication/auth/LOAD_FAIL';
@@ -22,7 +26,6 @@ const DESTROY_ACCOUNT = 'authentication/auth/DESTROY_ACCOUNT';
 const DESTROY_ACCOUNT_SUCCESS = 'authentication/auth/DESTROY_ACCOUNT_SUCCESS';
 const DESTROY_ACCOUNT_FAIL = 'authentication/auth/DESTROY_ACCOUNT_FAIL';
 
-import { switchLocale } from 'ducks/application/application';
 
 const initialState = {
   loggedIn: false,
@@ -144,6 +147,19 @@ export function login(loginForm) {
         password: loginForm.password
       }
     })
+  };
+}
+
+//thunk action that dispatch login action and then dispatch follow action such as switch locale.
+export function loginAndFollow(loginForm) {
+  return (dispatch, getState) => {
+    return dispatch(
+      login(loginForm)
+    ).then(({ result, error }) => {
+      if (result) {
+        dispatch(switchLocale(result.account.language.split('-')[0]));
+      }
+    });
   };
 }
 

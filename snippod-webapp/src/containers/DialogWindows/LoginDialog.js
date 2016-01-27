@@ -9,7 +9,7 @@ import { initializeWithKey } from 'redux-form';
 import { reduxForm } from 'redux-form';
 
 import { closeDialog } from 'ducks/application/application';
-import { login } from 'ducks/authentication/auth';
+import { login, loginAndFollow } from 'ducks/authentication/auth';
 import { resetErrorMessage } from 'ducks/messages/errorMessage';
 
 import loginValidation from './loginValidation';
@@ -29,7 +29,7 @@ const Styles = require('./DialogStyles');
   ], (auth, application, errorObject) => {
     return { auth, application, errorObject };
   }),
-  { pushState, closeDialog, login, resetErrorMessage }
+  { pushState, closeDialog, login, resetErrorMessage, loginAndFollow }
 )
 @reduxForm({
   form: 'login',
@@ -47,6 +47,7 @@ export default class LoginDialog extends Component {
     pushState: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
+    loginAndFollow: PropTypes.func.isRequired,
     resetErrorMessage: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
@@ -117,7 +118,7 @@ export default class LoginDialog extends Component {
 
     //FIX ME: I coundn't make it pefectly.
     //This make 'Unhandled promise rejection issue'
-    return this.props.login(values).then(result => {
+    return this.props.loginAndFollow(values).then(result => {
       if (result && typeof result.error === 'object') {
         return Promise.reject({
           _error: result.error.message
