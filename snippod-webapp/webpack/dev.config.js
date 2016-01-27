@@ -52,7 +52,8 @@ module.exports = {
     'main': [
       'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
       //'bootstrap-sass!./src/theme/bootstrap.config.js',
-      './src/theme/hackernews-main.scss',
+      './semantic/dist/semantic.css',
+      './semantic/dist/semantic.js',
       'font-awesome-webpack!./src/theme/font-awesome.config.js',
       './src/client.js'
     ]
@@ -65,8 +66,9 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loaders: ['babel?' + JSON.stringify(babelLoaderQuery), 'eslint-loader']},
+      { test: /\.js$/, exclude: /node_modules/, loaders: ['imports?jQuery=jquery,$=jquery,this=>window', 'babel?' + JSON.stringify(babelLoaderQuery), 'eslint-loader']},
       { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.css$/, loader: 'style!css!autoprefixer?browsers=last 2 version' },
       { test: /\.less$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap' },
       { test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' },
       { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
@@ -84,6 +86,9 @@ module.exports = {
       'node_modules'
     ],
     extensions: ['', '.json', '.js']
+  },
+  externals: {
+    "jQuery": "jQuery"
   },
   plugins: [
     // hot reload

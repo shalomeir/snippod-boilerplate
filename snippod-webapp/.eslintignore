@@ -1,3 +1,4 @@
 webpack/*
+semantic/*
 karma.conf.js
 tests.webpack.js

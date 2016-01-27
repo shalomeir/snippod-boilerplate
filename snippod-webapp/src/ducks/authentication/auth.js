@@ -1,4 +1,3 @@
-const debug = require('utils/getDebugger')('auth');
 import { switchLocale } from 'ducks/application/application';
 
 

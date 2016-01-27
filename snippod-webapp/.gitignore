@@ -3,6 +3,8 @@
 
 node_modules/
 dist/
+semantic/dist/
+semantic/Semantic-UI-Docs/
 _translations
 *.iml
 webpack-stats.json
