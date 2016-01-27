@@ -22,6 +22,8 @@ const DESTROY_ACCOUNT = 'authentication/auth/DESTROY_ACCOUNT';
 const DESTROY_ACCOUNT_SUCCESS = 'authentication/auth/DESTROY_ACCOUNT_SUCCESS';
 const DESTROY_ACCOUNT_FAIL = 'authentication/auth/DESTROY_ACCOUNT_FAIL';
 
+import { switchLocale } from 'ducks/application/application';
+
 const initialState = {
   loggedIn: false,
   loaded: false,

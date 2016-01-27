@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 //import { pushState } from 'redux-router';
 import {
   LoginDialog,
@@ -10,7 +11,11 @@ import {
 
 
 @connect(
-  state => ({ application: state.application })
+  createSelector([
+    state => state.application
+  ], (application) => {
+    return { application };
+  })
 )
 export default class DialogWindow extends Component {
 

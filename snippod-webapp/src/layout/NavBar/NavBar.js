@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import { Link } from 'react-router';
 import AppBar from 'material-ui/lib/app-bar';
 const Styles = require('./NavBarStyles');
@@ -11,7 +12,10 @@ import { logout } from 'ducks/authentication/auth';
 
 
 @connect(
-  state => ({}),
+  createSelector([
+  ], () => {
+    return {};
+  }),
   { showLoginDialog, showRegisterDialog, logout }
 )
 @Radium

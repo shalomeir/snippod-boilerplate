@@ -3,6 +3,7 @@ import Radium from 'radium';
 import _ from 'lodash';
 
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import { pushState } from 'redux-router';
 import { initializeWithKey } from 'redux-form';
 import { reduxForm } from 'redux-form';
@@ -19,13 +20,17 @@ const TextField = require('material-ui/lib/text-field');
 
 const Styles = require('./DialogStyles');
 
+
 @connect(
-  state => ({
-    auth: state.auth,
-    application: state.application,
-    errorObject: state.messages.errorObject,
+  createSelector([
+    state => state.auth,
+    state => state.application,
+    state => state.messages.errorObject
+  ], (auth, application, errorObject) => {
+    return { auth, application, errorObject };
   }),
-  { pushState, closeDialog, login, resetErrorMessage })
+  { pushState, closeDialog, login, resetErrorMessage }
+)
 @reduxForm({
   form: 'login',
   fields: ['emailId', 'password'],

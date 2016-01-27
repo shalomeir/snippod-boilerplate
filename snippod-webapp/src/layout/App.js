@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import connectData from 'helpers/connectData';
 import { pushState } from 'redux-router';
 import Radium, { Style } from 'radium';
@@ -35,7 +36,11 @@ function fetchData(getState, dispatch) {
 @connectData(fetchData)
 @themeDecorator(ThemeManager.getMuiTheme(SnippodRawTheme))
 @connect(
-  state => ({ auth: state.auth }),
+  createSelector([
+    state => state.auth
+  ], (auth) => {
+    return { auth };
+  }),
   { pushState }
 )
 @Radium

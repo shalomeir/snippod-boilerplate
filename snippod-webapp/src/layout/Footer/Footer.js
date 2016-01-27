@@ -1,12 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import { Link } from 'react-router';
 
 import { switchLocale } from 'ducks/application/application';
 
 @connect(
-  state => ({ application: state.application }),
+  createSelector([
+    state => state.application
+  ], (application) => {
+    return { application };
+  }),
   { switchLocale }
 )
 @Radium

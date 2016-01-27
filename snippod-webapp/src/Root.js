@@ -3,6 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import { ReduxRouter } from 'redux-router';
 import { IntlProvider } from 'react-intl';
 import * as i18n from './i18n';
@@ -23,8 +24,15 @@ function getRootChildren(props, context) {
   return rootChildren;
 }
 
-@connect(state => ({ application: state.application }))
+@connect(
+  createSelector([
+    state => state.application
+  ], (application) => {
+    return { application };
+  })
+)
 export default class Root extends Component {
+
   static propTypes = {
     application: PropTypes.object.isRequired
   };

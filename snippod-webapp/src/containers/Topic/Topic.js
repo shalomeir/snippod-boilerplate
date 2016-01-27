@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import { Link } from 'react-router';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
@@ -8,13 +9,17 @@ const messages = defineMessages({
   aboutThanks: {
     id: 'about.specialThanks',
     description: 'Thanks to Dan Abramov for the idea of Redux',
-    defaultMessage: 'A special thanks to {link} ' +
+    defaultMessage: 'A special thanks2 to {link} ' +
     'for kicking out the idea of {redux}!'
   },
 });
 
 @connect(
-    state => ({ auth: state.auth })
+  createSelector([
+    state => state.auth
+  ], (auth) => {
+    return { auth };
+  })
 )
 export default class Topic extends Component {
   static propTypes = {
