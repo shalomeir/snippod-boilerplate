@@ -8,7 +8,7 @@ import { getBrowserLocale } from '../helpers/getBrowserSettings.js';
 const browserLocale = getBrowserLocale();
 
 export default function createStore(reduxReactRouter, getRoutes, createHistory, client, data) {
-  const middleware = [createMiddleware(client), transitionMiddleware, thunk];
+  const middleware = [thunk, createMiddleware(client), transitionMiddleware];
 
   let finalCreateStore;
   if (__DEVELOPMENT__ && __CLIENT__ && __DEVTOOLS__) {

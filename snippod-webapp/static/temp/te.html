@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="robots" content="NONE,NOARCHIVE" />
+
+
+  <title>Django REST framework</title>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/bootstrap-tweaks.css"/>
+
+
+  <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/prettify.css"/>
+  <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/default.css"/>
+
+
+
+</head>
+
+
+<body class="">
+
+<div class="wrapper">
+
+  <div class="navbar navbar-static-top navbar-inverse">
+    <div class="container">
+          <span>
+            
+              <a class='navbar-brand' rel="nofollow" href='http://www.django-rest-framework.org'>
+                Django REST framework <span class="version">3.2.0</span>
+              </a>
+            
+          </span>
+      <ul class="nav navbar-nav pull-right">
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            admin@admin.com
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href='/api-auth/logout/?next=/api/v1/auth/login/'>Log out</a></li>
+          </ul>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="container">
+
+    <ul class="breadcrumb">
+
+
+      <li><a href="/api/v1/">Api Root</a></li>
+
+
+
+      <li class="active"><a href="/api/v1/auth/login/">Login</a></li>
+
+
+    </ul>
+
+
+    <!-- Content -->
+    <div id="content">
+
+
+
+
+      <form class="button-form" action="/api/v1/auth/login/" method="POST">
+        <input type='hidden' name='csrfmiddlewaretoken' value='p8bhDeZ3Sy8pKpuWUAmTe9D4fSGxCyNf' />
+        <input type="hidden" name="_method" value="OPTIONS" />
+        <button class="btn btn-primary js-tooltip" title="Make an OPTIONS request on the Login resource">OPTIONS</button>
+      </form>
+
+
+
+
+      <div class="content-main">
+        <div class="page-header">
+          <h1>Login</h1>
+        </div>
+        <div style="float:left">
+
+          <p></p>
+
+        </div>
+
+
+
+        <div class="request-info" style="clear: both" >
+          <pre class="prettyprint"><b>POST</b> /api/v1/auth/login/</pre>
+        </div>
+
+        <div class="response-info">
+              <pre class="prettyprint"><span class="meta nocode"><b>HTTP 200 OK</b>
+<b>Vary:</b> <span class="lit">Accept</span>
+<b>Content-Type:</b> <span class="lit">application/json</span>
+<b>Allow:</b> <span class="lit">POST, OPTIONS</span>
+
+</span>{
+    &quot;account&quot;: {
+        &quot;fullName&quot;: &quot;&quot;,
+        &quot;firstName&quot;: &quot;&quot;,
+        &quot;username&quot;: &quot;admin&quot;,
+        &quot;updatedAt&quot;: &quot;2015-11-04T10:21:56.093522Z&quot;,
+        &quot;language&quot;: &quot;en&quot;,
+        &quot;email&quot;: &quot;<a href="mailto:admin@admin.com">admin@admin.com</a>&quot;,
+        &quot;lastName&quot;: &quot;&quot;,
+        &quot;id&quot;: 115,
+        &quot;dateJoined&quot;: &quot;2015-11-04T10:21:56.067911Z&quot;
+    }
+}</pre>
+        </div>
+      </div>
+
+
+
+
+      <div >
+
+
+        <div class="well tab-content">
+
+
+          <div  id="post-generic-content-form">
+
+            <form action="/api/v1/auth/login/" method="POST" class="form-horizontal">
+              <fieldset>
+
+                <input type='hidden' name='csrfmiddlewaretoken' value='p8bhDeZ3Sy8pKpuWUAmTe9D4fSGxCyNf' />
+
+
+                <div class="form-group">
+                  <label for="id__content_type" class="col-sm-2 control-label">Media type:</label>
+                  <div class="col-sm-10">
+                    <select id="id__content_type" name="_content_type" class="form-control">
+                      <option value="application/json" selected="selected">application/json</option>
+                      <option value="application/x-www-form-urlencoded">application/x-www-form-urlencoded</option>
+                      <option value="multipart/form-data">multipart/form-data</option>
+                    </select>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="id__content" class="col-sm-2 control-label">Content:</label>
+                  <div class="col-sm-10">
+      <textarea cols="40" id="id__content" name="_content" rows="10" class="form-control">
+</textarea>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+
+
+                <div class="form-actions">
+                  <button class="btn btn-primary" title="Make a POST request on the Login resource">POST</button>
+                </div>
+              </fieldset>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div><!-- /.content -->
+  </div><!-- /.container -->
+</div><!-- ./wrapper -->
+
+
+<script src="/static/rest_framework/js/jquery-1.8.1-min.js"></script>
+<script src="/static/rest_framework/js/bootstrap.min.js"></script>
+<script src="/static/rest_framework/js/prettify-min.js"></script>
+<script src="/static/rest_framework/js/default.js"></script>
+
+
+<link rel="stylesheet" href="/static/debug_toolbar/css/print.css" type="text/css" media="print" />
+<link rel="stylesheet" href="/static/debug_toolbar/css/toolbar.css" type="text/css" />
+
+<!-- Prevent our copy of jQuery from registering as an AMD module on sites that use RequireJS. -->
+<script src="/static/debug_toolbar/js/jquery_pre.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="/static/debug_toolbar/js/jquery_post.js"></script>
+
+<script src="/static/debug_toolbar/js/toolbar.js"></script>
+<div id="djDebug" hidden="hidden" dir="ltr"
+     data-store-id="b722b1171ceb4213a304eaf752ab5a92" data-render-panel-url="/__debug__/render_panel/"
+>
+  <div hidden="hidden" id="djDebugToolbar">
+    <ul id="djDebugPanelList">
+
+      <li><a id="djHideToolBarButton" href="#" title="Hide toolbar">Hide &#187;</a></li>
+
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtVersionsPanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="Versions" class="VersionsPanel">
+
+          Versions
+
+
+          <br /><small>Django 1.8.3</small>
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtTimerPanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="Time" class="TimerPanel">
+
+          Time
+
+
+          <br /><small>CPU: 65.27ms (65.40ms)</small>
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtSettingsPanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="Settings from &lt;code&gt;snippod_boilerplate.settings.dev&lt;/code&gt;" class="SettingsPanel">
+
+          Settings
+
+
+
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtHeadersPanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="Headers" class="HeadersPanel">
+
+          Headers
+
+
+
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtRequestPanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="Request" class="RequestPanel">
+
+          Request
+
+
+          <br /><small>LoginView</small>
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtSQLPanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="SQL queries from 1 connection" class="SQLPanel">
+
+          SQL
+
+
+          <br /><small>3 queries in 1.15ms</small>
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtStaticFilesPanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="Static files (96 found, 8 used)" class="StaticFilesPanel">
+
+          Static files
+
+
+          <br /><small>8 files used</small>
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtTemplatesPanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="Templates (3 rendered)" class="TemplatesPanel">
+
+          Templates
+
+
+          <br /><small>rest_framework/api.html</small>
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtCachePanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="Cache calls from 1 backend" class="CachePanel">
+
+          Cache
+
+
+          <br /><small>0 calls in 0.00ms</small>
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtSignalsPanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="Signals" class="SignalsPanel">
+
+          Signals
+
+
+          <br /><small>12 receivers of 12 signals</small>
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtLoggingPanel" checked="checked" title="Disable for next and successive requests" />
+
+        <a href="#" title="Log messages" class="LoggingPanel">
+
+          Logging
+
+
+          <br /><small>0 messages</small>
+
+
+
+        </a>
+
+      </li>
+
+      <li class="djDebugPanelButton">
+        <input type="checkbox" data-cookie="djdtRedirectsPanel" title="Enable for next and successive requests" />
+
+        <div class="djdt-contentless djdt-disabled">
+
+          Intercept redirects
+
+
+        </div>
+
+      </li>
+
+    </ul>
+  </div>
+  <div hidden="hidden" id="djDebugToolbarHandle">
+    <span title="Show toolbar" id="djShowToolBarButton">&#171;</span>
+  </div>
+
+
+  <div id="VersionsPanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>Versions</h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+  <div id="TimerPanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>Time</h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+  <div id="SettingsPanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>Settings from <code>snippod_boilerplate.settings.dev</code></h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+  <div id="HeadersPanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>Headers</h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+  <div id="RequestPanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>Request</h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+  <div id="SQLPanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>SQL queries from 1 connection</h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+  <div id="StaticFilesPanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>Static files (96 found, 8 used)</h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+  <div id="TemplatesPanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>Templates (3 rendered)</h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+  <div id="CachePanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>Cache calls from 1 backend</h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+  <div id="SignalsPanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>Signals</h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+  <div id="LoggingPanel" class="djdt-panelContent">
+    <div class="djDebugPanelTitle">
+      <a href="" class="djDebugClose"></a>
+      <h3>Log messages</h3>
+    </div>
+    <div class="djDebugPanelContent">
+
+      <img src="/static/debug_toolbar/img/ajax-loader.gif" alt="loading" class="djdt-loader" />
+      <div class="djdt-scroll"></div>
+
+    </div>
+  </div>
+
+
+
+
+  <div id="djDebugWindow" class="djdt-panelContent"></div>
+</div>
+</body>
+
+</html>

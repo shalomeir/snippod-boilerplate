@@ -1,5 +1,5 @@
+const debug = require('utils/getDebugger')('auth');
 import { switchLocale } from 'ducks/application/application';
-
 
 const LOAD = 'authentication/auth/LOAD';
 const LOAD_SUCCESS = 'authentication/auth/LOAD_SUCCESS';
@@ -154,10 +154,10 @@ export function loginAndFollow(loginForm) {
   return (dispatch, getState) => {
     return dispatch(
       login(loginForm)
-    ).then(({ result, error }) => {
-      if (result) {
-        dispatch(switchLocale(result.account.language.split('-')[0]));
-      }
+    ).then((result) => {
+      dispatch(switchLocale(result.account.language.split('-')[0]));
+    }).catch((error) => {
+      debug('Error occured : ', error);
     });
   };
 }

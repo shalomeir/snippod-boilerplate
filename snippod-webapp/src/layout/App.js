@@ -5,9 +5,6 @@ import connectData from 'helpers/connectData';
 import { pushState } from 'redux-router';
 import Radium, { Style } from 'radium';
 import radiumRules from '../theme/radium-rules';
-import themeDecorator from 'material-ui/lib/styles/theme-decorator';
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import SnippodRawTheme from '../theme/snippod-raw-theme-boilerplate';
 import Helmet from 'react-helmet';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import head from 'constants/head';
@@ -34,7 +31,6 @@ function fetchData(getState, dispatch) {
 }
 
 @connectData(fetchData)
-@themeDecorator(ThemeManager.getMuiTheme(SnippodRawTheme))
 @connect(
   createSelector([
     state => state.auth

@@ -31,6 +31,12 @@ class _ApiClient {
         if (params) {
           request.query(params);
         }
+        request.set({
+          'accept': 'application/json',
+          'Content-Type': 'application/json',
+          //'X-Requested-With': 'XMLHttpRequest',
+          //'X-HTTP-Method-Override': method
+        });
 
         let csrftoken = null;
         if (__SERVER__ && req.get('cookie')) {
@@ -42,12 +48,10 @@ class _ApiClient {
         if (__CLIENT__) {
           csrftoken = Cookies.get('csrftoken');
         }
+
         if (csrftoken) {
           request.set({
-            //'authorization': 'Bearer ' + token,
             'X-CSRFToken': csrftoken,
-            //'X-Requested-With': 'XMLHttpRequest',
-            //'X-HTTP-Method-Override': method
           });
         }
 
