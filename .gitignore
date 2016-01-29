@@ -10,6 +10,19 @@ webpack-stats.json
 npm-debug.log
 auto_default_code/
 
+# From snippod-webapp
+snippod-webapp/.DS_Store
+snippod-webapp/.idea
+snippod-webapp/node_modules/
+snippod-webapp/dist/
+snippod-webapp/semantic/dist/
+snippod-webapp/semantic/examples/
+snippod-webapp/semantic/Semantic-UI-Docs/
+snippod-webapp/_translations
+snippod-webapp/*.iml
+snippod-webapp/webpack-stats.json
+snippod-webapp/webpack-assets.json
+snippod-webapp/npm-debug.log
 
 snippod_webapp_reflux/.DS_Store
 snippod_webapp_reflux/node_modules

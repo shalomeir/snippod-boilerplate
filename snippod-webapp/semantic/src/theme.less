@@ -51,6 +51,10 @@
   @import url('@{googleProtocol}fonts.googleapis.com/css?family=@{googleFontRequest}');
 }
 
+.loadEarlyAccessFonts() when (@importGoogleFontsEarlyAccess) {
+  @import url('@{googleProtocol}fonts.googleapis.com/earlyaccess/@{googleFontsEarlyAccessFileName}');
+}
+
 /*------------------
      Overrides
 -------------------*/

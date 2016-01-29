@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import connectData from 'helpers/connectData';
 import { pushState } from 'redux-router';
-import Radium, { Style } from 'radium';
-import radiumRules from '../theme/radium-rules';
 import Helmet from 'react-helmet';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import head from 'constants/head';
@@ -39,7 +37,6 @@ function fetchData(getState, dispatch) {
   }),
   { pushState }
 )
-@Radium
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
@@ -69,7 +66,6 @@ export default class App extends Component {
   render() {
     return (
       <div className="app">
-        <Style rules={radiumRules}/>
         <Helmet {...head}/>
         <NavBar auth={this.props.auth} pushState={this.props.pushState} />
         <main id="content">

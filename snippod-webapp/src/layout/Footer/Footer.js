@@ -44,6 +44,7 @@ export default class Footer extends Component {
 
   componentDidUpdate() {
     $('.ui.search').search('refresh');
+    $('.ui.selection.dropdown').dropdown('refresh');
   }
 
   handleLocaleSwitch(event) {
@@ -55,15 +56,11 @@ export default class Footer extends Component {
       <footer className="layout">
         <div className="footer">
           <p><small>Github repositoriy is located in <a href="https://github.com/shalomeir/snippod-boilerplate" target="_blank">Here.</a></small></p>
-          <form className="language-switcher">
-            <fieldset>
-              <select className="ui dropdown" ref="langSwitcher" value={this.props.application.locale}
-                onChange={this.handleLocaleSwitch}>
-                <option value="en">EN</option>
-                <option value="ko">KO</option>
-              </select>
-            </fieldset>
-          </form>
+          <select className="ui dropdown" ref="langSwitcher" value={this.props.application.locale}
+            onChange={this.handleLocaleSwitch}>
+            <option value="en">EN</option>
+            <option value="ko">KO</option>
+          </select>
           <div className="ui selection dropdown">
             <input type="hidden" name="gender" />
               <i className="dropdown icon"></i>

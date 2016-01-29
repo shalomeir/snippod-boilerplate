@@ -4,6 +4,7 @@
 node_modules/
 dist/
 semantic/dist/
+semantic/examples/
 semantic/Semantic-UI-Docs/
 _translations
 *.iml

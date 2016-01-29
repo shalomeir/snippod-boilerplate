@@ -2,3 +2,25 @@
      User Global Variables
 *******************************/
 
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName          : 'Noto Sans';
+@fontNameForKR     : 'Noto Sans KR';
+@fontSmoothing     : antialiased;
+
+@headerFont        : @fontName, @fontNameForKR, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@pageFont          : @fontName, @fontNameForKR, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+@googleFontName    : 'Noto+Sans';
+@importGoogleFonts : true;
+@googleFontSizes   : '400,700,400italic,700italic';
+@googleSubset      : 'latin';
+
+@googleProtocol    : 'https://';
+@googleFontRequest : '@{googleFontName}:@{googleFontSizes}&subset=@{googleSubset}';
+
+@importGoogleFontsEarlyAccess : true;
+@googleFontsEarlyAccessFileName : 'notosanskr.css';
+
