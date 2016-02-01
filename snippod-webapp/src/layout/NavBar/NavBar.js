@@ -59,8 +59,9 @@ export default class NavBar extends Component {
     //);
 
     const logo = (
-      <div style={Styles.navBarSubDiv}>
-        <i className="fa fa-home" style={Styles.logo}> Snippod boilerplate</i>
+      <div href="#" className="header item">
+        <img className="logo" src="/images/logo.png" style={Styles.logoImage}/>
+        <header className="header" style={Styles.title}> Snippod boilerplate </header>
       </div>
     );
 
@@ -68,7 +69,7 @@ export default class NavBar extends Component {
       <header className="header" style={Styles.title}> Snippod boilerplate </header>
     );
 
-    const rightButtons = auth.loggedIn ? (
+    const rightMenu = auth.loggedIn ? (
       <div style={Styles.navBarSubDiv}>
         <FlatButton label="User Profile" onTouchTap={this.props.showLoginDialog}
           {...Styles.flatButton} />
@@ -85,16 +86,18 @@ export default class NavBar extends Component {
     );
 
     return (
-      <nav className="layout">
-        <AppBar
-          iconElementLeft={logo}
-          title={title}
-          iconElementRight={rightButtons} />
-        <header className="header">
-          <div className="navbar">
-            <div className="menu-title">Snippod's Navbar2</div>
+      <nav className="navbar ui large top fixed borderless menu">
+        <div className="ui container">
+          {logo}
+          <div className="right menu">
+            <div className="item">
+              <a className="ui button">Log in</a>
+            </div>
+            <div className="item">
+              <a className="ui primary button">Sign Up</a>
+            </div>
           </div>
-        </header>
+        </div>
       </nav>
     );
   }

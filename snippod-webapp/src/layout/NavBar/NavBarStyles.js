@@ -1,5 +1,4 @@
 import SnippodRawTheme from '../../theme/snippod-raw-theme-boilerplate';
-const Colors = require('material-ui/lib/styles/colors');
 
 
 const Styles = {
@@ -11,16 +10,12 @@ const Styles = {
   },
 
   title: {
-    display: 'none',
+    color: '#0077be',
+    fontSize: '1.1em'
   },
 
-  logo: {
-    color: Colors.white,
-    fontSize: SnippodRawTheme.spacing.iconSize,
-    transition: 'all 200ms',
-    ':hover': {
-      color: Colors.blueGrey200,
-    },
+  logoImage: {
+    marginRight: '1.2em',
   },
 
   //Material UI Component Style
@@ -28,9 +23,6 @@ const Styles = {
     //hoverColor: SnippodRawTheme.palette.accent2Color,
 
     style: {
-      color: Colors.white,
-      backgroundColor: SnippodRawTheme.palette.primary1Color,
-      textColor: Colors.white,
       fontWeight: 300,
     }
   },

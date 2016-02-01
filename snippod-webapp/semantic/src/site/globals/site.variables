@@ -1,5 +1,5 @@
 /*******************************
-     User Global Variables
+     Snippod-Boilerplate Global Variables
 *******************************/
 
 /*-------------------
@@ -24,3 +24,67 @@
 @importGoogleFontsEarlyAccess : true;
 @googleFontsEarlyAccessFileName : 'notosanskr.css';
 
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all */
+@emSize   : 14px;
+
+/* The size of page text  */
+@fontSize : 14px;
+
+
+/*-------------------
+    Border Radius
+--------------------*/
+
+/* See Power-user section below
+   for explanation of @px variables
+*/
+@relativeBorderRadius: @relative4px;
+@absoluteBorderRadius: @4px;
+
+@defaultBorderRadius: @absoluteBorderRadius;
+
+
+/*-------------------
+    Brand Colors
+--------------------*/
+
+@primaryColor        : @blue;
+@secondaryColor      : @black;
+
+@lightPrimaryColor   : @lightBlue;
+@lightSecondaryColor : @lightBlack;
+
+
+/*-------------------
+        Page
+--------------------*/
+
+@pageBackground      : @lightGrey;
+@pageOverflowX       : hidden;
+
+@lineHeight          : 1.4285em;
+@textColor           : rgba(0, 0, 0, 0.87);
+
+
+/*-------------------
+     Brand Colors
+--------------------*/
+
+@snippodColor   : #0077BE;
+@snippodHoverColor   : saturate(darken(@snippodColor, 5), 10, relative);
+@snippodFocusColor   : saturate(darken(@snippodColor, 8), 20, relative);
+@snippodDownColor   : darken(@snippodColor, 10);
+@snippodActiveColor   : saturate(darken(@snippodColor, 5), 15, relative);
+
+
+/*-------------------
+        Paths
+--------------------*/
+
+/* For source only. Modified in gulp for dist */
+// Very important if build by semantic.less
+@fontPath  : '../assets/fonts';

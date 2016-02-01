@@ -16,6 +16,8 @@ var
   buildJS      = require('./tasks/build/javascript'),
   buildCSS     = require('./tasks/build/css'),
   buildAssets  = require('./tasks/build/assets'),
+  buildPureJS      = require('./tasks/build/purejavascript'),
+  buildPureCSS     = require('./tasks/build/purecss'),
 
   // utility
   clean        = require('./tasks/clean'),

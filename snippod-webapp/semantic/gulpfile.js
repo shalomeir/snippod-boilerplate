@@ -10,11 +10,14 @@ var
 
   // watch changes
   watch        = require('./tasks/watch'),
+  watchCss        = require('./tasks/watchCss'),
 
   // build all files
   build        = require('./tasks/build'),
+  pureBuild        = require('./tasks/purebuild'),
   buildJS      = require('./tasks/build/javascript'),
   buildCSS     = require('./tasks/build/css'),
+  buildPureCSS     = require('./tasks/build/purecss'),
   buildAssets  = require('./tasks/build/assets'),
 
   // utility
@@ -40,10 +43,13 @@ gulp.task('default', false, [
 ]);
 
 gulp.task('watch', 'Watch for site/theme changes', watch);
+gulp.task('watch-css', 'Watch for site/theme changes and update only css', watchCss);
 
 gulp.task('build', 'Builds all files from source', build);
+gulp.task('pure-build', 'Builds all files from source. Do not build compressed version', pureBuild);
 gulp.task('build-javascript', 'Builds all javascript from source', buildJS);
 gulp.task('build-css', 'Builds all css from source', buildCSS);
+gulp.task('build-purecss', 'Builds all css from source', buildPureCSS);
 gulp.task('build-assets', 'Copies all assets from source', buildAssets);
 
 gulp.task('clean', 'Clean dist folder', clean);

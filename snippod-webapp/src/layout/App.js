@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import $ from 'jquery';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import connectData from 'helpers/connectData';
@@ -47,6 +48,13 @@ export default class App extends Component {
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
+
+  //componentDidMount() {
+  //  this._loadDefaultScript();
+  //}
+
+  //_loadDefaultScript() {
+  //}
 
   //componentWillReceiveProps(nextProps) {
   //  if (!this.props.auth.loggedIn && nextProps.auth.loggedIn) {

@@ -21,7 +21,6 @@ module.exports = {
       //'bootstrap-sass!./src/theme/bootstrap.config.prod.js',
       './semantic/dist/semantic.min.css',
       './semantic/dist/semantic.min.js',
-      'font-awesome-webpack!./src/theme/font-awesome.config.prod.js',
       './src/client.js'
     ]
   },
