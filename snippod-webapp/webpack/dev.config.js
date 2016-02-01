@@ -52,8 +52,8 @@ module.exports = {
     'main': [
       'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
       //'bootstrap-sass!./src/theme/bootstrap.config.js',
-      //'./semantic/dist/semantic.css',
-      './semantic/src/semantic.less',
+      './semantic/dist/semantic.css',
+      //'./semantic/src/semantic.less',
       './semantic/dist/semantic.js',
       './src/client.js'
     ]
@@ -70,7 +70,6 @@ module.exports = {
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.css$/, loader: 'style!css!autoprefixer?browsers=last 2 version' },
       { test: /\.less$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap' },
-      //{ test: /\.less$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap' },
       { test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' },
       { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
       { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },

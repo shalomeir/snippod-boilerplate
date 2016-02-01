@@ -52,7 +52,7 @@
     Brand Colors
 --------------------*/
 
-@primaryColor        : @blue;
+@primaryColor        : @red;
 @secondaryColor      : @black;
 
 @lightPrimaryColor   : @lightBlue;
@@ -87,4 +87,4 @@
 
 /* For source only. Modified in gulp for dist */
 // Very important if build by semantic.less
-@fontPath  : '../assets/fonts';
+//@fontPath  : '../assets/fonts';

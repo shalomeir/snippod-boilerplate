@@ -10,7 +10,7 @@ const Styles = {
   },
 
   title: {
-    color: '#0077be',
+    color: 'red',
     fontSize: '1.1em'
   },
 
