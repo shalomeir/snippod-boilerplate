@@ -61,7 +61,7 @@ export default class NavBar extends Component {
     const logo = (
       <div href="#" className="header item">
         <img className="logo" src="/images/logo.png" style={Styles.logoImage}/>
-        <header className="header" style={Styles.title}> Snippod boilerplate </header>
+        <header className="header" style={Styles.title}> snippod-boilerplate </header>
       </div>
     );
 
@@ -70,11 +70,13 @@ export default class NavBar extends Component {
     );
 
     const rightMenu = auth.loggedIn ? (
-      <div style={Styles.navBarSubDiv}>
-        <FlatButton label="User Profile" onTouchTap={this.props.showLoginDialog}
-          {...Styles.flatButton} />
-        <FlatButton label="Logout" onTouchTap={this.props.logout}
-          {...Styles.flatButton} />
+      <div className="logged">
+        <div className="item">
+          <a className="ui button">Log in</a>
+        </div>
+        <div className="item">
+          <a className="ui primary button">Sign Up</a>
+        </div>
       </div>
     ) : (
       <div style={Styles.navBarSubDiv}>

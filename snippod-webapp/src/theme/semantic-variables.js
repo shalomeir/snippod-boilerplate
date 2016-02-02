@@ -1,7 +1,7 @@
 //This theme variables should be sync with semantic site variables such
 //as 'semantic/src/site/globals/site.variables' or 'semantic/src/themes/default/globals/site.variables'.
 //TODO: Sync by watch
-
+const color = require('color');
 
 const semanticVar = {
   '@relativeBorderRadius': 4 / 14 + 'em',
@@ -14,7 +14,10 @@ const semanticVar = {
 
   '@lineHeight': '1.4285em',
   '@textColor': 'rgba(0, 0, 0, 0.87)',
-
 };
 
-export default semanticVar;
+const calculatedSemanticVar = {
+  '@darkPrimaryColor': color(semanticVar['@primaryColor']).darken(0.1).hexString(),
+};
+
+export default Object.assign(semanticVar, calculatedSemanticVar);

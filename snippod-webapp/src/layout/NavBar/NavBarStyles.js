@@ -8,12 +8,13 @@ const Styles = {
   },
 
   title: {
-    color: semanticVar['@textColor'],
-    fontSize: semanticVar['@absoluteBorderRadius'],
+    color: semanticVar['@darkPrimaryColor'],
+    fontSize: '1.5rem',
+    fontStyle: 'italic'
   },
 
   logoImage: {
-    marginRight: '1.2em',
+    marginRight: '1rem',
   },
 
   //Material UI Component Style
