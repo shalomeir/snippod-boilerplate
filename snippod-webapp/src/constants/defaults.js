@@ -14,7 +14,7 @@ const defaults = {
   },
 
   v1: {
-    defaultLocale: 'en'
+    defaultLang: 'en'
   }
 
 };

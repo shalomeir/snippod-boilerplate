@@ -12,8 +12,8 @@ import getRoutes from './routes';
 
 function getRootChildren(props, context) {
   const intlData = {
-    locale: props.application.locale,
-    messages: i18n[props.application.locale]
+    lang: props.application.lang,
+    messages: i18n[props.application.lang]
   };
   const rootChildren = [
     <IntlProvider key="intl" {...intlData}>

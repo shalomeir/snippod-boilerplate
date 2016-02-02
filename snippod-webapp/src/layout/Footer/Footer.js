@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Link } from 'react-router';
 import $ from 'jquery';
-import { switchLocale } from 'ducks/application/application';
+import { switchLang } from 'ducks/application/application';
 
 @connect(
   createSelector([
@@ -12,18 +12,18 @@ import { switchLocale } from 'ducks/application/application';
   ], (application) => {
     return { application };
   }),
-  { switchLocale }
+  { switchLang }
 )
 @Radium
 export default class Footer extends Component {
   static propTypes = {
     application: PropTypes.object.isRequired,
-    switchLocale: PropTypes.func.isRequired,
+    switchLang: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
-    this.handleLocaleSwitch = this.handleLocaleSwitch.bind(this);
+    this.handleLangSwitch = this.handleLangSwitch.bind(this);
   }
 
   componentDidMount() {
@@ -47,8 +47,8 @@ export default class Footer extends Component {
     $('.ui.selection.dropdown').dropdown('refresh');
   }
 
-  handleLocaleSwitch(event) {
-    this.props.switchLocale(event.target.value);
+  handleLangSwitch(event) {
+    this.props.switchLang(event.target.value);
   }
 
   render() {
@@ -56,8 +56,8 @@ export default class Footer extends Component {
       <footer className="layout">
         <div className="footer">
           <p><small>Github repositoriy is located in <a href="https://github.com/shalomeir/snippod-boilerplate" target="_blank">Here.</a></small></p>
-          <select className="ui dropdown" ref="langSwitcher" value={this.props.application.locale}
-            onChange={this.handleLocaleSwitch}>
+          <select className="ui dropdown" ref="langSwitcher" value={this.props.application.lang}
+            onChange={this.handleLangSwitch}>
             <option value="en">EN</option>
             <option value="ko">KO</option>
           </select>

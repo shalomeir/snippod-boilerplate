@@ -1,5 +1,5 @@
 const debug = require('utils/getDebugger')('auth');
-import { switchLocale } from 'ducks/application/application';
+import { switchLang } from 'ducks/application/application';
 
 const LOAD = 'authentication/auth/LOAD';
 const LOAD_SUCCESS = 'authentication/auth/LOAD_SUCCESS';
@@ -149,13 +149,13 @@ export function login(loginForm) {
   };
 }
 
-//thunk action that dispatch login action and then dispatch follow action such as switch locale.
+//thunk action that dispatch login action and then dispatch follow action such as switch lang.
 export function loginAndFollow(loginForm) {
   return (dispatch, getState) => {
     return dispatch(
       login(loginForm)
     ).then((result) => {
-      dispatch(switchLocale(result.account.language.split('-')[0]));
+      dispatch(switchLang(result.account.language.split('-')[0]));
     }).catch((error) => {
       debug('Error occured : ', error);
     });

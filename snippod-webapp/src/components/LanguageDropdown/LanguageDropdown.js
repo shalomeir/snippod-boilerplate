@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import $ from 'jquery';
-import { switchLocale } from 'ducks/application/application';
+import { switchLang } from 'ducks/application/application';
 
 const Styles = {
   dropdown: {
@@ -13,21 +13,21 @@ const Styles = {
 
 @connect(
   null,
-  { switchLocale }
+  { switchLang }
 )
 export default class LanguageDropdown extends Component {
   static propTypes = {
     application: PropTypes.object.isRequired,
-    switchLocale: PropTypes.func.isRequired,
+    switchLang: PropTypes.func.isRequired,
     className: PropTypes.string
   }
 
   componentDidMount() {
     $('.ui.dropdown')
-      .dropdown('set selected', this.props.application.locale)
+      .dropdown('set selected', this.props.application.lang)
       .dropdown({
         onChange: (value) => {
-          this.props.switchLocale(value);
+          this.props.switchLang(value);
         }
       })
     ;
@@ -36,7 +36,7 @@ export default class LanguageDropdown extends Component {
   render() {
     return (
       <div className= {this.props.className + ' ui floating dropdown labeled icon tiny button'} ref="langSwitcher"
-           value={this.props.application.locale} style={ Styles.dropdown }>
+           value={this.props.application.lang} style={ Styles.dropdown }>
         <div className="text" style={ Styles.item }/>
         <i className="world icon" />
         <div className="menu">

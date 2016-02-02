@@ -20,4 +20,6 @@ export default {
   //Component i18n
   "comp.authButtons.loginButton": "로그인",
   "comp.authButtons.registerButton": "가입",
+  "comp.authButtons.logoutButton": "로그아웃",
+
 };

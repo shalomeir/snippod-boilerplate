@@ -3,17 +3,17 @@ const debug = require('utils/getDebugger')('application');
 const SHOW_LOGIN_DIALOG = 'application/application/SHOW_LOGIN_DIALOG';
 const SHOW_REGISTER_DIALOG = 'application/application/SHOW_REGISTER_DIALOG';
 const CLOSE_DIALOG = 'application/application/CLOSE_DIALOG';
-const SWITCH_LOCALE = 'application/application/SWITCH_LOCALE';
+const SWITCH_LANG = 'application/application/SWITCH_LANG';
 
 //TODO: Only works in client Mode. Prepare SSR.
-import { getBrowserLocale } from '../../helpers/getBrowserSettings.js';
-const browserLocale = getBrowserLocale();
+import { getBrowserLang } from '../../helpers/getBrowserSettings.js';
+const browserLang = getBrowserLang();
 
 const initialState = {
   isShowOverlay: false,
   loginDialog: false,
   registerDialog: false,
-  locale: browserLocale,
+  lang: browserLang,
 };
 
 
@@ -42,12 +42,12 @@ export default function reducer(state = initialState, action = {}) {
         loginDialog: false,
         registerDialog: false
       };
-    case SWITCH_LOCALE:
-      debug('switch locale to ' + action.locale);
+    case SWITCH_LANG:
+      debug('switch lang to ' + action.lang);
 
       return {
         ...state,
-        locale: action.locale
+        lang: action.lang
       };
     default:
       return state;
@@ -72,9 +72,9 @@ export function closeDialog() {
   };
 }
 
-export function switchLocale(locale) {
+export function switchLang(lang) {
   return {
-    type: SWITCH_LOCALE,
-    locale
+    type: SWITCH_LANG,
+    lang
   };
 }

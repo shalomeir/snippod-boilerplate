@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 import $ from 'jquery';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { switchLocale } from 'ducks/application/application';
+import { showLoginDialog, showRegisterDialog } from 'ducks/application/application';
+import { logout } from 'ducks/authentication/auth';
 
 const i18n = defineMessages({
   loginButton: {
@@ -14,6 +14,10 @@ const i18n = defineMessages({
   registerButton: {
     id: 'comp.authButtons.registerButton',
     defaultMessage: 'Register'
+  },
+  logoutButton: {
+    id: 'comp.authButtons.logoutButton',
+    defaultMessage: 'Logout'
   }
 });
 
@@ -25,33 +29,33 @@ const Styles = {
 };
 
 @connect(
-  createSelector([
-    state => state.application
-  ], (application) => {
-    return { application };
-  }),
-  { switchLocale }
+  null,
+  { showLoginDialog, showRegisterDialog, logout }
 )
 export default class AuthButtons extends Component {
   static propTypes = {
+    auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
-    switchLocale: PropTypes.func.isRequired,
+    showLoginDialog: PropTypes.func.isRequired,
+    showRegisterDialog: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
     className: PropTypes.string
   }
 
   componentDidMount() {
-    $('.ui.dropdown')
-      .dropdown('set selected', this.props.application.locale)
-      .dropdown({
-        onChange: (value) => {
-          this.props.switchLocale(value);
-        }
-      })
-    ;
+
   }
 
+
   render() {
-    return (
+    const auth = this.props.auth;
+
+    const authButtons = auth.loggedIn ? (
+      <button className= {this.props.className + ' ui basic grey button'} ref="authButton"
+              style={ Styles.button }>
+        <FormattedMessage {...i18n.logoutButton} />
+      </button>
+    ) : (
       <div className= {this.props.className + ' ui buttons'} ref="authButtons"
            style={ Styles.buttons }>
         <button className="ui left attached green basic button" style={ Styles.button }>
@@ -62,5 +66,7 @@ export default class AuthButtons extends Component {
         </button>
       </div>
     );
+
+    return authButtons;
   }
 }

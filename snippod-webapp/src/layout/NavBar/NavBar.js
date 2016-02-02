@@ -70,13 +70,17 @@ export default class NavBar extends Component {
       <header className="header" style={Styles.title}> Snippod boilerplate </header>
     );
 
+
     const rightMenu = auth.loggedIn ? (
       <div className="logged-in right menu">
         <div className="item">
-          <a className="ui button">Log in</a>
+          <a className="ui button">My Account</a>
         </div>
         <div className="item">
-          <a className="ui primary button">Sign Up</a>
+          <a className="ui button">Settings</a>
+        </div>
+        <div className="item">
+          <AuthButtons application={this.props.application} auth={this.props.auth}/>
         </div>
         <div className="item">
           <LanguageDropdown application={this.props.application} />
@@ -85,7 +89,7 @@ export default class NavBar extends Component {
     ) : (
       <div className="logged-out right menu">
         <div className="item">
-          <AuthButtons />
+          <AuthButtons application={this.props.application} auth={this.props.auth}/>
         </div>
         <div className="item">
           <LanguageDropdown application={this.props.application} />
