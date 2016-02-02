@@ -5,6 +5,9 @@ import { createSelector } from 'reselect';
 import { Link } from 'react-router';
 import AppBar from 'material-ui/lib/app-bar';
 const Styles = require('./NavBarStyles');
+
+import { AuthButtons, LanguageDropdown } from 'components';
+
 const FlatButton = require('material-ui/lib/flat-button');
 
 import { showLoginDialog, showRegisterDialog } from 'ducks/application/application';
@@ -12,16 +15,14 @@ import { logout } from 'ducks/authentication/auth';
 
 
 @connect(
-  createSelector([
-  ], () => {
-    return {};
-  }),
+  null,
   { showLoginDialog, showRegisterDialog, logout }
 )
 @Radium
 export default class NavBar extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
+    application: PropTypes.object.isRequired,
     pushState: PropTypes.func.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
@@ -70,35 +71,33 @@ export default class NavBar extends Component {
     );
 
     const rightMenu = auth.loggedIn ? (
-      <div className="logged">
+      <div className="logged-in right menu">
         <div className="item">
           <a className="ui button">Log in</a>
         </div>
         <div className="item">
           <a className="ui primary button">Sign Up</a>
         </div>
+        <div className="item">
+          <LanguageDropdown application={this.props.application} />
+        </div>
       </div>
     ) : (
-      <div style={Styles.navBarSubDiv}>
-        <FlatButton label="Login" onTouchTap={this.props.showLoginDialog}
-          {...Styles.flatButton} />
-        <FlatButton label="Register" onTouchTap={this.props.showRegisterDialog}
-          {...Styles.flatButton} />
+      <div className="logged-out right menu">
+        <div className="item">
+          <AuthButtons />
+        </div>
+        <div className="item">
+          <LanguageDropdown application={this.props.application} />
+        </div>
       </div>
     );
 
     return (
-      <nav className="navbar ui large top fixed borderless menu">
+      <nav className="navbar ui top fixed borderless menu">
         <div className="ui container">
           {logo}
-          <div className="right menu">
-            <div className="item">
-              <a className="ui button">Log in</a>
-            </div>
-            <div className="item">
-              <a className="ui primary button">Sign Up</a>
-            </div>
-          </div>
+          {rightMenu}
         </div>
       </nav>
     );

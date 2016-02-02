@@ -15,5 +15,9 @@ export default {
   "home.intro3.dropAnIssue": "lasciare un issue",
   "home.welcome": "Benvenuto",
   "stargazers.subtitle": "Vedi gli stargazers per il tuo GitHub account e repos.",
-  "superSecretArea.info": "Questa è un'area privata."
+  "superSecretArea.info": "Questa è un'area privata.",
+
+  //Component i18n
+  "comp.authButtons.loginButton": "로그인",
+  "comp.authButtons.registerButton": "가입",
 };

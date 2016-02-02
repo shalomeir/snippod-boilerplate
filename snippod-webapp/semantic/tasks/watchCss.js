@@ -12,6 +12,7 @@ var
   // gulp dependencies
   autoprefixer = require('gulp-autoprefixer'),
   chmod        = require('gulp-chmod'),
+  clone        = require('gulp-clone'),
   gulpif       = require('gulp-if'),
   less         = require('gulp-less'),
   plumber      = require('gulp-plumber'),

@@ -5,4 +5,5 @@
  *
  */
 
-//export CounterButton from './CounterButton/CounterButton';
+export LanguageDropdown from './LanguageDropdown/LanguageDropdown';
+export AuthButtons from './AuthButtons/AuthButtons';

@@ -43,7 +43,7 @@ export default function reducer(state = initialState, action = {}) {
         registerDialog: false
       };
     case SWITCH_LOCALE:
-      debug('swith locale to ' + action.locale);
+      debug('switch locale to ' + action.locale);
 
       return {
         ...state,

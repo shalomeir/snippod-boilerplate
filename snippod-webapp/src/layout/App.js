@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Radium from 'radium';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -32,16 +33,19 @@ function fetchData(getState, dispatch) {
 @connectData(fetchData)
 @connect(
   createSelector([
-    state => state.auth
-  ], (auth) => {
-    return { auth };
+    state => state.auth,
+    state => state.application,
+  ], (auth, application) => {
+    return { auth, application };
   }),
   { pushState }
 )
+@Radium
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
+    application: PropTypes.object.isRequired,
     pushState: PropTypes.func.isRequired
   };
 
@@ -75,7 +79,8 @@ export default class App extends Component {
     return (
       <div className="app">
         <Helmet {...head}/>
-        <NavBar auth={this.props.auth} pushState={this.props.pushState} />
+        <NavBar auth={this.props.auth} application={this.props.application} pushState={this.props.pushState} />
+        <div className="empty-box ui container" />
         <main id="content">
           {this.props.children}
         </main>

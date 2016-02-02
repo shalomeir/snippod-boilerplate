@@ -32,10 +32,10 @@ export default class Topic extends Component {
     const redux = (<code>Redux</code>);
 
     return (
-      <div className="topic container">
+      <div className="topic ui text container">
         <Helmet title="Main Page"/>
 
-        <div className="topic main-container content full-width">
+        <div className="topic main-container content full-width" >
           { /*<TopicCard/>*/ }
           { /*<PostComposer {...this.props} /> */ }
           {this.props.auth.loggedIn ? (
