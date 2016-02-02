@@ -1,17 +1,15 @@
-import SnippodRawTheme from '../../theme/snippod-raw-theme-boilerplate';
-
+import semanticVar from 'theme/semantic-variables';
 
 const Styles = {
   navBarSubDiv: {
-    height: SnippodRawTheme.spacing.desktopKeylineIncrement - 8,
     marginBottom: '4px',
     display: 'table-cell',
     verticalAlign: 'middle',
   },
 
   title: {
-    color: 'red',
-    fontSize: '1.1em'
+    color: semanticVar['@textColor'],
+    fontSize: semanticVar['@absoluteBorderRadius'],
   },
 
   logoImage: {

@@ -52,7 +52,7 @@
     Brand Colors
 --------------------*/
 
-@primaryColor        : @red;
+@primaryColor        : @blue;
 @secondaryColor      : @black;
 
 @lightPrimaryColor   : @lightBlue;

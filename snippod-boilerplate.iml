@@ -28,10 +28,12 @@
       <sourceFolder url="file://$MODULE_DIR$/requirements" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/snippod_webapp_reflux" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/temps" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/snippod-webapp/semantic/examples/assets" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/backup" />
       <excludeFolder url="file://$MODULE_DIR$/logs" />
       <excludeFolder url="file://$MODULE_DIR$/snippod-webapp/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/snippod-webapp/semantic/dist" />
       <excludeFolder url="file://$MODULE_DIR$/snippod-webapp/static/dist" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/snippod_webapp_reflux/.tmp" />
@@ -47,5 +49,11 @@
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/snippod-webapp/semantic/Semantic-UI-Docs" />
+        <option value="$MODULE_DIR$/snippod-webapp/_translations" />
+      </list>
+    </option>
   </component>
 </module>
