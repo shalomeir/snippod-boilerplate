@@ -23,7 +23,7 @@ const i18n = defineMessages({
 
 const Styles = {
   button: {
-    width: '6.2em',
+    width: '5.8em',
     textAlign: 'center'
   },
 };
