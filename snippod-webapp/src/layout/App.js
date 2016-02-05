@@ -3,8 +3,9 @@ import Radium from 'radium';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import connectData from 'helpers/connectData';
-import { pushState } from 'redux-router';
+import { routeActions } from 'react-router-redux';
+
+//import { pushState } from 'redux-router';
 import Helmet from 'react-helmet';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import head from 'constants/head';
@@ -22,15 +23,6 @@ import {
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-function fetchData(getState, dispatch) {
-  const promises = [];
-  if (!isAuthLoaded(getState())) {
-    promises.push(dispatch(loadAuth()));
-  }
-  return Promise.all(promises);
-}
-
-@connectData(fetchData)
 @connect(
   createSelector([
     state => state.auth,
@@ -38,7 +30,7 @@ function fetchData(getState, dispatch) {
   ], (auth, application) => {
     return { auth, application };
   }),
-  { pushState }
+  { push: routeActions.push }
 )
 @Radium
 export default class App extends Component {
@@ -46,12 +38,25 @@ export default class App extends Component {
     children: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
-    pushState: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired
   };
 
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
+
+  static reduxAsyncConnect(params, store) {
+    const { dispatch, getState } = store;
+    const promises = [];
+
+    //if (!isInfoLoaded(getState())) {
+    //  promises.push(dispatch(loadInfo()));
+    //}
+    if (!isAuthLoaded(getState())) {
+      promises.push(dispatch(loadAuth()));
+    }
+    return Promise.all(promises);
+  }
 
   //componentDidMount() {
   //  this._loadDefaultScript();
@@ -79,7 +84,7 @@ export default class App extends Component {
     return (
       <div className="app">
         <Helmet {...head}/>
-        <NavBar auth={this.props.auth} application={this.props.application} pushState={this.props.pushState} />
+        <NavBar auth={this.props.auth} application={this.props.application} push={this.props.push} />
         <div className="empty-box ui container" />
         <main id="content">
           {this.props.children}

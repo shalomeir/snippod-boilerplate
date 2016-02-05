@@ -3,12 +3,13 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createHistory from 'history/lib/createBrowserHistory';
+//import createHistory from 'history/lib/createBrowserHistory';
 import createStore from './store/create';
 import ApiClient from './helpers/ApiClient';
 //import io from 'socket.io-client';
 import { Provider } from 'react-redux';
-import { reduxReactRouter, ReduxRouter } from 'redux-router';
+import { browserHistory } from 'react-router';
+//import { reduxReactRouter, ReduxRouter } from 'redux-router';
 import './utils/supportIntl';
 
 const client = new ApiClient();
@@ -21,7 +22,7 @@ import getRoutes from './routes';
 //Do Not use for this time.
 //import makeRouteHooksSafe from './helpers/makeRouteHooksSafe';
 //const store = createStore(reduxReactRouter, makeHooksSafe(getRoutes), createHistory, client, window.__data);
-const store = createStore(reduxReactRouter, getRoutes, createHistory, client, window.__data);
+const store = createStore(getRoutes, browserHistory, client, window.__data);
 
 import Root from './Root';
 
@@ -44,7 +45,7 @@ import Root from './Root';
 
 ReactDOM.render(
   <Provider store={store} key="provider">
-    <Root/>
+    <Root client={client} />
   </Provider>,
   dest
 );

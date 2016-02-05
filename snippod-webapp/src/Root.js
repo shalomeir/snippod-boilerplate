@@ -4,7 +4,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { ReduxRouter } from 'redux-router';
+import { Router, browserHistory } from 'react-router';
+
+import { ReduxAsyncConnect } from 'redux-async-connect';
+
+//import { ReduxRouter } from 'redux-router';
 import { IntlProvider } from 'react-intl';
 import * as i18n from './i18n';
 
@@ -15,9 +19,15 @@ function getRootChildren(props, context) {
     lang: props.application.lang,
     messages: i18n[props.application.lang]
   };
+  const { client } = props;
+  const bindReduxAsyncConnect = (inProps) =>
+    <ReduxAsyncConnect {...inProps} helpers={{ client }} />;
+
   const rootChildren = [
     <IntlProvider key="intl" {...intlData}>
-      <ReduxRouter routes={getRoutes(context.store)} />
+      <Router render={bindReduxAsyncConnect} history={browserHistory}>
+        {getRoutes(context.store)}
+      </Router>
     </IntlProvider>
   ];
 
@@ -34,7 +44,8 @@ function getRootChildren(props, context) {
 export default class Root extends Component {
 
   static propTypes = {
-    application: PropTypes.object.isRequired
+    application: PropTypes.object.isRequired,
+    client: PropTypes.object.isRequired
   };
 
   static contextTypes = {

@@ -23,9 +23,9 @@ const i18n = defineMessages({
 
 const Styles = {
   button: {
-    width: '6.2em',
+    width: '5.6em',
     textAlign: 'center'
-  },
+  }
 };
 
 @connect(
@@ -45,7 +45,6 @@ export default class AuthButtons extends Component {
   componentDidMount() {
 
   }
-
 
   render() {
     const auth = this.props.auth;

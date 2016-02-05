@@ -4,7 +4,9 @@ import _ from 'lodash';
 
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { pushState } from 'redux-router';
+//import { pushState } from 'redux-router';
+import { routeActions } from 'react-router-redux';
+
 import { initializeWithKey } from 'redux-form';
 import { reduxForm } from 'redux-form';
 
@@ -29,7 +31,7 @@ const Styles = require('./DialogStyles');
   ], (auth, application, errorObject) => {
     return { auth, application, errorObject };
   }),
-  { pushState, closeDialog, login, resetErrorMessage, loginAndFollow }
+  { push: routeActions.push, closeDialog, login, resetErrorMessage, loginAndFollow }
 )
 @reduxForm({
   form: 'login',
@@ -44,7 +46,7 @@ export default class LoginDialog extends Component {
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
     errorObject: PropTypes.object,
-    pushState: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     loginAndFollow: PropTypes.func.isRequired,

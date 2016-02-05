@@ -34,7 +34,8 @@
     "quote-props": 0,
     "no-param-reassign": [2, {"props": false}],
     "react/jsx-indent-props": 0,
-    "react/jsx-closing-bracket-location": [2, {selfClosing: 'after-props', nonEmpty: 'after-props'}]
+    "react/jsx-closing-bracket-location": [2, {selfClosing: 'after-props', nonEmpty: 'after-props'}],
+    "react/jsx-no-bind": 0
   },
   "plugins": [
     "import"
