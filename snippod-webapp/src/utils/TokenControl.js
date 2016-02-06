@@ -1,3 +1,4 @@
+/*eslint-disable max-len,quotes*/
 const cookie = require('cookie');
     //jQuery = require('jquery');
 

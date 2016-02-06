@@ -26,7 +26,6 @@ export default class Topic extends Component {
     auth: PropTypes.object.isRequired
   };
 
-
   render() {
     const link = (<Link to="/stargazers/gaearon"><code>@gaearon</code></Link>);
     const redux = (<code>Redux</code>);

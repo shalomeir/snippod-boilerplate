@@ -6,14 +6,14 @@ const CLOSE_DIALOG = 'application/application/CLOSE_DIALOG';
 const SWITCH_LANG = 'application/application/SWITCH_LANG';
 
 //TODO: Only works in client Mode. Prepare SSR.
-import { getBrowserLang } from '../../helpers/getBrowserSettings.js';
-const browserLang = getBrowserLang();
+import { getDefaultLang } from '../../helpers/getBrowserSettings.js';
+const defaultLang = getDefaultLang();
 
 const initialState = {
   isShowOverlay: false,
   loginDialog: false,
   registerDialog: false,
-  lang: browserLang,
+  lang: defaultLang,
 };
 
 
@@ -54,6 +54,64 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
+// This function is used for override query url
+export function overrideQuery(query) {
+  return (dispatch, getState) => {
+    const history = require('helpers/history');
+    const location = getState().router.location;
+    history.push({
+      pathname: location.pathname,
+      query: Object.assign(location.query, query),
+      state: location.state
+    });
+  };
+}
+
+export function pushQuery(query) {
+  return (dispatch, getState) => {
+    const history = require('helpers/history');
+    const location = getState().router.location;
+    history.push({
+      pathname: location.pathname,
+      query,
+      state: location.state
+    });
+  };
+}
+
+export function pushPathname(pathname) {
+  return (dispatch, getState) => {
+    const history = require('helpers/history');
+    const location = getState().router.location;
+    history.push({
+      pathname,
+      query: location.query,
+      state: location.state
+    });
+  };
+}
+
+export function pushState(state) {
+  return (dispatch, getState) => {
+    const history = require('helpers/history');
+    const location = getState().router.location;
+    history.push({
+      pathname: location.pathname,
+      query: location.query,
+      state
+    });
+  };
+}
+
+export function deleteQuery(queryKey) {
+  return (dispatch, getState) => {
+    const history = require('helpers/history');
+    const location = getState().router.location;
+    delete location.query[queryKey];
+    history.push({ ...location });
+  };
+}
+
 export function showLoginDialog() {
   return {
     type: SHOW_LOGIN_DIALOG
@@ -76,5 +134,13 @@ export function switchLang(lang) {
   return {
     type: SWITCH_LANG,
     lang
+  };
+}
+
+//thunk action that dispatch router.
+export function switchLangAndQuery(lang) {
+  return (dispatch, getState) => {
+    dispatch(switchLang(lang));
+    dispatch(overrideQuery({ language: lang }));
   };
 }

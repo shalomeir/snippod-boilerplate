@@ -23,6 +23,7 @@ export default class NavBar extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
     pushState: PropTypes.func.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
@@ -32,6 +33,7 @@ export default class NavBar extends Component {
   render() {
 
     const auth = this.props.auth;
+    const lang = this.props.application.lang;
     //var navLinks = auth.loggedIn ? (
     //  /* jshint ignore:start */
     //  <div className="nav-list float-right">
@@ -83,7 +85,7 @@ export default class NavBar extends Component {
           <AuthButtons application={this.props.application} auth={this.props.auth}/>
         </div>
         <div className="item">
-          <LanguageDropdown application={this.props.application} />
+          <LanguageDropdown lang={lang} />
         </div>
       </div>
     ) : (
@@ -92,7 +94,7 @@ export default class NavBar extends Component {
           <AuthButtons application={this.props.application} auth={this.props.auth}/>
         </div>
         <div className="item">
-          <LanguageDropdown application={this.props.application} />
+          <LanguageDropdown lang={lang} />
         </div>
       </div>
     );

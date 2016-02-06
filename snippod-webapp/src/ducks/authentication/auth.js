@@ -157,7 +157,7 @@ export function loginAndFollow(loginForm) {
     ).then((result) => {
       dispatch(switchLang(result.account.language.split('-')[0]));
     }).catch((error) => {
-      debug('Error occured : ', error);
+      debug('Error occurred : ', error);
     });
   };
 }

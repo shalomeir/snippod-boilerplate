@@ -1,3 +1,5 @@
+import { getQueryParameters } from 'utils/handleString';
+
 export const getBrowserLang = () => {
   let lang = 'en';
   if (!__SERVER__) {
@@ -17,4 +19,39 @@ export const getBrowserLanguage = () => {
   return language;
 };
 
-export default getBrowserLang;
+export const getUrlLang = () => {
+  let lang = 'en';
+  if (!__SERVER__ && window.location) {
+    lang = getQueryParameters(window.location.search).language;
+    if (!lang) {
+      lang = 'en';
+    }
+    lang = lang.split('-')[0];
+  }
+  return lang;
+};
+
+export const getUrlLanguage = () => {
+  let language = 'en_US';
+  if (!__SERVER__ && window.location) {
+    language = getQueryParameters(window.location.search).language;
+    if (!language) {
+      language = 'en_US';
+    }
+  }
+  return language;
+};
+
+export const getDefaultLang = () => {
+  let lang = 'en';
+  if (!__SERVER__ && window.location) {
+    lang = getQueryParameters(window.location.search).language;
+    if (!lang) {
+      lang = navigator.language;
+    }
+    lang = lang.split('-')[0];
+  }
+  return lang;
+};
+
+export default getDefaultLang;

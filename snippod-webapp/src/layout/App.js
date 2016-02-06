@@ -35,8 +35,9 @@ function fetchData(getState, dispatch) {
   createSelector([
     state => state.auth,
     state => state.application,
-  ], (auth, application) => {
-    return { auth, application };
+    state => state.router,
+  ], (auth, application, router) => {
+    return { auth, application, router };
   }),
   { pushState }
 )
@@ -46,6 +47,7 @@ export default class App extends Component {
     children: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
     pushState: PropTypes.func.isRequired
   };
 
@@ -79,7 +81,7 @@ export default class App extends Component {
     return (
       <div className="app">
         <Helmet {...head}/>
-        <NavBar auth={this.props.auth} application={this.props.application} pushState={this.props.pushState} />
+        <NavBar {...this.props} />
         <div className="empty-box ui container" />
         <main id="content">
           {this.props.children}
