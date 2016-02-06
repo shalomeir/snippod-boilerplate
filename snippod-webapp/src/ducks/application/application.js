@@ -105,10 +105,17 @@ export function pushState(state) {
 
 export function deleteQuery(queryKey) {
   return (dispatch, getState) => {
-    const history = require('helpers/history');
     const location = getState().router.location;
-    delete location.query[queryKey];
-    history.push({ ...location });
+    const res = delete location.query[queryKey];
+    if (res) {
+      const history = require('helpers/history');
+      history.push({
+        pathname: location.pathname,
+        query: location.query,
+        state: location.state
+      });
+    }
+    return res;
   };
 }
 
@@ -142,5 +149,13 @@ export function switchLangAndQuery(lang) {
   return (dispatch, getState) => {
     dispatch(switchLang(lang));
     dispatch(overrideQuery({ language: lang }));
+  };
+}
+
+//thunk action that dispatch router.
+export function switchLangAndDeleteLanguageQuery(lang) {
+  return (dispatch, getState) => {
+    dispatch(switchLang(lang));
+    dispatch(deleteQuery('language'));
   };
 }

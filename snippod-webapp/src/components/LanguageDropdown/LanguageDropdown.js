@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import $ from 'jquery';
-import { switchLangAndQuery } from 'ducks/application/application';
+import { switchLangAndDeleteLanguageQuery } from 'ducks/application/application';
 
 const Styles = {
   dropdown: {
@@ -14,12 +14,12 @@ const Styles = {
 
 @connect(
   null,
-  { switchLangAndQuery }
+  { switchLangAndDeleteLanguageQuery }
 )
 export default class LanguageDropdown extends Component {
   static propTypes = {
     lang: PropTypes.string.isRequired,
-    switchLangAndQuery: PropTypes.func.isRequired,
+    switchLangAndDeleteLanguageQuery: PropTypes.func.isRequired,
     className: PropTypes.string
   }
 
@@ -28,7 +28,7 @@ export default class LanguageDropdown extends Component {
       .dropdown('set selected', this.props.lang)
       .dropdown({
         onChange: (value) => {
-          this.props.switchLangAndQuery(value);
+          this.props.switchLangAndDeleteLanguageQuery(value);
         }
       })
     ;
