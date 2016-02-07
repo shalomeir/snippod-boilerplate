@@ -34,6 +34,11 @@ export default class LanguageDropdown extends Component {
     ;
   }
 
+  componentDidUpdate() {
+    $('.ui.dropdown')
+      .dropdown('set selected', this.props.lang);
+  }
+
   render() {
     return (
       <div className= {this.props.className + ' ui floating dropdown labeled icon tiny button'} ref="langSwitcher"

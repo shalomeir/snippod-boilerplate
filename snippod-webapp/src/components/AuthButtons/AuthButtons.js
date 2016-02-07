@@ -24,7 +24,9 @@ const i18n = defineMessages({
 const Styles = {
   button: {
     width: '5.8em',
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingLeft: 'inherit',
+    paddingRight: 'inherit'
   },
 };
 
@@ -52,16 +54,18 @@ export default class AuthButtons extends Component {
 
     const authButtons = auth.loggedIn ? (
       <button className= {this.props.className + ' ui basic grey button'} ref="authButton"
-              style={ Styles.button }>
+              style={ Styles.button } onClick={this.props.logout}>
         <FormattedMessage {...i18n.logoutButton} />
       </button>
     ) : (
       <div className= {this.props.className + ' ui buttons'} ref="authButtons"
            style={ Styles.buttons }>
-        <button className="ui left attached green basic button" style={ Styles.button }>
+        <button className="ui left attached green basic button" style={ Styles.button }
+                onClick={this.props.showLoginDialog}>
           <FormattedMessage {...i18n.loginButton} />
         </button>
-        <button className="ui right attached blue basic button" style={ Styles.button }>
+        <button className="ui right attached blue basic button" style={ Styles.button }
+                onClick={this.props.showRegisterDialog}>
           <FormattedMessage {...i18n.registerButton} />
         </button>
       </div>

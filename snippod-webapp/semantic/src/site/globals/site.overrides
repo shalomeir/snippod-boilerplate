@@ -4,6 +4,7 @@
 
 nav {
   height: 4em;
+  white-space: nowrap;
 }
 
 .empty-box {
