@@ -51,9 +51,9 @@ export default class App extends Component {
     pushState: PropTypes.func.isRequired
   };
 
-  static contextTypes = {
-    store: PropTypes.object.isRequired
-  };
+  //static contextTypes = {
+  //  store: PropTypes.object.isRequired
+  //};
 
   //componentDidMount() {
   //  this._loadDefaultScript();
@@ -87,7 +87,7 @@ export default class App extends Component {
           {this.props.children}
         </main>
         <Footer />
-        <DialogWindow/>
+        <DialogWindow auth={this.props.auth} application={this.props.application} />
         <Snackbar/>
       </div>
     );

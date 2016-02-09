@@ -1,5 +1,5 @@
 const debug = require('utils/getDebugger')('auth');
-import { switchLang } from 'ducks/application/application';
+import { switchLangAndDeleteLanguageQuery } from 'ducks/application/application';
 
 const LOAD = 'authentication/auth/LOAD';
 const LOAD_SUCCESS = 'authentication/auth/LOAD_SUCCESS';
@@ -150,16 +150,34 @@ export function login(loginForm) {
 }
 
 //thunk action that dispatch login action and then dispatch follow action such as switch lang.
+// TODO: Check return result or error
 export function loginAndFollow(loginForm) {
   return (dispatch, getState) => {
-    return dispatch(
+    dispatch(
       login(loginForm)
     ).then((result) => {
-      dispatch(switchLang(result.account.language.split('-')[0]));
+      dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
+      return result;
     }).catch((error) => {
       debug('Error occurred : ', error);
+      return error;
     });
   };
+}
+
+//This type function usually called by redux onSubmit function
+export function loginFromReduxForm(values, dispatch) {
+  return new Promise((resolve, reject) => {
+    dispatch(
+      login(values)
+    ).then((result) => {
+      dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
+      resolve(result);
+    }).catch((error) => {
+      debug('Error occurred : ', error);
+      reject({ _error: error.message });
+    });
+  });
 }
 
 export function logout() {

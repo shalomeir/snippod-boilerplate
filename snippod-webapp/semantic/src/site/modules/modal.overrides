@@ -1,3 +1,11 @@
 /*******************************
          Site Overrides
 *******************************/
+
+/* Modal Width */
+@media only screen and (min-width : 450px) {
+  .dialog.ui.small.modal {
+    width: 450px;
+    margin: 0em 0em 0em -225px;
+  }
+}

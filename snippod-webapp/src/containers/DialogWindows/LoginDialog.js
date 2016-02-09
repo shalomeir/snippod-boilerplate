@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import _ from 'lodash';
+import $ from 'jquery';
 
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -9,7 +10,7 @@ import { initializeWithKey } from 'redux-form';
 import { reduxForm } from 'redux-form';
 
 import { closeDialog } from 'ducks/application/application';
-import { login, loginAndFollow } from 'ducks/authentication/auth';
+import { loginFromReduxForm } from 'ducks/authentication/auth';
 import { resetErrorMessage } from 'ducks/messages/errorMessage';
 
 import loginValidation from './loginValidation';
@@ -22,35 +23,27 @@ const Styles = require('./DialogStyles');
 
 
 @connect(
-  createSelector([
-    state => state.auth,
-    state => state.application,
-    state => state.messages.errorObject
-  ], (auth, application, errorObject) => {
-    return { auth, application, errorObject };
-  }),
-  { pushState, closeDialog, login, resetErrorMessage, loginAndFollow }
+  null,
+  { pushState, closeDialog, resetErrorMessage, loginFromReduxForm }
 )
 @reduxForm({
   form: 'login',
   fields: ['emailId', 'password'],
   validate: loginValidation,
-  //onSubmit: login
 })
 @Radium
 export default class LoginDialog extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    application: PropTypes.object.isRequired,
-    errorObject: PropTypes.object,
     pushState: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
-    login: PropTypes.func.isRequired,
-    loginAndFollow: PropTypes.func.isRequired,
+    loginFromReduxForm: PropTypes.func.isRequired,
     resetErrorMessage: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
+    error: PropTypes.string,
+    errors: PropTypes.object,
     handleSubmit: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
@@ -61,13 +54,17 @@ export default class LoginDialog extends Component {
   constructor() {
     super();
     this.state = { changed: false };
-    this.loginSubmit = this.loginSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    $('.ui.modal')
+      .modal('show');
   }
 
   componentWillReceiveProps(nextProps) {
     //FIX ME: I coundn't find better way to fix style temporary.
     if (!_.isEqual(this.props.values, nextProps.values) && !this.state.changed
-      && this.props.errorObject) {
+      && this.props.error) {
       this.setState({
         changed: true
       });
@@ -81,12 +78,12 @@ export default class LoginDialog extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (!prevProps.application.isShowOverlay && this.props.application.isShowOverlay
-      && this.props.application.loginDialog) {
-      this.autoFocus();
-    }
-  }
+  //componentDidUpdate(prevProps) {
+  //  if (!prevProps.application.isShowOverlay && this.props.application.isShowOverlay
+  //    && this.props.application.loginDialog) {
+  //    this.autoFocus();
+  //  }
+  //}
 
   resetValueChanged() {
     this.setState({
@@ -112,24 +109,9 @@ export default class LoginDialog extends Component {
 
   }
 
-  loginSubmit(values, dispatch) {
-    this.props.resetErrorMessage();
-    this.resetValueChanged();
-
-    //FIX ME: I coundn't make it pefectly.
-    //This make 'Unhandled promise rejection issue'
-    return this.props.loginAndFollow(values).then(result => {
-      if (result && typeof result.error === 'object') {
-        return Promise.reject({
-          _error: result.error.message
-        });
-      }
-    });
-  }
-
   render() {
-    const { application, errorObject, fields: { emailId, password }, handleSubmit, invalid,
-      submitting, values } = this.props;
+    const { error, errors, fields: { emailId, password }, handleSubmit, invalid,
+      submitting } = this.props;
 
     const changed = this.state.changed ? 'changed' : 'init';
 
@@ -153,34 +135,57 @@ export default class LoginDialog extends Component {
           type="password"
           {...password} />
         <br/><br/>
-        <div ref="errorText" style={[Styles.errorText.init, Styles.errorText[changed]]}>
-          {errorObject ? this.props.errorObject.message : ''}
-        </div>
       </div>
     );
 
-    const dialogActions = [
-      <FlatButton key="cancelButton"
-        label="Cancel"
-        onTouchTap={ this.props.closeDialog } />,
-      <FlatButton key="submitButton"
-        ref="submitButton"
-        label="Submit"
-        primary
-        onTouchTap={ handleSubmit(this.loginSubmit) } />
-    ];
+    const errorMessages = (
+      <ul className="list">
+        {error ? error : null}
+        {Object.keys(errors).map((value, index) => {
+          return <li key={index}>value : {errors[value]}</li>;
+        })}
+      </ul>
+    );
 
     return (
-      <div className="login-dialog container">
-        <Dialog
-          contentStyle={Styles.loginDialog}
-          bodyStyle={Styles.dialogBodyStyle}
-          title="Login"
-          actions={dialogActions}
-          actionFocus="emailId"
-          open={application.isShowOverlay && application.loginDialog}
-          onRequestClose={this.props.closeDialog}
-          children={loginForm} />
+      <div className="login dialog ui small modal" style={ Styles.dialog }>
+        <i className="close icon"></i>
+        <h2 className="ui image header">
+          <img src="images/logo.png" className="image" />
+            <div className="content">
+              Log-in to your account
+            </div>
+        </h2>
+        <form className={'ui large form content' + (invalid ? ' error' : '')}
+              onSubmit={handleSubmit(loginFromReduxForm)}>
+          <div className="ui stacked segment">
+            <div className={'field' + (emailId.invalid ? ' error' : '') }>
+              <div className="ui left icon input">
+                <i className="user icon"></i>
+                <input type="text" name="email" placeholder="E-mail address" ref="emailId" {...emailId} />
+              </div>
+            </div>
+            <div className={'field' + (password.invalid ? ' error' : '') }>
+              <div className="ui left icon input">
+                <i className="lock icon"></i>
+                <input type="password" name="password" placeholder="Password" ref="password" {...password} />
+              </div>
+            </div>
+            <button className="ui fluid large blue submit button" disabled={submitting} >Login</button>
+          </div>
+          <div className="ui error message">
+            {errorMessages}
+          </div>
+        </form>
+        <div className="actions">
+          <div className="ui black deny button">
+            Nope
+          </div>
+          <div className="ui positive right labeled icon button">
+            Yep, that's me
+            <i className="checkmark icon"></i>
+          </div>
+        </div>
       </div>
     );
   }

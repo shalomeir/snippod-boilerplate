@@ -104,6 +104,7 @@ export function pushState(state) {
 }
 
 export function deleteQuery(queryKey) {
+
   return (dispatch, getState) => {
     const location = getState().router.location;
     const res = delete location.query[queryKey];
