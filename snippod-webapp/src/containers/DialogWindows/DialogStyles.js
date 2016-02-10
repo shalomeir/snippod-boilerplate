@@ -4,8 +4,8 @@ const Colors = require('material-ui/lib/styles/colors');
 
 const Styles = {
 
-  loginDialog: {
-    width: 256 + 24 * 2 + 8,
+  logo: {
+    marginRight: '1rem',
   },
 
   dialogBodyStyle: {

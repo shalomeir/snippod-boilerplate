@@ -165,21 +165,6 @@ export function loginAndFollow(loginForm) {
   };
 }
 
-//This type function usually called by redux onSubmit function
-export function loginFromReduxForm(values, dispatch) {
-  return new Promise((resolve, reject) => {
-    dispatch(
-      login(values)
-    ).then((result) => {
-      dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
-      resolve(result);
-    }).catch((error) => {
-      debug('Error occurred : ', error);
-      reject({ _error: error.message });
-    });
-  });
-}
-
 export function logout() {
   return {
     types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],

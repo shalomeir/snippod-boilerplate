@@ -28,10 +28,18 @@ export default class LanguageDropdown extends Component {
       .dropdown('set selected', this.props.lang)
       .dropdown({
         onChange: (value) => {
-          this.props.switchLangAndDeleteLanguageQuery(value);
+          if (this.props.lang !== value) {
+            this.props.switchLangAndDeleteLanguageQuery(value);
+          }
         }
       })
     ;
+  }
+
+  componentDidUpdate() {
+    if (this.props.lang !== $('.ui.dropdown').dropdown('get value')[0]) {
+      $('.ui.dropdown').dropdown('set selected', this.props.lang);
+    }
   }
 
   render() {

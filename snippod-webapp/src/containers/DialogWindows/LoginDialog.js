@@ -10,8 +10,11 @@ import { initializeWithKey } from 'redux-form';
 import { reduxForm } from 'redux-form';
 
 import { closeDialog } from 'ducks/application/application';
-import { loginFromReduxForm } from 'ducks/authentication/auth';
 import { resetErrorMessage } from 'ducks/messages/errorMessage';
+
+//Do not connect this action
+import { login } from 'ducks/authentication/auth';
+import { switchLangAndDeleteLanguageQuery } from 'ducks/application/application';
 
 import loginValidation from './loginValidation';
 
@@ -24,12 +27,12 @@ const Styles = require('./DialogStyles');
 
 @connect(
   null,
-  { pushState, closeDialog, resetErrorMessage, loginFromReduxForm }
+  { pushState, closeDialog, resetErrorMessage }
 )
 @reduxForm({
   form: 'login',
   fields: ['emailId', 'password'],
-  validate: loginValidation,
+  validate: loginValidation
 })
 @Radium
 export default class LoginDialog extends Component {
@@ -38,14 +41,15 @@ export default class LoginDialog extends Component {
     auth: PropTypes.object.isRequired,
     pushState: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
-    loginFromReduxForm: PropTypes.func.isRequired,
     resetErrorMessage: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
     error: PropTypes.string,
     errors: PropTypes.object,
     handleSubmit: PropTypes.func.isRequired,
+    initializeForm: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
+    dirty: PropTypes.bool.isRequired,
     invalid: PropTypes.bool.isRequired,
     submitting: PropTypes.bool.isRequired,
     values: PropTypes.object.isRequired
@@ -54,137 +58,109 @@ export default class LoginDialog extends Component {
   constructor() {
     super();
     this.state = { changed: false };
+    this._closeDialog = this._closeDialog.bind(this);
+    this._onSubmit = this._onSubmit.bind(this);
   }
 
   componentDidMount() {
     $('.ui.modal')
+      .modal({
+        detachable: false,
+        onHidden: () => {
+          this._closeDialog();
+        }
+      })
       .modal('show');
   }
 
   componentWillReceiveProps(nextProps) {
-    //FIX ME: I coundn't find better way to fix style temporary.
-    if (!_.isEqual(this.props.values, nextProps.values) && !this.state.changed
-      && this.props.error) {
-      this.setState({
-        changed: true
-      });
+    if (!_.isEqual(this.props.values, nextProps.values) && this.props.error) {
+      this.props.initializeForm();
+    }
+    if (!_.isEqual(this.props.values, nextProps.values) && !this.state.changed) {
+      this.setState({ changed: true });
     }
   }
 
   componentWillUpdate(nextProps) {
     if (!this.props.auth.loggedIn && nextProps.auth.loggedIn) {
-      this.props.closeDialog();
-      this.props.resetForm();
+      this._closeDialog();
     }
   }
 
-  //componentDidUpdate(prevProps) {
-  //  if (!prevProps.application.isShowOverlay && this.props.application.isShowOverlay
-  //    && this.props.application.loginDialog) {
-  //    this.autoFocus();
-  //  }
-  //}
-
-  resetValueChanged() {
-    this.setState({
-      changed: false
+  _onSubmit(values, dispatch) {
+    this.props.initializeForm();
+    return new Promise((resolve, reject) => {
+      dispatch(
+        login(values)
+      ).then((result) => {
+        dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
+        resolve(result);
+      }).catch((error) => {
+        reject({ _error: error.message });
+      });
     });
   }
 
-  autoFocus() {
-    if (this.props.fields.emailId.invalid) {
-      this.refs.emailId.focus();
-      return null;
-    } else if (this.props.fields.password.invalid) {
-      this.refs.password.focus();
-      return null;
-    } else if (this.props.invalid) {
-      this.refs.emailId.focus();
-      return null;
-    }
-
-    //TODO: I couldn't this. Also I couldn't do remotely Click Event.
-    //(for entering in input field to show click submit button event')
-    //this.refs.submitButton.focus();
-
+  _closeDialog() {
+    console.log('close login dialog');
+    $('.ui.modal').modal('hide dimmer');
+    this.props.closeDialog();
   }
 
+  //_resetValueChanged() {
+  //  this.setState({
+  //    changed: false
+  //  });
+  //}
+
   render() {
-    const { error, errors, fields: { emailId, password }, handleSubmit, invalid,
+    const { error, errors, fields: { emailId, password }, handleSubmit, invalid, dirty,
       submitting } = this.props;
 
-    const changed = this.state.changed ? 'changed' : 'init';
-
-    const loginForm = (
-      <div>
-        <TextField
-          ref="emailId"
-          autofocus="autofocus"
-          floatingLabelText="Email ID"
-          hintText="Type your email ID."
-          errorText={emailId.error && emailId.touched ? emailId.error : ''}
-          onEnterKeyDown={ handleSubmit(this.loginSubmit) }
-          {...emailId} />
-        <br/>
-        <TextField
-          ref="password"
-          floatingLabelText="Password"
-          hintText="Password"
-          errorText={password.error && password.touched ? password.error : ''}
-          onEnterKeyDown={ handleSubmit(this.loginSubmit) }
-          type="password"
-          {...password} />
-        <br/><br/>
-      </div>
-    );
+    const { changed } = this.state;
 
     const errorMessages = (
       <ul className="list">
-        {error ? error : null}
+        {error ? (<li key="global error">{error}</li>) : null}
         {Object.keys(errors).map((value, index) => {
-          return <li key={index}>value : {errors[value]}</li>;
+          return <li key={index}>{value === 'emailId' ? 'ID' : value} : {errors[value]}</li>;
         })}
       </ul>
     );
 
     return (
-      <div className="login dialog ui small modal" style={ Styles.dialog }>
+      <div className="login dialog ui small modal" >
         <i className="close icon"></i>
-        <h2 className="ui image header">
-          <img src="images/logo.png" className="image" />
-            <div className="content">
-              Log-in to your account
-            </div>
+        <h2 className="ui image header blue">
+          <img src="images/logo.png" className="image" style={ Styles.logo }/>
+          <div className="content">
+            Log-in to your account
+          </div>
         </h2>
-        <form className={'ui large form content' + (invalid ? ' error' : '')}
-              onSubmit={handleSubmit(loginFromReduxForm)}>
+        <form className={'ui large form content' + (invalid && changed ? ' error' : '')} onSubmit={handleSubmit(this._onSubmit)}>
           <div className="ui stacked segment">
-            <div className={'field' + (emailId.invalid ? ' error' : '') }>
+            <div className={'field' + (emailId.invalid && changed ? ' error' : '') }>
               <div className="ui left icon input">
                 <i className="user icon"></i>
                 <input type="text" name="email" placeholder="E-mail address" ref="emailId" {...emailId} />
               </div>
             </div>
-            <div className={'field' + (password.invalid ? ' error' : '') }>
+            <div className={'field' + (password.invalid && changed ? ' error' : '') }>
               <div className="ui left icon input">
                 <i className="lock icon"></i>
                 <input type="password" name="password" placeholder="Password" ref="password" {...password} />
               </div>
             </div>
-            <button className="ui fluid large blue submit button" disabled={submitting} >Login</button>
+            <button type="submit" className={'ui fluid large blue button' + (submitting ? ' loading' : '')}
+                    disabled={submitting || invalid} >Login</button>
           </div>
           <div className="ui error message">
             {errorMessages}
           </div>
         </form>
-        <div className="actions">
-          <div className="ui black deny button">
-            Nope
-          </div>
-          <div className="ui positive right labeled icon button">
-            Yep, that's me
-            <i className="checkmark icon"></i>
-          </div>
+        <div className="ui message">
+          New to us? <a>Sign Up</a>
         </div>
       </div>
     );
