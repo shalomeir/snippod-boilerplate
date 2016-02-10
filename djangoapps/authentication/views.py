@@ -13,6 +13,7 @@ from authentication.permissions import IsAccountOwner
 
 from authentication.utils import *
 
+from authentication.i18n import RESPONSE_MESSAGES
 
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()
@@ -102,6 +103,7 @@ class LoginView(views.APIView):
         password = request.data.get('password', None)
 
         account = authenticate(email=email, password=password)
+        language = get_language(request)
 
         if account is not None:
             if account.is_active:
@@ -113,7 +115,7 @@ class LoginView(views.APIView):
             else:
                 return Response({
                     'status': 'Unauthorized',
-                    'message': 'This authentication has been disabled.'
+                    'message': RESPONSE_MESSAGES['disauthorized'][language]
                 }, status=status.HTTP_401_UNAUTHORIZED)
         else:
             if request.user.is_active:
@@ -123,7 +125,7 @@ class LoginView(views.APIView):
                 })
             return Response({
                 'status': 'Unauthorized',
-                'message': 'Username/password combination invalid.'
+                'message': RESPONSE_MESSAGES['authentication_failed'][language]
             }, status=status.HTTP_401_UNAUTHORIZED)
 
 
