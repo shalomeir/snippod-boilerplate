@@ -138,14 +138,19 @@ export function load() {
 }
 
 export function login(loginForm) {
-  return {
-    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    promise: (client) => client.post('/auth/login/', {
-      data: {
-        email: loginForm.emailId,
-        password: loginForm.password
-      }
-    })
+  return (dispatch, getState) => {
+    return dispatch({
+      types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
+      promise: (client) => client.post('/auth/login/', {
+        data: {
+          email: loginForm.emailId,
+          password: loginForm.password
+        },
+        params: {
+          language: getState().application.lang
+        }
+      })
+    });
   };
 }
 

@@ -17,9 +17,24 @@ export default {
   "stargazers.subtitle": "Vedi gli stargazers per il tuo GitHub account e repos.",
   "superSecretArea.info": "Questa è un'area privata.",
 
+
+  "loginDialog.title": "지금 로그인하세요",
+  "loginDialog.button": "로그인",
+  "loginDialog.registerForwarding1": "새로 오셨어요?",
+  "loginDialog.registerForwarding2": "가입하기",
+
   //Component i18n
   "comp.authButtons.loginButton": "로그인",
   "comp.authButtons.registerButton": "가입",
   "comp.authButtons.logoutButton": "로그아웃",
 
+  //logMessages for validation errors
+  "log.default": "안녕하세요",
+  "log.required": "입력해주세요",
+  "log.invalidEmail": "이메일 주소가 아닌 것 같네요",
+  "log.minLength": "비밀번호가 너무 짧아요. 길이가 적어도 {min, plural,\n  =0 {하나이상이}\n  =1 {하나는}\n  =2 {둘은}\n other {# 이상이}\n} 되어야 해요.",
+  "log.maxLength": "비밀번호가 너무 길어요. 길이가 {max}보다 길면 안되요.",
+  "log.integer": "숫자만 가능해요.",
+  "log.enumeration": "다음 중 하나여야 해요 : {enumerations}",
+  "log.donotmatch": "같지 않아요.",
 };

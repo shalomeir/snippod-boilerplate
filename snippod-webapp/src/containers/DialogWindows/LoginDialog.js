@@ -15,6 +15,7 @@ import { resetErrorMessage } from 'ducks/messages/errorMessage';
 //Do not connect this action
 import { login } from 'ducks/authentication/auth';
 import { switchLangAndDeleteLanguageQuery } from 'ducks/application/application';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import loginValidation from './loginValidation';
 
@@ -24,6 +25,24 @@ const TextField = require('material-ui/lib/text-field');
 
 const Styles = require('./DialogStyles');
 
+const messages = defineMessages({
+  title: {
+    id: 'loginDialog.title',
+    defaultMessage: 'Log-in to your account'
+  },
+  button: {
+    id: 'loginDialog.button',
+    defaultMessage: 'Login'
+  },
+  registerForwarding1: {
+    id: 'loginDialog.registerForwarding1',
+    defaultMessage: 'New to us?'
+  },
+  registerForwarding2: {
+    id: 'loginDialog.registerForwarding2',
+    defaultMessage: 'Register'
+  }
+});
 
 @connect(
   null,
@@ -124,7 +143,8 @@ export default class LoginDialog extends Component {
       <ul className="list">
         {error ? (<li key="global error">{error}</li>) : null}
         {Object.keys(errors).map((value, index) => {
-          return <li key={index}>{value === 'emailId' ? 'ID' : value} : {errors[value]}</li>;
+          const logMessage = errors[value];
+          return <li key={index}>{value === 'emailId' ? 'ID' : value} : <FormattedMessage {...logMessage} /></li>;
         })}
       </ul>
     );
@@ -135,7 +155,7 @@ export default class LoginDialog extends Component {
         <h2 className="ui image header blue">
           <img src="images/logo.png" className="image" style={ Styles.logo }/>
           <div className="content">
-            Log-in to your account
+            <FormattedMessage {...messages.title} />
           </div>
         </h2>
         <form className={'ui large form content' + (invalid && changed ? ' error' : '')} onSubmit={handleSubmit(this._onSubmit)}>
@@ -153,14 +173,17 @@ export default class LoginDialog extends Component {
               </div>
             </div>
             <button type="submit" className={'ui fluid large blue button' + (submitting ? ' loading' : '')}
-                    disabled={submitting || invalid} >Login</button>
+                    disabled={submitting || invalid} >
+              <FormattedMessage {...messages.button} />
+            </button>
           </div>
           <div className="ui error message">
             {errorMessages}
           </div>
         </form>
         <div className="ui message">
-          New to us? <a>Sign Up</a>
+          <FormattedMessage {...messages.registerForwarding1} />&nbsp;
+          <a><FormattedMessage {...messages.registerForwarding2} /></a>
         </div>
       </div>
     );
