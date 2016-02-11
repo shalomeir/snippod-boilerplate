@@ -57,7 +57,8 @@ class AccountViewSet(viewsets.ModelViewSet):
                 }, status=status.HTTP_201_CREATED)
         return Response({
             'status': 'Bad request',
-            'message': 'Account could not be created with received data.',
+            'message': RESPONSE_MESSAGES['register_failed'][request.data['language']],
+            # below errors value messages should be translated.
             'errors': serializer.errors
         }, status=status.HTTP_400_BAD_REQUEST)
 

@@ -30,6 +30,9 @@ class _ApiClient {
 
         if (params) {
           request.query(params);
+          if (params.language) {
+            request.set({ 'Accept-Language': params.language });
+          }
         }
         request.set({
           'accept': 'application/json',

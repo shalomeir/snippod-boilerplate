@@ -9,5 +9,9 @@ RESPONSE_MESSAGES = {
     'authentication_failed': {
         'en':'ID/password combination invalid.',
         'ko':'ID/password 조합이 잘못되었어요.'
-    }
+    },
+    'register_failed': {
+        'en':'Account could not be created with received data.',
+        'ko':'요청한 데이터로 계정 생성이 불가능해요.'
+    },
 }
