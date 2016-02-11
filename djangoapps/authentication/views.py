@@ -43,7 +43,7 @@ class AccountViewSet(viewsets.ModelViewSet):
 
 
     def create(self, request):
-        request.data.language = get_language(request)
+        request.data['language'] = get_language(request)
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             if serializer.checkPassword(serializer.validated_data):

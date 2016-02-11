@@ -62,7 +62,6 @@ staticfiles/
 
 
 #log
-logs/
 logs/*.log
 
 # Elastic Beanstalk Files
