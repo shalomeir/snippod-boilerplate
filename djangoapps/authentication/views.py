@@ -70,8 +70,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     def destroy(self, request, pk=None):
         account = self.get_object()
         account.email = str(account.id)+'_nonactive'+'@snippod.com'
-        account.first_name = ''
-        account.last_name = ''
+        account.description = ''
         account.is_active = False
         account.is_authenticated = False
         account.save()
