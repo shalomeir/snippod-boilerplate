@@ -13,6 +13,10 @@ const LOGOUT = 'authentication/auth/LOGOUT';
 const LOGOUT_SUCCESS = 'authentication/auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'authentication/auth/LOGOUT_FAIL';
 
+const REGISTER = 'authentication/auth/REGISTER';
+const REGISTER_SUCCESS = 'authentication/auth/REGISTER_SUCCESS';
+const REGISTER_FAIL = 'authentication/auth/REGISTER_FAIL';
+
 const UPDATE_ACCOUNT_SETTINGS = 'authentication/auth/UPDATE_ACCOUNT_SETTINGS';
 const UPDATE_ACCOUNT_SETTINGS_SUCCESS = 'authentication/auth/UPDATE_ACCOUNT_SETTINGS_SUCCESS';
 const UPDATE_ACCOUNT_SETTINGS_FAIL = 'authentication/auth/UPDATE_ACCOUNT_SETTINGS_FAIL';
@@ -29,25 +33,19 @@ const DESTROY_ACCOUNT_FAIL = 'authentication/auth/DESTROY_ACCOUNT_FAIL';
 const initialState = {
   loggedIn: false,
   loaded: false,
-  loading: false,
-  loggingIn: false,
-  loggingOut: false,
-  account: null
+  account: null,
+  error: null
 };
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
-      return {
-        ...state,
-        loading: true
-      };
+      return state;
     case LOAD_SUCCESS:
       if (action.result) {
         return {
           ...state,
           loggedIn: true,
-          loading: false,
           loaded: true,
           account: action.result.account,
         };
@@ -55,7 +53,6 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loggedIn: false,
-        loading: false,
         loaded: true,
         error: null
       };
@@ -67,46 +64,47 @@ export default function reducer(state = initialState, action = {}) {
         error: action.error
       };
     case LOGIN:
-      return {
-        ...state,
-        loggingIn: true
-      };
+      return state;
     case LOGIN_SUCCESS:
       return {
         ...state,
         loggedIn: true,
-        loggingIn: false,
-        loaded: true,
-        account: action.result.account,
-        loginError: null
+        account: action.result.account
       };
     case LOGIN_FAIL:
       return {
         ...state,
         loggedIn: false,
-        loggingIn: false,
-        loaded: true,
         account: null,
-        loginError: action.error
+        error: action.error
       };
     case LOGOUT:
-      return {
-        ...state,
-        loggingOut: true
-      };
+      return state;
     case LOGOUT_SUCCESS:
       return {
         ...state,
-        loggingOut: false,
         loggedIn: false,
-        account: null,
-        logoutError: null
+        account: null
       };
     case LOGOUT_FAIL:
       return {
         ...state,
-        loggingOut: false,
-        logoutError: action.error
+        error: action.error
+      };
+    case REGISTER:
+      return state;
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        loggedIn: true,
+        account: action.result.account
+      };
+    case REGISTER_FAIL:
+      return {
+        ...state,
+        loggedIn: false,
+        account: null,
+        error: action.error
       };
     case UPDATE_ACCOUNT_SETTINGS:
       return state;
@@ -174,6 +172,25 @@ export function logout() {
   return {
     types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
     promise: (client) => client.get('/auth/logout/')
+  };
+}
+
+export function register(registerForm) {
+  return (dispatch, getState) => {
+    return dispatch({
+      types: [REGISTER, REGISTER_SUCCESS, REGISTER_FAIL],
+      promise: (client) => client.post('/accounts/register/', {
+        data: {
+          email: registerForm.emailId,
+          password: registerForm.password,
+          confirmPassword: registerForm.confirmPassword,
+          username: registerForm.username
+        },
+        params: {
+          language: getState().application.lang
+        }
+      })
+    });
   };
 }
 

@@ -8,11 +8,6 @@ const defaults = {
 
   GA_TRACKING_ID: 'UA-63089389-1',
 
-  loginForm: {
-    passwordMinLength: 2,
-    passwordMaxLength: 100,
-  },
-
   v1: {
     defaultLang: 'en'
   }

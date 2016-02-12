@@ -33,6 +33,7 @@
     "max-len": 0,
     "quote-props": 0,
     "no-param-reassign": [2, {"props": false}],
+    "no-nested-ternary": 0,
     "react/jsx-indent-props": 0,
     "react/jsx-closing-bracket-location": [2, {selfClosing: 'after-props', nonEmpty: 'after-props'}],
     "react/jsx-no-bind": 0

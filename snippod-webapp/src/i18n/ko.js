@@ -1,27 +1,21 @@
 /*eslint-disable max-len,quotes*/
 export default {
-  "about.librariesIntro": "안녕하세요. 반갑습니다.",
-  "about.specialThanks": "이야 한글이여dasjkld {link} redux 짱 {redux}!",
-  "account.home.intro": "Congratulazioni, sei entrato in un area protetta da login!",
-  "account.home.link.superSecretArea": "area super segreta",
-  "account.home.steps": "Puoi fare il {logoutLink} o provare ad accedere all'{secretAreaLink} senza l'autorizzazione necessaria.",
-  "explore.legend": "Inserisci uno username o il nome completo di un repository e premi 'Go':",
-  "footer.builtWith": "Questo sito è fatto con <3 usando {link}",
-  "forbidden": "Proibito",
-  "forbiddenReason": "Non sei autorizzato a vedere la pagina XXX.",
-  "home.intro": "Questo sito è un esempio per dimostrare best practices, in particolare di come utilizzare {linkRedux} e {linkRouter}.",
-  "home.intro2": "Consiglio di guardare nel source code per ispirazioni o idee di come realizzare diversi use cases.{br}La mia idea è anche di mantenere e aggiungere nuovi e diversi scenari e funzionalità che sono comuni nelle applicazioni web.",
-  "home.intro3": "Restate sintonizzati e divertitevi! Per qualsiasi domanda non esitate a {linkIssues}, sarò felice di aiutare in qualsiasi modo, nei limiti possibili. Oh, e qualsiasi pull-request è ovviamente molto apprezzata! ;)",
-  "home.intro3.dropAnIssue": "lasciare un issue",
-  "home.welcome": "Benvenuto",
-  "stargazers.subtitle": "Vedi gli stargazers per il tuo GitHub account e repos.",
-  "superSecretArea.info": "Questa è un'area privata.",
-
-
+  //Containers
+  //DialogWindows
   "loginDialog.title": "지금 로그인하세요",
   "loginDialog.button": "로그인",
   "loginDialog.registerForwarding1": "새로 오셨어요?",
   "loginDialog.registerForwarding2": "가입하기",
+
+  "registerDialog.title": "한번에 가입하세요",
+  "registerDialog.emailId": "이메일 ID",
+  "registerDialog.password": "비밀번호",
+  "registerDialog.confirmPassword": "비밀번호 재확인",
+  "registerDialog.username": "사용자명",
+
+  "registerDialog.button": "가입",
+  "registerDialog.loginForwarding1": "이미 가입하셨어요?",
+  "registerDialog.loginForwarding2": "로그인",
 
   //Component i18n
   "comp.authButtons.loginButton": "로그인",

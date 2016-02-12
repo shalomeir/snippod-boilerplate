@@ -10,7 +10,6 @@ import { reduxForm } from 'redux-form';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { closeDialog } from 'ducks/application/application';
-import { resetErrorMessage } from 'ducks/messages/errorMessage';
 
 //Do not connect this action
 import { login } from 'ducks/authentication/auth';
@@ -18,13 +17,9 @@ import { switchLangAndDeleteLanguageQuery } from 'ducks/application/application'
 
 import loginValidation from './loginValidation';
 
-const Dialog = require('material-ui/lib/dialog');
-const FlatButton = require('material-ui/lib/flat-button');
-const TextField = require('material-ui/lib/text-field');
-
 const Styles = require('./DialogStyles');
 
-const messages = defineMessages({
+const i18n = defineMessages({
   title: {
     id: 'loginDialog.title',
     defaultMessage: 'Log-in to your account'
@@ -45,7 +40,7 @@ const messages = defineMessages({
 
 @connect(
   null,
-  { pushState, closeDialog, resetErrorMessage }
+  { pushState, closeDialog }
 )
 @reduxForm({
   form: 'login',
@@ -59,7 +54,6 @@ export default class LoginDialog extends Component {
     auth: PropTypes.object.isRequired,
     pushState: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
-    resetErrorMessage: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
     error: PropTypes.string,
@@ -130,7 +124,7 @@ export default class LoginDialog extends Component {
         .transition('fade up');
     }
 
-    //Show up password ID Field error message
+    //Show up password Field error message
     if (!prevProps.errors.password && this.props.errors.password && !$('.ui.password.pointing.label').transition('is visible')) {
       $('.ui.password.pointing.label')
         .transition('fade up');
@@ -175,7 +169,7 @@ export default class LoginDialog extends Component {
         <h2 className="ui image header blue">
           <img src="images/logo.png" className="image" style={ Styles.logo }/>
           <div className="content">
-            <FormattedMessage {...messages.title} />
+            <FormattedMessage {...i18n.title} />
           </div>
         </h2>
         <form className={'ui large form content' + (invalid && changed ? ' error' : '')} onSubmit={handleSubmit(this._onSubmit)}>
@@ -200,7 +194,7 @@ export default class LoginDialog extends Component {
             </div>
             <button type="submit" className={'ui fluid large blue button' + (submitting ? ' loading' : '')}
                     disabled={submitting || invalid} >
-              <FormattedMessage {...messages.button} />
+              <FormattedMessage {...i18n.button} />
             </button>
           </div>
           <div className="ui general error message hidden" style={Styles.errorText}>
@@ -208,8 +202,8 @@ export default class LoginDialog extends Component {
           </div>
         </form>
         <div className="ui message">
-          <FormattedMessage {...messages.registerForwarding1} />&nbsp;
-          <a><FormattedMessage {...messages.registerForwarding2} /></a>
+          <FormattedMessage {...i18n.registerForwarding1} />&nbsp;
+          <a><FormattedMessage {...i18n.registerForwarding2} /></a>
         </div>
       </div>
     );
