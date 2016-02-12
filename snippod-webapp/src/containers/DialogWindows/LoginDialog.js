@@ -6,8 +6,8 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { pushState } from 'redux-router';
-import { initializeWithKey } from 'redux-form';
 import { reduxForm } from 'redux-form';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { closeDialog } from 'ducks/application/application';
 import { resetErrorMessage } from 'ducks/messages/errorMessage';
@@ -15,7 +15,6 @@ import { resetErrorMessage } from 'ducks/messages/errorMessage';
 //Do not connect this action
 import { login } from 'ducks/authentication/auth';
 import { switchLangAndDeleteLanguageQuery } from 'ducks/application/application';
-import { defineMessages, FormattedMessage } from 'react-intl';
 
 import loginValidation from './loginValidation';
 
@@ -64,11 +63,9 @@ export default class LoginDialog extends Component {
 
     fields: PropTypes.object.isRequired,
     error: PropTypes.string,
-    errors: PropTypes.object,
+    errors: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     initializeForm: PropTypes.func.isRequired,
-    resetForm: PropTypes.func.isRequired,
-    dirty: PropTypes.bool.isRequired,
     invalid: PropTypes.bool.isRequired,
     submitting: PropTypes.bool.isRequired,
     values: PropTypes.object.isRequired
@@ -93,9 +90,6 @@ export default class LoginDialog extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!_.isEqual(this.props.values, nextProps.values) && this.props.error) {
-      this.props.initializeForm();
-    }
     if (!_.isEqual(this.props.values, nextProps.values) && !this.state.changed) {
       this.setState({ changed: true });
     }
@@ -105,6 +99,49 @@ export default class LoginDialog extends Component {
     if (!this.props.auth.loggedIn && nextProps.auth.loggedIn) {
       this._closeDialog();
     }
+  }
+
+  componentDidUpdate(prevProps) {
+    //Show up general error message
+    if (!prevProps.error && this.props.error && !$('.ui.general.error.message').transition('is visible')) {
+      $('.ui.general.error.message')
+        .transition('fade up');
+    }
+
+    //Hide general error message
+    if (!_.isEqual(prevProps.values, this.props.values) && this.props.error) {
+      $('.ui.general.error.message')
+        .transition({
+          animation: 'fade up',
+          onHide: () => {this.props.initializeForm();},
+          queue: false
+        });
+    }
+
+    //Show up email ID Field error message
+    if (!prevProps.errors.emailId && this.props.errors.emailId && !$('.ui.email.pointing.label').transition('is visible')) {
+      $('.ui.email.pointing.label')
+        .transition('fade up');
+    }
+
+    //Hide email ID Field error message
+    if (prevProps.errors.emailId && !this.props.errors.emailId && $('.ui.email.pointing.label').transition('is visible')) {
+      $('.ui.email.pointing.label')
+        .transition('fade up');
+    }
+
+    //Show up password ID Field error message
+    if (!prevProps.errors.password && this.props.errors.password && !$('.ui.password.pointing.label').transition('is visible')) {
+      $('.ui.password.pointing.label')
+        .transition('fade up');
+    }
+
+    //Hide password Field error message
+    if (prevProps.errors.password && !this.props.errors.password && $('.ui.password.pointing.label').transition('is visible')) {
+      $('.ui.password.pointing.label')
+        .transition('fade up');
+    }
+
   }
 
   _onSubmit(values, dispatch) {
@@ -127,27 +164,10 @@ export default class LoginDialog extends Component {
     this.props.closeDialog();
   }
 
-  //_resetValueChanged() {
-  //  this.setState({
-  //    changed: false
-  //  });
-  //}
-
   render() {
-    const { error, errors, fields: { emailId, password }, handleSubmit, invalid, dirty,
+    const { error, errors, fields: { emailId, password }, handleSubmit, invalid,
       submitting } = this.props;
-
     const { changed } = this.state;
-
-    const errorMessages = (
-      <ul className="list">
-        {error ? (<li key="global error">{error}</li>) : null}
-        {Object.keys(errors).map((value, index) => {
-          const logMessage = errors[value];
-          return <li key={index}>{value === 'emailId' ? 'ID' : value} : <FormattedMessage {...logMessage} /></li>;
-        })}
-      </ul>
-    );
 
     return (
       <div className="login dialog ui small modal" >
@@ -161,15 +181,21 @@ export default class LoginDialog extends Component {
         <form className={'ui large form content' + (invalid && changed ? ' error' : '')} onSubmit={handleSubmit(this._onSubmit)}>
           <div className="ui stacked segment">
             <div className={'field' + (emailId.invalid && changed ? ' error' : '') }>
-              <div className="ui left icon input">
+              <div className="ui left icon email input">
                 <i className="user icon"></i>
                 <input type="text" name="email" placeholder="E-mail address" ref="emailId" {...emailId} />
               </div>
+              <div className="ui email pointing red basic small label transition hidden" style={Styles.errorText}>
+                {errors.emailId ? <FormattedMessage {...errors.emailId} /> : null}
+              </div>
             </div>
             <div className={'field' + (password.invalid && changed ? ' error' : '') }>
-              <div className="ui left icon input">
+              <div className="ui left icon password input">
                 <i className="lock icon"></i>
                 <input type="password" name="password" placeholder="Password" ref="password" {...password} />
+              </div>
+              <div className="ui password pointing red basic small label transition hidden" style={Styles.errorText}>
+                {errors.password ? <FormattedMessage {...errors.password} /> : null}
               </div>
             </div>
             <button type="submit" className={'ui fluid large blue button' + (submitting ? ' loading' : '')}
@@ -177,8 +203,8 @@ export default class LoginDialog extends Component {
               <FormattedMessage {...messages.button} />
             </button>
           </div>
-          <div className="ui error message">
-            {errorMessages}
+          <div className="ui general error message hidden" style={Styles.errorText}>
+            {error}
           </div>
         </form>
         <div className="ui message">
