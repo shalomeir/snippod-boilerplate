@@ -77,6 +77,7 @@ export default class RegisterDialog extends Component {
     handleSubmit: PropTypes.func.isRequired,
     initializeForm: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
+    dirty: PropTypes.bool.isRequired,
     submitting: PropTypes.bool.isRequired,
     values: PropTypes.object.isRequired
   };
@@ -100,7 +101,7 @@ export default class RegisterDialog extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!_.isEqual(this.props.values, nextProps.values) && !this.state.changed) {
+    if (!_.isEqual(this.props.values, nextProps.values) && !this.state.changed && nextProps.dirty) {
       this.setState({ changed: true });
     }
   }
@@ -128,47 +129,47 @@ export default class RegisterDialog extends Component {
     }
 
     //Show up email ID Field error message
-    if (!prevProps.errors.emailId && this.props.errors.emailId && !$('.ui.email.pointing.label').transition('is visible')) {
+    if (this.props.fields.emailId.dirty && this.props.errors.emailId && !$('.ui.email.label').transition('is visible')) {
       $('.ui.email.pointing.label')
         .transition('fade up');
     }
     //Hide email ID Field error message
-    if (prevProps.errors.emailId && !this.props.errors.emailId && $('.ui.email.pointing.label').transition('is visible')) {
+    if (prevProps.errors.emailId && !this.props.errors.emailId && $('.ui.email.label').transition('is visible')) {
       $('.ui.email.pointing.label')
-        .transition('fade up');
+        .transition('hide');
     }
 
     //Show up password Field error message
-    if (!prevProps.errors.password && this.props.errors.password && !$('.ui.password.pointing.label').transition('is visible')) {
+    if (this.props.fields.password.dirty && this.props.errors.password && !$('.ui.password.label').transition('is visible')) {
       $('.ui.password.pointing.label')
         .transition('fade up');
     }
     //Hide password Field error message
-    if (prevProps.errors.password && !this.props.errors.password && $('.ui.password.pointing.label').transition('is visible')) {
+    if (prevProps.errors.password && !this.props.errors.password && $('.ui.password.label').transition('is visible')) {
       $('.ui.password.pointing.label')
-        .transition('fade up');
+        .transition('hide');
     }
 
     //Show up confirmPassword Field error message
-    if (!prevProps.errors.confirmPassword && this.props.errors.confirmPassword && !$('.ui.confirmPassword.pointing.label').transition('is visible')) {
+    if (this.props.fields.confirmPassword.dirty && this.props.errors.confirmPassword && !$('.ui.confirmPassword.label').transition('is visible')) {
       $('.ui.confirmPassword.pointing.label')
         .transition('fade up');
     }
     //Hide confirmPassword Field error message
-    if (prevProps.errors.confirmPassword && !this.props.errors.confirmPassword && $('.ui.confirmPassword.pointing.label').transition('is visible')) {
+    if (prevProps.errors.confirmPassword && !this.props.errors.confirmPassword && $('.ui.confirmPassword.label').transition('is visible')) {
       $('.ui.confirmPassword.pointing.label')
-        .transition('fade up');
+        .transition('hide');
     }
 
     //Show up username Field error message
-    if (!prevProps.errors.username && this.props.errors.username && !$('.ui.username.pointing.label').transition('is visible')) {
+    if (this.props.fields.username.dirty && this.props.errors.username && !$('.ui.username.label').transition('is visible')) {
       $('.ui.username.pointing.label')
         .transition('fade up');
     }
     //Hide username Field error message
-    if (prevProps.errors.username && !this.props.errors.username && $('.ui.username.pointing.label').transition('is visible')) {
+    if (prevProps.errors.username && !this.props.errors.username && $('.ui.username.label').transition('is visible')) {
       $('.ui.username.pointing.label')
-        .transition('fade up');
+        .transition('hide');
     }
 
   }

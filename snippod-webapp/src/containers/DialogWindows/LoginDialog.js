@@ -61,6 +61,7 @@ export default class LoginDialog extends Component {
     handleSubmit: PropTypes.func.isRequired,
     initializeForm: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
+    dirty: PropTypes.bool.isRequired,
     submitting: PropTypes.bool.isRequired,
     values: PropTypes.object.isRequired
   };
@@ -84,7 +85,7 @@ export default class LoginDialog extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!_.isEqual(this.props.values, nextProps.values) && !this.state.changed) {
+    if (!_.isEqual(this.props.values, nextProps.values) && !this.state.changed && nextProps.dirty) {
       this.setState({ changed: true });
     }
   }
@@ -113,27 +114,27 @@ export default class LoginDialog extends Component {
     }
 
     //Show up email ID Field error message
-    if (!prevProps.errors.emailId && this.props.errors.emailId && !$('.ui.email.pointing.label').transition('is visible')) {
+    if (this.props.fields.emailId.dirty && this.props.errors.emailId && !$('.ui.email.label').transition('is visible')) {
       $('.ui.email.pointing.label')
         .transition('fade up');
     }
 
     //Hide email ID Field error message
-    if (prevProps.errors.emailId && !this.props.errors.emailId && $('.ui.email.pointing.label').transition('is visible')) {
+    if (prevProps.errors.emailId && !this.props.errors.emailId && $('.ui.email.label').transition('is visible')) {
       $('.ui.email.pointing.label')
-        .transition('fade up');
+        .transition('hide');
     }
 
     //Show up password Field error message
-    if (!prevProps.errors.password && this.props.errors.password && !$('.ui.password.pointing.label').transition('is visible')) {
+    if (this.props.fields.password.dirty && this.props.errors.password && !$('.ui.password.label').transition('is visible')) {
       $('.ui.password.pointing.label')
         .transition('fade up');
     }
 
     //Hide password Field error message
-    if (prevProps.errors.password && !this.props.errors.password && $('.ui.password.pointing.label').transition('is visible')) {
+    if (prevProps.errors.password && !this.props.errors.password && $('.ui.password.label').transition('is visible')) {
       $('.ui.password.pointing.label')
-        .transition('fade up');
+        .transition('hide');
     }
 
   }
