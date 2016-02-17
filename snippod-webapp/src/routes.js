@@ -4,8 +4,12 @@ import { isLoaded as isAuthLoaded, load as loadAuth } from 'ducks/authentication
 import App from 'layout/App';
 import {
   NotFound,
-  Login,
-  Topic
+  Loading,
+  Ground,
+  Home,
+  SinglePost,
+  User,
+  Setting
 } from 'containers';
 
 import { isFuncWork } from 'utils/validation';
@@ -15,14 +19,24 @@ export default (store) => {
   const requireLogin = (nextState, replaceState, cb) => {
     // FIXME: This line is temporary fixed version for this issues: https://github.com/erikras/react-redux-universal-hot-example/issues/430
     const storeData = isFuncWork(store.getState) ? store.getState() : window.__data;
+    const { auth } = storeData;
 
     function checkAuth() {
-      const { auth } = storeData;
       if (!auth.loggedIn) {
         // oops, not logged in, so can't be here!
         replaceState({
-          nextPathname: nextState.location.pathname
+          nextPathname: nextState.location.pathname,
         }, '/login');
+      }
+      cb();
+    }
+    function preLoad(action = null) {
+      if (!auth.loggedIn) {
+        // oops, not logged in, so can't be here!
+        replaceState({
+          nextPathname: nextState.location.pathname,
+          action
+        }, '/prelogin');
       }
       cb();
     }
@@ -30,39 +44,33 @@ export default (store) => {
       if (isFuncWork(store.dispatch)) {
         store.dispatch(loadAuth()).then(checkAuth);
       } else {
-        checkAuth();
+        preLoad(loadAuth);
       }
     } else {
       checkAuth();
     }
   };
 
-  //const testReplaceHash = (nextState, replaceState, cb) => {
-  //  console.log('dadsaa s');
-  //  replaceState({dd: '후와'}, '/login?he=112q#hass?dd=ff&ad=22');
-  //  cb();
-  //};
-
   /**
-   * Please keep routes in alphabetical order
+   * Routes
    */
   return (
     <Route path="/" component={App}>
       { /* Home (main) route */ }
-      <IndexRoute component={Topic}/>
-      { /*<IndexRoute component={Home}/>*/ }
+      <IndexRoute component={Home}/>
+
+      <Route path="/post/:postId" component={SinglePost} />
+      <Route path="/user/:userId" component={User} />
 
       { /* Routes requiring login */ }
       <Route onEnter={requireLogin}>
-        <Route path="profile" component={NotFound}/>
+        <Route path="/setting" component={Setting}/>
       </Route>
 
       { /* Routes */ }
-      <Route path="login" component={Login} />
-
-      <Route onEnter={requireLogin}>
-        <Route path="register" component={Topic}/>
-      </Route>
+      <Route path="/prelogin" component={Loading} />
+      <Route path="/login" component={Ground} />
+      <Route path="/register" component={Ground}/>
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

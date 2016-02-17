@@ -1,4 +1,5 @@
 const debug = require('utils/getDebugger')('application');
+import { pushState, replaceState } from 'redux-router';
 
 const SHOW_LOGIN_DIALOG = 'application/application/SHOW_LOGIN_DIALOG';
 const SHOW_REGISTER_DIALOG = 'application/application/SHOW_REGISTER_DIALOG';
@@ -17,7 +18,7 @@ const initialState = {
 };
 
 
-// Modal Window Overay switch reducers.
+// Modal Window Overlay switch reducers.
 export default function reducer(state = initialState, action = {}) {
 
   switch (action.type) {
@@ -57,49 +58,38 @@ export default function reducer(state = initialState, action = {}) {
 // This function is used for override query url
 export function overrideQuery(query) {
   return (dispatch, getState) => {
-    const history = require('helpers/history');
     const location = getState().router.location;
-    history.push({
-      pathname: location.pathname,
-      query: Object.assign(location.query, query),
-      state: location.state
-    });
+    dispatch(pushState(
+      location.state, location.pathname, Object.assign(location.query, query)
+    ));
   };
 }
 
 export function pushQuery(query) {
   return (dispatch, getState) => {
-    const history = require('helpers/history');
     const location = getState().router.location;
-    history.push({
-      pathname: location.pathname,
-      query,
-      state: location.state
-    });
+    dispatch(pushState(location.state, location.pathname, query));
   };
 }
 
-export function pushPathname(pathname) {
-  return (dispatch, getState) => {
-    const history = require('helpers/history');
-    const location = getState().router.location;
-    history.push({
-      pathname,
-      query: location.query,
-      state: location.state
-    });
-  };
-}
 
-export function pushState(state) {
+//If defaultPathname and redirect query and nextPathname is not exist, do nothing.
+export function redirectPath(defaultPathname) {
+
   return (dispatch, getState) => {
-    const history = require('helpers/history');
     const location = getState().router.location;
-    history.push({
-      pathname: location.pathname,
-      query: location.query,
-      state
-    });
+    let pathname = defaultPathname;
+
+    if (location.query.redirect) {
+      pathname = decodeURIComponent(location.query.redirect);
+    } else if (location.state && location.state.nextPathname) {
+      pathname = location.state.nextPathname;
+    }
+
+    if (pathname) {
+      console.log('jebal ' + pathname);
+      dispatch(pushState(null, pathname));
+    }
   };
 }
 
@@ -109,16 +99,12 @@ export function deleteQuery(queryKey) {
     const location = getState().router.location;
     const res = delete location.query[queryKey];
     if (res) {
-      const history = require('helpers/history');
-      history.push({
-        pathname: location.pathname,
-        query: location.query,
-        state: location.state
-      });
+      dispatch(pushState(location.state, location.pathname, location.query));
     }
     return res;
   };
 }
+
 
 export function showLoginDialog() {
   return {

@@ -17,10 +17,13 @@ export default {
   "registerDialog.loginForwarding1": "이미 가입하셨어요?",
   "registerDialog.loginForwarding2": "로그인",
 
-  //Component i18n
+  //Component
   "comp.authButtons.loginButton": "로그인",
   "comp.authButtons.registerButton": "가입",
   "comp.authButtons.logoutButton": "로그아웃",
+
+  //Layout
+  "layout.navBar.settingButton": "셋팅",
 
   //logMessages for validation errors
   "log.default": "안녕하세요",

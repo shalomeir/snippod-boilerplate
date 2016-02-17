@@ -3,16 +3,21 @@ import Radium from 'radium';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Link } from 'react-router';
-import AppBar from 'material-ui/lib/app-bar';
-const Styles = require('./NavBarStyles');
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { AuthButtons, LanguageDropdown } from 'components';
-
-const FlatButton = require('material-ui/lib/flat-button');
 
 import { showLoginDialog, showRegisterDialog } from 'ducks/application/application';
 import { logout } from 'ducks/authentication/auth';
 
+const Styles = require('./NavBarStyles');
+
+const i18n = defineMessages({
+  settingButton: {
+    id: 'layout.navBar.settingButton',
+    defaultMessage: 'Setting'
+  }
+});
 
 @connect(
   null,
@@ -62,10 +67,10 @@ export default class NavBar extends Component {
     //);
 
     const logo = (
-      <div href="#" className="header item">
+      <Link to="/" href="#" className="header item">
         <img className="logo" src="/images/logo.png" style={Styles.logoImage}/>
         <header className="header" style={Styles.title}> snippod-boilerplate </header>
-      </div>
+      </Link>
     );
 
     const title = (
@@ -75,12 +80,14 @@ export default class NavBar extends Component {
 
     const rightMenu = auth.loggedIn ? (
       <div className="logged-in right menu">
-        <div className="item">
-          <a className="ui button">My Account</a>
-        </div>
-        <div className="item">
-          <a className="ui button">Settings</a>
-        </div>
+        <Link to={`/user/${auth.account.id}`} className="blue item" style={Styles.menuItem}>
+            <i className="user icon" style={Styles.icon}></i>
+            {auth.account.username}
+        </Link>
+        <Link to="/setting" className="blue item" style={Styles.menuItem}>
+            <i className="setting icon" style={Styles.icon}/>
+            <FormattedMessage {...i18n.settingButton} />
+        </Link>
         <div className="item">
           <AuthButtons application={this.props.application} auth={this.props.auth}/>
         </div>

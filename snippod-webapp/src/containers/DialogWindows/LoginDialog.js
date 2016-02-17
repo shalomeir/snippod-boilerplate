@@ -5,11 +5,10 @@ import $ from 'jquery';
 
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { pushState } from 'redux-router';
 import { reduxForm } from 'redux-form';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { closeDialog } from 'ducks/application/application';
+import { closeDialog, redirectPath } from 'ducks/application/application';
 
 //Do not connect this action
 import { login } from 'ducks/authentication/auth';
@@ -40,7 +39,7 @@ const i18n = defineMessages({
 
 @connect(
   null,
-  { pushState, closeDialog }
+  { closeDialog, redirectPath }
 )
 @reduxForm({
   form: 'login',
@@ -52,7 +51,8 @@ export default class LoginDialog extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    pushState: PropTypes.func.isRequired,
+    router: PropTypes.object.isRequired,
+    redirectPath: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
@@ -146,6 +146,7 @@ export default class LoginDialog extends Component {
         login(values)
       ).then((result) => {
         dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
+        this.props.redirectPath();
         resolve(result);
       }).catch((error) => {
         reject({ _error: error.message });

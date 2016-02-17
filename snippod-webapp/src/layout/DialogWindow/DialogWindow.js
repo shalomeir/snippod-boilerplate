@@ -10,6 +10,7 @@ export default class DialogWindow extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired
   };
 
   render() {
@@ -19,10 +20,10 @@ export default class DialogWindow extends Component {
 
     if (this.props.application.loginDialog) {
       titleText = 'Login';
-      onboardDialog = <LoginDialog auth={this.props.auth} />;
+      onboardDialog = <LoginDialog auth={this.props.auth} router={this.props.router} />;
     } else if (this.props.application.registerDialog) {
       titleText = 'Register';
-      onboardDialog = <RegisterDialog auth={this.props.auth} />;
+      onboardDialog = <RegisterDialog auth={this.props.auth} router={this.props.router} />;
     }
 
     if (this.props.application.isShowOverlay) {

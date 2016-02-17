@@ -9,3 +9,10 @@
     margin: 0em 0em 0em -225px;
   }
 }
+
+//@media only screen and (max-width : 450px) {
+//  .dialog.ui.small.modal {
+//    top: 225px;
+//    margin-top: 0.1em;
+//  }
+//}

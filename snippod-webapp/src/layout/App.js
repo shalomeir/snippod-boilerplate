@@ -55,6 +55,7 @@ export default class App extends Component {
   //  store: PropTypes.object.isRequired
   //};
 
+
   //componentDidMount() {
   //  this._loadDefaultScript();
   //}
@@ -87,7 +88,7 @@ export default class App extends Component {
           {this.props.children}
         </main>
         <Footer />
-        <DialogWindow auth={this.props.auth} application={this.props.application} />
+        <DialogWindow auth={this.props.auth} application={this.props.application} router={this.props.router} />
         <Snackbar/>
       </div>
     );
