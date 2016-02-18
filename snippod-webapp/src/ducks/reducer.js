@@ -1,7 +1,14 @@
 import { combineReducers } from 'redux';
-import { routerStateReducer as router } from 'redux-router';
+import { routeReducer } from 'react-router-redux';
+import { reducer as reduxAsyncConnect } from 'redux-async-connect';
+
 import merge from 'lodash/object/merge';
 //import multireducer from 'multireducer';
+
+import reduxForm from './reduxform/reduxForm';
+import errorMessage from './messages/errorMessage';
+import application from './application/application';
+import auth from './authentication/auth';
 
 //Root Entities for normalization json schema
 const initialEntitiesState = {
@@ -19,16 +26,12 @@ function entities(state = initialEntitiesState, action = {}) {
   return state;
 }
 
-import reduxForm from './reduxform/reduxForm';
-import errorMessage from './messages/errorMessage';
-import application from './application/application';
-import auth from './authentication/auth';
-
 export default combineReducers({
-  entities,
-  messages: errorMessage,
-  auth,
-  application,
+  routing: routeReducer,
+  reduxAsyncConnect,
   form: reduxForm,
-  router,
+  messages: errorMessage,
+  application,
+  auth,
+  entities
 });

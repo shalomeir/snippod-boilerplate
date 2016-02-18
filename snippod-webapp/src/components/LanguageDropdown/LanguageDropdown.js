@@ -20,8 +20,10 @@ export default class LanguageDropdown extends Component {
   static propTypes = {
     lang: PropTypes.string.isRequired,
     switchLangAndDeleteLanguageQuery: PropTypes.func.isRequired,
-    className: PropTypes.string
-  }
+    className: PropTypes.string.isRequired
+  };
+
+  static defaultProps = { className: '' };
 
   componentDidMount() {
     $('.ui.dropdown')
@@ -45,7 +47,7 @@ export default class LanguageDropdown extends Component {
   render() {
     return (
       <div className= {this.props.className + ' ui floating dropdown labeled icon tiny button'} ref="langSwitcher"
-           style={ Styles.dropdown }>
+           value={this.props.lang} style={ Styles.dropdown }>
         <div className="text" style={ Styles.item }/>
         <i className="world icon" />
         <div className="menu">

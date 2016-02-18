@@ -2,6 +2,8 @@
 export default {
   //Containers
   //DialogWindows
+  "home.helloWorld": "한글로 보여야 되요 여긴 홈이고 헬로우 월드~",
+
   "loginDialog.title": "지금 로그인하세요",
   "loginDialog.button": "로그인",
   "loginDialog.registerForwarding1": "새로 오셨어요?",

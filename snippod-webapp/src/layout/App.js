@@ -3,11 +3,12 @@ import Radium from 'radium';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import connectData from 'helpers/connectData';
-import { pushState } from 'redux-router';
+import { asyncConnect } from 'redux-async-connect';
+
 import Helmet from 'react-helmet';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import head from 'constants/head';
+
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'ducks/authentication/auth';
 import {
   NavBar,
@@ -22,45 +23,56 @@ import {
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-function fetchData(getState, dispatch) {
-  const promises = [];
-  if (!isAuthLoaded(getState())) {
-    promises.push(dispatch(loadAuth()));
-  }
-  return Promise.all(promises);
-}
+@asyncConnect([{
+  promise: ({ store: { dispatch, getState } }) => {
+    const promises = [];
 
-@connectData(fetchData)
+    if (!isAuthLoaded(getState())) {
+      promises.push(dispatch(loadAuth()));
+    }
+    return Promise.all(promises);
+  }
+}])
 @connect(
   createSelector([
     state => state.auth,
-    state => state.application,
-    state => state.router,
-  ], (auth, application, router) => {
-    return { auth, application, router };
-  }),
-  { pushState }
+    state => state.application
+  ], (auth, application) => {
+    return { auth, application };
+  })
 )
 @Radium
 export default class App extends Component {
   static propTypes = {
+    location: PropTypes.object.isRequired,
     children: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    application: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
-    pushState: PropTypes.func.isRequired
+    application: PropTypes.object.isRequired
   };
 
   //static contextTypes = {
   //  store: PropTypes.object.isRequired
   //};
 
-
-  //componentDidMount() {
+  //Fetching account information using token
+  //componentWillMount() {
+  //  if (!this.props.auth.loaded) {
+  //    this.props.loadAuth();
+  //  }
   //  this._loadDefaultScript();
   //}
 
   //_loadDefaultScript() {
+  //}
+
+  //static reduxAsyncConnect(params, store) {
+  //  const { dispatch, getState } = store;
+  //  const promises = [];
+  //
+  //  if (!isAuthLoaded(getState())) {
+  //    promises.push(dispatch(loadAuth()));
+  //  }
+  //  return Promise.all(promises);
   //}
 
   //componentWillReceiveProps(nextProps) {
@@ -88,7 +100,7 @@ export default class App extends Component {
           {this.props.children}
         </main>
         <Footer />
-        <DialogWindow auth={this.props.auth} application={this.props.application} router={this.props.router} />
+        <DialogWindow auth={this.props.auth} application={this.props.application} location={this.props.location} />
         <Snackbar/>
       </div>
     );

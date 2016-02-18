@@ -1,8 +1,16 @@
 import React, { Component, PropTypes } from 'react';
+import { defineMessages, FormattedMessage } from 'react-intl';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Link } from 'react-router';
+
+const i18n = defineMessages({
+  helloWorld: {
+    id: 'home.helloWorld',
+    defaultMessage: 'Hello guys'
+  }
+});
 
 @connect(
   createSelector([
@@ -11,7 +19,7 @@ import { Link } from 'react-router';
     return { auth };
   })
 )
-export default class Topic extends Component {
+export default class Home extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired
   };
@@ -34,6 +42,9 @@ export default class Topic extends Component {
           )}
           <p>
             홈asdkjlaskdjlkajs
+          </p>
+          <p>
+            <FormattedMessage {...i18n.helloWorld} />
           </p>
           { /*<Posts {...this.props} />*/ }
         </div>

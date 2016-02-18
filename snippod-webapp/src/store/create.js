@@ -1,14 +1,15 @@
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import createMiddleware from '../middleware/clientMiddleware';
-import transitionMiddleware from '../middleware/transitionMiddleware';
+import { syncHistory } from 'react-router-redux';
 
 //TODO: Only works in client Mode. Prepare SSR.
 import { getDefaultLang } from '../helpers/getBrowserSettings.js';
 const defaultLang = getDefaultLang();
 
-export default function createStore(reduxReactRouter, getRoutes, createHistory, client, data) {
-  const middleware = [thunk, createMiddleware(client), transitionMiddleware];
+export default function createStore(history, client, data) {
+  const reduxRouterMiddleware = syncHistory(history);
+  const middleware = [thunk, createMiddleware(client), reduxRouterMiddleware];
 
   let finalCreateStore;
   if (__DEVELOPMENT__ && __CLIENT__ && __DEVTOOLS__) {
@@ -23,7 +24,6 @@ export default function createStore(reduxReactRouter, getRoutes, createHistory, 
     finalCreateStore = applyMiddleware(...middleware)(_createStore);
   }
 
-  finalCreateStore = reduxReactRouter({ getRoutes, createHistory })(finalCreateStore);
 
   const reducer = require('ducks/reducer');
   // TODO: It's not good way. But I coudn't find another way to fix this lang value.
@@ -37,6 +37,8 @@ export default function createStore(reduxReactRouter, getRoutes, createHistory, 
     module.hot.accept('ducks/reducer', () => {
       store.replaceReducer(require('ducks/reducer'));
     });
+    module.hot.decline('../routes.js');
+    reduxRouterMiddleware.listenForReplays(store);
   }
 
   return store;

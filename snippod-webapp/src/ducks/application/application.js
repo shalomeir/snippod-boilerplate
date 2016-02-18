@@ -1,5 +1,5 @@
 const debug = require('utils/getDebugger')('application');
-import { pushState, replaceState } from 'redux-router';
+import { browserHistory as history } from 'react-router';
 
 const SHOW_LOGIN_DIALOG = 'application/application/SHOW_LOGIN_DIALOG';
 const SHOW_REGISTER_DIALOG = 'application/application/SHOW_REGISTER_DIALOG';
@@ -14,7 +14,7 @@ const initialState = {
   isShowOverlay: false,
   loginDialog: false,
   registerDialog: false,
-  lang: defaultLang,
+  lang: defaultLang
 };
 
 
@@ -58,17 +58,17 @@ export default function reducer(state = initialState, action = {}) {
 // This function is used for override query url
 export function overrideQuery(query) {
   return (dispatch, getState) => {
-    const location = getState().router.location;
-    dispatch(pushState(
+    const location = getState().routing.location;
+    history.push(
       location.state, location.pathname, Object.assign(location.query, query)
-    ));
+    );
   };
 }
 
 export function pushQuery(query) {
   return (dispatch, getState) => {
-    const location = getState().router.location;
-    dispatch(pushState(location.state, location.pathname, query));
+    const location = getState().routing.location;
+    history.push(location);
   };
 }
 
@@ -77,7 +77,7 @@ export function pushQuery(query) {
 export function redirectPath(defaultPathname) {
 
   return (dispatch, getState) => {
-    const location = getState().router.location;
+    const location = getState().routing.location;
     let pathname = defaultPathname;
 
     if (location.query.redirect) {
@@ -88,7 +88,7 @@ export function redirectPath(defaultPathname) {
 
     if (pathname) {
       console.log('jebal ' + pathname);
-      dispatch(pushState(null, pathname));
+      history.push(pathname);
     }
   };
 }
@@ -96,10 +96,10 @@ export function redirectPath(defaultPathname) {
 export function deleteQuery(queryKey) {
 
   return (dispatch, getState) => {
-    const location = getState().router.location;
+    const location = getState().routing.location;
     const res = delete location.query[queryKey];
     if (res) {
-      dispatch(pushState(location.state, location.pathname, location.query));
+      history.push(location);
     }
     return res;
   };

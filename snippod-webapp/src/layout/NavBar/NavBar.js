@@ -28,8 +28,7 @@ export default class NavBar extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
-    pushState: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,

@@ -51,7 +51,7 @@ export default class LoginDialog extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
     redirectPath: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
 

@@ -21,22 +21,20 @@ export default (store) => {
     const storeData = isFuncWork(store.getState) ? store.getState() : window.__data;
     const { auth } = storeData;
 
+    console.log('nextState: 이게 requirelogin 에서 ');
+    console.log(nextState);
+
     function checkAuth() {
       if (!auth.loggedIn) {
         // oops, not logged in, so can't be here!
-        replaceState({
-          nextPathname: nextState.location.pathname,
-        }, '/login');
+        replaceState(null, '/login');
       }
       cb();
     }
     function preLoad(action = null) {
       if (!auth.loggedIn) {
         // oops, not logged in, so can't be here!
-        replaceState({
-          nextPathname: nextState.location.pathname,
-          action
-        }, '/prelogin');
+        replaceState(null, '/prelogin');
       }
       cb();
     }
@@ -63,7 +61,7 @@ export default (store) => {
       <Route path="/user/:userId" component={User} />
 
       { /* Routes requiring login */ }
-      <Route onEnter={requireLogin}>
+      <Route >
         <Route path="/setting" component={Setting}/>
       </Route>
 

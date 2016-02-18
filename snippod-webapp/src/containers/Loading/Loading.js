@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { replaceState } from 'redux-router';
+import { routeActions } from 'react-router-redux';
 import { load as loadAuth } from 'ducks/authentication/auth';
 
 const Styles = {
@@ -15,21 +15,20 @@ const Styles = {
 @connect(
   createSelector([
     state => state.auth,
-    state => state.application,
-    state => state.router
-  ], (auth, application, router) => {
-    return { auth, application, router };
+    state => state.application
+  ], (auth, application) => {
+    return { auth, application };
   }),
-  { replaceState, loadAuth }
+  { loadAuth }
 )
 @Radium
 export default class Loading extends Component {
 
   static propTypes = {
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
-    replaceState: PropTypes.func.isRequired,
     loadAuth: PropTypes.func.isRequired
   };
 
@@ -51,19 +50,19 @@ export default class Loading extends Component {
     if (!this.props.auth.loggedIn) {
       // oops, not logged in, so can't be here!
       let redirectQuery;
-      if (this.props.router.location.state && this.props.router.location.state.nextPathname) {
-        redirectQuery = { redirect: encodeURIComponent(this.props.router.location.state.nextPathname) };
+      if (this.props.location.state && this.props.location.state.nextPathname) {
+        redirectQuery = { redirect: encodeURIComponent(this.props.location.state.nextPathname) };
       }
-      this.props.replaceState(this.props.router.location.state, '/login', redirectQuery);
+      this.props.history.replace(this.props.location.state, '/login', redirectQuery);
     } else {
       console.log('hello will loading checked and loggedin SUCCESS auth');
       let nextPath = '/';
-      if (this.props.router.location.query.redirect) {
-        nextPath = decodeURIComponent(this.props.router.location.query.redirect);
-      } else if (this.props.router.location.state.nextPathname) {
-        nextPath = this.props.router.location.state.nextPathname;
+      if (this.props.location.query.redirect) {
+        nextPath = decodeURIComponent(this.props.location.query.redirect);
+      } else if (this.props.location.state.nextPathname) {
+        nextPath = this.props.location.state.nextPathname;
       }
-      this.props.replaceState(null, nextPath);
+      this.props.history.replace(nextPath);
     }
   }
 

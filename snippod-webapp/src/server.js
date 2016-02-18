@@ -14,11 +14,16 @@ import http from 'http';
 import SocketIo from 'socket.io';
 
 import createHistory from 'history/lib/createMemoryHistory';
-import { reduxReactRouter, match } from 'redux-router/server';
+//import { reduxReactRouter, match } from 'redux-router/server';
+import { match } from 'react-router';
+import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
 import { Provider } from 'react-redux';
+import { IntlProvider } from 'react-intl';
+import * as i18n from './i18n';
+
 import qs from 'query-string';
 import getRoutes from './routes';
-import getStatusFromRoutes from './helpers/getStatusFromRoutes';
+//import getStatusFromRoutes from './helpers/getStatusFromRoutes';
 import './utils/supportIntl';
 
 import Root from './Root';
@@ -62,8 +67,9 @@ app.use((req, res) => {
     webpackIsomorphicTools.refresh();
   }
   const client = new ApiClient(req);
+  const history = createHistory();
 
-  const store = createStore(reduxReactRouter, getRoutes, createHistory, client);
+  const store = createStore(history, client);
 
   function hydrateOnClient() {
     res.send('<!doctype html>\n' +
@@ -75,43 +81,39 @@ app.use((req, res) => {
     return;
   }
 
-  store.dispatch(match(req.originalUrl, (error, redirectLocation, routerState) => {
+  match({ history, routes: getRoutes(store), location: req.originalUrl }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
       res.redirect(redirectLocation.pathname + redirectLocation.search);
     } else if (error) {
       console.error('ROUTER ERROR:', pretty.render(error));
       res.status(500);
       hydrateOnClient();
-    } else if (!routerState) {
-      res.status(500);
-      hydrateOnClient();
-    } else {
-      // Workaround redux-router query string issue:
-      // https://github.com/rackt/redux-router/issues/106
-      if (routerState.location.search && !routerState.location.query) {
-        routerState.location.query = qs.parse(routerState.location.search);
-      }
+    } else if (renderProps) {
+      loadOnServer(renderProps, store, { client }).then(() => {
+        const intlData = {
+          lang: store.getState().application.lang,
+          messages: i18n[store.getState().application.lang]
+        };
 
-      store.getState().router.then(() => {
         const component = (
           <Provider store={store} key="provider">
-            <Root/>
+            <IntlProvider key="intl" {...intlData}>
+              <ReduxAsyncConnect {...renderProps} />
+            </IntlProvider>
           </Provider>
         );
 
-        const status = getStatusFromRoutes(routerState.routes);
-        if (status) {
-          res.status(status);
-        }
+        res.status(200);
+
+        global.navigator = { userAgent: req.headers['user-agent'] };
+
         res.send('<!doctype html>\n' +
           ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component} store={store}/>));
-      }).catch((err) => {
-        console.error('DATA FETCHING ERROR:', pretty.render(err));
-        res.status(500);
-        hydrateOnClient();
       });
+    } else {
+      res.status(404).send('Not found');
     }
-  }));
+  });
 });
 
 if (config.port) {

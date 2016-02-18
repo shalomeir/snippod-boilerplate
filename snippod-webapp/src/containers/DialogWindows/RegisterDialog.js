@@ -5,7 +5,6 @@ import $ from 'jquery';
 
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { pushState } from 'redux-router';
 import { reduxForm } from 'redux-form';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
@@ -56,7 +55,7 @@ const i18n = defineMessages({
 
 @connect(
   null,
-  { pushState, closeDialog }
+  { closeDialog }
 )
 @reduxForm({
   form: 'register',
@@ -68,8 +67,7 @@ export default class RegisterDialog extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
-    pushState: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired,
     closeDialog: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,

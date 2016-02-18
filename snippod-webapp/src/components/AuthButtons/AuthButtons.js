@@ -27,7 +27,7 @@ const Styles = {
     textAlign: 'center',
     paddingLeft: 'inherit',
     paddingRight: 'inherit'
-  },
+  }
 };
 
 @connect(
@@ -41,13 +41,10 @@ export default class AuthButtons extends Component {
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
-    className: PropTypes.string
-  }
+    className: PropTypes.string.isRequired
+  };
 
-  componentDidMount() {
-
-  }
-
+  static defaultProps = { className: '' };
 
   render() {
     const auth = this.props.auth;
