@@ -8,7 +8,8 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import { AuthButtons, LanguageDropdown } from 'components';
 
 import { showLoginDialog, showRegisterDialog } from 'ducks/application/application';
-import { logout } from 'ducks/authentication/auth';
+
+//const shallowEqual = require('fbjs/lib/shallowEqual');
 
 const Styles = require('./NavBarStyles');
 
@@ -22,54 +23,43 @@ const i18n = defineMessages({
 //CHECK: This 'lang' prop is needed for refresh i18n. So this is very important to connect with.
 @connect(
   null,
-  { showLoginDialog, showRegisterDialog, logout }
+  { showLoginDialog, showRegisterDialog }
 )
 @Radium
 export default class NavBar extends Component {
   static propTypes = {
     childType: PropTypes.string.isRequired,
+    params: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    locale: PropTypes.string.isRequired,
+    lang: PropTypes.string.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired,
   };
 
+  //static contextTypes = {
+  //  params: PropTypes.object.isRequired
+  //};
+  //https://github.com/facebook/react/issues/2517
+  //shouldComponentUpdate(nextProps, nextState, nextContext) {
+  //  return !shallowEqual(this.props, nextProps) ||
+  //    !shallowEqual(this.state, nextState) ||
+  //    !shallowEqual(this.context, nextContext); // this will throw without context, read on
+  //}
+
   render() {
+    const { childType, params, auth, lang } = this.props;
 
-    const auth = this.props.auth;
-    const lang = this.props.locale;
+    let userIsMe;
+    if (auth.loggedIn && childType === 'User') {
+      if (parseInt(params.userId, 10) === auth.account.id) {
+        userIsMe = true;
+      }
+    }
+
     const menuActiveClassName = {
-      user: (this.props.childType === 'User') ? 'active' : '',
-      setting: (this.props.childType === 'Setting') ? 'active' : ''
+      user: userIsMe ? 'active' : '',
+      setting: (childType === 'Setting') ? 'active' : ''
     };
-
-    //var navLinks = auth.loggedIn ? (
-    //  /* jshint ignore:start */
-    //  <div className="nav-list float-right">
-    //    <span className="nav-item">
-    //      Hi, <Link to={`/user/${account.id}`}>{account.username ? account.username : account.email}</Link>
-    //    </span>
-    //    <span className="nav-item">
-    //      <Link to="/settings">My Account</Link>
-    //    </span>
-    //    <span className="nav-item">
-    //      <Link to="/logout" onClick={this.handleLogout}>Logout</Link>
-    //    </span>
-    //  </div>
-    //  /* jshint ignore:end */
-    //) : (
-    //  /* jshint ignore:start */
-    //  <div className="nav-list float-right">
-    //    <span className="nav-item">
-    //      <a onClick={ UIActions.showOverlay.bind(this,'login') }>Sign In</a>
-    //    </span>
-    //    <span className="nav-item">
-    //      <a onClick={ UIActions.showOverlay.bind(this,'register') }>Register</a>
-    //    </span>
-    //  </div>
-    //  /* jshint ignore:end */
-    //);
 
     const logo = (
       <Link to="/" href="#" className="header item">
@@ -93,7 +83,7 @@ export default class NavBar extends Component {
             <FormattedMessage {...i18n.settingButton} />
         </Link>
         <div className="item">
-          <AuthButtons auth={this.props.auth}/>
+          <AuthButtons auth={auth}/>
         </div>
         <div className="item">
           <LanguageDropdown lang={lang} />
@@ -102,7 +92,7 @@ export default class NavBar extends Component {
     ) : (
       <div className="logged-out right menu">
         <div className="item">
-          <AuthButtons auth={this.props.auth}/>
+          <AuthButtons auth={auth}/>
         </div>
         <div className="item">
           <LanguageDropdown lang={lang} />

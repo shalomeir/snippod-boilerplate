@@ -1,9 +1,29 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { routeActions } from 'react-router-redux';
+import { defineMessages, FormattedMessage } from 'react-intl';
 import { showLoginDialog, showRegisterDialog, redirectReplacePath } from 'ducks/application/application';
+
+const i18n = defineMessages({
+  loginMessageHeader: {
+    id: 'ground.login.messageHeader',
+    defaultMessage: 'Log-in'
+  },
+  loginMessageBody: {
+    id: 'ground.login.messageBody',
+    defaultMessage: 'Jump in our website.'
+  },
+  registerMessageHeader: {
+    id: 'ground.register.messageHeader',
+    defaultMessage: 'Register'
+  },
+  registerMessageBody: {
+    id: 'ground.register.messageBody',
+    defaultMessage: 'Create your account.'
+  }
+});
 
 const Styles = {
   container: {
@@ -46,10 +66,18 @@ export default class Ground extends Component {
     if (!redirect) {
       if (this.props.location.pathname === '/login') {
         this.props.showLoginDialog();
+        this.setState({ page: 'login' });
       }
       if (this.props.location.pathname === '/register') {
         this.props.showRegisterDialog();
+        this.setState({ page: 'register' });
       }
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.auth.loggedIn && nextProps.auth.loggedIn) {
+      this.props.redirectReplacePath('/');
     }
   }
 
@@ -64,13 +92,17 @@ export default class Ground extends Component {
   }
 
   render() {
+    const messageHeader = this.state.page === 'login' ? i18n.loginMessageHeader : i18n.registerMessageHeader;
+    const messageBody = this.state.page === 'login' ? i18n.loginMessageBody : i18n.registerMessageBody;
+
     return (
       <div className="loading ui text container" style={Styles.container}>
+        <Helmet title={this.state.page === 'login' ? 'Login' : 'Register'} />
         <div className="ui message">
           <div className="header">
-            Login please
+            <FormattedMessage {...messageHeader} />
           </div>
-          <p>Login and follow web page you want to see.</p>
+          <p><FormattedMessage {...messageBody} /></p>
         </div>
       </div>
     );

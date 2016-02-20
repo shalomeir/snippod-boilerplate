@@ -12,17 +12,18 @@ import * as i18n from './i18n';
 import getRoutes from './routes';
 
 function getRootChildren(rootProps, routes) {
+  const { client, application: { lang } } = rootProps;
+
   const intlData = {
-    locale: rootProps.application.lang,
-    messages: i18n[rootProps.application.lang]
+    locale: lang,
+    messages: i18n[lang]
   };
-  const { client } = rootProps;
   const bindReduxAsyncConnect = (props) =>
     <ReduxAsyncConnect {...props} helpers={{ client }} />;
 
   const rootChildren = [
     <IntlProvider key="intl" {...intlData}>
-      <Router render={bindReduxAsyncConnect} history={browserHistory} routes={routes} />
+      <Router render={bindReduxAsyncConnect} history={browserHistory} routes={routes}/>
     </IntlProvider>
   ];
 
@@ -57,8 +58,10 @@ export default class Root extends Component {
 
   render() {
 
+    // Key reloadedNum is used for issue that Router reload page for logout. https://github.com/reactjs/react-router/issues/1982
+    // This is also related with routes. reloadedNum.
     return (
-      <div id="root">{getRootChildren(this.props, this.state.routes)}</div>
+      <div key={this.props.application.reloadedNum} >{getRootChildren(this.props, this.state.routes)}</div>
     );
   }
 }

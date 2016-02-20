@@ -1,6 +1,8 @@
 const debug = require('utils/getDebugger')('application');
 import { browserHistory as history } from 'react-router';
 
+const RELOAD_PAGE = 'application/application/RELOAD_PAGE';
+
 const SHOW_LOGIN_DIALOG = 'application/application/SHOW_LOGIN_DIALOG';
 const SHOW_REGISTER_DIALOG = 'application/application/SHOW_REGISTER_DIALOG';
 const CLOSE_DIALOG = 'application/application/CLOSE_DIALOG';
@@ -14,7 +16,8 @@ const initialState = {
   isShowOverlay: false,
   loginDialog: false,
   registerDialog: false,
-  lang: defaultLang
+  lang: defaultLang,
+  reloadedNum: 0,
 };
 
 
@@ -50,6 +53,13 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         lang: action.lang
       };
+
+    case RELOAD_PAGE:
+      return {
+        ...state,
+        reloadedNum: ++state.reloadedNum
+      };
+
     default:
       return state;
   }
@@ -154,6 +164,23 @@ export function pushLocation(location) {
 export function replaceLocation(location) {
   return () => {
     history.replace(location);
+  };
+}
+
+export function reloadPage() {
+  //Enhancement needed: Do you have any idea?
+  //window.location.reload();
+  return {
+    type: RELOAD_PAGE,
+  };
+}
+
+// https://github.com/reactjs/react-router/issues/1982
+export function refreshPage() {
+  return (dispatch, getState) => {
+    const location = getState().routing.location;
+    history.replace('/');
+    history.replace(location.pathname);
   };
 }
 

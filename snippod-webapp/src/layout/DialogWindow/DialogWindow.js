@@ -13,19 +13,21 @@ export default class DialogWindow extends Component {
   };
 
   render() {
+    const { auth, application } = this.props;
+
     let titleText;
     let onboardDialog;
     let onboardsDialogs = null;
 
-    if (this.props.application.loginDialog) {
+    if (application.loginDialog) {
       titleText = 'Login';
-      onboardDialog = <LoginDialog auth={this.props.auth} />;
-    } else if (this.props.application.registerDialog) {
+      onboardDialog = <LoginDialog auth={auth} />;
+    } else if (application.registerDialog) {
       titleText = 'Register';
-      onboardDialog = <RegisterDialog auth={this.props.auth} />;
+      onboardDialog = <RegisterDialog auth={auth} />;
     }
 
-    if (this.props.application.isShowOverlay) {
+    if (application.isShowOverlay) {
       onboardsDialogs = (
         <div className="layout onboards show-overlay">
           <Helmet title={titleText} />

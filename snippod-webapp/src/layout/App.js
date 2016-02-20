@@ -50,6 +50,8 @@ export default class App extends Component {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     children: PropTypes.object.isRequired,
+    params: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired
   };
@@ -57,6 +59,17 @@ export default class App extends Component {
   //static contextTypes = {
   //  router: PropTypes.object.isRequired
   //};
+  //https://github.com/facebook/react/issues/2517
+  //static childContextTypes = {
+  //  location: PropTypes.object.isRequired,
+  //  params: PropTypes.object
+  //}
+  //getChildContext() {
+  //  return {
+  //    location: this.props.location,
+  //    params: this.props.params
+  //  };
+  //}
 
   //Fetching account information using token
   //componentWillMount() {
@@ -65,32 +78,24 @@ export default class App extends Component {
   //_loadDefaultScript() {
   //}
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.intl.locale !== nextProps.intl.locale) {
-      // i18n Issue: https://github.com/yahoo/react-intl/releases, https://github.com/yahoo/react-intl/issues/162
-      // https://github.com/gpbl/react-locale-hot-switch/issues/1 reload full page is a soulution at this time.
-      // React Intl components not changed hot swap locale cause shouldComponentUpdate
-      console.log('app locale chaged to ' + nextProps.intl.locale);
-    }
-  }
-
   render() {
-    const locale = this.props.application.lang;
+    const { auth, application, application: { lang } } = this.props;
+    const locale = this.props.intl.locale;
 
     // i18n Issue: https://github.com/yahoo/react-intl/releases, https://github.com/yahoo/react-intl/issues/162
     // https://github.com/gpbl/react-locale-hot-switch/issues/1 reload full page is a soulution at this time.
     // React Intl components not changed hot swap locale cause shouldComponentUpdate
     // Full reload by key value which is locale by injectIntl
     return (
-      <div className="app" key={this.props.intl.locale} >
+      <div className="app" key={locale} >
         <Helmet {...head}/>
-        <NavBar auth={this.props.auth} locale={locale} childType={this.props.children.type.name} />
+        <NavBar auth={auth} lang={lang} childType={this.props.children.type.name} params={this.props.params} />
         <div className="empty-box ui container" />
         <main id="content">
           {this.props.children}
         </main>
         <Footer />
-        <DialogWindow auth={this.props.auth} application={this.props.application} />
+        <DialogWindow auth={auth} application={application} />
         <Snackbar/>
       </div>
     );

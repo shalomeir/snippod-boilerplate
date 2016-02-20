@@ -2,12 +2,292 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="__esModule">
   <file id="f1">
     
-<unit id="about.specialThanks">
+<unit id="comp.authButtons.loginButton">
   <notes>
-    <note>Thanks to Dan Abramov for the idea of Redux</note>
+    <note></note>
   </notes>
   <segment state="initial">
-    <source><![CDATA[A special thanks to {link} for kicking out the idea of {redux}!]]></source>
+    <source><![CDATA[Login]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="comp.authButtons.logoutButton">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Logout]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="comp.authButtons.registerButton">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Register]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="ground.login.messageBody">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Jump in our website.]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="ground.login.messageHeader">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Log-in]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="ground.register.messageBody">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Create your account.]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="ground.register.messageHeader">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Register]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="home.helloWorld">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Hello guys]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="layout.navBar.settingButton">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Setting]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="log.default">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Hello]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="log.donotmatch">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Do not match]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="log.enumeration">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Must be one of: {enumerations}]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="log.integer">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Must be an integer]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="log.invalidEmail">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Invalid email address]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="log.maxLength">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Must be no more than {max} characters]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="log.minLength">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Must be at least {min} characters]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="log.required">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Required]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="loginDialog.button">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Login]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="loginDialog.registerForwarding1">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[New to us?]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="loginDialog.registerForwarding2">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Register]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="loginDialog.title">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Log-in to your account]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="registerDialog.button">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Register]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="registerDialog.confirmPassword">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Confirm Password]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="registerDialog.emailId">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Email ID]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="registerDialog.loginForwarding1">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Already on Snippod-Boilerplate?]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="registerDialog.loginForwarding2">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Login]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="registerDialog.password">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Password]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="registerDialog.title">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Sign-up!]]></source>
+    <target><![CDATA[]]></target>
+  </segment>
+</unit>
+  
+<unit id="registerDialog.username">
+  <notes>
+    <note></note>
+  </notes>
+  <segment state="initial">
+    <source><![CDATA[Username]]></source>
     <target><![CDATA[]]></target>
   </segment>
 </unit>

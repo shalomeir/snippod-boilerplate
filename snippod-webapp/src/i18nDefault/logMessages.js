@@ -1,5 +1,7 @@
+import { defineMessages } from 'react-intl';
+
 /*eslint-disable max-len,quotes*/
-const logMessages = {
+const logMessages = defineMessages({
   //These messages are used in validation
   "default": {
     id: 'log.default',
@@ -33,6 +35,6 @@ const logMessages = {
     id: 'log.donotmatch',
     defaultMessage: 'Do not match'
   }
-};
+});
 
 export default logMessages;

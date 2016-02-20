@@ -6,7 +6,7 @@ import $ from 'jquery';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { showLoginDialog, showRegisterDialog } from 'ducks/application/application';
-import { logout } from 'ducks/authentication/auth';
+import { logoutAndFollow } from 'ducks/authentication/auth';
 
 const i18n = defineMessages({
   loginButton: {
@@ -34,25 +34,25 @@ const Styles = {
 
 @connect(
   null,
-  { showLoginDialog, showRegisterDialog, logout }
+  { showLoginDialog, showRegisterDialog, logoutAndFollow }
 )
 export default class AuthButtons extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired,
+    logoutAndFollow: PropTypes.func.isRequired,
     className: PropTypes.string.isRequired
   };
 
   static defaultProps = { className: '' };
 
   render() {
-    const auth = this.props.auth;
+    const { auth } = this.props;
 
     const authButtons = auth.loggedIn ? (
       <button className= {this.props.className + ' ui basic grey button'} ref="authButton"
-              style={ Styles.button } onClick={this.props.logout}>
+              style={ Styles.button } onClick={this.props.logoutAndFollow}>
         <FormattedMessage {...i18n.logoutButton} />
       </button>
     ) : (

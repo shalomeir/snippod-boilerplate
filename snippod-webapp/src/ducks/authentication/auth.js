@@ -1,5 +1,5 @@
 const debug = require('utils/getDebugger')('auth');
-import { switchLangAndDeleteLanguageQuery } from 'ducks/application/application';
+import { switchLangAndDeleteLanguageQuery, reloadPage } from 'ducks/application/application';
 
 const LOAD = 'authentication/auth/LOAD';
 const LOAD_SUCCESS = 'authentication/auth/LOAD_SUCCESS';
@@ -152,7 +152,7 @@ export function login(loginForm) {
   };
 }
 
-//thunk action that dispatch login action and then dispatch follow action such as switch lang.
+// thunk action that dispatch login action and then dispatch follow action such as switch lang.
 // TODO: Check return result or error
 export function loginAndFollow(loginForm) {
   return (dispatch, getState) => {
@@ -172,6 +172,20 @@ export function logout() {
   return {
     types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
     promise: (client) => client.get('/auth/logout/')
+  };
+}
+
+export function logoutAndFollow() {
+  return (dispatch, getState) => {
+    dispatch(
+      logout()
+    ).then((result) => {
+      dispatch(reloadPage());
+      return result;
+    }).catch((error) => {
+      debug('Error occurred : ', error);
+      return error;
+    });
   };
 }
 

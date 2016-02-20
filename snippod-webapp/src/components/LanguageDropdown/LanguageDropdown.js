@@ -45,9 +45,10 @@ export default class LanguageDropdown extends Component {
   }
 
   render() {
+    const { lang, className } = this.props;
     return (
-      <div className= {this.props.className + ' ui floating dropdown labeled icon tiny button'} ref="langSwitcher"
-           value={this.props.lang} style={ Styles.dropdown }>
+      <div className= {className + ' ui floating dropdown labeled icon tiny button'} ref="langSwitcher"
+           value={lang} style={ Styles.dropdown }>
         <div className="text" style={ Styles.item }/>
         <i className="world icon" />
         <div className="menu">
