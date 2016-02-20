@@ -33,12 +33,12 @@ export default function createStore(history, client, data) {
   }
   const store = finalCreateStore(reducer, data);
 
+  //reduxRouterMiddleware.listenForReplays(store);
+
   if (__DEVELOPMENT__ && module.hot) {
     module.hot.accept('ducks/reducer', () => {
       store.replaceReducer(require('ducks/reducer'));
     });
-    module.hot.decline('../routes.js');
-    reduxRouterMiddleware.listenForReplays(store);
   }
 
   return store;

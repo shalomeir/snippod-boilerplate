@@ -121,7 +121,7 @@
     "react-ga": "^1.2.0",
     "react-helmet": "^2.2.0",
     "react-inline-css": "^2.0.0",
-    "react-intl": "2.0.0-pr-3",
+    "react-intl": "^2.0.0-pr-3",
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
     "react-tap-event-plugin": "^0.2.1",

@@ -13,7 +13,7 @@ import getRoutes from './routes';
 
 function getRootChildren(rootProps, routes) {
   const intlData = {
-    lang: rootProps.application.lang,
+    locale: rootProps.application.lang,
     messages: i18n[rootProps.application.lang]
   };
   const { client } = rootProps;
@@ -58,7 +58,7 @@ export default class Root extends Component {
   render() {
 
     return (
-      <div>{getRootChildren(this.props, this.state.routes)}</div>
+      <div id="root">{getRootChildren(this.props, this.state.routes)}</div>
     );
   }
 }

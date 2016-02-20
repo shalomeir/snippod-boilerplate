@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
+
 import $ from 'jquery';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
@@ -37,7 +39,6 @@ const Styles = {
 export default class AuthButtons extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    application: PropTypes.object.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
@@ -67,7 +68,6 @@ export default class AuthButtons extends Component {
         </button>
       </div>
     );
-
     return authButtons;
   }
 }

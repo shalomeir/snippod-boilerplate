@@ -67,7 +67,6 @@ export default class RegisterDialog extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
     closeDialog: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,

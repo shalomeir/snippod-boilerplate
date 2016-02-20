@@ -19,6 +19,7 @@ const i18n = defineMessages({
   }
 });
 
+//CHECK: This 'lang' prop is needed for refresh i18n. So this is very important to connect with.
 @connect(
   null,
   { showLoginDialog, showRegisterDialog, logout }
@@ -26,9 +27,9 @@ const i18n = defineMessages({
 @Radium
 export default class NavBar extends Component {
   static propTypes = {
+    childType: PropTypes.string.isRequired,
     auth: PropTypes.object.isRequired,
-    application: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
+    locale: PropTypes.string.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
@@ -37,7 +38,12 @@ export default class NavBar extends Component {
   render() {
 
     const auth = this.props.auth;
-    const lang = this.props.application.lang;
+    const lang = this.props.locale;
+    const menuActiveClassName = {
+      user: (this.props.childType === 'User') ? 'active' : '',
+      setting: (this.props.childType === 'Setting') ? 'active' : ''
+    };
+
     //var navLinks = auth.loggedIn ? (
     //  /* jshint ignore:start */
     //  <div className="nav-list float-right">
@@ -76,19 +82,18 @@ export default class NavBar extends Component {
       <header className="header" style={Styles.title}> Snippod boilerplate </header>
     );
 
-
     const rightMenu = auth.loggedIn ? (
       <div className="logged-in right menu">
-        <Link to={`/user/${auth.account.id}`} className="blue item" style={Styles.menuItem}>
+        <Link to={`/user/${auth.account.id}`} className={menuActiveClassName.user + ' blue item'} style={Styles.menuItem}>
             <i className="user icon" style={Styles.icon}></i>
             {auth.account.username}
         </Link>
-        <Link to="/setting" className="blue item" style={Styles.menuItem}>
+        <Link to="/setting" className={menuActiveClassName.setting + ' blue item'} style={Styles.menuItem}>
             <i className="setting icon" style={Styles.icon}/>
             <FormattedMessage {...i18n.settingButton} />
         </Link>
         <div className="item">
-          <AuthButtons application={this.props.application} auth={this.props.auth}/>
+          <AuthButtons auth={this.props.auth}/>
         </div>
         <div className="item">
           <LanguageDropdown lang={lang} />
@@ -97,7 +102,7 @@ export default class NavBar extends Component {
     ) : (
       <div className="logged-out right menu">
         <div className="item">
-          <AuthButtons application={this.props.application} auth={this.props.auth}/>
+          <AuthButtons auth={this.props.auth}/>
         </div>
         <div className="item">
           <LanguageDropdown lang={lang} />

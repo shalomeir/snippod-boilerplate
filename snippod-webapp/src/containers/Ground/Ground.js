@@ -3,8 +3,7 @@ import Radium from 'radium';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { routeActions } from 'react-router-redux';
-import { load as loadAuth } from 'ducks/authentication/auth';
-import { showLoginDialog, showRegisterDialog } from 'ducks/application/application';
+import { showLoginDialog, showRegisterDialog, redirectReplacePath } from 'ducks/application/application';
 
 const Styles = {
   container: {
@@ -20,24 +19,21 @@ const Styles = {
 
 @connect(
   createSelector([
-    state => state.auth,
-    state => state.application
-  ], (auth, application) => {
-    return { auth, application };
+    state => state.auth
+  ], (auth) => {
+    return { auth };
   }),
-  { loadAuth, showLoginDialog, showRegisterDialog }
+  { showLoginDialog, showRegisterDialog, redirectReplacePath }
 )
 @Radium
 export default class Ground extends Component {
 
   static propTypes = {
-    history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    application: PropTypes.object.isRequired,
-    loadAuth: PropTypes.func.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
-    showRegisterDialog: PropTypes.func.isRequired
+    showRegisterDialog: PropTypes.func.isRequired,
+    redirectReplacePath: PropTypes.func.isRequired
   };
 
   constructor() {
@@ -46,18 +42,14 @@ export default class Ground extends Component {
   }
 
   componentWillMount() {
-    if (!this.props.auth.loaded) {
-      this.props.loadAuth()
-        .then(this.checkAuth);
-    } else {
-      this.checkAuth();
-    }
-
-    if (this.props.location.pathname === '/login') {
-      this.props.showLoginDialog();
-    }
-    if (this.props.location.pathname === '/register') {
-      this.props.showRegisterDialog();
+    const redirect = this.checkAuth();
+    if (!redirect) {
+      if (this.props.location.pathname === '/login') {
+        this.props.showLoginDialog();
+      }
+      if (this.props.location.pathname === '/register') {
+        this.props.showRegisterDialog();
+      }
     }
   }
 
@@ -65,14 +57,10 @@ export default class Ground extends Component {
     console.log('hello will login check auth');
     if (this.props.auth.loggedIn) {
       // You already logged in, so do not needed to be here!
-      let nextPath = '/';
-      if (this.props.location.query.redirect) {
-        nextPath = decodeURIComponent(this.props.location.query.redirect);
-      } else if (this.props.location.state.nextPathname) {
-        nextPath = this.props.location.state.nextPathname;
-      }
-      this.props.history.replace(nextPath);
+      this.props.redirectReplacePath('/');
+      return true;
     }
+    return false;
   }
 
   render() {

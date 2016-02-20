@@ -1,10 +1,11 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
+import { browserHistory as history } from 'react-router';
+
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'ducks/authentication/auth';
 import App from 'layout/App';
 import {
   NotFound,
-  Loading,
   Ground,
   Home,
   SinglePost,
@@ -12,38 +13,24 @@ import {
   Setting
 } from 'containers';
 
-import { isFuncWork } from 'utils/validation';
-
 export default (store) => {
 
-  const requireLogin = (nextState, replaceState, cb) => {
-    // FIXME: This line is temporary fixed version for this issues: https://github.com/erikras/react-redux-universal-hot-example/issues/430
-    const storeData = isFuncWork(store.getState) ? store.getState() : window.__data;
-    const { auth } = storeData;
-
-    console.log('nextState: 이게 requirelogin 에서 ');
-    console.log(nextState);
+  const requireLogin = (nextState, replace) => {
 
     function checkAuth() {
+      const { auth, routing: { location } } = store.getState();
       if (!auth.loggedIn) {
         // oops, not logged in, so can't be here!
-        replaceState(null, '/login');
+        history.push({
+          state: { nextPathname: location.pathname },
+          pathname: '/login',
+          query: Object.assign(location.query, { redirect: location.pathname })
+        });
       }
-      cb();
     }
-    function preLoad(action = null) {
-      if (!auth.loggedIn) {
-        // oops, not logged in, so can't be here!
-        replaceState(null, '/prelogin');
-      }
-      cb();
-    }
-    if (!isAuthLoaded(storeData)) {
-      if (isFuncWork(store.dispatch)) {
-        store.dispatch(loadAuth()).then(checkAuth);
-      } else {
-        preLoad(loadAuth);
-      }
+
+    if (!isAuthLoaded(store.getState())) {
+      store.dispatch(loadAuth()).then(checkAuth);
     } else {
       checkAuth();
     }
@@ -61,12 +48,11 @@ export default (store) => {
       <Route path="/user/:userId" component={User} />
 
       { /* Routes requiring login */ }
-      <Route >
+      <Route onEnter={requireLogin}>
         <Route path="/setting" component={Setting}/>
       </Route>
 
       { /* Routes */ }
-      <Route path="/prelogin" component={Loading} />
       <Route path="/login" component={Ground} />
       <Route path="/register" component={Ground}/>
 

@@ -8,7 +8,7 @@ import { createSelector } from 'reselect';
 import { reduxForm } from 'redux-form';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { closeDialog, redirectPath } from 'ducks/application/application';
+import { closeDialog, redirectReplacePath } from 'ducks/application/application';
 
 //Do not connect this action
 import { login } from 'ducks/authentication/auth';
@@ -39,7 +39,7 @@ const i18n = defineMessages({
 
 @connect(
   null,
-  { closeDialog, redirectPath }
+  { closeDialog, redirectReplacePath }
 )
 @reduxForm({
   form: 'login',
@@ -51,8 +51,7 @@ export default class LoginDialog extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    redirectPath: PropTypes.func.isRequired,
+    redirectReplacePath: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
@@ -146,7 +145,7 @@ export default class LoginDialog extends Component {
         login(values)
       ).then((result) => {
         dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
-        this.props.redirectPath();
+        this.props.redirectReplacePath();
         resolve(result);
       }).catch((error) => {
         reject({ _error: error.message });

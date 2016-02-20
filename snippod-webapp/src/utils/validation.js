@@ -75,9 +75,9 @@ export function createValidator(rules) {
 
 export function isFuncWork(func) {
   try {
-    func();
+    if (func && typeof func === 'function') return true;
   } catch (err) {
     return false;
   }
-  return true;
+  return false;
 }

@@ -3,7 +3,8 @@ import Radium from 'radium';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { routeActions } from 'react-router-redux';
-import { load as loadAuth } from 'ducks/authentication/auth';
+import { redirectReplacePath, replaceLocation } from 'ducks/application/application';
+
 
 const Styles = {
   icon: {
@@ -19,17 +20,17 @@ const Styles = {
   ], (auth, application) => {
     return { auth, application };
   }),
-  { loadAuth }
+  { redirectReplacePath, replaceLocation }
 )
 @Radium
 export default class Loading extends Component {
 
   static propTypes = {
-    history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
-    loadAuth: PropTypes.func.isRequired
+    redirectReplacePath: PropTypes.func.isRequired,
+    replaceLocation: PropTypes.func.isRequired
   };
 
   constructor() {
@@ -38,31 +39,24 @@ export default class Loading extends Component {
   }
 
   componentWillMount() {
-    if (!this.props.auth.loaded) {
-      this.props.loadAuth()
-        .then(this.checkAuth);
-    } else {
-      this.checkAuth();
-    }
+    this.checkAuth();
   }
 
   checkAuth() {
     if (!this.props.auth.loggedIn) {
       // oops, not logged in, so can't be here!
+      const { location } = this.props;
       let redirectQuery;
-      if (this.props.location.state && this.props.location.state.nextPathname) {
-        redirectQuery = { redirect: encodeURIComponent(this.props.location.state.nextPathname) };
+      if (location.state && location.state.nextPathname) {
+        redirectQuery = { redirect: encodeURIComponent(location.state.nextPathname) };
       }
-      this.props.history.replace(this.props.location.state, '/login', redirectQuery);
+      this.props.replaceLocation({
+        state: location.state,
+        pathname: '/login',
+        query: Object.assign(location.query, redirectQuery)
+      });
     } else {
-      console.log('hello will loading checked and loggedin SUCCESS auth');
-      let nextPath = '/';
-      if (this.props.location.query.redirect) {
-        nextPath = decodeURIComponent(this.props.location.query.redirect);
-      } else if (this.props.location.state.nextPathname) {
-        nextPath = this.props.location.state.nextPathname;
-      }
-      this.props.history.replace(nextPath);
+      this.props.redirectReplacePath('/');
     }
   }
 
