@@ -8,7 +8,8 @@ import { createSelector } from 'reselect';
 import { reduxForm } from 'redux-form';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { closeDialog, redirectReplacePath } from 'ducks/application/application';
+import { showLoginDialog, showRegisterDialog,
+  closeDialog, redirectReplacePath } from 'ducks/application/application';
 
 //Do not connect this action
 import { login } from 'ducks/authentication/auth';
@@ -39,7 +40,7 @@ const i18n = defineMessages({
 
 @connect(
   null,
-  { closeDialog, redirectReplacePath }
+  { showRegisterDialog, closeDialog, redirectReplacePath }
 )
 @reduxForm({
   form: 'login',
@@ -52,6 +53,7 @@ export default class LoginDialog extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     redirectReplacePath: PropTypes.func.isRequired,
+    showRegisterDialog: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
@@ -166,7 +168,7 @@ export default class LoginDialog extends Component {
 
     return (
       <div className="login dialog ui small modal" >
-        <i className="close icon"></i>
+        <i className="close icon" />
         <h2 className="ui image header blue">
           <img src="images/logo.png" className="image" style={ Styles.logo }/>
           <div className="content">
@@ -177,7 +179,7 @@ export default class LoginDialog extends Component {
           <div className="ui stacked segment">
             <div className={'field' + (emailId.invalid && changed ? ' error' : '') }>
               <div className="ui left icon email input">
-                <i className="user icon"></i>
+                <i className="user icon" />
                 <input type="text" name="email" placeholder="E-mail address" ref="emailId" {...emailId} />
               </div>
               <div className="ui email pointing red basic small label transition hidden" style={Styles.errorText}>
@@ -186,7 +188,7 @@ export default class LoginDialog extends Component {
             </div>
             <div className={'field' + (password.invalid && changed ? ' error' : '') }>
               <div className="ui left icon password input">
-                <i className="lock icon"></i>
+                <i className="lock icon" />
                 <input type="password" name="password" placeholder="Password" ref="password" {...password} />
               </div>
               <div className="ui password pointing red basic small label transition hidden" style={Styles.errorText}>
@@ -204,7 +206,7 @@ export default class LoginDialog extends Component {
         </form>
         <div className="ui message">
           <FormattedMessage {...i18n.registerForwarding1} />&nbsp;
-          <a><FormattedMessage {...i18n.registerForwarding2} /></a>
+          <a onClick={this.props.showRegisterDialog} style={Styles.hover}><FormattedMessage {...i18n.registerForwarding2} /></a>
         </div>
       </div>
     );

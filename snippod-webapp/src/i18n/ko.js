@@ -36,6 +36,7 @@ export default {
   "log.invalidEmail": "이메일 주소가 아닌 것 같네요",
   "log.minLength": "너무 짧아요. 길이가 적어도 {min, plural,\n  =0 {하나이상이}\n  =1 {하나는}\n  =2 {둘은}\n other {# 이상이}\n} 되어야 해요.",
   "log.maxLength": "너무 길어요. 길이가 {max}보다 길면 안되요.",
+  "log.space": "공백은 안되요.",
   "log.integer": "숫자만 가능해요.",
   "log.enumeration": "다음 중 하나여야 해요 : {enumerations}",
   "log.donotmatch": "같지 않아요.",

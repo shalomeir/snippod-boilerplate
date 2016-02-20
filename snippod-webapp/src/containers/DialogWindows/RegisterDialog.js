@@ -8,7 +8,8 @@ import { createSelector } from 'reselect';
 import { reduxForm } from 'redux-form';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { closeDialog } from 'ducks/application/application';
+import { showLoginDialog, showRegisterDialog,
+  closeDialog, redirectReplacePath } from 'ducks/application/application';
 
 //Do not connect this action
 import { register } from 'ducks/authentication/auth';
@@ -55,7 +56,7 @@ const i18n = defineMessages({
 
 @connect(
   null,
-  { closeDialog }
+  { closeDialog, redirectReplacePath, showLoginDialog }
 )
 @reduxForm({
   form: 'register',
@@ -67,6 +68,8 @@ export default class RegisterDialog extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
+    redirectReplacePath: PropTypes.func.isRequired,
+    showLoginDialog: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
@@ -179,6 +182,7 @@ export default class RegisterDialog extends Component {
         register(values)
       ).then((result) => {
         dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
+        this.props.redirectReplacePath();
         resolve(result);
       }).catch((error) => {
         const errors = {};
@@ -205,7 +209,7 @@ export default class RegisterDialog extends Component {
 
     return (
       <div className="register dialog ui small modal" >
-        <i className="close icon"></i>
+        <i className="close icon" />
         <h2 className="ui image header blue">
           <img src="images/logo.png" className="image" style={ Styles.logo }/>
           <div className="content">
@@ -217,7 +221,7 @@ export default class RegisterDialog extends Component {
             <div className={'field' + (emailId.invalid && changed ? ' error' : '') }>
               <label><FormattedMessage {...i18n.emailId} /></label>
               <div className="ui left icon email input">
-                <i className="user icon"></i>
+                <i className="user icon" />
                 <input type="text" name="email" placeholder="E-mail address" ref="emailId" {...emailId} />
               </div>
               <div className="ui email pointing red basic small label transition hidden" style={Styles.errorText}>
@@ -227,7 +231,7 @@ export default class RegisterDialog extends Component {
             <div className={'field' + (password.invalid && changed ? ' error' : '') }>
               <label><FormattedMessage {...i18n.password} /></label>
               <div className="ui left icon password input">
-                <i className="lock icon"></i>
+                <i className="lock icon" />
                 <input type="password" name="password" placeholder="Password" ref="password" {...password} />
               </div>
               <div className="ui password pointing red basic small label transition hidden" style={Styles.errorText}>
@@ -237,7 +241,7 @@ export default class RegisterDialog extends Component {
             <div className={'field' + (confirmPassword.invalid && changed ? ' error' : '') }>
               <label><FormattedMessage {...i18n.confirmPassword} /></label>
               <div className="ui left icon confirmPassword input">
-                <i className="lock icon"></i>
+                <i className="lock icon" />
                 <input type="password" name="confirmPassword" placeholder="Confirm Password" ref="confirmPassword" {...confirmPassword} />
               </div>
               <div className="ui confirmPassword pointing red basic small label transition hidden" style={Styles.errorText}>
@@ -247,7 +251,7 @@ export default class RegisterDialog extends Component {
             <div className={'field' + (username.invalid && changed ? ' error' : '') }>
               <label><FormattedMessage {...i18n.username} /></label>
               <div className="ui left icon username input">
-                <i className="smile icon"></i>
+                <i className="smile icon" />
                 <input type="text" name="username" placeholder="Username" ref="username" {...username} />
               </div>
               <div className="ui username pointing red basic small label transition hidden" style={Styles.errorText}>
@@ -265,7 +269,7 @@ export default class RegisterDialog extends Component {
         </form>
         <div className="ui message">
           <FormattedMessage {...i18n.registerForwarding1} />&nbsp;
-          <a><FormattedMessage {...i18n.registerForwarding2} /></a>
+          <a onClick={this.props.showLoginDialog} style={Styles.hover}><FormattedMessage {...i18n.registerForwarding2} /></a>
         </div>
       </div>
     );

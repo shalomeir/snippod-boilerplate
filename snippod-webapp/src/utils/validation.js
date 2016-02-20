@@ -1,7 +1,5 @@
-import { defineMessages } from 'react-intl';
-import logMessages from 'i18n/logMessages.js';
-
-const i18n = defineMessages(logMessages);
+import logMessages from 'i18nDefault/logMessages';
+const i18n = logMessages;
 
 const isEmpty = value => value === undefined || value === null || value === '';
 const join = (rules) => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0]; /* first error */
@@ -33,6 +31,13 @@ export function maxLength(max) {
       return Object.assign(i18n.maxLength, { values: { max } });
     }
   };
+}
+
+export function space(value) {
+  const blankPattern = /[\s]/g;
+  if (blankPattern.test(value)) {
+    return i18n.space;
+  }
 }
 
 export function integer(value) {

@@ -1,37 +1,40 @@
 import { defineMessages } from 'react-intl';
 
-/*eslint-disable max-len,quotes*/
 const logMessages = defineMessages({
   //These messages are used in validation
-  "default": {
+  default: {
     id: 'log.default',
     defaultMessage: 'Hello'
   },
-  "required": {
+  required: {
     id: 'log.required',
     defaultMessage: 'Required'
   },
-  "invalidEmail": {
+  invalidEmail: {
     id: 'log.invalidEmail',
     defaultMessage: 'Invalid email address'
   },
-  "minLength": {
+  minLength: {
     id: 'log.minLength',
     defaultMessage: 'Must be at least {min} characters'
   },
-  "maxLength": {
+  maxLength: {
     id: 'log.maxLength',
     defaultMessage: 'Must be no more than {max} characters'
   },
-  "integer": {
+  space: {
+    id: 'log.space',
+    defaultMessage: 'No space'
+  },
+  integer: {
     id: 'log.integer',
     defaultMessage: 'Must be an integer'
   },
-  "enumeration": {
+  enumeration: {
     id: 'log.enumeration',
     defaultMessage: 'Must be one of: {enumerations}'
   },
-  "donotmatch": {
+  donotmatch: {
     id: 'log.donotmatch',
     defaultMessage: 'Do not match'
   }

@@ -60,7 +60,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
                 help_text=_('Required. 30 characters or fewer. Letters, digits'
                             ' and ./+/-/_ only.'),
                 validators=[
-                    validators.RegexValidator(r'^[\w.+-]+$', _('Enter a valid username jebal.'), 'invalid')
+                    validators.RegexValidator(r'^[\w.+-]+$', _('Enter a valid username.'), 'invalid')
                 ])
 
     description = models.CharField(_('description'), max_length=300, blank=True, help_text=_('User introduction'))

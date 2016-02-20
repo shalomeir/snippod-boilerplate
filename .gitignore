@@ -7,7 +7,6 @@ node_modules/
 dist/
 *.iml
 webpack-stats.json
-npm-debug.log
 auto_default_code/
 
 # From snippod-webapp
@@ -62,9 +61,10 @@ staticfiles/
 
 
 #log
-logs
+
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+npm-debug.log
