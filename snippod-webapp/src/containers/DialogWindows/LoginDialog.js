@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import _ from 'lodash';
 import $ from 'jquery';
+import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -14,10 +15,12 @@ import { showLoginDialog, showRegisterDialog,
 //Do not connect this action
 import { login } from 'ducks/authentication/auth';
 import { switchLangAndDeleteLanguageQuery } from 'ducks/application/application';
+import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
+import toastMessages from 'i18nDefault/toastMessages';
 
 import loginValidation from './loginValidation';
 
-const Styles = require('./DialogStyles');
+const styles = require('./DialogStyles');
 
 const i18n = defineMessages({
   title: {
@@ -147,6 +150,11 @@ export default class LoginDialog extends Component {
         login(values)
       ).then((result) => {
         dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
+        dispatch(showDelayedToastMessage({
+          type: 'info',
+          title: toastMessages.loginTitle,
+          body: Object.assign(toastMessages.loginBody, { values: { username: result.account.username } })
+        }, 500));
         this.props.redirectReplacePath();
         resolve(result);
       }).catch((error) => {
@@ -170,43 +178,43 @@ export default class LoginDialog extends Component {
       <div className="login dialog ui small modal" >
         <i className="close icon" />
         <h2 className="ui image header blue">
-          <img src="images/logo.png" className="image" style={ Styles.logo }/>
+          <img src="images/logo.png" className="image" style={ styles.logo }/>
           <div className="content">
             <FormattedMessage {...i18n.title} />
           </div>
         </h2>
-        <form className={'ui large form content' + (invalid && changed ? ' error' : '')} onSubmit={handleSubmit(this._onSubmit)}>
+        <form className={classNames('ui large form content', { 'error': (invalid && changed) })} onSubmit={handleSubmit(this._onSubmit)}>
           <div className="ui stacked segment">
-            <div className={'field' + (emailId.invalid && changed ? ' error' : '') }>
+            <div className={classNames('field', { 'error': (emailId.invalid && changed) })}>
               <div className="ui left icon email input">
                 <i className="user icon" />
                 <input type="text" name="email" placeholder="E-mail address" ref="emailId" {...emailId} />
               </div>
-              <div className="ui email pointing red basic small label transition hidden" style={Styles.errorText}>
+              <div className="ui email pointing red basic small label transition hidden" style={styles.errorText}>
                 {errors.emailId ? <FormattedMessage {...errors.emailId} /> : null}
               </div>
             </div>
-            <div className={'field' + (password.invalid && changed ? ' error' : '') }>
+            <div className={classNames('field', { 'error': (password.invalid && changed) })}>
               <div className="ui left icon password input">
                 <i className="lock icon" />
                 <input type="password" name="password" placeholder="Password" ref="password" {...password} />
               </div>
-              <div className="ui password pointing red basic small label transition hidden" style={Styles.errorText}>
+              <div className="ui password pointing red basic small label transition hidden" style={styles.errorText}>
                 {errors.password ? <FormattedMessage {...errors.password} /> : null}
               </div>
             </div>
-            <button type="submit" className={'ui fluid large blue button' + (submitting ? ' loading' : '')}
+            <button type="submit" className={classNames('ui fluid large blue button', { 'loading': submitting })}
                     disabled={submitting || invalid} >
               <FormattedMessage {...i18n.button} />
             </button>
           </div>
-          <div className="ui general error message hidden" style={Styles.errorText}>
+          <div className="ui general error message hidden" style={styles.errorText}>
             {error}
           </div>
         </form>
         <div className="ui message">
           <FormattedMessage {...i18n.registerForwarding1} />&nbsp;
-          <a onClick={this.props.showRegisterDialog} style={Styles.hover}><FormattedMessage {...i18n.registerForwarding2} /></a>
+          <a onClick={this.props.showRegisterDialog} style={styles.hover}><FormattedMessage {...i18n.registerForwarding2} /></a>
         </div>
       </div>
     );

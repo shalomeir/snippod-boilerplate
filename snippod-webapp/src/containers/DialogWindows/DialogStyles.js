@@ -1,6 +1,6 @@
 import semanticVar from 'theme/semantic-variables';
 
-const Styles = {
+const styles = {
 
   logo: {
     marginRight: '1rem'
@@ -20,4 +20,4 @@ const Styles = {
 
 };
 
-module.exports = Styles;
+module.exports = styles;

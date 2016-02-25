@@ -2,11 +2,177 @@
          Site Overrides
 *******************************/
 
+#full-screen {
+  height: 100vh;
+}
+
+.sub-app.ui.sidebar {
+  overflow: auto;
+}
+
+#main-app {
+  height: 100vh;
+  overflow: auto;
+}
+
 nav {
   height: 4em;
   white-space: nowrap;
 }
 
-.empty-box {
-  height: 4em;
+#wrap-content {
+  min-height: 100vh;
+  padding-bottom: 14rem;
+  padding-top: 4rem;
 }
+
+#main-content {
+  margin-bottom: 2rem;
+}
+
+#footer {
+  width: 100%;
+  margin-top: -14rem; /* negative value of footer height */
+  height: 14rem;
+  clear: both;
+}
+
+.main-container {
+  //margin-top: 5em; /* top postion is navbar bottom by #wrap-content padding-top */
+}
+
+/*******************************
+         Custom Overrides
+*******************************/
+
+/*-------------------
+  External Libraries
+--------------------*/
+
+/* Support */
+// For react-toastr https://github.com/tomchentw/react-toastr/
+@import url("../../../node_modules/toastr/build/toastr.css");
+@import url("../../../node_modules/animate.css/animate.css");
+
+//Customized Toastr Style by this.
+//https://github.com/CodeSeven/toastr
+//override the CSS/LESS for #toast-container .toast-close-button
+.toast-title {
+  font-weight: bold;
+  font-family: @headerFont;
+  font-weight: @headerFontWeight;
+}
+.toast-message {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+.toast-message a,
+.toast-message label {
+  color: @highlightColor;
+}
+
+.toast-close-button {
+  cursor: pointer;
+  position: relative;
+  right: -0.3em;
+  top: -0.3em;
+  float: right;
+  font-size: 20px;
+  color: @highlightColor;
+  font-weight: bold;
+  opacity: 0.2;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  filter: alpha(opacity=60);
+}
+.toast-close-button:hover,
+.toast-close-button:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: alpha(opacity=100);
+}
+
+#toast-container > div {
+  position: relative;
+  min-height: 1em;
+  pointer-events: auto;
+  overflow: hidden;
+  margin: 0 0 6px;
+  padding: 15px 15px 15px 68px;
+  width: 300px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: @defaultBorderRadius;
+  -moz-box-shadow: @floatingBoxShadow;
+  -webkit-box-shadow: @floatingBoxShadow;
+  box-shadow: @floatingBoxShadow;
+  color: @highlightColor;
+  opacity: 0.8;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
+}
+
+#toast-container > :hover {
+  -moz-box-shadow: @floatingBoxHoverShadow;
+  -webkit-box-shadow: @floatingBoxHoverShadow;
+  box-shadow: @floatingBoxHoverShadow;
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: alpha(opacity=100);
+  cursor: pointer;
+}
+
+#toast-container > .toast:before {
+  position: absolute;
+  left: 0.45em;
+  top: 0.62em;
+  font-family: Icons;
+  font-size: 3em;
+  opacity: 0.8;
+
+}
+
+#toast-container > .toast-warning:before {
+  content: "\f003";
+}
+#toast-container > .toast-error:before {
+  content: "\f001";
+}
+#toast-container > .toast-info:before {
+  content: "\f005";
+}
+#toast-container > .toast-success:before {
+  content: "\f01c";
+}
+
+.toast {
+  background-color: @toastColor;
+}
+.toast-success {
+  background-color: @toastSuccessColor;
+  &:before, div {
+    color: @positiveTextColor;
+  }
+}
+.toast-error {
+  background-color: @toastErrorColor;
+  &:before, div {
+    color: @negativeTextColor;
+  }
+}
+.toast-info {
+  background-color: @toastInfoColor;
+  &:before, div {
+    color: @infoTextColor;
+  }
+}
+.toast-warning {
+  background-color: @toastWarningColor;
+  &:before, div {
+    color: @warningHeaderColor;
+  }
+}
+
+

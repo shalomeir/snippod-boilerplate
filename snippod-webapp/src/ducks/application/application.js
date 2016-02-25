@@ -1,5 +1,7 @@
 const debug = require('utils/getDebugger')('application');
 import { browserHistory as history } from 'react-router';
+import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
+import toastMessages from 'i18nDefault/toastMessages';
 
 const RELOAD_PAGE = 'application/application/RELOAD_PAGE';
 
@@ -57,7 +59,7 @@ export default function reducer(state = initialState, action = {}) {
     case RELOAD_PAGE:
       return {
         ...state,
-        reloadedNum: ++state.reloadedNum
+        reloadedNum: state.reloadedNum + 1
       };
 
     default:
@@ -248,9 +250,31 @@ export function switchLang(lang) {
 }
 
 //thunk action that dispatch router.
+export function switchLangIfDiffrent() {
+  return (dispatch, getState) => {
+    const auth = getState().auth;
+    if (auth.loggedIn) {
+      const authLang = auth.account.language.split('-')[0];
+      const currentLang = getState().application.lang;
+      if (authLang !== currentLang) {
+        dispatch(switchLang(authLang));
+      }
+    }
+  };
+}
+
+//thunk action that dispatch router.
 export function switchLangAndQuery(lang) {
   return (dispatch, getState) => {
-    dispatch(switchLang(lang));
+    const currentLang = getState().application.lang;
+    if (currentLang !== lang) {
+      dispatch(switchLang(lang));
+      dispatch(showDelayedToastMessage({
+        type: 'info',
+        title: toastMessages.switchLangTitle,
+        body: Object.assign(toastMessages.switchLangBody, { values: { lang } })
+      }, 500));
+    }
     dispatch(overrideQuery({ language: lang }));
   };
 }
@@ -258,7 +282,16 @@ export function switchLangAndQuery(lang) {
 //thunk action that dispatch router.
 export function switchLangAndDeleteLanguageQuery(lang) {
   return (dispatch, getState) => {
-    dispatch(switchLang(lang));
+    const currentLang = getState().application.lang;
+    if (currentLang !== lang) {
+      const languageName = (lang === 'ko') ? '한국어' : 'English';
+      dispatch(switchLang(lang));
+      dispatch(showDelayedToastMessage({
+        type: 'info',
+        title: toastMessages.switchLangTitle,
+        body: Object.assign(toastMessages.switchLangBody, { values: { lang: languageName } })
+      }, 500));
+    }
     dispatch(deleteQuery('language'));
   };
 }

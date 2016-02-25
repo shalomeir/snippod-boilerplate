@@ -1,3 +1,28 @@
 /*******************************
          Site Overrides
 *******************************/
+
+/*--------------
+     Pushable
+---------------*/
+
+.pushable {
+  height: 100%;
+  overflow-x: hidden;
+  padding: 0em !important;
+}
+
+/* Whole Page */
+body.pushable {
+  background: @canvasBackground !important;
+}
+
+/* Page Context */
+.pushable:not(body) {
+  transform: translate3d(0, 0, 0);
+}
+.pushable:not(body) > .ui.sidebar,
+.pushable:not(body) > .fixed,
+.pushable:not(body) > .pusher:after {
+  position: fixed; //absolute to fixed for dimmer is fixed and behind content is scrollable.
+}

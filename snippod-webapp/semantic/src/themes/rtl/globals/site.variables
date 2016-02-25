@@ -8,7 +8,7 @@
 
 @googleFontName    : 'Droid Sans';
 
-/* Kufi imported in site.overrides */
+/* Kufi imported in custom.overrides */
 @headerFont        : 'Droid Arabic Kufi', 'Droid Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 @pageFont          : 'Droid Arabic Kufi', 'Droid Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 

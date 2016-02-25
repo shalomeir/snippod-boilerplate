@@ -1,4 +1,5 @@
 export Footer from './Footer/Footer';
 export DialogWindow from './DialogWindow/DialogWindow';
 export NavBar from './NavBar/NavBar';
-export Snackbar from './Snackbar/Snackbar';
+export SideBar from './NavBar/SideBar/SideBar';
+export ToastrMessages from './Snackbar/ToastrMessages';

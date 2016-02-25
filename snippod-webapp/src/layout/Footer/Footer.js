@@ -1,101 +1,36 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 import { Link } from 'react-router';
-import $ from 'jquery';
-import { switchLang } from 'ducks/application/application';
+import { defineMessages, FormattedMessage } from 'react-intl';
+
+const styles = require('./FooterStyles');
+
+const i18n = defineMessages({
+  footerMessage: {
+    id: 'layout.footer.footerMessage',
+    defaultMessage: 'This is a open source application. Go to the repository on {repoGitLink}.'
+  },
+});
 
 @connect(
-  createSelector([
-    state => state.application
-  ], (application) => {
-    return { application };
-  }),
-  { switchLang }
+  null
 )
 @Radium
 export default class Footer extends Component {
-  static propTypes = {
-    application: PropTypes.object.isRequired,
-    switchLang: PropTypes.func.isRequired,
-  };
-
-  constructor(props, context) {
-    super(props, context);
-    this.handleLangSwitch = this.handleLangSwitch.bind(this);
-  }
-
-  componentDidMount() {
-    $('.ui.search')
-      .search({
-        apiSettings: {
-          url: '//api.github.com/search/repositories?q={query}'
-        },
-        fields: {
-          results: 'items',
-          title: 'name',
-          url: 'html_url',
-          description: 'stargazers_count'
-        }
-      })
-    ;
-  }
-
-  componentDidUpdate() {
-    $('.ui.search').search('refresh');
-    $('.ui.selection.dropdown').dropdown('refresh');
-  }
-
-  handleLangSwitch(event) {
-    this.props.switchLang(event.target.value);
-  }
 
   render() {
+    const repoGitLink = (<a href="https://github.com/shalomeir/snippod-boilerplate" target="_blank">Github</a>);
+    const githubButton = (<iframe src="https://ghbtns.com/github-btn.html?user=shalomeir&repo=snippod-boilerplate&type=star&count=true" frameBorder="0" scrolling="0" width="90px" height="20px"
+                                  style={styles.githubButton}/>);
+
     return (
-      <footer className="layout">
-        <div className="footer">
-          <p><small>Github repositoriy is located in <a href="https://github.com/shalomeir/snippod-boilerplate" target="_blank">Here.</a></small></p>
-          <select className="ui dropdown" ref="langSwitcher" value={this.props.application.lang}
-            onChange={this.handleLangSwitch}>
-            <option value="en">EN</option>
-            <option value="ko">KO</option>
-          </select>
-          <div className="ui selection dropdown">
-            <input type="hidden" name="gender" />
-              <i className="dropdown icon"></i>
-              <div className="default text">Gender</div>
-              <div className="menu">
-                <div className="item" data-value="1">Male</div>
-                <div className="item" data-value="0">Female</div>
-              </div>
-          </div>
-          <i className="ae flag"></i>
-          <div className="ui card">
-            <div className="image">
-              <img src="/images/kristy.png"/>
-            </div>
-            <div className="content">
-              <a className="header">Kristy</a>
-              <div className="meta">
-                <span className="date">Joined in 2013</span>
-              </div>
-              <div className="description">
-                Kristy is an art director living in New York.
-              </div>
-            </div>
-            <div className="extra content">
-              <a>
-                <i className="user icon"></i>
-                22 Friends
-              </a>
-            </div>
-          </div>
-          <div className="ui search">
-            <div className="ui left icon input">
-              <input className="prompt" type="text" placeholder="Search GitHub"/>
-                <i className="github icon"></i>
-            </div>
+      <footer id="footer" className="layout ui footer inverted vertical segment" style={styles.layout}>
+        <div className="ui center aligned container">
+          <img src="/images/logo.png" className="ui centered mini image" />
+          <div className="ui horizontal inverted small list" style={styles.lineHeight}>
+            <FormattedMessage {...i18n.footerMessage} values={{ repoGitLink }}/>
+            &nbsp; &nbsp; {githubButton}
           </div>
         </div>
       </footer>

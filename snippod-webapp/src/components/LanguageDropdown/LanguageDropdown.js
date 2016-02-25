@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+import classNames from 'classnames';
 import $ from 'jquery';
 import { switchLangAndDeleteLanguageQuery } from 'ducks/application/application';
 
-const Styles = {
+const styles = {
   dropdown: {
     minWidth: '9.2em',
     textAlign: 'center',
@@ -20,10 +21,8 @@ export default class LanguageDropdown extends Component {
   static propTypes = {
     lang: PropTypes.string.isRequired,
     switchLangAndDeleteLanguageQuery: PropTypes.func.isRequired,
-    className: PropTypes.string.isRequired
+    className: PropTypes.string
   };
-
-  static defaultProps = { className: '' };
 
   componentDidMount() {
     $('.ui.dropdown')
@@ -47,9 +46,9 @@ export default class LanguageDropdown extends Component {
   render() {
     const { lang, className } = this.props;
     return (
-      <div className= {className + ' ui floating dropdown labeled icon tiny button'} ref="langSwitcher"
-           value={lang} style={ Styles.dropdown }>
-        <div className="text" style={ Styles.item }/>
+      <div className= {classNames(className, 'ui floating dropdown labeled icon tiny button')} ref="langSwitcher"
+           value={lang} style={ styles.dropdown }>
+        <div className="text" style={ styles.item }/>
         <i className="world icon" />
         <div className="menu">
           <div className="item" data-value="en">English</div>

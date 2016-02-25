@@ -2,7 +2,7 @@
              Loader
 *******************************/
 
-/* Some global loader styles defined in site.variables */
+/* Some global loader styles defined in custom.variables */
 // @loaderSpeed
 // @loaderLineWidth
 // @loaderFillColor

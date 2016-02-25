@@ -3,7 +3,7 @@ import { IndexRoute, Route } from 'react-router';
 import { browserHistory as history } from 'react-router';
 
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'ducks/authentication/auth';
-import { replaceLocation } from 'ducks/application/application';
+import { replaceLocation, switchLangIfDiffrent } from 'ducks/application/application';
 import App from 'layout/App';
 import {
   NotFound,
@@ -19,7 +19,7 @@ export default (store) => {
   const requireLogin = (nextState, replace) => {
 
     const checkAuth = () => {
-      const { auth, routing: { location }, application: { reloadedNum } } = store.getState();
+      const { auth, routing: { location }, application: { reloadedNum, lang } } = store.getState();
       // oops, not logged in, so can't be here!
       if (!auth.loggedIn) {
 

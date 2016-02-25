@@ -6,7 +6,7 @@ import { routeActions } from 'react-router-redux';
 import { redirectReplacePath, replaceLocation } from 'ducks/application/application';
 
 
-const Styles = {
+const styles = {
   icon: {
     marginTop: '2.2em',
     marginBottom: '2.2em'
@@ -62,8 +62,8 @@ export default class Loading extends Component {
 
   render() {
     return (
-      <div className="loading ui text container center aligned">
-        <div className="ui active inline loader" style={Styles.icon}></div>
+      <div className="loading ui text container center aligned main-container">
+        <div className="ui active inline loader" style={styles.icon}></div>
       </div>
     );
   }

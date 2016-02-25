@@ -29,6 +29,8 @@ export default {
 
   //Layout
   "layout.navBar.settingButton": "셋팅",
+  "layout.footer.footerMessage": "본 데모는 오픈소스 입니다. 깃허브 저장소 {repoGitLink} 에 방문해 보세요.",
+  "layout.toastrMessages.testMessage": "토스트 메시지는 팝업 되는 메시지로 글로벌 입니다.",
 
   //logMessages for validation errors
   "log.default": "안녕하세요",
@@ -40,4 +42,19 @@ export default {
   "log.integer": "숫자만 가능해요.",
   "log.enumeration": "다음 중 하나여야 해요 : {enumerations}",
   "log.donotmatch": "같지 않아요.",
+
+  //toastMessages
+  "toast.switchLangTitle": "언어 변경",
+  "toast.switchLangBody": "{lang}로 환경이 변경되었어요.",
+
+  "toast.loginTitle": "로그인",
+  "toast.loginBody": "{username}님, 접속하셨군요~",
+
+  "toast.registerTitle": "가입완료 & 로그인",
+  "toast.registerBody": "{username}님 가입이 되었습니다.",
+
+  "toast.logoutTitle": "로그아웃",
+  "toast.logoutBody": "정상적으로 로그아웃 되었습니다.",
+
+
 };

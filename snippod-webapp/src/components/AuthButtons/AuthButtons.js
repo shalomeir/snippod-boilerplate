@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import $ from 'jquery';
+import classNames from 'classnames';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { showLoginDialog, showRegisterDialog } from 'ducks/application/application';
@@ -23,7 +24,7 @@ const i18n = defineMessages({
   }
 });
 
-const Styles = {
+const styles = {
   button: {
     width: '5.8em',
     textAlign: 'center',
@@ -42,27 +43,25 @@ export default class AuthButtons extends Component {
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
     logoutAndFollow: PropTypes.func.isRequired,
-    className: PropTypes.string.isRequired
+    className: PropTypes.string
   };
 
-  static defaultProps = { className: '' };
-
   render() {
-    const { auth } = this.props;
+    const { auth, className } = this.props;
 
     const authButtons = auth.loggedIn ? (
-      <button className= {this.props.className + ' ui basic grey button'} ref="authButton"
-              style={ Styles.button } onClick={this.props.logoutAndFollow}>
+      <button className= {classNames(className, 'ui basic grey button')} ref="authButton"
+              style={ styles.button } onClick={this.props.logoutAndFollow}>
         <FormattedMessage {...i18n.logoutButton} />
       </button>
     ) : (
-      <div className= {this.props.className + ' ui buttons'} ref="authButtons"
-           style={ Styles.buttons }>
-        <button className="ui left attached green basic button" style={ Styles.button }
+      <div className= {classNames(className, 'ui buttons')} ref="authButtons"
+           style={ styles.buttons }>
+        <button className="ui left attached green basic button" style={ styles.button }
                 onClick={this.props.showLoginDialog}>
           <FormattedMessage {...i18n.loginButton} />
         </button>
-        <button className="ui right attached blue basic button" style={ Styles.button }
+        <button className="ui right attached blue basic button" style={ styles.button }
                 onClick={this.props.showRegisterDialog}>
           <FormattedMessage {...i18n.registerButton} />
         </button>

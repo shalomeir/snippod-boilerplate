@@ -1,6 +1,6 @@
-/*******************************
-     Snippod-Boilerplate Global Variables
-*******************************/
+/****************************************
+  Snippod-Boilerplate Global Variables
+*****************************************/
 
 /*-------------------
        Fonts
@@ -89,3 +89,43 @@
 /* For source only. Modified in gulp for dist */
 // Very important if build by semantic.less
 //@fontPath  : '../assets/fonts';
+
+/*-------------------
+       Accents
+--------------------*/
+
+@floatingShadow:
+        0px 2px 4px 0px rgba(34, 36, 38, 0.12),
+        0px 2px 10px 0px rgba(34, 36, 38, 0.08)
+;
+
+@floatingHoverShadow:
+        0px 2px 8px 0px darken(rgba(34, 36, 38, 0.12),20),
+        0px 2px 14px 0px darken(rgba(34, 36, 38, 0.08),20)
+;
+
+@borderWidth: 1px;
+@borderShadow: 0px 0px 0px @borderWidth @strongBorderColor inset;
+
+@floatingBoxShadow:
+        @borderShadow,
+        @floatingShadow
+;
+
+@floatingBoxHoverShadow:
+  @borderShadow,
+  @floatingHoverShadow
+;
+
+/*****************************************
+          Custom Varibales
+*****************************************/
+/*-------------------
+     Toast Colors
+--------------------*/
+
+@toastColor   : @blueBackground;
+@toastSuccessColor   : @successBackgroundColor;
+@toastErrorColor   : @errorBackgroundColor;
+@toastInfoColor   : @infoBackgroundColor;
+@toastWarningColor   : @warningBackgroundColor;

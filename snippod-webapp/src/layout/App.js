@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 
-import Radium from 'radium';
 import $ from 'jquery';
+import { StyleRoot } from 'radium';
+
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -13,12 +14,16 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import head from 'constants/head';
 
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'ducks/authentication/auth';
+import { switchLangIfDiffrent } from 'ducks/application/application';
+
 import {
   NavBar,
+  SideBar,
   Footer,
   DialogWindow,
-  Snackbar,
+  ToastrMessages,
 } from '.';
+
 
 //Needed for onTouchTap
 //Can go away when react 1.0 release
@@ -31,7 +36,9 @@ injectTapEventPlugin();
     const promises = [];
 
     if (!isAuthLoaded(getState())) {
-      promises.push(dispatch(loadAuth()));
+      promises.push(dispatch(loadAuth()).then((result) => {
+        dispatch(switchLangIfDiffrent());
+      }));
     }
     return Promise.all(promises);
   }
@@ -39,13 +46,13 @@ injectTapEventPlugin();
 @connect(
   createSelector([
     state => state.auth,
-    state => state.application
-  ], (auth, application) => {
-    return { auth, application };
+    state => state.application,
+    state => state.messages
+  ], (auth, application, messages) => {
+    return { auth, application, messages };
   })
 )
 @injectIntl
-@Radium
 export default class App extends Component {
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -53,7 +60,8 @@ export default class App extends Component {
     params: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    application: PropTypes.object.isRequired
+    application: PropTypes.object.isRequired,
+    messages: PropTypes.object.isRequired
   };
 
   //static contextTypes = {
@@ -78,8 +86,30 @@ export default class App extends Component {
   //_loadDefaultScript() {
   //}
 
+  componentDidMount() {
+    this._attachSidebar();
+  }
+
+  componentDidUpdate(PrevProps) {
+    if (PrevProps.intl.locale !== this.props.intl.locale) {
+      this._attachSidebar();
+    }
+  }
+
+  _attachSidebar() {
+    // create sidebar and attach to menu open
+    $('.ui.sidebar')
+      .sidebar({
+        context: $('.fullscreen.pushable'),
+        delaySetup: true
+      })
+      .sidebar('setting', 'transition', 'overlay')
+      .sidebar('attach events', '.toc.item')
+    ;
+  }
+
   render() {
-    const { auth, application, application: { lang } } = this.props;
+    const { params, auth, application, application: { lang }, messages } = this.props;
     const locale = this.props.intl.locale;
 
     // i18n Issue: https://github.com/yahoo/react-intl/releases, https://github.com/yahoo/react-intl/issues/162
@@ -89,14 +119,25 @@ export default class App extends Component {
     return (
       <div className="app" key={locale} >
         <Helmet {...head}/>
-        <NavBar auth={auth} lang={lang} childType={this.props.children.type.name} params={this.props.params} />
-        <div className="empty-box ui container" />
-        <main id="content">
-          {this.props.children}
-        </main>
-        <Footer />
-        <DialogWindow auth={auth} application={application} />
-        <Snackbar/>
+        <StyleRoot >
+          <div id="full-screen" className="fullscreen pushable">
+            <SideBar className="sub-app ui right sidebar"
+                     auth={auth} lang={lang} childType={this.props.children.type.name} params={params} />
+            <div id="main-app" className="main-app pusher">
+              <div id="wrap-content">
+                <NavBar auth={auth} lang={lang} childType={this.props.children.type.name} params={params} />
+                <main id="main-content">
+                  {this.props.children}
+                </main>
+              </div>
+              <Footer />
+            </div>
+          </div>
+          <div className="background-app">
+            <DialogWindow auth={auth} application={application} />
+            <ToastrMessages messages={messages} />
+          </div>
+        </StyleRoot>
       </div>
     );
   }

@@ -7,6 +7,7 @@ import merge from 'lodash/object/merge';
 
 import reduxForm from './reduxform/reduxForm';
 import errorMessage from './messages/errorMessage';
+import toastMessage from './messages/toastMessage';
 import application from './application/application';
 import auth from './authentication/auth';
 
@@ -22,7 +23,13 @@ function entities(state = initialEntitiesState, action = {}) {
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities);
   }
+  return state;
+}
 
+function messages(state = initialEntitiesState, action = {}) {
+  if (action.response && action.response.entities) {
+    return merge({}, state, action.response.entities);
+  }
   return state;
 }
 
@@ -30,7 +37,10 @@ export default combineReducers({
   routing: routeReducer,
   reduxAsyncConnect,
   form: reduxForm,
-  messages: errorMessage,
+  messages: combineReducers({
+    errorMessage,
+    toastMessage
+  }),
   application,
   auth,
   entities

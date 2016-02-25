@@ -29,10 +29,10 @@ export default class Home extends Component {
     const redux = (<code>Redux</code>);
 
     return (
-      <div className="home ui text container">
+      <div className="home ui text container main-container">
         <Helmet title="Home"/>
 
-        <div className="topic main-container content full-width" >
+        <div className="topic content full-width" >
           { /*<TopicCard/>*/ }
           { /*<PostComposer {...this.props} /> */ }
           {this.props.auth.loggedIn ? (

@@ -54,6 +54,7 @@ module.exports = {
       //'bootstrap-sass!./src/theme/bootstrap.config.js',
       './semantic/dist/semantic.css',
       //'./semantic/src/semantic.less',
+      './src/theme/main.scss',
       './semantic/dist/semantic.js',
       './src/client.js'
     ]

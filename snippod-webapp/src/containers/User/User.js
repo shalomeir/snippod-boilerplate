@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 export default class User extends Component {
   render() {
     return (
-      <div className="user ui text container">
+      <div className="user ui text container main-container">
         <Helmet title="User" />
 
         <h1>User</h1>

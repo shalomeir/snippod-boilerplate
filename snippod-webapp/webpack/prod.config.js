@@ -20,6 +20,7 @@ module.exports = {
     'main': [
       //'bootstrap-sass!./src/theme/bootstrap.config.prod.js',
       './semantic/dist/semantic.min.css',
+      './src/theme/main.scss',
       './semantic/dist/semantic.min.js',
       './src/client.js'
     ]

@@ -25,7 +25,7 @@ const i18n = defineMessages({
   }
 });
 
-const Styles = {
+const styles = {
   container: {
     marginTop: '1em',
     marginBottom: '1em'
@@ -96,7 +96,7 @@ export default class Ground extends Component {
     const messageBody = this.state.page === 'login' ? i18n.loginMessageBody : i18n.registerMessageBody;
 
     return (
-      <div className="loading ui text container" style={Styles.container}>
+      <div className="loading ui text container main-container" style={styles.container}>
         <Helmet title={this.state.page === 'login' ? 'Login' : 'Register'} />
         <div className="ui message">
           <div className="header">

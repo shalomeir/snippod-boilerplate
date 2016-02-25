@@ -1,5 +1,5 @@
 //This theme variables should be sync with semantic site variables such
-//as 'semantic/src/site/globals/site.variables' or 'semantic/src/themes/default/globals/site.variables'.
+//as 'semantic/src/site/globals/custom.variables' or 'semantic/src/themes/default/globals/custom.variables'.
 //TODO: Sync by watch
 const color = require('color');
 
@@ -14,6 +14,23 @@ const semanticVar = {
 
   '@lineHeight': '1.4285em',
   '@textColor': 'rgba(0, 0, 0, 0.87)',
+
+  /*-------------------
+   Breakpoints
+   --------------------*/
+
+  '@mobileBreakpoint': '320px',
+  '@tabletBreakpoint': '768px',
+  '@computerBreakpoint': '992px',
+  '@largeMonitorBreakpoint': '1200px',
+  '@widescreenMonitorBreakpoint': '1920px',
+
+  '@mobileLesspoint': '319px',
+  '@tabletLesspoint': '767px',
+  '@computerLesspoint': '991px',
+  '@largeMonitorLesspoint': '1199px',
+  '@widescreenMonitorLesspoint': '1919px',
+
 };
 
 const calculatedSemanticVar = {

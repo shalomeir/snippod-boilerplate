@@ -1,17 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
+import $ from 'jquery';
+import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { Link } from 'react-router';
+import { Link as RouterLink } from 'react-router';
+const Link = Radium(RouterLink);
 import { defineMessages, FormattedMessage } from 'react-intl';
+import { shortenString } from 'utils/handleString';
 
 import { AuthButtons, LanguageDropdown } from 'components';
 
 import { showLoginDialog, showRegisterDialog } from 'ducks/application/application';
 
 //const shallowEqual = require('fbjs/lib/shallowEqual');
-
-const Styles = require('./NavBarStyles');
+const radiumStyles = require('theme/RadiumStyles');
+const styles = require('./NavBarStyles');
 
 const i18n = defineMessages({
   settingButton: {
@@ -30,6 +34,7 @@ export default class NavBar extends Component {
   static propTypes = {
     childType: PropTypes.string.isRequired,
     params: PropTypes.object.isRequired,
+    className: PropTypes.string,
     auth: PropTypes.object.isRequired,
     lang: PropTypes.string.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
@@ -47,7 +52,7 @@ export default class NavBar extends Component {
   //}
 
   render() {
-    const { childType, params, auth, lang } = this.props;
+    const { childType, params, className, auth, lang } = this.props;
 
     let userIsMe;
     if (auth.loggedIn && childType === 'User') {
@@ -57,51 +62,59 @@ export default class NavBar extends Component {
     }
 
     const menuActiveClassName = {
-      user: userIsMe ? 'active' : '',
-      setting: (childType === 'Setting') ? 'active' : ''
+      user: classNames({ 'active': userIsMe }),
+      setting: classNames({ 'active': (childType === 'Setting') })
     };
 
     const logo = (
       <Link to="/" href="#" className="header item">
-        <img className="logo" src="/images/logo.png" style={Styles.logoImage}/>
-        <header className="header" style={Styles.title}> snippod-boilerplate </header>
+        <img className="logo" src="/images/logo.png" style={styles.logoImage}/>
+        <header className="header" style={styles.title}> snippod-boilerplate </header>
       </Link>
     );
 
-    const title = (
-      <header className="header" style={Styles.title}> Snippod boilerplate </header>
+    const authButtons = (
+      <div className="item" style={radiumStyles.hideAtMobile} >
+        <AuthButtons auth={auth}/>
+      </div>
+    );
+
+    const languageDropdown = (
+      <div className="item" style={radiumStyles.hideAtMobile} >
+        <LanguageDropdown lang={lang} />
+      </div>
+    );
+
+    const tocSidebarButton = (
+      <div className="toc item" style={[styles.menuItem, radiumStyles.showAtMobile]}>
+        <i className="sidebar icon" />
+      </div>
     );
 
     const rightMenu = auth.loggedIn ? (
-      <div className="logged-in right menu">
-        <Link to={`/user/${auth.account.id}`} className={menuActiveClassName.user + ' blue item'} style={Styles.menuItem}>
-            <i className="user icon" style={Styles.icon}></i>
-            {auth.account.username}
+      <div className="logged-in right menu" style={styles.menuItem}>
+        <Link to={`/user/${auth.account.id}`} className={classNames(menuActiveClassName.user, 'blue item')} style={styles.menuItem}>
+          <i className="user icon" style={styles.icon}/>
+          <span className="username-text" style={radiumStyles.hideAtMobile}> {shortenString(auth.account.username, 12)} </span>
         </Link>
-        <Link to="/setting" className={menuActiveClassName.setting + ' blue item'} style={Styles.menuItem}>
-            <i className="setting icon" style={Styles.icon}/>
-            <FormattedMessage {...i18n.settingButton} />
+        <Link to="/setting" className={classNames(menuActiveClassName.setting, 'blue item')} style={styles.menuItem}>
+          <i className="setting icon" style={styles.icon}/>
+          <span className="setting-text" style={radiumStyles.hideAtMobile}> <FormattedMessage {...i18n.settingButton}/> </span>
         </Link>
-        <div className="item">
-          <AuthButtons auth={auth}/>
-        </div>
-        <div className="item">
-          <LanguageDropdown lang={lang} />
-        </div>
+        {authButtons}
+        {languageDropdown}
+        {tocSidebarButton}
       </div>
     ) : (
       <div className="logged-out right menu">
-        <div className="item">
-          <AuthButtons auth={auth}/>
-        </div>
-        <div className="item">
-          <LanguageDropdown lang={lang} />
-        </div>
+        {authButtons}
+        {languageDropdown}
+        {tocSidebarButton}
       </div>
     );
 
     return (
-      <nav className="navbar ui top fixed borderless menu">
+      <nav className={classNames(className, 'navbar ui top fixed borderless menu')}>
         <div className="ui container">
           {logo}
           {rightMenu}

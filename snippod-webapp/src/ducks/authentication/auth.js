@@ -1,5 +1,7 @@
 const debug = require('utils/getDebugger')('auth');
 import { switchLangAndDeleteLanguageQuery, reloadPage } from 'ducks/application/application';
+import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
+import toastMessages from 'i18nDefault/toastMessages';
 
 const LOAD = 'authentication/auth/LOAD';
 const LOAD_SUCCESS = 'authentication/auth/LOAD_SUCCESS';
@@ -153,13 +155,18 @@ export function login(loginForm) {
 }
 
 // thunk action that dispatch login action and then dispatch follow action such as switch lang.
-// TODO: Check return result or error
+// TODO: Check return result or error. This is not use. Instead, login process is handled in react login dialog.
 export function loginAndFollow(loginForm) {
   return (dispatch, getState) => {
     dispatch(
       login(loginForm)
     ).then((result) => {
       dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
+      dispatch(showDelayedToastMessage({
+        type: 'info',
+        title: toastMessages.loginTitle,
+        body: Object.assign(toastMessages.loginBody, { values: { username: result.account.username } })
+      }, 500));
       return result;
     }).catch((error) => {
       debug('Error occurred : ', error);
@@ -181,6 +188,11 @@ export function logoutAndFollow() {
       logout()
     ).then((result) => {
       dispatch(reloadPage());
+      dispatch(showDelayedToastMessage({
+        type: 'info',
+        title: toastMessages.logoutTitle,
+        body: toastMessages.logoutBody
+      }, 100));
       return result;
     }).catch((error) => {
       debug('Error occurred : ', error);
