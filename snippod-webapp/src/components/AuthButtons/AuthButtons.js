@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Radium from 'radium';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
@@ -37,26 +38,28 @@ const styles = {
   null,
   { showLoginDialog, showRegisterDialog, logoutAndFollow }
 )
+@Radium
 export default class AuthButtons extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
     logoutAndFollow: PropTypes.func.isRequired,
-    className: PropTypes.string
+    className: PropTypes.string,
+    style: PropTypes.object
   };
 
   render() {
-    const { auth, className } = this.props;
+    const { auth, className, style } = this.props;
 
     const authButtons = auth.loggedIn ? (
-      <button className= {classNames(className, 'ui basic grey button')} ref="authButton"
-              style={ styles.button } onClick={this.props.logoutAndFollow}>
+      <button className= {classNames('ui basic grey button', className)} ref="authButton"
+              style={[styles.button, style]} onClick={this.props.logoutAndFollow}>
         <FormattedMessage {...i18n.logoutButton} />
       </button>
     ) : (
-      <div className= {classNames(className, 'ui buttons')} ref="authButtons"
-           style={ styles.buttons }>
+      <div className= {classNames('ui buttons', className)} ref="authButtons"
+           style={[style]}>
         <button className="ui left attached green basic button" style={ styles.button }
                 onClick={this.props.showLoginDialog}>
           <FormattedMessage {...i18n.loginButton} />

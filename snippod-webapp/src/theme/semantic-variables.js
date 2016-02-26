@@ -37,4 +37,23 @@ const calculatedSemanticVar = {
   '@darkPrimaryColor': color(semanticVar['@primaryColor']).darken(0.1).hexString(),
 };
 
+const responsivePoint = {
+  /*-------------------
+   Breakpoints
+   --------------------*/
+
+  '@mobileBreakpoint': 320,
+  '@tabletBreakpoint': 768,
+  '@computerBreakpoint': 992,
+  '@largeMonitorBreakpoint': 1200,
+  '@widescreenMonitorBreakpoint': 1920,
+
+  '@mobileLesspoint': 319,
+  '@tabletLesspoint': 767,
+  '@computerLesspoint': 991,
+  '@largeMonitorLesspoint': 1199,
+  '@widescreenMonitorLesspoint': 1919
+
+};
+
 export default Object.assign(semanticVar, calculatedSemanticVar);

@@ -15,6 +15,11 @@ const radiumStyles = {
     }
   },
 
+  //For react-responsive Component
+  tabletLesspointMediaQuery: '(max-width: ' + semanticVar['@tabletLesspoint'] + ')',
+  tabletBreakpointMediaQuery: '(min-width: ' + semanticVar['@tabletBreakpoint'] + ')',
+
+
 };
 
 module.exports = radiumStyles;

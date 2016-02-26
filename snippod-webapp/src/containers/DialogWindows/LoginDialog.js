@@ -10,7 +10,7 @@ import { reduxForm } from 'redux-form';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { showLoginDialog, showRegisterDialog,
-  closeDialog, redirectReplacePath } from 'ducks/application/application';
+  closeDialog, redirectReplacePath, reloadPage } from 'ducks/application/application';
 
 //Do not connect this action
 import { login } from 'ducks/authentication/auth';
@@ -43,7 +43,7 @@ const i18n = defineMessages({
 
 @connect(
   null,
-  { showRegisterDialog, closeDialog, redirectReplacePath }
+  { showRegisterDialog, closeDialog, redirectReplacePath, reloadPage }
 )
 @reduxForm({
   form: 'login',
@@ -58,6 +58,7 @@ export default class LoginDialog extends Component {
     redirectReplacePath: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
+    reloadPage: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
     error: PropTypes.string,
@@ -149,12 +150,13 @@ export default class LoginDialog extends Component {
       dispatch(
         login(values)
       ).then((result) => {
+        this.props.reloadPage();
         dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
         dispatch(showDelayedToastMessage({
           type: 'info',
           title: toastMessages.loginTitle,
           body: Object.assign(toastMessages.loginBody, { values: { username: result.account.username } })
-        }, 500));
+        }, 300));
         this.props.redirectReplacePath();
         resolve(result);
       }).catch((error) => {

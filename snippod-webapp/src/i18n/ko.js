@@ -29,6 +29,12 @@ export default {
 
   //Layout
   "layout.navBar.settingButton": "셋팅",
+  "layout.sideBar.welcomeText": "환영합니다!",
+  "layout.sideBar.homeButton": "홈",
+  "layout.sideBar.userButton": "마이페이지",
+  "layout.sideBar.settingButton": "셋팅",
+  "layout.sideBar.loginButton": "로그인을 먼저 해 주세요.",
+  "layout.sideBar.footerMessage": "깃허브 저장소에 방문해 보세요.",
   "layout.footer.footerMessage": "본 데모는 오픈소스 입니다. 깃허브 저장소 {repoGitLink} 에 방문해 보세요.",
   "layout.toastrMessages.testMessage": "토스트 메시지는 팝업 되는 메시지로 글로벌 입니다.",
 

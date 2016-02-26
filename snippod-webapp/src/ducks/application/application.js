@@ -93,11 +93,10 @@ export function pushQuery(query) {
 export function deleteQuery(queryKey) {
   return (dispatch, getState) => {
     const location = getState().routing.location;
-    const res = delete location.query[queryKey];
-    if (res) {
+    if (location.query[queryKey]) {
+      delete location.query[queryKey];
       history.push(location);
     }
-    return res;
   };
 }
 

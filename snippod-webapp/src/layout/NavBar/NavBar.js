@@ -4,8 +4,9 @@ import $ from 'jquery';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { Link as RouterLink } from 'react-router';
-const Link = Radium(RouterLink);
+import MediaQuery from 'react-responsive';
+import { Link as LinkComponent } from 'react-router';
+const Link = Radium(LinkComponent);
 import { defineMessages, FormattedMessage } from 'react-intl';
 import { shortenString } from 'utils/handleString';
 
@@ -14,6 +15,7 @@ import { AuthButtons, LanguageDropdown } from 'components';
 import { showLoginDialog, showRegisterDialog } from 'ducks/application/application';
 
 //const shallowEqual = require('fbjs/lib/shallowEqual');
+import responsivePoint from 'theme/semantic-variables';
 const radiumStyles = require('theme/RadiumStyles');
 const styles = require('./NavBarStyles');
 
@@ -24,7 +26,7 @@ const i18n = defineMessages({
   }
 });
 
-//CHECK: This 'lang' prop is needed for refresh i18n. So this is very important to connect with.
+
 @connect(
   null,
   { showLoginDialog, showRegisterDialog }
@@ -52,6 +54,9 @@ export default class NavBar extends Component {
   //}
 
   render() {
+
+    //console.log('radium resolve media queries :' + ra);
+
     const { childType, params, className, auth, lang } = this.props;
 
     let userIsMe;
@@ -69,13 +74,23 @@ export default class NavBar extends Component {
     const logo = (
       <Link to="/" href="#" className="header item">
         <img className="logo" src="/images/logo.png" style={styles.logoImage}/>
-        <header className="header" style={styles.title}> snippod-boilerplate </header>
+        <MediaQuery maxWidth={responsivePoint['@tabletLesspoint']}>
+          <header className="header" style={styles.title}> snippod{(<br/>)}boilerplate </header>
+        </MediaQuery>
+        <MediaQuery minWidth={responsivePoint['@tabletBreakpoint']}>
+          <header className="header" style={styles.title}> snippod-boilerplate </header>
+        </MediaQuery>
       </Link>
     );
 
     const authButtons = (
-      <div className="item" style={radiumStyles.hideAtMobile} >
-        <AuthButtons auth={auth}/>
+      <div className="item" style={styles.smallAtMobile} >
+        <MediaQuery maxWidth={responsivePoint['@tabletLesspoint']}>
+          <AuthButtons auth={auth} className="mini"/>
+        </MediaQuery>
+        <MediaQuery minWidth={responsivePoint['@tabletBreakpoint']}>
+          <AuthButtons auth={auth}/>
+        </MediaQuery>
       </div>
     );
 
@@ -86,35 +101,32 @@ export default class NavBar extends Component {
     );
 
     const tocSidebarButton = (
-      <div className="toc item" style={[styles.menuItem, radiumStyles.showAtMobile]}>
+      <div className="toc icon button item" style={styles.menuItem}>
         <i className="sidebar icon" />
       </div>
     );
 
     const rightMenu = auth.loggedIn ? (
       <div className="logged-in right menu" style={styles.menuItem}>
-        <Link to={`/user/${auth.account.id}`} className={classNames(menuActiveClassName.user, 'blue item')} style={styles.menuItem}>
+        <Link to={`/user/${auth.account.id}`} className={classNames(menuActiveClassName.user, 'blue item')} style={[styles.menuItem, styles.mobileItem]}>
           <i className="user icon" style={styles.icon}/>
           <span className="username-text" style={radiumStyles.hideAtMobile}> {shortenString(auth.account.username, 12)} </span>
         </Link>
-        <Link to="/setting" className={classNames(menuActiveClassName.setting, 'blue item')} style={styles.menuItem}>
+        <Link to="/setting" className={classNames(menuActiveClassName.setting, 'blue item')} style={[styles.menuItem, styles.mobileItem]}>
           <i className="setting icon" style={styles.icon}/>
           <span className="setting-text" style={radiumStyles.hideAtMobile}> <FormattedMessage {...i18n.settingButton}/> </span>
         </Link>
-        {authButtons}
-        {languageDropdown}
         {tocSidebarButton}
       </div>
     ) : (
       <div className="logged-out right menu">
         {authButtons}
-        {languageDropdown}
         {tocSidebarButton}
       </div>
     );
 
     return (
-      <nav className={classNames(className, 'navbar ui top fixed borderless menu')}>
+      <nav className={classNames('navbar ui top fixed borderless menu', className)}>
         <div className="ui container">
           {logo}
           {rightMenu}

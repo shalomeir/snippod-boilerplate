@@ -2,3 +2,10 @@
          Site Overrides
 *******************************/
 
+/* Vertical */
+.ui.vertical.menu .dropdown.item > .icon {
+  float: left;
+  content: "\f0da";
+  margin-left: 0em;
+  margin-right: 1em;
+}

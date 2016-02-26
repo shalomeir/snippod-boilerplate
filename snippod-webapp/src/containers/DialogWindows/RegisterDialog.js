@@ -10,7 +10,7 @@ import { reduxForm } from 'redux-form';
 import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { showLoginDialog, showRegisterDialog,
-  closeDialog, redirectReplacePath } from 'ducks/application/application';
+  closeDialog, redirectReplacePath, reloadPage } from 'ducks/application/application';
 
 //Do not connect this action
 import { register } from 'ducks/authentication/auth';
@@ -59,7 +59,7 @@ const i18n = defineMessages({
 
 @connect(
   null,
-  { closeDialog, redirectReplacePath, showLoginDialog }
+  { closeDialog, redirectReplacePath, showLoginDialog, reloadPage }
 )
 @reduxForm({
   form: 'register',
@@ -74,6 +74,7 @@ export default class RegisterDialog extends Component {
     redirectReplacePath: PropTypes.func.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired,
+    reloadPage: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
     error: PropTypes.string,
@@ -189,8 +190,9 @@ export default class RegisterDialog extends Component {
           type: 'info',
           title: toastMessages.registerTitle,
           body: Object.assign(toastMessages.registerBody, { values: { username: result.account.username } })
-        }, 500));
+        }, 300));
         this.props.redirectReplacePath();
+        this.props.reloadPage();
         resolve(result);
       }).catch((error) => {
         const errors = {};

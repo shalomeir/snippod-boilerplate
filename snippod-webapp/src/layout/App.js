@@ -87,16 +87,16 @@ export default class App extends Component {
   //}
 
   componentDidMount() {
-    this._attachSidebar();
+    this.constructor.attachSidebar();
   }
 
   componentDidUpdate(PrevProps) {
     if (PrevProps.intl.locale !== this.props.intl.locale) {
-      this._attachSidebar();
+      this.constructor.attachSidebar();
     }
   }
 
-  _attachSidebar() {
+  static attachSidebar() {
     // create sidebar and attach to menu open
     $('.ui.sidebar')
       .sidebar({
