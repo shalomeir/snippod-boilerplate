@@ -69,16 +69,16 @@ export default class SideBar extends Component {
     const { childType, params, className, auth, lang } = this.props;
 
     let userIsMe;
-    if (auth.loggedIn && childType === 'User') {
+    if (auth.loggedIn && childType === 'user') {
       if (parseInt(params.userId, 10) === auth.account.id) {
         userIsMe = true;
       }
     }
 
     const menuActiveClassName = {
-      home: classNames({ 'active': (childType === 'Connect') }),
+      home: classNames({ 'active': (childType === '') }),
       user: classNames({ 'active': userIsMe }),
-      setting: classNames({ 'active': (childType === 'Setting') })
+      setting: classNames({ 'active': (childType === 'setting') })
     };
 
     const recommendLogin = (

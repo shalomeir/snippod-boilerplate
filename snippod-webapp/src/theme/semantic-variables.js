@@ -15,6 +15,16 @@ const semanticVar = {
   '@lineHeight': '1.4285em',
   '@textColor': 'rgba(0, 0, 0, 0.87)',
 
+  '@darkTextColor': 'rgba(0, 0, 0, 0.85)',
+  '@mutedTextColor': 'rgba(0, 0, 0, 0.6)',
+  '@lightTextColor': 'rgba(0, 0, 0, 0.4)',
+  '@invertedTextColor': 'rgba(255, 255, 255, 0.9)',
+  '@invertedMutedTextColor': 'rgba(255, 255, 255, 0.8)',
+  '@invertedLightTextColor': 'rgba(255, 255, 255, 0.7)',
+  '@invertedUnselectedTextColor': 'rgba(255, 255, 255, 0.5)',
+  '@invertedHoveredTextColor': 'rgba(255, 255, 255, 1)',
+  '@invertedDisabledTextColor': 'rgba(255, 255, 255, 0.2)',
+
   /*-------------------
    Breakpoints
    --------------------*/

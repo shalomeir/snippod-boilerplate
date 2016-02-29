@@ -24,6 +24,8 @@
 @importGoogleFontsEarlyAccess : true;
 @googleFontsEarlyAccessFileName : 'notosanskr.css';
 
+
+
 /*-------------------
       Base Sizes
 --------------------*/
@@ -71,6 +73,21 @@
 
 
 /*-------------------
+       Links
+--------------------*/
+
+@linkColor           : #4183C4;
+@linkUnderline       : none;
+@linkHoverColor      : darken(saturate(@linkColor, 20), 100, relative);
+@linkHoverUnderline  : @linkUnderline;
+
+@invertedLinkColor           : #4183C4;
+@invertedLinkHoverColor      : lighten(saturate(@invertedLinkColor, 20), 15, relative);
+
+@invertedBlueLinkColor           : #CFE0F1;
+@invertedBlueLinkHoverColor      : darken(saturate(@invertedBlueLinkColor, 20), 15, relative);
+
+/*-------------------
      Brand Colors
 --------------------*/
 
@@ -79,7 +96,6 @@
 @snippodFocusColor   : saturate(darken(@snippodColor, 8), 20, relative);
 @snippodDownColor   : darken(@snippodColor, 10);
 @snippodActiveColor   : saturate(darken(@snippodColor, 5), 15, relative);
-
 
 
 /*-------------------

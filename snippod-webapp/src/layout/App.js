@@ -111,6 +111,7 @@ export default class App extends Component {
   render() {
     const { params, auth, application, application: { lang }, messages } = this.props;
     const locale = this.props.intl.locale;
+    const childType = this.props.location.pathname.split('/')[1];
 
     // i18n Issue: https://github.com/yahoo/react-intl/releases, https://github.com/yahoo/react-intl/issues/162
     // https://github.com/gpbl/react-locale-hot-switch/issues/1 reload full page is a soulution at this time.
@@ -122,10 +123,10 @@ export default class App extends Component {
         <StyleRoot >
           <div id="full-screen" className="fullscreen pushable">
             <SideBar className="sub-app ui right sidebar"
-                     auth={auth} lang={lang} childType={this.props.children.type.name} params={params} />
+                     auth={auth} lang={lang} childType={childType} params={params} />
             <div id="main-app" className="main-app pusher">
               <div id="wrap-content">
-                <NavBar auth={auth} lang={lang} childType={this.props.children.type.name} params={params} />
+                <NavBar auth={auth} lang={lang} childType={childType} params={params} />
                 <main id="main-content">
                   {this.props.children}
                 </main>

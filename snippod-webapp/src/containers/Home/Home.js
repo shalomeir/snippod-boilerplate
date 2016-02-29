@@ -1,9 +1,14 @@
 import React, { Component, PropTypes } from 'react';
+import Radium from 'radium';
 import { defineMessages, FormattedMessage } from 'react-intl';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Link } from 'react-router';
+import IntroCard from './IntroCard/IntroCard';
+import { PostsHeader } from 'containers';
+
+const styles = require('./HomeStyles');
 
 const i18n = defineMessages({
   helloWorld: {
@@ -19,35 +24,20 @@ const i18n = defineMessages({
     return { auth };
   })
 )
+@Radium
 export default class Home extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired
   };
 
   render() {
-    const link = (<Link to="/stargazers/gaearon"><code>@gaearon</code></Link>);
-    const redux = (<code>Redux</code>);
-
     return (
       <div className="home ui text container main-container">
         <Helmet title="Home"/>
-
-        <div className="topic content full-width" >
-          { /*<TopicCard/>*/ }
-          { /*<PostComposer {...this.props} /> */ }
-          {this.props.auth.loggedIn ? (
-            <h3 className="margin-bottom-0">로그인 했어요!!</h3>
-          ) : (
-            <h3 className="margin-bottom-0">로그인 부터 하시죠. admin@admin.com pw:admin</h3>
-          )}
-          <p>
-            홈asdkjlaskdjlkajs
-          </p>
-          <p>
-            <FormattedMessage {...i18n.helloWorld} />
-          </p>
-          { /*<Posts {...this.props} />*/ }
-        </div>
+        <IntroCard />
+        { /*<PostComposer {...this.props} /> */ }
+        <PostsHeader />
+        { /*<Posts {...this.props} />*/ }
       </div>
     );
   }

@@ -4,6 +4,8 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { defineMessages, FormattedMessage } from 'react-intl';
+import Slider from 'react-toolbox/lib/slider';
+
 import { showLoginDialog, showRegisterDialog, redirectReplacePath } from 'ducks/application/application';
 
 const i18n = defineMessages({
@@ -26,11 +28,6 @@ const i18n = defineMessages({
 });
 
 const styles = {
-  container: {
-    marginTop: '1em',
-    marginBottom: '1em'
-  },
-
   icon: {
     marginTop: '2.2em',
     marginBottom: '2.2em'
@@ -46,10 +43,9 @@ const styles = {
   { showLoginDialog, showRegisterDialog, redirectReplacePath }
 )
 @Radium
-export default class Ground extends Component {
+export default class PostsHeader extends Component {
 
   static propTypes = {
-    location: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
@@ -61,24 +57,15 @@ export default class Ground extends Component {
     this.checkAuth = this.checkAuth.bind(this);
   }
 
-  componentWillMount() {
-    const redirect = this.checkAuth();
-    if (!redirect) {
-      if (this.props.location.pathname === '/login') {
-        this.props.showLoginDialog();
-        this.setState({ page: 'login' });
-      }
-      if (this.props.location.pathname === '/register') {
-        this.props.showRegisterDialog();
-        this.setState({ page: 'register' });
-      }
-    }
-  }
+  state = {
+    slider2: 5,
+    slider3: 1
+  };
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.auth.loggedIn && nextProps.auth.loggedIn) {
-      this.props.redirectReplacePath('/');
-    }
+  handleChange(slider, value) {
+    const newState = {};
+    newState[slider] = value;
+    this.setState(newState);
   }
 
   checkAuth() {
@@ -92,18 +79,11 @@ export default class Ground extends Component {
   }
 
   render() {
-    const messageHeader = this.state.page === 'login' ? i18n.loginMessageHeader : i18n.registerMessageHeader;
-    const messageBody = this.state.page === 'login' ? i18n.loginMessageBody : i18n.registerMessageBody;
 
     return (
-      <div className="loading ui text container main-container">
-        <Helmet title={this.state.page === 'login' ? 'Login' : 'Register'} />
-        <div className="ui message">
-          <div className="header">
-            <FormattedMessage {...messageHeader} />
-          </div>
-          <p><FormattedMessage {...messageBody} /></p>
-        </div>
+      <div className="ui dividing header">
+        Posts
+        <Slider pinned snaps min={0} max={10} step={1} editable value={this.state.slider3} onChange={this.handleChange.bind(this, 'slider3')} />
       </div>
     );
   }

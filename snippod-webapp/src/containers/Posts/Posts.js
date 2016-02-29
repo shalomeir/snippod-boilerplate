@@ -46,7 +46,7 @@ const styles = {
   { showLoginDialog, showRegisterDialog, redirectReplacePath }
 )
 @Radium
-export default class Ground extends Component {
+export default class Posts extends Component {
 
   static propTypes = {
     location: PropTypes.object.isRequired,

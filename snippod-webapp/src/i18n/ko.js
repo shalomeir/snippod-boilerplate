@@ -3,6 +3,10 @@ export default {
   //Containers
   //DialogWindows
   "home.helloWorld": "한글로 보여야 되요 여긴 홈이고 헬로우 월드~",
+  "home.introCard.helloSnippod": "스닙팟-보일러플레이트 데모 어플리케이션",
+  "home.introCard.helloSnippodSubText": "본 사이트는 풀스택 데모 웹앱으로 {djangoRestFramework}과" +
+    " {react} + {redux}를 이용하여 만들어졌습니다. 자세한 코드는 {gitHubKr}를 참조하세요.",
+
   "ground.login.messageHeader": "로그인",
   "ground.login.messageBody": "지금 바로 접속해보세요.",
   "ground.register.messageHeader": "가입",

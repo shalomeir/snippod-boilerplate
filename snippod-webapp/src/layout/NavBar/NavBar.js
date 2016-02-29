@@ -60,7 +60,7 @@ export default class NavBar extends Component {
     const { childType, params, className, auth, lang } = this.props;
 
     let userIsMe;
-    if (auth.loggedIn && childType === 'User') {
+    if (auth.loggedIn && childType === 'user') {
       if (parseInt(params.userId, 10) === auth.account.id) {
         userIsMe = true;
       }
@@ -68,7 +68,7 @@ export default class NavBar extends Component {
 
     const menuActiveClassName = {
       user: classNames({ 'active': userIsMe }),
-      setting: classNames({ 'active': (childType === 'Setting') })
+      setting: classNames({ 'active': (childType === 'setting') })
     };
 
     const logo = (

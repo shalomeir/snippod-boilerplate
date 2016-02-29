@@ -23,7 +23,7 @@ nav {
 #wrap-content {
   min-height: 100vh;
   padding-bottom: 14rem;
-  padding-top: 4rem;
+  padding-top: 3.9rem; /* 4rem is logically right. but some margin is occured' */
 }
 
 #main-content {
@@ -38,8 +38,39 @@ nav {
 }
 
 .main-container {
-  //margin-top: 5em; /* top postion is navbar bottom by #wrap-content padding-top */
+  margin-top: @headerTopMargin; /* top postion is navbar bottom by #wrap-content padding-top */
 }
+
+.main-top-margin {
+  margin-top: @headerTopMargin; /* top postion is navbar bottom by #wrap-content padding-top */
+}
+
+
+
+/*******************************
+             Text
+*******************************/
+/*-------------------
+        Links
+--------------------*/
+
+.inverted a {
+  color: @invertedLinkColor;
+}
+.inverted a:hover {
+  color: @invertedLinkHoverColor;
+}
+
+.inverted.blue a {
+  color: @invertedBlueLinkColor;
+  text-decoration: underline;
+}
+.inverted.blue a:hover {
+  color: @invertedBlueLinkHoverColor;
+  text-decoration: underline;
+}
+
+
 
 /*******************************
          Custom Overrides

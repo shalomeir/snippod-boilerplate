@@ -15,10 +15,9 @@ const radiumStyles = {
     }
   },
 
-  //For react-responsive Component
-  tabletLesspointMediaQuery: '(max-width: ' + semanticVar['@tabletLesspoint'] + ')',
-  tabletBreakpointMediaQuery: '(min-width: ' + semanticVar['@tabletBreakpoint'] + ')',
-
+  cardBoxShadow: {
+    boxShadow: '0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5'
+  }
 
 };
 

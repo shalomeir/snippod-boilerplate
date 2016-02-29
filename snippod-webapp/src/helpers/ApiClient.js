@@ -1,4 +1,5 @@
 import superagent from 'superagent';
+import { normalize } from 'normalizr';
 import config from '../config';
 import { apiPath, apiPort } from '../constants/defaults';
 import Cookies from 'cookies-js';
@@ -15,6 +16,25 @@ function formatUrl(path) {
   return 'http://' + location.hostname + ':' + apiPort + apiPath + adjustedPath;
 }
 
+// Extracts the next page URL from response API response.
+function getNextPageUrl(result) {
+  const link = result.next;
+  if (!link) {
+    return null;
+  }
+  delete result.next;
+  return link;
+}
+
+function getPrevPageUrl(result) {
+  const link = result.previous;
+  if (!link) {
+    return null;
+  }
+  delete result.previous;
+  return link;
+}
+
 /*
  * This silly underscore is here to avoid a mysterious "ReferenceError: ApiClient is not defined" error.
  * See Issue #14. https://github.com/erikras/react-redux-universal-hot-example/issues/14
@@ -24,7 +44,7 @@ function formatUrl(path) {
 class _ApiClient {
   constructor(req) {
     methods.forEach((method) =>
-      this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
+      this[method] = (path, { params, data, schema } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
         request.withCredentials();
 
@@ -62,7 +82,31 @@ class _ApiClient {
           request.send(data);
         }
 
-        request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
+        request.end((err, { body } = {}) => {
+          if (err) {
+            reject(body || err);
+          } else {
+            if (!body) {
+              resolve(null);
+            } else {
+              const result = {};
+              if (body.next) {
+                const nextPageUrl = getNextPageUrl(body);
+                Object.assign(result, { nextPageUrl });
+              }
+              if (body.previous) {
+                const prevPageUrl = getPrevPageUrl(body);
+                Object.assign(result, { prevPageUrl });
+              }
+              if (schema) {
+                Object.assign(result, normalize(body, schema));
+              } else {
+                Object.assign(result, body);
+              }
+              resolve(result);
+            }
+          }
+        });
       }));
   }
 }
