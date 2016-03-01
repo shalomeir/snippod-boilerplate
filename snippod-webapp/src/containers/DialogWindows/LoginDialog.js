@@ -79,7 +79,7 @@ export default class LoginDialog extends Component {
   }
 
   componentDidMount() {
-    $('.ui.modal')
+    $('.ui.login.modal')
       .modal({
         detachable: false,
         onHidden: () => {
@@ -167,7 +167,7 @@ export default class LoginDialog extends Component {
 
   _closeDialog() {
     console.log('close login dialog');
-    $('.ui.modal').modal('hide dimmer');
+    $('.ui.login.modal').modal('hide dimmer');
     this.props.closeDialog();
   }
 

@@ -26,10 +26,16 @@ export default {
   "registerDialog.loginForwarding1": "이미 가입하셨어요?",
   "registerDialog.loginForwarding2": "로그인",
 
+  "postsHeader.posts": "포스트",
+  "postsHeader.sort": "정렬기준",
+
   //Component
   "comp.authButtons.loginButton": "로그인",
   "comp.authButtons.registerButton": "가입",
   "comp.authButtons.logoutButton": "로그아웃",
+  "comp.postsSortingDropdown.newest": "최신순",
+  "comp.postsSortingDropdown.upvotes": "올려요순",
+  "comp.postsSortingDropdown.comments": "댓글순",
 
   //Layout
   "layout.navBar.settingButton": "셋팅",

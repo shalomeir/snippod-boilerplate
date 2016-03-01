@@ -4,26 +4,19 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { defineMessages, FormattedMessage } from 'react-intl';
-import Slider from 'react-toolbox/lib/slider';
 
 import { showLoginDialog, showRegisterDialog, redirectReplacePath } from 'ducks/application/application';
+import { PostsSortingDropdown } from 'components';
 
 const i18n = defineMessages({
-  loginMessageHeader: {
-    id: 'ground.login.messageHeader',
-    defaultMessage: 'Log-in'
+  sort: {
+    id: 'postsHeader.sort',
+    defaultMessage: 'Sort by'
   },
-  loginMessageBody: {
-    id: 'ground.login.messageBody',
-    defaultMessage: 'Jump in our website.'
-  },
-  registerMessageHeader: {
-    id: 'ground.register.messageHeader',
-    defaultMessage: 'Register'
-  },
-  registerMessageBody: {
-    id: 'ground.register.messageBody',
-    defaultMessage: 'Create your account.'
+
+  posts: {
+    id: 'postsHeader.posts',
+    defaultMessage: 'Posts'
   }
 });
 
@@ -31,6 +24,13 @@ const styles = {
   icon: {
     marginTop: '2.2em',
     marginBottom: '2.2em'
+  },
+
+  rightFloatedDropdown: {
+    margin: 0,
+    padding: 0,
+    fontWeight: 'bold',
+    fontSize: '0.8em'
   }
 };
 
@@ -47,9 +47,11 @@ export default class PostsHeader extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
+    sortingOption: PropTypes.string.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showRegisterDialog: PropTypes.func.isRequired,
-    redirectReplacePath: PropTypes.func.isRequired
+    redirectReplacePath: PropTypes.func.isRequired,
+    changeSortingOption: PropTypes.func.isRequired
   };
 
   constructor() {
@@ -79,11 +81,17 @@ export default class PostsHeader extends Component {
   }
 
   render() {
+    const { sortingOption, changeSortingOption } = this.props;
 
     return (
-      <div className="ui dividing header">
-        Posts
-        <Slider pinned snaps min={0} max={10} step={1} editable value={this.state.slider3} onChange={this.handleChange.bind(this, 'slider3')} />
+      <div className="posts-header main-top-margin">
+        <span className="ui header"><FormattedMessage {...i18n.posts} /></span>
+        <div className="ui right floated basic segment" style={styles.rightFloatedDropdown}>
+          <FormattedMessage {...i18n.sort} />&nbsp;&nbsp;&nbsp;
+          <PostsSortingDropdown sortingOption={sortingOption}
+                                changeSortingOption={changeSortingOption} className="tiny blue"/>
+        </div>
+        <div className="ui divider"/>
       </div>
     );
   }

@@ -45,6 +45,10 @@ nav {
   margin-top: @headerTopMargin; /* top postion is navbar bottom by #wrap-content padding-top */
 }
 
+.content-top-margin {
+  margin-top: @headerLineHeight
+}
+
 
 
 /*******************************
@@ -63,7 +67,6 @@ nav {
 
 .inverted.blue a {
   color: @invertedBlueLinkColor;
-  text-decoration: underline;
 }
 .inverted.blue a:hover {
   color: @invertedBlueLinkHoverColor;

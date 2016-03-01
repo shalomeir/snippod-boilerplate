@@ -25,7 +25,7 @@ export default class LanguageDropdown extends Component {
   };
 
   componentDidMount() {
-    $('.ui.dropdown')
+    $('.ui.language.dropdown')
       .dropdown('set selected', this.props.lang)
       .dropdown({
         onChange: (value) => {
@@ -38,17 +38,17 @@ export default class LanguageDropdown extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.lang !== $('.ui.dropdown').dropdown('get value')[0]) {
-      $('.ui.dropdown').dropdown('set selected', this.props.lang);
+    if (this.props.lang !== $('.ui.language.dropdown').dropdown('get value')) {
+      $('.ui.language.dropdown').dropdown('set selected', this.props.lang);
     }
   }
 
   render() {
     const { lang, className } = this.props;
     return (
-      <div className= {classNames('ui floating dropdown labeled icon button', className)} ref="langSwitcher"
-           value={lang} style={ styles.dropdown }>
-        <div className="text" style={ styles.item }/>
+      <div className= {classNames('ui language floating dropdown labeled icon button', className)} ref="langSwitcher"
+           style={ styles.dropdown }>
+        <div className="text"/>
         <i className="world icon" />
         <div className="menu">
           <div className="item" data-value="en">English</div>

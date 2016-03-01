@@ -95,7 +95,7 @@ export default class RegisterDialog extends Component {
   }
 
   componentDidMount() {
-    $('.ui.modal')
+    $('.ui.register.modal')
       .modal({
         detachable: false,
         onHidden: () => {
@@ -208,7 +208,7 @@ export default class RegisterDialog extends Component {
 
   _closeDialog() {
     console.log('close register dialog');
-    $('.ui.modal').modal('hide dimmer');
+    $('.ui.register.modal').modal('hide dimmer');
     this.props.closeDialog();
   }
 

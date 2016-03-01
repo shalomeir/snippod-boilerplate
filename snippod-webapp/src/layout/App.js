@@ -110,7 +110,7 @@ export default class App extends Component {
 
   render() {
     const { params, auth, application, application: { lang }, messages } = this.props;
-    const locale = this.props.intl.locale;
+    const { locale } = this.props.intl;
     const childType = this.props.location.pathname.split('/')[1];
 
     // i18n Issue: https://github.com/yahoo/react-intl/releases, https://github.com/yahoo/react-intl/issues/162
