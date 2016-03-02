@@ -44,12 +44,12 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD:
       return state;
     case LOAD_SUCCESS:
-      if (action.result) {
+      if (action.response) {
         return {
           ...state,
           loggedIn: true,
           loaded: true,
-          account: action.result.account,
+          account: action.response.account,
         };
       }
       return {
@@ -71,7 +71,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loggedIn: true,
-        account: action.result.account
+        account: action.response.account
       };
     case LOGIN_FAIL:
       return {
@@ -99,7 +99,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loggedIn: true,
-        account: action.result.account
+        account: action.response.account
       };
     case REGISTER_FAIL:
       return {
@@ -114,7 +114,7 @@ export default function reducer(state = initialState, action = {}) {
     case UPDATE_ACCOUNT_SETTINGS_SUCCESS:
       return {
         ...state,
-        account: action.result.account,
+        account: action.response.account,
       };
     case UPDATE_ACCOUNT_SETTINGS_FAIL:
       return {
@@ -155,19 +155,19 @@ export function login(loginForm) {
 }
 
 // thunk action that dispatch login action and then dispatch follow action such as switch lang.
-// TODO: Check return result or error. This is not use. Instead, login process is handled in react login dialog.
+// TODO: Check return response or error. This is not use. Instead, login process is handled in react login dialog.
 export function loginAndFollow(loginForm) {
   return (dispatch, getState) => {
     dispatch(
       login(loginForm)
-    ).then((result) => {
-      dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
+    ).then((response) => {
+      dispatch(switchLangAndDeleteLanguageQuery(response.account.language.split('-')[0]));
       dispatch(showDelayedToastMessage({
         type: 'info',
         title: toastMessages.loginTitle,
-        body: Object.assign(toastMessages.loginBody, { values: { username: result.account.username } })
+        body: Object.assign(toastMessages.loginBody, { values: { username: response.account.username } })
       }, 500));
-      return result;
+      return response;
     }).catch((error) => {
       debug('Error occurred : ', error);
       return error;
@@ -186,14 +186,14 @@ export function logoutAndFollow() {
   return (dispatch, getState) => {
     dispatch(
       logout()
-    ).then((result) => {
+    ).then((response) => {
       dispatch(reloadPage());
       dispatch(showDelayedToastMessage({
         type: 'info',
         title: toastMessages.logoutTitle,
         body: toastMessages.logoutBody
       }, 100));
-      return result;
+      return response;
     }).catch((error) => {
       debug('Error occurred : ', error);
       return error;

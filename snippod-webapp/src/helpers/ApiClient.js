@@ -1,5 +1,6 @@
 import superagent from 'superagent';
 import { normalize } from 'normalizr';
+import { isUrl } from 'utils/validation';
 import config from '../config';
 import { apiPath, apiPort } from '../constants/defaults';
 import Cookies from 'cookies-js';
@@ -7,6 +8,7 @@ import Cookies from 'cookies-js';
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
 function formatUrl(path) {
+  if (isUrl(path)) return path;
   const adjustedPath = path[0] !== '/' ? '/' + path : path;
   if (__SERVER__) {
     // Prepend host and port of the API server to the path.
@@ -17,21 +19,21 @@ function formatUrl(path) {
 }
 
 // Extracts the next page URL from response API response.
-function getNextPageUrl(result) {
-  const link = result.next;
+function getNextPageUrl(response) {
+  const link = response.next;
   if (!link) {
     return null;
   }
-  delete result.next;
+  delete response.next;
   return link;
 }
 
-function getPrevPageUrl(result) {
-  const link = result.previous;
+function getPrevPageUrl(response) {
+  const link = response.previous;
   if (!link) {
     return null;
   }
-  delete result.previous;
+  delete response.previous;
   return link;
 }
 
@@ -89,21 +91,25 @@ class _ApiClient {
             if (!body) {
               resolve(null);
             } else {
-              const result = {};
+              const response = {};
               if (body.next) {
                 const nextPageUrl = getNextPageUrl(body);
-                Object.assign(result, { nextPageUrl });
+                Object.assign(response, { nextPageUrl });
               }
               if (body.previous) {
                 const prevPageUrl = getPrevPageUrl(body);
-                Object.assign(result, { prevPageUrl });
+                Object.assign(response, { prevPageUrl });
               }
               if (schema) {
-                Object.assign(result, normalize(body, schema));
+                if (body.results) {
+                  Object.assign(response, normalize(body.results, schema));
+                } else {
+                  Object.assign(response, normalize(body, schema));
+                }
               } else {
-                Object.assign(result, body);
+                Object.assign(response, body);
               }
-              resolve(result);
+              resolve(response);
             }
           }
         });

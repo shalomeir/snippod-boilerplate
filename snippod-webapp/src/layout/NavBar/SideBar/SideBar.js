@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Link as LinkComponent } from 'react-router';
 const Link = Radium(LinkComponent);
-import { defineMessages, FormattedMessage as FormattedMessageComponent } from 'react-intl';
-const FormattedMessage = Radium(FormattedMessageComponent);
+import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 
 import { shortenString } from 'utils/handleString';
 
@@ -52,9 +51,11 @@ const i18n = defineMessages({
   null,
   { showLoginDialog, showRegisterDialog }
 )
+@injectIntl
 @Radium
 export default class SideBar extends Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     childType: PropTypes.string.isRequired,
     params: PropTypes.object.isRequired,
     className: PropTypes.string,
@@ -66,7 +67,7 @@ export default class SideBar extends Component {
 
   render() {
     //Almost similar with NavBar
-    const { childType, params, className, auth, lang } = this.props;
+    const { childType, params, className, auth, lang, intl: { formatMessage } } = this.props;
 
     let userIsMe;
     if (auth.loggedIn && childType === 'user') {
@@ -85,14 +86,14 @@ export default class SideBar extends Component {
       <div className="item ui center aligned container">
         <button className="ui green basic button" style={ styles.button }
                 onClick={this.props.showLoginDialog}>
-          <FormattedMessage {...i18n.loginButton} />
+          {formatMessage(i18n.loginButton)}
         </button>
       </div>
     );
 
     const userProfile = auth.loggedIn ? (
       <div className={classNames('item')}>
-        <div style={styles.welcome} ><FormattedMessage {...i18n.welcomeText}/></div>
+        <div style={styles.welcome} >{formatMessage(i18n.welcomeText)}</div>
         <Link to={`/user/${auth.account.id}`} style={styles.menuItem}>
           <i className="user icon left inverted" style={styles.icon}/>
           <h4 className="username-text ui header inverted" style={styles.iconText}>
@@ -103,19 +104,19 @@ export default class SideBar extends Component {
 
     const homeMenu = (
       <Link to="/" className={classNames(menuActiveClassName.home, 'blue item')}>
-        <FormattedMessage {...i18n.homeButton}/>
+        {formatMessage(i18n.homeButton)}
       </Link>
     );
 
     const userMenu = auth.loggedIn ? (
       <Link to={`/user/${auth.account.id}`} className={classNames(menuActiveClassName.user, 'blue item')}>
-        <FormattedMessage {...i18n.userButton}/>
+        {formatMessage(i18n.userButton)}
       </Link>
     ) : null;
 
     const settingMenu = auth.loggedIn ? (
       <Link to="/setting" className={classNames(menuActiveClassName.setting, 'blue item')}>
-        <FormattedMessage {...i18n.settingButton}/>
+        {formatMessage(i18n.settingButton)}
       </Link>
     ) : null;
 

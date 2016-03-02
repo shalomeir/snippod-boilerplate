@@ -10,23 +10,17 @@ import errorMessage from './messages/errorMessage';
 import toastMessage from './messages/toastMessage';
 import application from './application/application';
 import auth from './authentication/auth';
+import postings from './posts';
 
 //Root Entities for normalization json schema
 const initialEntitiesState = {
-  users: {},
+  accounts: {},
   posts: {},
   comments: {}
 };
 
 //Updates an entity cache in response to any action with response.entities.
 function entities(state = initialEntitiesState, action = {}) {
-  if (action.response && action.response.entities) {
-    return merge({}, state, action.response.entities);
-  }
-  return state;
-}
-
-function messages(state = initialEntitiesState, action = {}) {
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities);
   }
@@ -43,5 +37,6 @@ export default combineReducers({
   }),
   application,
   auth,
-  entities
+  entities,
+  postings
 });

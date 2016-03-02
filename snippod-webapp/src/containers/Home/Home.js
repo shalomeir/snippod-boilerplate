@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
-import { defineMessages, FormattedMessage } from 'react-intl';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -9,16 +8,9 @@ import { Link } from 'react-router';
 import { pushQuery } from 'ducks/application/application';
 
 import IntroCard from './IntroCard/IntroCard';
-import { PostsHeader } from 'containers';
+import { Posts, PostsHeader } from 'containers';
 
 const styles = require('./HomeStyles');
-
-const i18n = defineMessages({
-  helloWorld: {
-    id: 'home.helloWorld',
-    defaultMessage: 'Hello guys'
-  }
-});
 
 @connect(
   createSelector([
@@ -90,7 +82,7 @@ export default class Home extends Component {
         { /*<PostComposer {...this.props} /> */ }
         <PostsHeader sortingOption={this.state.sortingOption}
                      changeSortingOption={this.changeSortingOption} />
-        { /*<Posts {...this.props} />*/ }
+        <Posts sortingOption={this.state.sortingOption} />
       </div>
     );
   }

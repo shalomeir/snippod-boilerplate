@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import $ from 'jquery';
 import { StyleRoot } from 'radium';
 
-import { injectIntl } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { asyncConnect } from 'redux-async-connect';
@@ -36,7 +36,7 @@ injectTapEventPlugin();
     const promises = [];
 
     if (!isAuthLoaded(getState())) {
-      promises.push(dispatch(loadAuth()).then((result) => {
+      promises.push(dispatch(loadAuth()).then((response) => {
         dispatch(switchLangIfDiffrent());
       }));
     }
@@ -55,7 +55,7 @@ injectTapEventPlugin();
 @injectIntl
 export default class App extends Component {
   static propTypes = {
-    intl: PropTypes.object.isRequired,
+    intl: intlShape.isRequired,
     children: PropTypes.object.isRequired,
     params: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,

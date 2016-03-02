@@ -149,16 +149,16 @@ export default class LoginDialog extends Component {
     return new Promise((resolve, reject) => {
       dispatch(
         login(values)
-      ).then((result) => {
+      ).then((response) => {
         this.props.reloadPage();
-        dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
+        dispatch(switchLangAndDeleteLanguageQuery(response.account.language.split('-')[0]));
         dispatch(showDelayedToastMessage({
           type: 'info',
           title: toastMessages.loginTitle,
-          body: Object.assign(toastMessages.loginBody, { values: { username: result.account.username } })
+          body: Object.assign(toastMessages.loginBody, { values: { username: response.account.username } })
         }, 300));
         this.props.redirectReplacePath();
-        resolve(result);
+        resolve(response);
       }).catch((error) => {
         reject({ _error: error.message });
       });

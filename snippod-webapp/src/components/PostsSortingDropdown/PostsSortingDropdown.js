@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import classNames from 'classnames';
 import $ from 'jquery';
-import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 
 import { pushQuery } from 'ducks/application/application';
 
@@ -40,7 +40,7 @@ const i18n = defineMessages({
 @Radium
 export default class PostsSortingDropdown extends Component {
   static propTypes = {
-    intl: PropTypes.object.isRequired,
+    intl: intlShape.isRequired,
     className: PropTypes.string,
     sortingOption: PropTypes.string.isRequired,
     changeSortingOption: PropTypes.func.isRequired

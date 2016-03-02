@@ -7,7 +7,7 @@ import { createSelector } from 'reselect';
 import MediaQuery from 'react-responsive';
 import { Link as LinkComponent } from 'react-router';
 const Link = Radium(LinkComponent);
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { injectIntl, intlShape, defineMessages } from 'react-intl';
 import { shortenString } from 'utils/handleString';
 
 import { AuthButtons, LanguageDropdown } from 'components';
@@ -31,9 +31,11 @@ const i18n = defineMessages({
   null,
   { showLoginDialog, showRegisterDialog }
 )
+@injectIntl
 @Radium
 export default class NavBar extends Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     childType: PropTypes.string.isRequired,
     params: PropTypes.object.isRequired,
     className: PropTypes.string,
@@ -57,7 +59,7 @@ export default class NavBar extends Component {
 
     //console.log('radium resolve media queries :' + ra);
 
-    const { childType, params, className, auth, lang } = this.props;
+    const { childType, params, className, auth, lang, intl: { formatMessage } } = this.props;
 
     let userIsMe;
     if (auth.loggedIn && childType === 'user') {
@@ -114,7 +116,7 @@ export default class NavBar extends Component {
         </Link>
         <Link to="/setting" className={classNames(menuActiveClassName.setting, 'blue item')} style={[styles.menuItem, styles.mobileItem]}>
           <i className="setting icon" style={styles.icon}/>
-          <span className="setting-text" style={radiumStyles.hideAtMobile}> <FormattedMessage {...i18n.settingButton}/> </span>
+          <span className="setting-text" style={radiumStyles.hideAtMobile}>{formatMessage(i18n.settingButton)}</span>
         </Link>
         {tocSidebarButton}
       </div>

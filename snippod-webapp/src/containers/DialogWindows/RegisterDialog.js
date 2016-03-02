@@ -184,16 +184,16 @@ export default class RegisterDialog extends Component {
     return new Promise((resolve, reject) => {
       dispatch(
         register(values)
-      ).then((result) => {
-        dispatch(switchLangAndDeleteLanguageQuery(result.account.language.split('-')[0]));
+      ).then((response) => {
+        dispatch(switchLangAndDeleteLanguageQuery(response.account.language.split('-')[0]));
         dispatch(showDelayedToastMessage({
           type: 'info',
           title: toastMessages.registerTitle,
-          body: Object.assign(toastMessages.registerBody, { values: { username: result.account.username } })
+          body: Object.assign(toastMessages.registerBody, { values: { username: response.account.username } })
         }, 300));
         this.props.redirectReplacePath();
         this.props.reloadPage();
-        resolve(result);
+        resolve(response);
       }).catch((error) => {
         const errors = {};
         if (error.errors.email) errors.emailId = error.errors.email[0];

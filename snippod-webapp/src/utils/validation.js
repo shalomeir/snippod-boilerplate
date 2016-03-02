@@ -1,4 +1,7 @@
 import logMessages from 'i18nDefault/logMessages';
+// https://www.npmjs.com/package/validator
+import validator from 'validator';
+
 const i18n = logMessages;
 
 const isEmpty = value => value === undefined || value === null || value === '';
@@ -85,4 +88,11 @@ export function isFuncWork(func) {
     return false;
   }
   return false;
+}
+
+export function isUrl(url) {
+  if (!validator.isURL(url, { protocols: ['http', 'https'], allow_underscores: true })) {
+    return false;
+  }
+  return true;
 }

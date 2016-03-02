@@ -152,7 +152,7 @@
     "toastr": "^2.1.2",
     "ua-parser-js": "^0.7.10",
     "url-loader": "^0.5.7",
-    "validator": "^4.3.0",
+    "validator": "^4.9.0",
     "webpack": "^1.12.9",
     "webpack-isomorphic-tools": "^2.2.24"
   },
