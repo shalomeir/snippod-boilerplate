@@ -12,13 +12,14 @@ const postSchema = new Schema('posts');
 const commentSchema = new Schema('comments');
 const accountSchema = new Schema('accounts');
 
-postSchema.define({
-  author: accountSchema
-});
+// This is not used because that almost author information is used with post
+//postSchema.define({
+//  author: accountSchema
+//});
 
-commentSchema.define({
-  author: accountSchema
-});
+//commentSchema.define({
+//  author: accountSchema
+//});
 
 const Schemas = {
   POST: postSchema,

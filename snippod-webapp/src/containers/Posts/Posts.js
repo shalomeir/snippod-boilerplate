@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { defineMessages, FormattedMessage } from 'react-intl';
 import { showLoginDialog, showRegisterDialog, redirectReplacePath } from 'ducks/application/application';
-import { loadPost, loadPostsBySortingOption, loadPostsByAccount } from 'ducks/posts/posts';
+import { loadPostsBySortingOption } from 'ducks/posts/posts';
+
+import { List } from 'components';
 
 const i18n = defineMessages({
   loginMessageHeader: {
@@ -22,42 +24,81 @@ const styles = {
 
 };
 
+const mapStateToProps = createSelector([
+  state => state.entities.posts,
+  state => state.postings.postsBySortingOption,
+  (state, props) => props.sortingOption
+], (posts, postsBySortingOption, sortingOption) => {
+  const postsBySortingOptionPagination = postsBySortingOption[sortingOption] || { ids: [] };
+  const postsBySortingOptionList = postsBySortingOptionPagination.ids.map(id => posts[id]);
+  return {
+    sortingOption,
+    postsBySortingOptionPagination,
+    postsBySortingOptionList
+  };
+});
+
 @connect(
-  null,
-  { loadPost, loadPostsByAccount }
+  mapStateToProps,
+  { loadPostsBySortingOption }
 )
 @Radium
 export default class Posts extends Component {
 
   static propTypes = {
     sortingOption: PropTypes.string.isRequired,
-    loadPost: PropTypes.func.isRequired,
-    loadPostsByAccount: PropTypes.func.isRequired
+    postsBySortingOptionPagination: PropTypes.object.isRequired,
+    postsBySortingOptionList: PropTypes.array.isRequired,
+    loadPostsBySortingOption: PropTypes.func.isRequired,
   };
 
   constructor() {
     super();
-    this._onSubmit = this._onSubmit.bind(this);
+    this._loadPostsBySortingOption = this._loadPostsBySortingOption.bind(this);
+    this._handleLoadMoreClick = this._handleLoadMoreClick.bind(this);
   }
 
-  _onSubmit() {
-    const accountId = this.refs.text_id.value;
-    this.props.loadPostsByAccount(accountId);
+  componentWillMount() {
+    this._loadPostsBySortingOption(this.props.sortingOption);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.sortingOption !== nextProps.sortingOption) {
+      this._loadPostsBySortingOption(nextProps.sortingOption);
+    }
+  }
+
+  _loadPostsBySortingOption(sortingOption) {
+    this.props.loadPostsBySortingOption(sortingOption);
+  }
+
+  _handleLoadMoreClick() {
+    this._loadPostsBySortingOption(this.props.sortingOption, true);
+  }
+
+  renderPost(post) {
+    return (
+      <div key={post.id}>
+        **** Post ***
+        id: {post.id}
+        title: {post.title}
+        link: {post.link}
+        author: {post.author.username}
+      </div>
+    );
   }
 
   render() {
+    const { postsBySortingOptionPagination, postsBySortingOptionList } = this.props;
 
     return (
       <div className="posts ui container">
-        posts ...
-        <button className="ui button" onClick={this._onSubmit}>
-          loadPost
-        </button>
-        <div className="ui input">
-          <input type="text" placeholder="Search..." ref="text_id" />
-        </div>
-        <div className="ui button">
-          FetchPost
+        <div>
+          <List renderItem={this.renderPost}
+                items={postsBySortingOptionList}
+                onLoadMoreClick={this._handleLoadMoreClick}
+                loadingLabel={`Loading posts...`}
+                {...postsBySortingOptionPagination} />
         </div>
       </div>
     );

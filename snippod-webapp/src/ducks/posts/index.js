@@ -2,7 +2,7 @@ const debug = require('utils/getDebugger')('postings');
 import { combineReducers } from 'redux';
 import paginate from 'helpers/paginate';
 import { POSTS_BY_SORTING_OPTION_ARRAY, POSTS_BY_ACCOUNT_ARRAY } from './posts';
-import { COMMENTS_BY_POST_ARRAY } from './comments';
+import { COMMENTS_BY_POST_ARRAY, COMMENTS_BY_ACCOUNT_ARRAY } from './comments';
 
 const postings = combineReducers({
   postsBySortingOption: paginate({
@@ -20,7 +20,10 @@ const postings = combineReducers({
     types: COMMENTS_BY_POST_ARRAY
   }),
 
-  commentsByAccount: null
+  commentsByAccount: paginate({
+    mapActionToKey: action => action.key,
+    types: COMMENTS_BY_ACCOUNT_ARRAY
+  })
 
 });
 

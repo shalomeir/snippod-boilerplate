@@ -36,77 +36,77 @@ export const COMMENTS_BY_ACCOUNT_ARRAY = [
 
 // Fetches a single repository from REST API.
 // Relies on the custom API middleware defined in ../middleware/clientMiddleware and helpers/ApiClient.js.
-function fetchPost(postId) {
+function fetchComment(commentId) {
   return {
-    types: POST_ARRAY,
-    promise: (client) => client.get('/posts/' + postId + '/', {
-      schema: Schemas.POST
+    types: COMMENT_ARRAY,
+    promise: (client) => client.get('/comments/' + commentId + '/', {
+      schema: Schemas.COMMENT
     })
   };
 }
 
-// Fetches a single post from REST API unless it is cached.
+// Fetches a single comment from REST API unless it is cached.
 // Relies on Redux Thunk middleware.
-export function loadPost(postId, requiredFields = []) {
+export function loadComment(commentId, requiredFields = []) {
   return (dispatch, getState) => {
-    const post = getState().entities.posts[postId];
-    if (post && requiredFields.every(key => post.hasOwnProperty(key))) {
+    const comment = getState().entities.comments[commentId];
+    if (comment && requiredFields.every(key => comment.hasOwnProperty(key))) {
       return null;
     }
 
-    return dispatch(fetchPost(postId));
+    return dispatch(fetchComment(commentId));
   };
 }
 
 
-function fetchPostsBySortingOption(sortingOption, nextPageUrl) {
+function fetchCommentsByPost(postId, nextPageUrl) {
   return {
-    key: sortingOption,
-    types: COMMENTS_BY_SORTING_OPTION_ARRAY,
+    key: postId,
+    types: COMMENTS_BY_POST_ARRAY,
     promise: (client) => client.get(nextPageUrl, {
-      schema: Schemas.POST_ARRAY
+      schema: Schemas.COMMENT_ARRAY
     })
   };
 }
 
 // Relies on Redux Thunk middleware.
-export function loadPostsBySortingOption(sortingOption, nextPage) {
+export function loadCommentsByPost(postId, nextPage) {
   return (dispatch, getState) => {
     const {
-      nextPageUrl = '/posts/?sorting=' + sortingOption,
+      nextPageUrl = '/post/' + postId + '/comments/',
       pageCount = 0
-      } = getState().postings.postsBySortingOption[sortingOption] || {};
+      } = getState().postings.commentsByPost[postId] || {};
 
     if (pageCount > 0 && !nextPage) {
       return null;
     }
 
-    return dispatch(fetchPostsBySortingOption(sortingOption, nextPageUrl));
+    return dispatch(fetchCommentsByPost(postId, nextPageUrl));
   };
 }
 
-function fetchPostsByAccount(accountId, nextPageUrl) {
+function fetchCommentsByAccount(accountId, nextPageUrl) {
   return {
     key: accountId,
     types: COMMENTS_BY_ACCOUNT_ARRAY,
     promise: (client) => client.get(nextPageUrl, {
-      schema: Schemas.POST_ARRAY
+      schema: Schemas.COMMENT_ARRAY
     })
   };
 }
 
 // Relies on Redux Thunk middleware.
-export function loadPostsByAccount(accountId, nextPage) {
+export function loadCommentsByAccount(accountId, nextPage) {
   return (dispatch, getState) => {
     const {
-      nextPageUrl = '/user/' + accountId + '/posts/',
+      nextPageUrl = '/user/' + accountId + '/comments/',
       pageCount = 0
-      } = getState().postings.postsByAccount[accountId] || {};
+      } = getState().postings.commentsByAccount[accountId] || {};
 
     if (pageCount > 0 && !nextPage) {
       return null;
     }
 
-    return dispatch(fetchPostsByAccount(accountId, nextPageUrl));
+    return dispatch(fetchCommentsByAccount(accountId, nextPageUrl));
   };
 }

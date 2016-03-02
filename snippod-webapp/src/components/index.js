@@ -5,6 +5,7 @@
  *
  */
 
+export List from './List/List';
 export LanguageDropdown from './LanguageDropdown/LanguageDropdown';
 export PostsSortingDropdown from './PostsSortingDropdown/PostsSortingDropdown';
 export AuthButtons from './AuthButtons/AuthButtons';
