@@ -114,6 +114,7 @@
     "lru-memoize": "^1.0.0",
     "map-props": "^1.0.0",
     "material-ui": "^0.13.2",
+    "moment": "^2.11.2",
     "multireducer": "^1.0.2",
     "normalize.css": "^3.0.3",
     "normalizr": "^2.0.0",

@@ -1,3 +1,41 @@
 /*******************************
     User Variable Overrides
 *******************************/
+
+/*--------------
+     Labels
+---------------*/
+
+/*-----Upvote----- */
+
+/* Icon */
+.ui.cards > .card > .content .arrow.up.icon,
+.ui.card > .content .arrow.up.icon {
+  cursor: pointer;
+  opacity: @actionOpacity;
+  transition: @actionTransition;
+}
+.ui.cards > .card > .content .arrow.up.icon:hover,
+.ui.card > .content .arrow.up.icon:hover {
+  opacity: @actionHoverOpacity;
+  color: @upvoteColor;
+}
+.ui.cards > .card > .content .active.arrow.up.icon,
+.ui.card > .content .active.arrow.up.icon {
+  color: @upvoteActiveColor;
+}
+
+/*-----Comment----- */
+
+/* Span */
+.ui.cards > .card > .content .comment-info,
+.ui.card > .content .comment-info {
+  cursor: pointer;
+  opacity: @actionOpacity;
+  transition: @actionTransition;
+}
+.ui.cards > .card > .content .comment-info:hover,
+.ui.card > .content .comment-info:hover {
+  opacity: @actionHoverOpacity;
+  color: @commentColor;
+}

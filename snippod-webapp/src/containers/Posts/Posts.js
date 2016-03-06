@@ -7,7 +7,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import { showLoginDialog, showRegisterDialog, redirectReplacePath } from 'ducks/application/application';
 import { loadPostsBySortingOption } from 'ducks/posts/posts';
 
-import { List } from 'components';
+import { List, Post } from 'components';
 
 const i18n = defineMessages({
   loginMessageHeader: {
@@ -21,6 +21,10 @@ const styles = {
     marginTop: '1em',
     marginBottom: '1em'
   },
+
+  postsList: {
+    margin: 'auto'
+  }
 
 };
 
@@ -78,23 +82,20 @@ export default class Posts extends Component {
 
   renderPost(post) {
     return (
-      <div key={post.id}>
-        **** Post ***
-        id: {post.id}
-        title: {post.title}
-        link: {post.link}
-        author: {post.author.username}
-      </div>
+      <Post key={post.id}
+            post={post} />
     );
   }
 
   render() {
-    const { postsBySortingOptionPagination, postsBySortingOptionList } = this.props;
+    const { sortingOption,
+      postsBySortingOptionPagination, postsBySortingOptionList } = this.props;
 
     return (
       <div className="posts ui container">
         <div>
-          <List renderItem={this.renderPost}
+          <List key={sortingOption}
+                renderItem={this.renderPost}
                 items={postsBySortingOptionList}
                 onLoadMoreClick={this._handleLoadMoreClick}
                 loadingLabel={`Loading posts...`}

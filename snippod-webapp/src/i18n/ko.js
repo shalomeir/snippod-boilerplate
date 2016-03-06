@@ -36,6 +36,8 @@ export default {
   "comp.postsSortingDropdown.newest": "최신순",
   "comp.postsSortingDropdown.upvotes": "올려요순",
   "comp.postsSortingDropdown.comments": "댓글순",
+  "comp.post.comments": "{commentCount, plural, =0 {댓글 없음} other {# 댓글}}",
+  "comp.list.loadMoreButton": "로드하기",
 
   //Layout
   "layout.navBar.settingButton": "셋팅",

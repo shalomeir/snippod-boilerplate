@@ -73,6 +73,63 @@ nav {
   text-decoration: underline;
 }
 
+/*-------------------
+     Custom Effect
+--------------------*/
+//FIXME: This is dependant on a context.
+.after-gradient-effect {
+  content: " ";
+  width: 4em;
+  height: 1.8em;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(56%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,1)));
+  transition:all .2s;
+}
+
+/*******************************
+     Import the others
+*******************************/
+
+//@import "./animation/animation.overrides";
+
+
+/*******************************
+        React Animation
+*******************************/
+// Reference https://facebook.github.io/react/docs/animation.html
+
+/*-------------------
+        List
+--------------------*/
+.list-enter {
+  opacity: 0.01;
+}
+
+.list-enter.list-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.list-leave {
+  opacity: 1;
+}
+
+.list-leave.list-leave-active {
+  opacity: 0.01;
+  transition: opacity 200ms ease-in;
+}
+
+.list-appear {
+  opacity: 0.01;
+}
+
+.list-appear.list-appear-active {
+  opacity: 1;
+  transition: opacity .3s ease-in;
+}
+
 
 
 /*******************************

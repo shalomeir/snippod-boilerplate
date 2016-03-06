@@ -1,3 +1,15 @@
 /*******************************
     User Variable Overrides
 *******************************/
+
+@groupCardMargin: (@rowSpacing / 4) (@horizontalSpacing / 2);
+
+/* Icons */
+@actionOpacity: 0.75;
+@actionHoverOpacity: 1;
+@actionTransition: color @defaultDuration @defaultEasing;
+
+@upvoteColor: #0c6cff;
+@upvoteActiveColor: #217eff;
+
+@commentColor: rgba(0, 0, 0, 0.78);
