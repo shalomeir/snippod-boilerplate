@@ -6,6 +6,7 @@ const initialState = {
 
 // Updates error message to notify about the failed fetches.
 export default function reducer(state = initialState, action = {}) {
+  const { INIT_ALL_STATE } = require('ducks/globalActions');
 
   if (action.error) {
     return {
@@ -18,6 +19,10 @@ export default function reducer(state = initialState, action = {}) {
       return {
         errorObject: null,
       };
+
+    case INIT_ALL_STATE:
+      return initialState;
+
     default:
       return state;
   }

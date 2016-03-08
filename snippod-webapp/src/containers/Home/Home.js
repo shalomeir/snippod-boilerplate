@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 import { pushQuery } from 'ducks/application/application';
 
 import IntroCard from './IntroCard/IntroCard';
-import { Posts, PostsHeader } from 'containers';
+import { PostComposer, PostsHeader, Posts } from 'containers';
 
 const styles = require('./HomeStyles');
 
@@ -73,13 +73,13 @@ export default class Home extends Component {
   }
 
   render() {
-    const { location: { query } } = this.props;
+    const { auth, location: { query } } = this.props;
 
     return (
       <div className="home ui text container main-container">
         <Helmet title="Home"/>
         <IntroCard />
-        { /*<PostComposer {...this.props} /> */ }
+        <PostComposer auth={auth} style={styles.postComposer}/>
         <PostsHeader sortingOption={this.state.sortingOption}
                      changeSortingOption={this.changeSortingOption} />
         <Posts sortingOption={this.state.sortingOption} />

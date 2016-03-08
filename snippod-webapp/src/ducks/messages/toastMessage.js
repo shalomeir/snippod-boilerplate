@@ -10,6 +10,7 @@ const initialState = {
 
 // Updates error message to notify about the failed fetches.
 export default function reducer(state = initialState, action = {}) {
+  const { INIT_ALL_STATE } = require('ducks/globalActions');
 
   switch (action.type) {
     case SHOW_TOAST_MESSAGE:
@@ -30,6 +31,10 @@ export default function reducer(state = initialState, action = {}) {
         resetToast: false,
         toastNum: 0
       };
+
+    case INIT_ALL_STATE:
+      return initialState;
+
     default:
       return state;
   }

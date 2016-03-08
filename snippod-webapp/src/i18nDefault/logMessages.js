@@ -14,6 +14,10 @@ const logMessages = defineMessages({
     id: 'log.invalidEmail',
     defaultMessage: 'Invalid email address'
   },
+  invalidUrl: {
+    id: 'log.invalidUrl',
+    defaultMessage: 'Invalid url'
+  },
   minLength: {
     id: 'log.minLength',
     defaultMessage: 'Must be at least {min} characters'

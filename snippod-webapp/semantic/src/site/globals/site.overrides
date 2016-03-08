@@ -109,7 +109,7 @@ nav {
 
 .list-enter.list-enter-active {
   opacity: 1;
-  transition: opacity 300ms ease-in;
+  transition: opacity .3s ease-in;
 }
 
 .list-leave {
@@ -118,7 +118,7 @@ nav {
 
 .list-leave.list-leave-active {
   opacity: 0.01;
-  transition: opacity 200ms ease-in;
+  transition: opacity .2s ease-in;
 }
 
 .list-appear {

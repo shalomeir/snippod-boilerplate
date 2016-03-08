@@ -2,6 +2,7 @@ export NotFound from './NotFound/NotFound';
 export Loading from './Loading/Loading';
 export Ground from './Ground/Ground';
 export Home from './Home/Home';
+export PostComposer from './Posts/PostComposer';
 export PostsHeader from './Posts/PostsHeader';
 export Posts from './Posts/Posts';
 export SinglePost from './SinglePost/SinglePost';

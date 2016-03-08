@@ -40,6 +40,8 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action = {}) {
+  const { INIT_ALL_STATE } = require('ducks/globalActions');
+
   switch (action.type) {
     case LOAD:
       return state;
@@ -121,6 +123,10 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         error: action.error
       };
+
+    case INIT_ALL_STATE:
+      return initialState;
+
     default:
       return state;
   }

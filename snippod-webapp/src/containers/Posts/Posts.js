@@ -3,7 +3,7 @@ import Radium from 'radium';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 import { showLoginDialog, showRegisterDialog, redirectReplacePath } from 'ducks/application/application';
 import { loadPostsBySortingOption } from 'ducks/posts/posts';
 
@@ -29,13 +29,15 @@ const styles = {
 };
 
 const mapStateToProps = createSelector([
+  state => state.auth,
   state => state.entities.posts,
   state => state.postings.postsBySortingOption,
   (state, props) => props.sortingOption
-], (posts, postsBySortingOption, sortingOption) => {
+], (auth, posts, postsBySortingOption, sortingOption) => {
   const postsBySortingOptionPagination = postsBySortingOption[sortingOption] || { ids: [] };
   const postsBySortingOptionList = postsBySortingOptionPagination.ids.map(id => posts[id]);
   return {
+    auth,
     sortingOption,
     postsBySortingOptionPagination,
     postsBySortingOptionList
@@ -44,12 +46,17 @@ const mapStateToProps = createSelector([
 
 @connect(
   mapStateToProps,
-  { loadPostsBySortingOption }
+  { loadPostsBySortingOption, showLoginDialog }
 )
+@injectIntl
 @Radium
 export default class Posts extends Component {
 
   static propTypes = {
+    intl: intlShape.isRequired,
+    auth: PropTypes.object.isRequired,
+    showLoginDialog: PropTypes.func.isRequired,
+
     sortingOption: PropTypes.string.isRequired,
     postsBySortingOptionPagination: PropTypes.object.isRequired,
     postsBySortingOptionList: PropTypes.array.isRequired,
@@ -60,6 +67,7 @@ export default class Posts extends Component {
     super();
     this._loadPostsBySortingOption = this._loadPostsBySortingOption.bind(this);
     this._handleLoadMoreClick = this._handleLoadMoreClick.bind(this);
+    this.renderPost = this.renderPost.bind(this);
   }
 
   componentWillMount() {
@@ -70,10 +78,15 @@ export default class Posts extends Component {
     if (this.props.sortingOption !== nextProps.sortingOption) {
       this._loadPostsBySortingOption(nextProps.sortingOption);
     }
+    if (!nextProps.postsBySortingOptionPagination.isFetching &&
+      this.props.postsBySortingOptionPagination !== nextProps.postsBySortingOptionPagination &&
+      !nextProps.postsBySortingOptionPagination.pageCount) {
+      this._loadPostsBySortingOption(nextProps.sortingOption);
+    }
   }
 
-  _loadPostsBySortingOption(sortingOption) {
-    this.props.loadPostsBySortingOption(sortingOption);
+  _loadPostsBySortingOption(sortingOption, nextPage) {
+    this.props.loadPostsBySortingOption(sortingOption, nextPage);
   }
 
   _handleLoadMoreClick() {
@@ -81,9 +94,14 @@ export default class Posts extends Component {
   }
 
   renderPost(post) {
+    const { intl, auth } = this.props;
+
     return (
       <Post key={post.id}
-            post={post} />
+            post={post}
+            intl={intl}
+            auth={auth}
+            showLoginDialog={this.props.showLoginDialog}/>
     );
   }
 

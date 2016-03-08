@@ -21,10 +21,35 @@ const initialEntitiesState = {
 
 //Updates an entity cache in response to any action with response.entities.
 function entities(state = initialEntitiesState, action = {}) {
+  const { RELOAD_PAGE } = require('ducks/application/application');
+  const { INIT_ALL_STATE, DELETE_ALL_ENTITIES, UPDATE_ENTITIY } = require('ducks/globalActions');
+
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities);
   }
-  return state;
+  switch (action.type) {
+    case UPDATE_ENTITIY:
+      if (typeof action.kind !== 'string') {
+        throw new Error('Expected entity kind to be a string.');
+      }
+      if (!action.id) {
+        throw new Error('Expected entity id.');
+      }
+      if (!action.entity) {
+        throw new Error('Expected entity object.');
+      }
+      return merge({}, state, { [action.kind]: { [action.id]: action.entity } });
+
+    case RELOAD_PAGE:
+    case INIT_ALL_STATE:
+    case DELETE_ALL_ENTITIES:
+      return {
+        initialEntitiesState
+      };
+
+    default:
+      return state;
+  }
 }
 
 export default combineReducers({

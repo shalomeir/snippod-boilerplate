@@ -29,6 +29,10 @@ export default {
   "postsHeader.posts": "포스트",
   "postsHeader.sort": "정렬기준",
 
+  "postComposer.titlePlaceHolder": "제목",
+  "postComposer.linkPlaceHolder": "URL을 입력하거나 붙여넣으세요",
+  "postComposer.button": "포스트",
+
   //Component
   "comp.authButtons.loginButton": "로그인",
   "comp.authButtons.registerButton": "가입",
@@ -38,6 +42,7 @@ export default {
   "comp.postsSortingDropdown.comments": "댓글순",
   "comp.post.comments": "{commentCount, plural, =0 {댓글 없음} other {# 댓글}}",
   "comp.list.loadMoreButton": "로드하기",
+  "comp.list.nothing": "여긴 보여드릴게 없어요.",
 
   //Layout
   "layout.navBar.settingButton": "셋팅",
@@ -54,6 +59,7 @@ export default {
   "log.default": "안녕하세요",
   "log.required": "입력해주세요",
   "log.invalidEmail": "이메일 주소가 아닌 것 같네요",
+  "log.invalidUrl": "URL을 입력해주세요",
   "log.minLength": "너무 짧아요. 길이가 적어도 {min, plural,\n  =0 {하나이상이}\n  =1 {하나는}\n  =2 {둘은}\n other {# 이상이}\n} 되어야 해요.",
   "log.maxLength": "너무 길어요. 길이가 {max}보다 길면 안되요.",
   "log.space": "공백은 안되요.",
@@ -74,5 +80,7 @@ export default {
   "toast.logoutTitle": "로그아웃",
   "toast.logoutBody": "정상적으로 로그아웃 되었습니다.",
 
+  "toast.submitPostTitle": "포스팅 성공",
+  "toast.submitPostBody": "\'{postTitle}\' 포스트가 올라갔어요.",
 
 };

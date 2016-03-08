@@ -13,7 +13,7 @@ const toastMessages = defineMessages({
     defaultMessage: 'Setup {lang}'
   },
 
-  //in ducks/authentication
+  //in containers/DialogWindows/LoginDialog
   loginTitle: {
     id: 'toast.loginTitle',
     defaultMessage: 'Login Succeed'
@@ -22,6 +22,7 @@ const toastMessages = defineMessages({
     id: 'toast.loginBody',
     defaultMessage: 'Welcome, {username}.' //empty
   },
+  //in containers/DialogWindows/RegisterDialog
   registerTitle: {
     id: 'toast.registerTitle',
     defaultMessage: 'Registered & Login Succeed'
@@ -30,6 +31,7 @@ const toastMessages = defineMessages({
     id: 'toast.registerBody',
     defaultMessage: '{username}, Thank you.' //empty
   },
+  //in ducks/authentication/auth
   logoutTitle: {
     id: 'toast.logoutTitle',
     defaultMessage: 'Logout Succeed'
@@ -39,6 +41,15 @@ const toastMessages = defineMessages({
     defaultMessage: 'You are safely logout.' //empty
   },
 
+  //in containers/Posts/PostComposer
+  submitPostTitle: {
+    id: 'toast.submitPostTitle',
+    defaultMessage: 'Posting Succeed'
+  },
+  submitPostBody: {
+    id: 'toast.submitPostBody',
+    defaultMessage: '\'{postTitle}\' is posted.' //empty
+  },
 
 });
 

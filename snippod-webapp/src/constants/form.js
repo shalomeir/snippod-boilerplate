@@ -12,6 +12,11 @@ const form = {
     usernameMaxLength: 18,
   },
 
+  postsForm: {
+    titleMinLength: 6,
+    titleMaxLength: 110,
+  },
+
 };
 
 module.exports = form;

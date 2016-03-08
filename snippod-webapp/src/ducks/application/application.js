@@ -3,7 +3,7 @@ import { browserHistory as history } from 'react-router';
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
 
-const RELOAD_PAGE = 'application/application/RELOAD_PAGE';
+export const RELOAD_PAGE = 'application/application/RELOAD_PAGE';
 
 const SHOW_LOGIN_DIALOG = 'application/application/SHOW_LOGIN_DIALOG';
 const SHOW_REGISTER_DIALOG = 'application/application/SHOW_REGISTER_DIALOG';
@@ -25,6 +25,8 @@ const initialState = {
 
 // Modal Window Overlay switch reducers.
 export default function reducer(state = initialState, action = {}) {
+
+  const { INIT_ALL_STATE } = require('ducks/globalActions');
 
   switch (action.type) {
     case SHOW_LOGIN_DIALOG:
@@ -61,6 +63,9 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         reloadedNum: state.reloadedNum + 1
       };
+
+    case INIT_ALL_STATE:
+      return initialState;
 
     default:
       return state;
