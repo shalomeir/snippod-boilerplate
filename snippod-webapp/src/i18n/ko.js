@@ -40,6 +40,9 @@ export default {
   "comments.confirmCheckModalDescription": "선택한 댓글을 삭제할까요?",
   "comments.commentsIsNone": "댓글이 아직 없어요. 첫 댓글을 달아주시겠어요?",
 
+  "commentComposer.contentPlaceHolder": "댓글을 써보세요 ...",
+  "commentComposer.button": "댓글입력",
+
   "singlePost.nothingHere": "포스트 비었음",
 
   //Component
@@ -98,6 +101,9 @@ export default {
 
   "toast.deletePostTitle": "포스트 삭제",
   "toast.deletePostBody": "\'{postTitle}\' 포스트가 삭제되었어요.",
+
+  "toast.submitCommentTitle": "댓글 성공",
+  "toast.submitCommentBody": "댓글이 올라갔어요.",
 
   "toast.deleteCommentTitle": "댓글 삭제",
   "toast.deleteCommentBody": "댓글이 삭제되었어요.",

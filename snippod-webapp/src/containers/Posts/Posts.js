@@ -9,18 +9,7 @@ import { loadPostsBySortingOption, deletePost } from 'ducks/posts/posts';
 
 import { List, Post, ConfirmCheckModal } from 'components';
 
-const i18n = defineMessages({
-  confirmCheckModalHeader: {
-    id: 'posts.confirmCheckModalHeader',
-    defaultMessage: 'Delete Post'
-  },
-
-  confirmCheckModalDescription: {
-    id: 'posts.confirmCheckModalDescription',
-    defaultMessage: 'Are you sure you want to delete this post?'
-  },
-
-});
+const radiumStyles = require('theme/RadiumStyles');
 
 const styles = {
   container: {
@@ -36,6 +25,19 @@ const styles = {
   },
 
 };
+
+const i18n = defineMessages({
+  confirmCheckModalHeader: {
+    id: 'posts.confirmCheckModalHeader',
+    defaultMessage: 'Delete Post'
+  },
+
+  confirmCheckModalDescription: {
+    id: 'posts.confirmCheckModalDescription',
+    defaultMessage: 'Are you sure you want to delete this post?'
+  },
+
+});
 
 const mapStateToProps = createSelector([
   state => state.auth,
@@ -130,12 +132,13 @@ export default class Posts extends Component {
     if (post.deleted) return null;
 
     return (
-      <Post key={post.id + 'post'}
-            post={post}
-            intl={intl}
-            auth={auth}
-            showLoginDialog={this.props.showLoginDialog}
-            showConfirmCheckModal={this.onShowCheckModal}/>
+      <div key={post.id} className="ui container" style={[radiumStyles.listMargin, radiumStyles.fullWidth]}>
+        <Post post={post}
+              intl={intl}
+              auth={auth}
+              showLoginDialog={this.props.showLoginDialog}
+              showConfirmCheckModal={this.onShowCheckModal}/>
+      </div>
     );
   }
 
@@ -149,8 +152,7 @@ export default class Posts extends Component {
 
     return (
       <div className="posts ui container">
-        <List key={sortingOption}
-              className="one cards"
+        <List className="one cards"
               renderItem={this.renderPost}
               items={postsBySortingOptionList}
               onLoadMoreClick={this._handleLoadMoreClick}

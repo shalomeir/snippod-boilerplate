@@ -17,6 +17,10 @@ const form = {
     titleMaxLength: 110,
   },
 
+  commentsForm: {
+    commentMaxLength: 110,
+  }
+
 };
 
 module.exports = form;

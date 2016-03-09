@@ -28,9 +28,8 @@ const i18n = defineMessages({
 });
 
 const styles = {
-  container: {
-    marginTop: '1em',
-    marginBottom: '1em'
+  commentContainer: {
+    margin: '1em 0'
   },
 
   commentsList: {
@@ -135,12 +134,13 @@ export default class Comments extends Component {
     if (comment.deleted) return null;
 
     return (
-      <Comment key={comment.id}
-               comment={comment}
-               intl={intl}
-               auth={auth}
-               showLoginDialog={this.props.showLoginDialog}
-               showConfirmCheckModal={this.onShowCheckModal}/>
+      <div key={comment.id} className="ui comments" style={styles.commentContainer}>
+        <Comment comment={comment}
+                 intl={intl}
+                 auth={auth}
+                 showLoginDialog={this.props.showLoginDialog}
+                 showConfirmCheckModal={this.onShowCheckModal}/>
+      </div>
     );
   }
 
@@ -153,16 +153,12 @@ export default class Comments extends Component {
     );
 
     return (
-      <div className="comment-list ui container">
-        <div className="ui segment">
-          <List key={post.id}
-                className="comments"
-                renderItem={this.renderComment}
-                items={commentsByPostList}
-                onLoadMoreClick={this._handleLoadMoreClick}
-                nothingText={formatMessage(i18n.commentsIsNone)}
-                {...commentsByPostPagination} />
-        </div>
+      <div className="comment-list">
+        <List renderItem={this.renderComment}
+              items={commentsByPostList}
+              onLoadMoreClick={this._handleLoadMoreClick}
+              nothingText={formatMessage(i18n.commentsIsNone)}
+              {...commentsByPostPagination} />
         <ConfirmCheckModal key="comments-comment-delete-confirm-check-modal"
                            id="comments-comment-delete-confirm-check-modal"
                            showOn={this.state.showCheckModal}

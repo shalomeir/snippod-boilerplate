@@ -1,3 +1,11 @@
 /*******************************
     User Variable Overrides
 *******************************/
+
+/* Icons */
+@actionOpacity: 0.75;
+@actionHoverOpacity: 1;
+@actionTransition: color @defaultDuration @defaultEasing;
+
+@upvoteColor: #4e8fff;
+@upvoteActiveColor: #0066ff;

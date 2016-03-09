@@ -6,6 +6,7 @@ export PostComposer from './Posts/PostComposer';
 export PostsHeader from './Posts/PostsHeader';
 export Posts from './Posts/Posts';
 //export CommentComposer from './Comments/CommentComposer';
+export CommentComposer from './Comments/CommentComposer';
 export Comments from './Comments/Comments';
 export SinglePost from './SinglePost/SinglePost';
 export User from './User/User';

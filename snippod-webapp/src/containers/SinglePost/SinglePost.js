@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 
+import $ from 'jquery';
 import { shortenString } from 'utils/handleString';
 
 import { showLoginDialog } from 'ducks/application/application';
@@ -12,7 +13,7 @@ import { fetchPost, deletePost } from 'ducks/posts/posts';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'react-router';
-import { Comments } from 'containers';
+import { Comments, CommentComposer } from 'containers';
 import { List, Post, ConfirmCheckModal } from 'components';
 
 const radiumStyles = require('theme/RadiumStyles');
@@ -24,6 +25,19 @@ const styles = {
 
   loader: {
     marginTop: '3rem'
+  },
+
+  zIndexUp: {
+    zIndex: 3
+  },
+
+  commentsCardContainer: {
+    top: '-24px',
+    margin: 'auto',
+    maxWidth: '490px',
+    width: '100%',
+    background: 'rgba(255, 255, 255, 0.8)',
+    padding: '1.2em 1em 2em 1em',
   }
 };
 
@@ -86,12 +100,12 @@ export default class SinglePost extends Component {
     this.onShowCheckModal = this.onShowCheckModal.bind(this);
     this.onCloseCheckModal = this.onCloseCheckModal.bind(this);
     this.onConfirmCheckModal = this.onConfirmCheckModal.bind(this);
-    this._loadPost = this._loadPost.bind(this);
+    this.loadPost = this.loadPost.bind(this);
     this.renderPost = this.renderPost.bind(this);
   }
 
   componentWillMount() {
-    this._loadPost(this.props.params.postId);
+    this.loadPost(this.props.params.postId);
   }
 
   onShowCheckModal(checkedPostId) {
@@ -113,7 +127,11 @@ export default class SinglePost extends Component {
     this.props.deletePost(deletePostId);
   }
 
-  _loadPost(postId) {
+  onFocusInput() {
+    $('input').focus();
+  }
+
+  loadPost(postId) {
     const loadPostPromise = this.props.fetchPost(postId);
     if (loadPostPromise) {
       this.setState({ isFetching: true });
@@ -133,16 +151,18 @@ export default class SinglePost extends Component {
 
     return (
       <Post key={post.id}
+            style={styles.zIndexUp}
             post={post}
             intl={intl}
             auth={auth}
             showLoginDialog={this.props.showLoginDialog}
-            showConfirmCheckModal={this.onShowCheckModal}/>
+            showConfirmCheckModal={this.onShowCheckModal}
+            onCommentsButton={this.onFocusInput}/>
     );
   }
 
   render() {
-    const { post, intl: { formatMessage } } = this.props;
+    const { post, auth, intl: { formatMessage } } = this.props;
     const { isFetching } = this.state;
 
     const postTitle = post && !post.deleted ? post.title : formatMessage(i18n.nothingHere);
@@ -162,15 +182,11 @@ export default class SinglePost extends Component {
 
     const postDom = post ? (
       <div>
-        <ReactCSSTransitionGroup
-          transitionName="list"
-          transitionAppear
-          transitionAppearTimeout={300}
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={200}>
-          {this.renderPost(post)}
-        </ReactCSSTransitionGroup>
-        <Comments post={post} />
+        {this.renderPost(post)}
+        <div className="comment-list ui card" style={styles.commentsCardContainer}>
+          <CommentComposer postId={post.id} auth={auth} style={styles.commentComposer} loadPost={this.loadPost}/>
+          <Comments post={post} />
+        </div>
         <ConfirmCheckModal key="singlepost-delete-confirm-check-modal"
                            id="singlepost-delete-confirm-check-modal"
                            showOn={this.state.showCheckModal}
@@ -185,7 +201,7 @@ export default class SinglePost extends Component {
     return (
       <div className="single-post ui text container main-container">
         <Helmet title={shortenString(postTitle, 17)}/>
-        {isEmpty || isFetching ? tempDom : postDom}
+        {isEmpty ? tempDom : postDom}
       </div>
     );
   }

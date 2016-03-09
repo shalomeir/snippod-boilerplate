@@ -1,8 +1,7 @@
-import { createValidator, required, minLength, maxLength, url } from 'utils/validation';
-import { postsForm } from 'constants/form';
+import { createValidator, required, minLength, maxLength } from 'utils/validation';
+import { commentsForm } from 'constants/form';
 
 const commentValidation = createValidator({
-  title: [required, minLength(postsForm.titleMinLength), maxLength(postsForm.titleMaxLength)],
-  link: [required, url]
+  content: [required, maxLength(commentsForm.commentMaxLength)],
 });
 export default commentValidation;

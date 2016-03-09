@@ -11,9 +11,10 @@ const styles = {
   },
 
   meLabel: {
-    zIndex: 2,
-    width: '6em',
-    textAlign: 'right'
+    right: 0,
+    top: 0,
+    position: 'absolute',
+    padding: '0.4em 1.5em'
   },
 
   meLabelContent: {
@@ -23,11 +24,7 @@ const styles = {
 
   meLabelHiddenContent: {
     textAlign: 'left',
-    marginLeft: '0.9em'
-  },
-
-  deleteIcon: {
-    marginRight: '1em'
+    marginLeft: '0.6em'
   },
 
   title: {
@@ -62,8 +59,16 @@ const styles = {
   },
 
   mainContent: {
-    paddingTop: '0.6em',
-    paddingBottom: '0.4em'
+    marginLeft: '2.4em'
+  },
+
+  authorName: {
+    fontSize: '1em',
+    color: 'rgba(0, 0, 0, 0.6)'
+  },
+
+  upvoteButton: {
+    cursor: 'pointer'
   },
 
   extraInfos: {

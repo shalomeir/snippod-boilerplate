@@ -41,6 +41,7 @@ export default class Post extends Component {
     auth: PropTypes.object.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
     showConfirmCheckModal: PropTypes.func.isRequired,
+    onCommentsButton: PropTypes.func,
 
     post: PropTypes.object.isRequired,
     className: PropTypes.string,
@@ -77,7 +78,7 @@ export default class Post extends Component {
   }
 
   render() {
-    const { post, intl: { formatMessage, locale } } = this.props;
+    const { post, intl: { formatMessage, locale }, style } = this.props;
     const postLink = getHostPathFromUrl(post.link);
 
     const meLabel = (
@@ -94,7 +95,7 @@ export default class Post extends Component {
     );
 
     return (
-      <div className="ui centered card" style={styles.card} key={post.id + 'card'}>
+      <div className="ui centered card" style={[styles.card, style]}>
         <Link className="content" to={'/post/' + post.id} style={styles.cardHeader}>
           {post.isAuthorMe ? meLabel : null}
           <div className="header" style={styles.title}>
@@ -124,7 +125,7 @@ export default class Post extends Component {
             onUpvoteClick={this.checkAndUpvotePost}
             onCancelUpvoteClick={this.checkAndCancelUpvotePost} />
           &nbsp;&nbsp;
-          <Link className="right floated comment-info" to={'/post/' + post.id}>
+          <Link className="right floated comment-info" to={'/post/' + post.id} onClick={this.props.onCommentsButton}>
             <i className="comment icon"></i>
             {formatMessage(i18n.comments, { commentCount: post.commentCount })}
           </Link>

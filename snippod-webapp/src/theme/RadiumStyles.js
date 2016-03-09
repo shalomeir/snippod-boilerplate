@@ -28,7 +28,21 @@ const radiumStyles = {
 
   center: {
     textAlign: 'center',
-    margin: 'auto'
+    marginTop: 'auto',
+    marginBottom: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  },
+
+  listMargin: {
+    marginTop: '0.5em',
+    marginBottom: '0.5em'
+  },
+
+  fullWidth: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '100% !important'
   }
 
 };

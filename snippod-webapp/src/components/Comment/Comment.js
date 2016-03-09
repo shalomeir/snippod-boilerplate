@@ -20,7 +20,7 @@ import { upvoteComment, cancelUpvoteComment } from 'ducks/posts/comments';
 const styles = require('./CommentStyles');
 
 const i18n = defineMessages({
-  deletePost: {
+  deleteComment: {
     id: 'comp.comment.deleteComment',
     defaultMessage: 'delete'
   },
@@ -75,34 +75,36 @@ export default class Comment extends Component {
   render() {
     const { comment, intl: { formatMessage, locale } } = this.props;
 
-    //const meLabel = (
-    //  <div className="ui top right attached animated fade button label" type="button"
-    //       onClick={this.deletePost} style={styles.meLabel}>
-    //    <span className="visible content" style={styles.meLabelContent}>
-    //      Me
-    //    </span>
-    //    <span className="hidden content" style={styles.meLabelHiddenContent}>
-    //      {formatMessage(i18n.deletePost)}
-    //    </span>
-    //    <i className="delete icon" style={styles.deleteIcon} />
-    //  </div>
-    //);
+    const meLabel = (
+      <div className="ui animated fade tiny compact basic button" type="button"
+           onClick={this.deleteComment} style={styles.meLabel}>
+        <span className="visible content" style={styles.meLabelContent}>
+          Me
+        </span>
+        <span className="hidden content" style={styles.meLabelHiddenContent}>
+          {formatMessage(i18n.deleteComment)}
+        </span>
+        <i className="delete icon"/>
+      </div>
+    );
 
     return (
       <div className="comment">
-        <Link className="user" to={'/user/' + comment.author.id}>
+        <Link className="avatar" to={'/user/' + comment.author.id}>
           <i className="user icon" />
         </Link>
-        <div className="content">
-          <a className="author">{comment.author.username}</a>
+        <div className="content" style={styles.mainContent}>
+          <Link to={'/user/' + comment.author.id} className="author" style={styles.authorName}>{comment.author.username}</Link>
           <div className="metadata">
             <div className="meta date" style={styles.meta}>
               {moment(comment.createdAt).locale(locale).fromNow()}
             </div>
             <UpvoteButton
+              style={styles.upvoteButton}
               node={comment}
               onUpvoteClick={this.checkAndUpvoteComment}
               onCancelUpvoteClick={this.checkAndCancelUpvoteComment} />
+            {comment.isAuthorMe ? meLabel : null}
           </div>
           <div className="text">
             {shortenString(comment.content, 100)}

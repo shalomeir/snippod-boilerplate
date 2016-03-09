@@ -61,6 +61,16 @@ const toastMessages = defineMessages({
     defaultMessage: '\'{postTitle}\' is deleted.' //empty
   },
 
+  //in containers/Comments/CommentComposer
+  submitCommentTitle: {
+    id: 'toast.submitCommentTitle',
+    defaultMessage: 'Comment added'
+  },
+  submitCommentBody: {
+    id: 'toast.submitCommentBody',
+    defaultMessage: 'Your reply is added.' //empty
+  },
+
   //in ducks/posts/posts
   deleteCommentTitle: {
     id: 'toast.deleteCommentTitle',

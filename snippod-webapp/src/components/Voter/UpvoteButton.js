@@ -5,6 +5,7 @@ import { createSelector } from 'reselect';
 import { throttle } from 'lodash-decorators';
 import classNames from 'classnames';
 
+@Radium
 export default class UpvoteButton extends Component {
   static propTypes = {
     node: PropTypes.object.isRequired,
@@ -60,11 +61,11 @@ export default class UpvoteButton extends Component {
   }
 
   render() {
-    const { node } = this.props;
+    const { node, style } = this.props;
     const { isVoting } = this.state;
     const iconName = isVoting ? 'spinner loading blue active' : 'arrow up';
     return (
-      <span className="upvote upvote-info" onClick={this._onClick} disabled={isVoting}>
+      <span className="upvote upvote-info" onClick={this._onClick} disabled={isVoting} style={style}>
         <i className={classNames('icon', iconName, { 'active': node.isUpvotedMe })} />
         {node.upvoteCount}
       </span>

@@ -15,6 +15,10 @@ const styles = {
 
   loader: {
     marginTop: '3rem'
+  },
+
+  nothingText: {
+    marginTop: '2em'
   }
 
 };
@@ -65,7 +69,7 @@ export default class List extends Component {
 
     const isLastPage = !nextPageUrl && !isFetching;
     if (isEmpty && isLastPage) {
-      return <h3 style={radiumStyles.center}><i className="frown icon" />{nothingText ? nothingText : formatMessage(i18n.nothing)}</h3>;
+      return <h3 style={[radiumStyles.center, styles.nothingText]}><i className="frown icon" />{nothingText ? nothingText : formatMessage(i18n.nothing)}</h3>;
     }
 
     const noMoreItems = (
@@ -76,7 +80,7 @@ export default class List extends Component {
 
     const loadMoreButton = (
       <div className="ui center aligned container">
-        <button className={classNames('ui basic blue button', { 'loading': isFetching })} style={[{ fontSize: '130%' }, style]}
+        <button className={classNames('ui basic blue button', { 'loading': isFetching })} style={[{ fontSize: '120%' }, style]}
                 onClick={onLoadMoreClick}>{formatMessage(i18n.loadMoreButton)}</button>
       </div>
     );
@@ -90,9 +94,9 @@ export default class List extends Component {
           component="div"
           transitionName="list"
           transitionAppear
-          transitionAppearTimeout={3000}
-          transitionEnterTimeout={3000}
-          transitionLeaveTimeout={2000}>
+          transitionAppearTimeout={300}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
           {items.map(renderItem)}
         </ReactCSSTransitionGroup>
         {!isEmpty && !isLastPage ? loadMoreButton : null}
