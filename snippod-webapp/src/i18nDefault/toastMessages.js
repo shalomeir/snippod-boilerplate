@@ -51,6 +51,26 @@ const toastMessages = defineMessages({
     defaultMessage: '\'{postTitle}\' is posted.' //empty
   },
 
+  //in ducks/posts/posts
+  deletePostTitle: {
+    id: 'toast.deletePostTitle',
+    defaultMessage: 'Post Deleted'
+  },
+  deletePostBody: {
+    id: 'toast.deletePostBody',
+    defaultMessage: '\'{postTitle}\' is deleted.' //empty
+  },
+
+  //in ducks/posts/posts
+  deleteCommentTitle: {
+    id: 'toast.deleteCommentTitle',
+    defaultMessage: 'Comment Deleted'
+  },
+  deleteCommentBody: {
+    id: 'toast.deleteCommentBody',
+    defaultMessage: 'A comment is deleted.' //empty
+  },
+
 });
 
 export default toastMessages;

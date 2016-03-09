@@ -57,7 +57,7 @@ const styles = require('./PostComposerStyles');
 })
 @injectIntl
 @Radium
-export default class PostComposer extends Component {
+export default class CommentComposer extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,

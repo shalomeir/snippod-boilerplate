@@ -84,7 +84,7 @@ export default class SideBar extends Component {
 
     const recommendLogin = (
       <div className="item ui center aligned container">
-        <button className="ui green basic button" style={ styles.button }
+        <button className="ui green basic button"
                 onClick={this.props.showLoginDialog}>
           {formatMessage(i18n.loginButton)}
         </button>

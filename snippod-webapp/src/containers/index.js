@@ -5,6 +5,8 @@ export Home from './Home/Home';
 export PostComposer from './Posts/PostComposer';
 export PostsHeader from './Posts/PostsHeader';
 export Posts from './Posts/Posts';
+//export CommentComposer from './Comments/CommentComposer';
+export Comments from './Comments/Comments';
 export SinglePost from './SinglePost/SinglePost';
 export User from './User/User';
 export Setting from './Setting/Setting';

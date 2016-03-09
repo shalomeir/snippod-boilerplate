@@ -33,6 +33,15 @@ export default {
   "postComposer.linkPlaceHolder": "URL을 입력하거나 붙여넣으세요",
   "postComposer.button": "포스트",
 
+  "posts.confirmCheckModalHeader": "포스트 지우기",
+  "posts.confirmCheckModalDescription": "선택한 포스트를 삭제할까요?",
+
+  "comments.confirmCheckModalHeader": "댓글 지우기",
+  "comments.confirmCheckModalDescription": "선택한 댓글을 삭제할까요?",
+  "comments.commentsIsNone": "댓글이 아직 없어요. 첫 댓글을 달아주시겠어요?",
+
+  "singlePost.nothingHere": "포스트 비었음",
+
   //Component
   "comp.authButtons.loginButton": "로그인",
   "comp.authButtons.registerButton": "가입",
@@ -41,8 +50,12 @@ export default {
   "comp.postsSortingDropdown.upvotes": "올려요순",
   "comp.postsSortingDropdown.comments": "댓글순",
   "comp.post.comments": "{commentCount, plural, =0 {댓글 없음} other {# 댓글}}",
+  "comp.post.deletePost": "지우기",
+  "comp.comment.deleteComment": "지우기",
   "comp.list.loadMoreButton": "로드하기",
   "comp.list.nothing": "여긴 보여드릴게 없어요.",
+  "comp.confirmCheckModal.no": "아니요",
+  "comp.confirmCheckModal.yes": "예",
 
   //Layout
   "layout.navBar.settingButton": "셋팅",
@@ -82,5 +95,11 @@ export default {
 
   "toast.submitPostTitle": "포스팅 성공",
   "toast.submitPostBody": "\'{postTitle}\' 포스트가 올라갔어요.",
+
+  "toast.deletePostTitle": "포스트 삭제",
+  "toast.deletePostBody": "\'{postTitle}\' 포스트가 삭제되었어요.",
+
+  "toast.deleteCommentTitle": "댓글 삭제",
+  "toast.deleteCommentBody": "댓글이 삭제되었어요.",
 
 };

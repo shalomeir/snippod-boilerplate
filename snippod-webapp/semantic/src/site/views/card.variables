@@ -9,7 +9,7 @@
 @actionHoverOpacity: 1;
 @actionTransition: color @defaultDuration @defaultEasing;
 
-@upvoteColor: #0c6cff;
-@upvoteActiveColor: #217eff;
+@upvoteColor: #4e8fff;
+@upvoteActiveColor: #0066ff;
 
 @commentColor: rgba(0, 0, 0, 0.78);

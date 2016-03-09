@@ -5,9 +5,10 @@ import classNames from 'classnames';
 import Radium from 'radium';
 import { injectIntl, intlShape, defineMessages } from 'react-intl';
 
+const radiumStyles = require('theme/RadiumStyles');
 
 const styles = {
-  cards: {
+  listItems: {
     marginTop: '1em',
     marginBottom: '0.8em'
   },
@@ -41,7 +42,9 @@ export default class List extends Component {
     isFetching: PropTypes.bool.isRequired,
     onLoadMoreClick: PropTypes.func.isRequired,
     nextPageUrl: PropTypes.string,
-    style: PropTypes.object
+    style: PropTypes.object,
+    className: PropTypes.string,
+    nothingText: PropTypes.string
   };
 
   static defaultProps = {
@@ -52,7 +55,7 @@ export default class List extends Component {
 
     const {
       isFetching, nextPageUrl, pageCount, onLoadMoreClick,
-      items, renderItem, style, intl: { formatMessage }
+      items, renderItem, style, intl: { formatMessage }, className, nothingText
     } = this.props;
 
     const isEmpty = items.length === 0;
@@ -62,7 +65,7 @@ export default class List extends Component {
 
     const isLastPage = !nextPageUrl && !isFetching;
     if (isEmpty && isLastPage) {
-      return <h3><i className="frown icon">{formatMessage(i18n.nothing)}</i></h3>;
+      return <h3 style={radiumStyles.center}><i className="frown icon" />{nothingText ? nothingText : formatMessage(i18n.nothing)}</h3>;
     }
 
     const noMoreItems = (
@@ -80,16 +83,17 @@ export default class List extends Component {
 
     //Fixme: transitionEnter and transitionLeave is not working.
     return (
-      <div className="list" style={[style]}>
+      <div className="list-component" style={[style]}>
         <ReactCSSTransitionGroup
+          className={classNames('ui', className)}
+          style={styles.listItems}
+          component="div"
           transitionName="list"
           transitionAppear
-          transitionAppearTimeout={300}
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={200}>
-          <div className="ui one cards" style={styles.cards} key="cards">
-            {items.map(renderItem)}
-          </div>
+          transitionAppearTimeout={3000}
+          transitionEnterTimeout={3000}
+          transitionLeaveTimeout={2000}>
+          {items.map(renderItem)}
         </ReactCSSTransitionGroup>
         {!isEmpty && !isLastPage ? loadMoreButton : null}
         {isLastPage ? noMoreItems : null}

@@ -28,12 +28,10 @@ export default class UpvoteButton extends Component {
     return new Promise((resolve, reject) => {
       this.props.onUpvoteClick(this.props.node.id)
         .then((response) => {
-          console.log('upvote succedd');
-          console.log(response);
           this.setState({ isVoting: false });
         }).catch((error) => {
-          console.log(error);
           this.setState({ isVoting: false });
+          reject(error);
         });
     });
   }
@@ -44,8 +42,6 @@ export default class UpvoteButton extends Component {
     return new Promise((resolve, reject) => {
       this.props.onCancelUpvoteClick(this.props.node.id)
         .then((response) => {
-          console.log('Cancel upvote succedd');
-          console.log(response);
           this.setState({ isVoting: false });
         }).catch((error) => {
           this.setState({ isVoting: false });
@@ -65,10 +61,11 @@ export default class UpvoteButton extends Component {
 
   render() {
     const { node } = this.props;
-
+    const { isVoting } = this.state;
+    const iconName = isVoting ? 'spinner loading blue active' : 'arrow up';
     return (
-      <span className="upvote upvote-info" onClick={this._onClick}>
-        <i className="arrow up icon" />
+      <span className="upvote upvote-info" onClick={this._onClick} disabled={isVoting}>
+        <i className={classNames('icon', iconName, { 'active': node.isUpvotedMe })} />
         {node.upvoteCount}
       </span>
     );

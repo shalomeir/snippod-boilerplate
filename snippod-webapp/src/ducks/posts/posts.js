@@ -1,4 +1,5 @@
 const debug = require('utils/getDebugger')('posts');
+import { updateEntity } from 'ducks/globalActions';
 import { switchLangAndDeleteLanguageQuery, reloadPage } from 'ducks/application/application';
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
@@ -19,7 +20,7 @@ export const POST_ARRAY = [
 
 // Fetches a single repository from REST API.
 // Relies on the custom API middleware defined in ../middleware/clientMiddleware and helpers/ApiClient.js.
-function fetchPost(postId) {
+export function fetchPost(postId) {
   return {
     types: POST_ARRAY,
     promise: (client) => client.get('/posts/' + postId + '/', {
@@ -64,6 +65,45 @@ export function submitPost(submitPostForm) {
       },
       schema: Schemas.POST
     })
+  };
+}
+
+
+/********************************
+          delete post
+ ********************************/
+const DELETE_POST_REQUEST = 'posts/posts/DELETE_POST_REQUEST';
+const DELETE_POST_SUCCESS = 'posts/posts/DELETE_POST_SUCCESS';
+const DELETE_POST_FAILURE = 'posts/posts/DELETE_POST_FAILURE';
+
+export const DELETE_POST_ARRAY = [
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE
+];
+
+function fetchDeletePost(postId) {
+  return {
+    types: DELETE_POST_ARRAY,
+    promise: (client) => client.del('/posts/' + postId + '/')
+  };
+}
+
+// Relies on Redux Thunk middleware.
+export function deletePost(postId) {
+  return (dispatch, getState) => {
+    dispatch(fetchDeletePost(postId))
+      .then(() => {
+        const deletedPost = getState().entities.posts[postId];
+        deletedPost.deleted = true;
+        dispatch(updateEntity('posts', postId, deletedPost));
+        dispatch(showDelayedToastMessage({
+          type: 'info',
+          title: toastMessages.deletePostTitle,
+          body: Object.assign(toastMessages.deletePostBody, { values: { postTitle: deletedPost.title } })
+        }, 30));
+      })
+    ;
   };
 }
 

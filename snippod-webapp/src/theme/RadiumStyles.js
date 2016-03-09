@@ -24,6 +24,11 @@ const radiumStyles = {
     ['@media (max-width: ' + semanticVar['@tabletLesspoint'] + ')']: {
       padding: '1.5em'
     }
+  },
+
+  center: {
+    textAlign: 'center',
+    margin: 'auto'
   }
 
 };

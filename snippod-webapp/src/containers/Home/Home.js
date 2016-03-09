@@ -73,7 +73,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { auth, location: { query } } = this.props;
+    const { auth } = this.props;
 
     return (
       <div className="home ui text container main-container">

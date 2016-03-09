@@ -98,9 +98,7 @@ export default class RegisterDialog extends Component {
     $('.ui.register.modal')
       .modal({
         detachable: false,
-        onHidden: () => {
-          this._closeDialog();
-        }
+        onHidden: this._closeDialog
       })
       .modal('show');
   }

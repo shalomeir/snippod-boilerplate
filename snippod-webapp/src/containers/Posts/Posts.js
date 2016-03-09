@@ -5,15 +5,21 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 import { showLoginDialog, showRegisterDialog, redirectReplacePath } from 'ducks/application/application';
-import { loadPostsBySortingOption } from 'ducks/posts/posts';
+import { loadPostsBySortingOption, deletePost } from 'ducks/posts/posts';
 
-import { List, Post } from 'components';
+import { List, Post, ConfirmCheckModal } from 'components';
 
 const i18n = defineMessages({
-  loginMessageHeader: {
-    id: 'ground.login.messageHeader',
-    defaultMessage: 'Log-in'
+  confirmCheckModalHeader: {
+    id: 'posts.confirmCheckModalHeader',
+    defaultMessage: 'Delete Post'
   },
+
+  confirmCheckModalDescription: {
+    id: 'posts.confirmCheckModalDescription',
+    defaultMessage: 'Are you sure you want to delete this post?'
+  },
+
 });
 
 const styles = {
@@ -24,7 +30,10 @@ const styles = {
 
   postsList: {
     margin: 'auto'
-  }
+  },
+
+  confirmIcon: {
+  },
 
 };
 
@@ -46,7 +55,7 @@ const mapStateToProps = createSelector([
 
 @connect(
   mapStateToProps,
-  { loadPostsBySortingOption, showLoginDialog }
+  { loadPostsBySortingOption, deletePost, showLoginDialog }
 )
 @injectIntl
 @Radium
@@ -61,10 +70,15 @@ export default class Posts extends Component {
     postsBySortingOptionPagination: PropTypes.object.isRequired,
     postsBySortingOptionList: PropTypes.array.isRequired,
     loadPostsBySortingOption: PropTypes.func.isRequired,
+    deletePost: PropTypes.func.isRequired,
   };
 
   constructor() {
     super();
+    this.state = { showCheckModal: false };
+    this.onShowCheckModal = this.onShowCheckModal.bind(this);
+    this.onCloseCheckModal = this.onCloseCheckModal.bind(this);
+    this.onConfirmCheckModal = this.onConfirmCheckModal.bind(this);
     this._loadPostsBySortingOption = this._loadPostsBySortingOption.bind(this);
     this._handleLoadMoreClick = this._handleLoadMoreClick.bind(this);
     this.renderPost = this.renderPost.bind(this);
@@ -77,12 +91,30 @@ export default class Posts extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.sortingOption !== nextProps.sortingOption) {
       this._loadPostsBySortingOption(nextProps.sortingOption);
-    }
-    if (!nextProps.postsBySortingOptionPagination.isFetching &&
+    } else if (!nextProps.postsBySortingOptionPagination.isFetching &&
       this.props.postsBySortingOptionPagination !== nextProps.postsBySortingOptionPagination &&
       !nextProps.postsBySortingOptionPagination.pageCount) {
       this._loadPostsBySortingOption(nextProps.sortingOption);
     }
+  }
+
+  onShowCheckModal(checkedPostId) {
+    this.setState({
+      showCheckModal: true,
+      checkedPostId
+    });
+  }
+
+  onCloseCheckModal() {
+    this.setState({
+      showCheckModal: false,
+      checkedPostId: null
+    });
+  }
+
+  onConfirmCheckModal() {
+    const deletePostId = this.state.checkedPostId;
+    this.props.deletePost(deletePostId);
   }
 
   _loadPostsBySortingOption(sortingOption, nextPage) {
@@ -95,30 +127,42 @@ export default class Posts extends Component {
 
   renderPost(post) {
     const { intl, auth } = this.props;
+    if (post.deleted) return null;
 
     return (
-      <Post key={post.id}
+      <Post key={post.id + 'post'}
             post={post}
             intl={intl}
             auth={auth}
-            showLoginDialog={this.props.showLoginDialog}/>
+            showLoginDialog={this.props.showLoginDialog}
+            showConfirmCheckModal={this.onShowCheckModal}/>
     );
   }
 
   render() {
-    const { sortingOption,
-      postsBySortingOptionPagination, postsBySortingOptionList } = this.props;
+    const { sortingOption, postsBySortingOptionPagination, postsBySortingOptionList,
+      intl: { formatMessage } } = this.props;
+
+    const confirmCheckModalIconCom = (
+      <i className="remove circle outline icon" style={styles.confirmIcon} />
+    );
 
     return (
       <div className="posts ui container">
-        <div>
-          <List key={sortingOption}
-                renderItem={this.renderPost}
-                items={postsBySortingOptionList}
-                onLoadMoreClick={this._handleLoadMoreClick}
-                loadingLabel={`Loading posts...`}
-                {...postsBySortingOptionPagination} />
-        </div>
+        <List key={sortingOption}
+              className="one cards"
+              renderItem={this.renderPost}
+              items={postsBySortingOptionList}
+              onLoadMoreClick={this._handleLoadMoreClick}
+              {...postsBySortingOptionPagination} />
+        <ConfirmCheckModal key="posts-post-delete-confirm-check-modal"
+                           id="posts-post-delete-confirm-check-modal"
+                           showOn={this.state.showCheckModal}
+                           header={formatMessage(i18n.confirmCheckModalHeader)}
+                           description={formatMessage(i18n.confirmCheckModalDescription)}
+                           iconDom={confirmCheckModalIconCom}
+                           onClose={this.onCloseCheckModal}
+                           onConfirm={this.onConfirmCheckModal}/>
       </div>
     );
   }

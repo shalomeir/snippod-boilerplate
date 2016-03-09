@@ -82,9 +82,7 @@ export default class LoginDialog extends Component {
     $('.ui.login.modal')
       .modal({
         detachable: false,
-        onHidden: () => {
-          this._closeDialog();
-        }
+        onHidden: this._closeDialog
       })
       .modal('show');
   }
