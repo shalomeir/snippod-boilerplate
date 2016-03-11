@@ -110,7 +110,13 @@ export default class App extends Component {
       // save the old children
       this.previousChildren = this.props.children;
       this.setState({ isShowModal: true });
-      this.props.showPopupModal(this.props.location);
+      const { location } = this.props;
+      const returnTo = {
+        pathname: location.pathname,
+        query: location.query,
+        state: location.state
+      };
+      this.props.showPopupModal(returnTo);
     }
 
     if (this.state.isShowModal &&

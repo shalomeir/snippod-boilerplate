@@ -1,9 +1,8 @@
 const debug = require('utils/getDebugger')('comments');
 import { updateEntity } from 'ducks/globalActions';
-import { switchLangAndDeleteLanguageQuery, reloadPage } from 'ducks/application/application';
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
-import Schemas from './Schemas';
+import Schemas from 'ducks/Schemas';
 
 /********************************
           get comment

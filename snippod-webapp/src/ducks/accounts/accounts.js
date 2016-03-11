@@ -1,20 +1,20 @@
-const debug = require('utils/getDebugger')('posts');
+const debug = require('utils/getDebugger')('accounts');
 import { updateEntity } from 'ducks/globalActions';
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
 import Schemas from 'ducks/Schemas';
 
 /********************************
-            get post
+            get account
  ********************************/
-const POST_REQUEST = 'posts/posts/POST_REQUEST';
-const POST_SUCCESS = 'posts/posts/POST_SUCCESS';
-const POST_FAILURE = 'posts/posts/POST_FAILURE';
+const ACCOUNT_REQUEST = 'accounts/accounts/ACCOUNT_REQUEST';
+const ACCOUNT_SUCCESS = 'accounts/accounts/ACCOUNT_SUCCESS';
+const ACCOUNT_FAILURE = 'accounts/accounts/ACCOUNT_FAILURE';
 
-export const POST_ARRAY = [
-  POST_REQUEST,
-  POST_SUCCESS,
-  POST_FAILURE
+export const ACCOUNT_ARRAY = [
+  ACCOUNT_REQUEST,
+  ACCOUNT_SUCCESS,
+  ACCOUNT_FAILURE
 ];
 
 // Fetches a single repository from REST API.
