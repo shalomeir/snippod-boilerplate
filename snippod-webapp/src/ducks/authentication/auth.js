@@ -2,6 +2,7 @@ const debug = require('utils/getDebugger')('auth');
 import { switchLangAndDeleteLanguageQuery, reloadPage } from 'ducks/application/application';
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
+import Schemas from 'ducks/Schemas';
 
 const LOAD = 'authentication/auth/LOAD';
 const LOAD_SUCCESS = 'authentication/auth/LOAD_SUCCESS';
@@ -51,7 +52,7 @@ export default function reducer(state = initialState, action = {}) {
           ...state,
           loggedIn: true,
           loaded: true,
-          account: action.response.account,
+          account: action.response.entities.accounts[action.response.result],
         };
       }
       return {
@@ -73,7 +74,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loggedIn: true,
-        account: action.response.account
+        account: action.response.entities.accounts[action.response.result]
       };
     case LOGIN_FAIL:
       return {
@@ -101,7 +102,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loggedIn: true,
-        account: action.response.account
+        account: action.response.entities.accounts[action.response.result]
       };
     case REGISTER_FAIL:
       return {
@@ -116,7 +117,7 @@ export default function reducer(state = initialState, action = {}) {
     case UPDATE_ACCOUNT_SETTINGS_SUCCESS:
       return {
         ...state,
-        account: action.response.account,
+        account: action.response.entities.accounts[action.response.result],
       };
     case UPDATE_ACCOUNT_SETTINGS_FAIL:
       return {
@@ -139,7 +140,9 @@ export function isLoaded(globalState) {
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/auth/load_auth/')
+    promise: (client) => client.get('/auth/load_auth/', {
+      schema: Schemas.MY_ACCOUNT
+    })
   };
 }
 
@@ -154,7 +157,8 @@ export function login(loginForm) {
         },
         params: {
           language: getState().application.lang
-        }
+        },
+        schema: Schemas.MY_ACCOUNT
       })
     });
   };
@@ -167,11 +171,12 @@ export function loginAndFollow(loginForm) {
     dispatch(
       login(loginForm)
     ).then((response) => {
-      dispatch(switchLangAndDeleteLanguageQuery(response.account.language.split('-')[0]));
+      const account = response.entities.accounts[response.result];
+      dispatch(switchLangAndDeleteLanguageQuery(account.language.split('-')[0]));
       dispatch(showDelayedToastMessage({
         type: 'info',
         title: toastMessages.loginTitle,
-        body: Object.assign(toastMessages.loginBody, { values: { username: response.account.username } })
+        body: Object.assign(toastMessages.loginBody, { values: { username: account.username } })
       }, 500));
       return response;
     }).catch((error) => {
@@ -220,7 +225,8 @@ export function register(registerForm) {
         },
         params: {
           language: getState().application.lang
-        }
+        },
+        schema: Schemas.MY_ACCOUNT
       })
     });
   };
@@ -232,7 +238,8 @@ export function updateAccountSettings(account) {
     promise: (client) => client.patch('/accounts/' + account.id, {
       data: {
         account
-      }
+      },
+      schema: Schemas.MY_ACCOUNT
     })
   };
 }

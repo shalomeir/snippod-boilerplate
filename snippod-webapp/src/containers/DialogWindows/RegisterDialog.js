@@ -183,11 +183,12 @@ export default class RegisterDialog extends Component {
       dispatch(
         register(values)
       ).then((response) => {
-        dispatch(switchLangAndDeleteLanguageQuery(response.account.language.split('-')[0]));
+        const account = response.entities.accounts[response.result];
+        dispatch(switchLangAndDeleteLanguageQuery(account.language.split('-')[0]));
         dispatch(showDelayedToastMessage({
           type: 'info',
           title: toastMessages.registerTitle,
-          body: Object.assign(toastMessages.registerBody, { values: { username: response.account.username } })
+          body: Object.assign(toastMessages.registerBody, { values: { username: account.username } })
         }, 300));
         this.props.redirectReplacePath();
         this.props.reloadPage();
@@ -230,7 +231,7 @@ export default class RegisterDialog extends Component {
               <label><FormattedMessage {...i18n.emailId} /></label>
               <div className="ui left icon email input">
                 <i className="user icon" />
-                <input type="text" name="email" placeholder="E-mail address" ref="emailId" {...emailId} />
+                <input type="email" name="emailId" placeholder="E-mail address" ref="emailId" {...emailId} />
               </div>
               <div className="ui email pointing red basic small label transition hidden" style={styles.errorText}>
                 { errors.emailId && errors.emailId.id ? <FormattedMessage {...errors.emailId} /> : errors.emailId ? errors.emailId : null}

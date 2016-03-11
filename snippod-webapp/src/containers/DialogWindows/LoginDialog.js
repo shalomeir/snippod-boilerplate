@@ -148,12 +148,13 @@ export default class LoginDialog extends Component {
       dispatch(
         login(values)
       ).then((response) => {
+        const account = response.entities.accounts[response.result];
         this.props.reloadPage();
-        dispatch(switchLangAndDeleteLanguageQuery(response.account.language.split('-')[0]));
+        dispatch(switchLangAndDeleteLanguageQuery(account.language.split('-')[0]));
         dispatch(showDelayedToastMessage({
           type: 'info',
           title: toastMessages.loginTitle,
-          body: Object.assign(toastMessages.loginBody, { values: { username: response.account.username } })
+          body: Object.assign(toastMessages.loginBody, { values: { username: account.username } })
         }, 300));
         this.props.redirectReplacePath();
         resolve(response);
@@ -188,7 +189,7 @@ export default class LoginDialog extends Component {
             <div className={classNames('field', { 'error': (emailId.invalid && changed) })}>
               <div className="ui left icon email input">
                 <i className="user icon" />
-                <input type="text" name="email" placeholder="E-mail address" ref="emailId" {...emailId} />
+                <input type="email" name="emailId" placeholder="E-mail address" ref="emailId" {...emailId} />
               </div>
               <div className="ui email pointing red basic small label transition hidden" style={styles.errorText}>
                 {errors.emailId ? <FormattedMessage {...errors.emailId} /> : null}

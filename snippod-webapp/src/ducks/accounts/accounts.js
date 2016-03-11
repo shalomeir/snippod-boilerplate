@@ -19,25 +19,25 @@ export const ACCOUNT_ARRAY = [
 
 // Fetches a single repository from REST API.
 // Relies on the custom API middleware defined in ../middleware/clientMiddleware and helpers/ApiClient.js.
-export function fetchPost(postId) {
+export function fetchAccount(accountId) {
   return {
-    types: POST_ARRAY,
-    promise: (client) => client.get('/posts/' + postId + '/', {
-      schema: Schemas.POST
+    types: ACCOUNT_ARRAY,
+    promise: (client) => client.get('/accounts/' + accountId + '/', {
+      schema: Schemas.ACCOUNT
     })
   };
 }
 
 // Fetches a single post from REST API unless it is cached.
 // Relies on Redux Thunk middleware.
-export function loadPost(postId, requiredFields = []) {
+export function loadAccount(accountId, requiredFields = []) {
   return (dispatch, getState) => {
     const post = getState().entities.posts[postId];
     if (post && requiredFields.every(key => post.hasOwnProperty(key))) {
       return null;
     }
 
-    return dispatch(fetchPost(postId));
+    return dispatch(fetchAccount(accountId));
   };
 }
 

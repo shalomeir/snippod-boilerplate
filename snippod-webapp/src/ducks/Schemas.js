@@ -12,6 +12,13 @@ const postSchema = new Schema('posts');
 const commentSchema = new Schema('comments');
 const accountSchema = new Schema('accounts');
 
+function generateMyAccountSlug(entity) { return entity.account.id; }
+const myAccountSchema = new Schema('myAccount', { idAttribute: generateMyAccountSlug });
+
+myAccountSchema.define({
+  account: accountSchema,
+});
+
 // This is not used because that almost author information is used with post
 //postSchema.define({
 //  author: accountSchema
@@ -26,7 +33,8 @@ const Schemas = {
   POST_ARRAY: arrayOf(postSchema),
   COMMENT: commentSchema,
   COMMENT_ARRAY: arrayOf(commentSchema),
-  ACCOUNT: accountSchema
+  ACCOUNT: accountSchema,
+  MY_ACCOUNT: myAccountSchema,
 };
 
 export default Schemas;
