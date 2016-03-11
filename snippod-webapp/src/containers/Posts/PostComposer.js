@@ -103,13 +103,13 @@ export default class PostComposer extends Component {
 
   componentDidUpdate(prevProps) {
     //Show up general error message
-    if (!prevProps.error && this.props.error && !$('.ui.general.error.message').transition('is visible')) {
-      $('.ui.general.error.message')
+    if (!prevProps.error && this.props.error && !$('#post-composer-general-error-message').transition('is visible')) {
+      $('#post-composer-general-error-message')
         .transition('fade up');
     }
     //Hide general error message
     if (!_.isEqual(prevProps.values, this.props.values) && this.props.error) {
-      $('.ui.general.error.message')
+      $('#post-composer-general-error-message')
         .transition({
           animation: 'fade up',
           onHide: () => {
@@ -238,7 +238,8 @@ export default class PostComposer extends Component {
               <FormattedMessage {...i18n.button} />
             </button>
           </div>
-          <div className="ui general error message hidden" style={styles.errorText}>
+          <div id="post-composer-general-error-message"
+               className="ui general error message hidden" style={styles.errorText}>
             {error}
           </div>
         </form>

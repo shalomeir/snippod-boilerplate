@@ -14,7 +14,10 @@ const styles = {
     right: 0,
     top: 0,
     position: 'absolute',
-    padding: '0.4em 1.5em'
+    padding: '0.4em 1.5em',
+    ['@media (max-width: ' + semanticVar['@largeMobileLesspoint'] + ')']: {
+      top: '2em',
+    },
   },
 
   meLabelContent: {

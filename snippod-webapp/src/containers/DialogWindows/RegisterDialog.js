@@ -117,13 +117,13 @@ export default class RegisterDialog extends Component {
 
   componentDidUpdate(prevProps) {
     //Show up general error message
-    if (!prevProps.error && this.props.error && !$('.ui.general.error.message').transition('is visible')) {
-      $('.ui.general.error.message')
+    if (!prevProps.error && this.props.error && !$('#register-general-error-message').transition('is visible')) {
+      $('#register-general-error-message')
         .transition('fade up');
     }
     //Hide general error message
     if (!_.isEqual(prevProps.values, this.props.values) && this.props.error) {
-      $('.ui.general.error.message')
+      $('#register-general-error-message')
         .transition({
           animation: 'fade up',
           onHide: () => {this.props.initializeForm();},
@@ -271,7 +271,7 @@ export default class RegisterDialog extends Component {
               <FormattedMessage {...i18n.button} />
             </button>
           </div>
-          <div className="ui general error message hidden" style={styles.errorText}>
+          <div id="register-general-error-message" className="ui general error message hidden" style={styles.errorText}>
             {error}
           </div>
         </form>

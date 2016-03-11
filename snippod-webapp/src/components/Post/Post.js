@@ -42,6 +42,7 @@ export default class Post extends Component {
     showLoginDialog: PropTypes.func.isRequired,
     showConfirmCheckModal: PropTypes.func.isRequired,
     onCommentsButton: PropTypes.func,
+    disabledSelfLink: PropTypes.bool,
 
     post: PropTypes.object.isRequired,
     className: PropTypes.string,
@@ -78,7 +79,7 @@ export default class Post extends Component {
   }
 
   render() {
-    const { post, intl: { formatMessage, locale }, style } = this.props;
+    const { post, intl: { formatMessage, locale }, style, disabledSelfLink } = this.props;
     const postLink = getHostPathFromUrl(post.link);
 
     const meLabel = (
@@ -94,9 +95,14 @@ export default class Post extends Component {
       </div>
     );
 
+    const singlePostLocation = {
+      pathname: '/post/' + post.id,
+      state: { modal: true }
+    };
+
     return (
       <div className="ui centered card" style={[styles.card, style]}>
-        <Link className="content" to={'/post/' + post.id} style={styles.cardHeader}>
+        <Link className="content" to={singlePostLocation} style={styles.cardHeader} disabled={disabledSelfLink}>
           {post.isAuthorMe ? meLabel : null}
           <div className="header" style={styles.title}>
             {shortenString(post.title, 44)}
@@ -125,8 +131,9 @@ export default class Post extends Component {
             onUpvoteClick={this.checkAndUpvotePost}
             onCancelUpvoteClick={this.checkAndCancelUpvotePost} />
           &nbsp;&nbsp;
-          <Link className="right floated comment-info" to={'/post/' + post.id} onClick={this.props.onCommentsButton}>
-            <i className="comment icon"></i>
+          <Link className="right floated comment-info" to={singlePostLocation}
+                onClick={this.props.onCommentsButton} disabled={disabledSelfLink}>
+            <i className="comment icon" />
             {formatMessage(i18n.comments, { commentCount: post.commentCount })}
           </Link>
         </div>

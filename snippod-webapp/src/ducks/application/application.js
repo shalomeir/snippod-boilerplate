@@ -5,16 +5,22 @@ import toastMessages from 'i18nDefault/toastMessages';
 
 export const RELOAD_PAGE = 'application/application/RELOAD_PAGE';
 
+const SHOW_POPUP_MODAL = 'application/application/SHOW_POPUP_MODAL';
+const CLOSE_POPUP_MODAL = 'application/application/CLOSE_POPUP_MODAL';
+
 const SHOW_LOGIN_DIALOG = 'application/application/SHOW_LOGIN_DIALOG';
 const SHOW_REGISTER_DIALOG = 'application/application/SHOW_REGISTER_DIALOG';
 const CLOSE_DIALOG = 'application/application/CLOSE_DIALOG';
 const SWITCH_LANG = 'application/application/SWITCH_LANG';
+
 
 //TODO: Only works in client Mode. Prepare SSR.
 import { getDefaultLang } from '../../helpers/getBrowserSettings.js';
 const defaultLang = getDefaultLang();
 
 const initialState = {
+  isShowModal: false,
+  returnTo: null,
   isShowOverlay: false,
   loginDialog: false,
   registerDialog: false,
@@ -29,6 +35,18 @@ export default function reducer(state = initialState, action = {}) {
   const { INIT_ALL_STATE } = require('ducks/globalActions');
 
   switch (action.type) {
+    case SHOW_POPUP_MODAL:
+      return {
+        ...state,
+        isShowModal: true,
+        returnTo: action.returnTo
+      };
+    case CLOSE_POPUP_MODAL:
+      return {
+        ...state,
+        isShowModal: false,
+        returnTo: null
+      };
     case SHOW_LOGIN_DIALOG:
       return {
         ...state,
@@ -61,7 +79,9 @@ export default function reducer(state = initialState, action = {}) {
     case RELOAD_PAGE:
       return {
         ...state,
-        reloadedNum: state.reloadedNum + 1
+        reloadedNum: state.reloadedNum + 1,
+        isShowModal: false,
+        returnTo: null
       };
 
     case INIT_ALL_STATE:
@@ -227,6 +247,18 @@ export function redirectReplacePath(defaultPathname) {
   };
 }
 
+export function showPopupModal(returnTo) {
+  return {
+    type: SHOW_POPUP_MODAL,
+    returnTo
+  };
+}
+
+export function closePopupModal() {
+  return {
+    type: CLOSE_POPUP_MODAL
+  };
+}
 
 export function showLoginDialog() {
   return {

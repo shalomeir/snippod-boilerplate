@@ -2,7 +2,26 @@
          Site Overrides
 *******************************/
 
+/*-------------------
+   Disabled Link
+--------------------*/
 
+//Ref: https://github.com/reactjs/react-router/issues/1082
+/* use className .disabled-link and use attribute disabled too. */
+.disabled-link {
+  pointer-events: none !important;
+}
 
+a[disabled] {
+  pointer-events: none !important;
+}
 
+/*-------------------
+        Fix Bug
+--------------------*/
+//semantic-ui modal sometimes modify body height even that is 100%. So I should not care about this problem.
+//So I decided this way
 
+body {
+  height: 100% !important;
+}

@@ -14,14 +14,15 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import head from 'constants/head';
 
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'ducks/authentication/auth';
-import { switchLangIfDiffrent } from 'ducks/application/application';
+import { switchLangIfDiffrent, showPopupModal, closePopupModal } from 'ducks/application/application';
 
 import {
+  ToastrMessages,
+  DialogWindow,
+  PopupModalWindow,
   NavBar,
   SideBar,
   Footer,
-  DialogWindow,
-  ToastrMessages,
 } from '.';
 
 
@@ -50,7 +51,8 @@ injectTapEventPlugin();
     state => state.messages
   ], (auth, application, messages) => {
     return { auth, application, messages };
-  })
+  }),
+  { showPopupModal, closePopupModal }
 )
 @injectIntl
 export default class App extends Component {
@@ -61,12 +63,21 @@ export default class App extends Component {
     location: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
-    messages: PropTypes.object.isRequired
+    messages: PropTypes.object.isRequired,
+
+    showPopupModal: PropTypes.func.isRequired,
+    closePopupModal: PropTypes.func.isRequired
   };
 
-  //static contextTypes = {
-  //  router: PropTypes.object.isRequired
-  //};
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  };
+
+  constructor() {
+    super();
+    this.state = { isShowModal: false };
+  }
+
   //https://github.com/facebook/react/issues/2517
   //static childContextTypes = {
   //  location: PropTypes.object.isRequired,
@@ -90,6 +101,29 @@ export default class App extends Component {
     this.constructor.attachSidebar();
   }
 
+  componentWillReceiveProps(nextProps) {
+    // if we changed routes. and location have a modal state.
+    if (!this.state.isShowModal &&
+      nextProps.location.key !== this.props.location.key &&
+      nextProps.location.state && nextProps.location.state.modal
+    ) {
+      // save the old children
+      this.previousChildren = this.props.children;
+      this.setState({ isShowModal: true });
+      this.props.showPopupModal(this.props.location);
+    }
+
+    if (this.state.isShowModal &&
+      nextProps.location.key !== this.props.location.key &&
+      (!nextProps.location.state || !nextProps.location.state.modal)
+    ) {
+      // remove previousChildren
+      this.previousChildren = null;
+      this.setState({ isShowModal: false });
+      this.props.closePopupModal();
+    }
+  }
+
   componentDidUpdate(PrevProps) {
     if (PrevProps.intl.locale !== this.props.intl.locale) {
       this.constructor.attachSidebar();
@@ -109,7 +143,9 @@ export default class App extends Component {
   }
 
   render() {
-    const { params, auth, application, application: { lang }, messages } = this.props;
+    const { params, auth, application, application: { lang, returnTo }, messages } = this.props;
+    const { router } = this.context;
+    const { isShowModal } = this.state;
     const { locale } = this.props.intl;
     const childType = this.props.location.pathname.split('/')[1];
 
@@ -118,7 +154,7 @@ export default class App extends Component {
     // React Intl components not changed hot swap locale cause shouldComponentUpdate
     // Full reload by key value which is locale by injectIntl
     return (
-      <div className="app" key={locale} >
+      <div id="app" className="app" key={locale} >
         <Helmet {...head}/>
         <StyleRoot >
           <div id="full-screen" className="fullscreen pushable">
@@ -128,15 +164,19 @@ export default class App extends Component {
               <div id="wrap-content">
                 <NavBar auth={auth} lang={lang} childType={childType} params={params} />
                 <main id="main-content">
-                  {this.props.children}
+                  {!isShowModal ? this.props.children : this.previousChildren}
                 </main>
               </div>
               <Footer />
             </div>
           </div>
-          <div className="background-app">
-            <DialogWindow auth={auth} application={application} />
+          <div id="background-app" className="background-app">
             <ToastrMessages messages={messages} />
+            <DialogWindow auth={auth} application={application} />
+            <PopupModalWindow router={router}
+                              application={application}>
+              {this.props.children}
+            </PopupModalWindow>
           </div>
         </StyleRoot>
       </div>

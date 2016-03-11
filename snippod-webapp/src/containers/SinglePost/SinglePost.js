@@ -6,6 +6,7 @@ import { createSelector } from 'reselect';
 import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 
 import $ from 'jquery';
+import classNames from 'classnames';
 import { shortenString } from 'utils/handleString';
 
 import { showLoginDialog } from 'ducks/application/application';
@@ -36,7 +37,7 @@ const styles = {
     margin: 'auto',
     maxWidth: '490px',
     width: '100%',
-    background: 'rgba(255, 255, 255, 0.8)',
+    background: '#F5F5F5',
     padding: '1.2em 1em 2em 1em',
   }
 };
@@ -66,11 +67,12 @@ const i18n = defineMessages({
 
 const mapStateToProps = createSelector([
   state => state.auth,
+  state => state.application.isShowModal,
   state => state.entities.posts,
   (state, props) => props.params
-], (auth, posts, params) => {
+], (auth, isShowModal, posts, params) => {
   const post = params && posts[params.postId] ? posts[params.postId] : null;
-  return { auth, post };
+  return { auth, isShowModal, post };
 });
 
 @connect(
@@ -83,6 +85,7 @@ export default class SinglePost extends Component {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
+    isShowModal: PropTypes.bool.isRequired,
     post: PropTypes.object,
     params: PropTypes.object.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
@@ -155,6 +158,7 @@ export default class SinglePost extends Component {
             post={post}
             intl={intl}
             auth={auth}
+            disabledSelfLink
             showLoginDialog={this.props.showLoginDialog}
             showConfirmCheckModal={this.onShowCheckModal}
             onCommentsButton={this.onFocusInput}/>
@@ -162,7 +166,7 @@ export default class SinglePost extends Component {
   }
 
   render() {
-    const { post, auth, intl: { formatMessage } } = this.props;
+    const { post, auth, intl: { formatMessage }, isShowModal } = this.props;
     const { isFetching } = this.state;
 
     const postTitle = post && !post.deleted ? post.title : formatMessage(i18n.nothingHere);
@@ -181,7 +185,7 @@ export default class SinglePost extends Component {
     );
 
     const postDom = post ? (
-      <div>
+      <div id="capture-and-fire">
         {this.renderPost(post)}
         <div className="comment-list ui card" style={styles.commentsCardContainer}>
           <CommentComposer postId={post.id} auth={auth} style={styles.commentComposer} loadPost={this.loadPost}/>
@@ -199,7 +203,8 @@ export default class SinglePost extends Component {
     ) : null;
 
     return (
-      <div className="single-post ui text container main-container">
+      <div className={classNames('single-post ui text container',
+       (isShowModal ? 'modal-container' : 'main-container'))}>
         <Helmet title={shortenString(postTitle, 17)}/>
         {isEmpty ? tempDom : postDom}
       </div>

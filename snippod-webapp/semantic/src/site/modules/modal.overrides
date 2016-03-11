@@ -16,3 +16,20 @@
 //    margin-top: 0.1em;
 //  }
 //}
+
+/*******************************
+            Content
+*******************************/
+
+/*--------------
+     Close
+---------------*/
+
+.ui.modal > .close {
+  top: @innerCloseTop;
+  right: @innerCloseRight;
+}
+.ui.modal > .close:hover {
+  opacity: 1;
+  transition: opacity .2s ease-in;
+}

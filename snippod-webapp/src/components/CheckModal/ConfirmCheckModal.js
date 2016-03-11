@@ -10,7 +10,8 @@ const styles = {
   },
 
   modalDescription: {
-    textAlign: 'center'
+    textAlign: 'center',
+    marginLeft: '2em'
   }
 };
 
@@ -46,6 +47,8 @@ export default class ConfirmCheckModal extends Component {
   componentDidMount() {
     $('#' + this.props.id)
       .modal({
+        context: $('#app'),
+        allowMultiple: true,
         onDeny: this.props.onCancel ? this.props.onCancel : () => {},
         onApprove: this.props.onConfirm,
         onHidden: this.props.onClose,
@@ -70,7 +73,7 @@ export default class ConfirmCheckModal extends Component {
 
     return (
       <div className="ui confirm-check-modal basic modal" key={id} id={id} style={style}>
-        <i className="close icon"></i>
+        <i className="close icon" />
         <div className="header">
           {header}
         </div>

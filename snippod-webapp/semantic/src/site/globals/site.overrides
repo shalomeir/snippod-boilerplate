@@ -41,6 +41,16 @@ nav {
   margin-top: @headerTopMargin; /* top postion is navbar bottom by #wrap-content padding-top */
 }
 
+.modal-container {
+  margin-top: 9% ; /* vertically more middle */
+}
+
+@media only screen and (min-height : 578px) {
+  .modal-container {
+    margin-top: 14% ; /* vertically more middle */
+  }
+}
+
 .main-top-margin {
   margin-top: @headerTopMargin; /* top postion is navbar bottom by #wrap-content padding-top */
 }
@@ -49,7 +59,34 @@ nav {
   margin-top: @headerLineHeight
 }
 
+#popup-modal-window {
+  position: fixed;
+  padding: 0 !important;
+  margin: 0 !important;
 
+  top: 0 !important;
+  left: 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  background: transparent;
+}
+
+#popup-modal-window-inner-container {
+  background: transparent;
+  padding: 0 !important;
+  margin: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: auto;
+}
+
+#popup-modal-window-close-button {
+  color: rgba(220, 220, 220, 0.7);
+}
 
 /*******************************
              Text

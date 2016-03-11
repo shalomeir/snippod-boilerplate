@@ -36,6 +36,7 @@ const semanticVar = {
   '@widescreenMonitorBreakpoint': '1920px',
 
   '@mobileLesspoint': '319px',
+  '@largeMobileLesspoint': '374px',
   '@tabletLesspoint': '767px',
   '@computerLesspoint': '991px',
   '@largeMonitorLesspoint': '1199px',

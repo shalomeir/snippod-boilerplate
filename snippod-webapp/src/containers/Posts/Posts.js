@@ -128,11 +128,11 @@ export default class Posts extends Component {
   }
 
   renderPost(post) {
-    const { intl, auth } = this.props;
+    const { intl, auth, sortingOption } = this.props;
     if (post.deleted) return null;
 
     return (
-      <div key={post.id} className="ui container" style={[radiumStyles.listMargin, radiumStyles.fullWidth]}>
+      <div key={sortingOption + '-' + post.id} className="ui container" style={[radiumStyles.listMargin, radiumStyles.fullWidth]}>
         <Post post={post}
               intl={intl}
               auth={auth}

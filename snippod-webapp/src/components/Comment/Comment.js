@@ -94,7 +94,7 @@ export default class Comment extends Component {
           <i className="user icon" />
         </Link>
         <div className="content" style={styles.mainContent}>
-          <Link to={'/user/' + comment.author.id} className="author" style={styles.authorName}>{comment.author.username}</Link>
+          <Link to={'/user/' + comment.author.id} className="author" style={styles.authorName}>{shortenString(comment.author.username, 12)}</Link>
           <div className="metadata">
             <div className="meta date" style={styles.meta}>
               {moment(comment.createdAt).locale(locale).fromNow()}

@@ -13,7 +13,8 @@ const styles = {
   meLabel: {
     zIndex: 2,
     width: '6em',
-    textAlign: 'right'
+    textAlign: 'right',
+    pointerEvents: 'auto'
   },
 
   meLabelContent: {
