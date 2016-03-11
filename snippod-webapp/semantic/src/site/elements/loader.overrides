@@ -1,3 +1,15 @@
 /*******************************
          Site Overrides
 *******************************/
+
+//Do not inverted color if in ui dimmer.
+/* Black Dimmer */
+.ui.dimmer .ui.loader {
+  color: @loaderTextColor;
+}
+.ui.dimmer .ui.loader:before {
+  border-color: @loaderFillColor;
+}
+.ui.dimmer .ui.loader:after {
+  border-color: @shapeBorderColor;
+}

@@ -73,10 +73,9 @@ export default class App extends Component {
     router: PropTypes.object.isRequired
   };
 
-  constructor() {
-    super();
-    this.state = { isShowModal: false };
-  }
+  //constructor() {
+  //  super();
+  //}
 
   //https://github.com/facebook/react/issues/2517
   //static childContextTypes = {
@@ -103,13 +102,12 @@ export default class App extends Component {
 
   componentWillReceiveProps(nextProps) {
     // if we changed routes. and location have a modal state.
-    if (!this.state.isShowModal &&
+    if (!this.props.application.isShowModal &&
       nextProps.location.key !== this.props.location.key &&
       nextProps.location.state && nextProps.location.state.modal
     ) {
       // save the old children
       this.previousChildren = this.props.children;
-      this.setState({ isShowModal: true });
       const { location } = this.props;
       const returnTo = {
         pathname: location.pathname,
@@ -119,13 +117,12 @@ export default class App extends Component {
       this.props.showPopupModal(returnTo);
     }
 
-    if (this.state.isShowModal &&
+    if (this.props.application.isShowModal &&
       nextProps.location.key !== this.props.location.key &&
       (!nextProps.location.state || !nextProps.location.state.modal)
     ) {
       // remove previousChildren
       this.previousChildren = null;
-      this.setState({ isShowModal: false });
       this.props.closePopupModal();
     }
   }
@@ -149,9 +146,8 @@ export default class App extends Component {
   }
 
   render() {
-    const { params, auth, application, application: { lang, returnTo }, messages } = this.props;
+    const { params, auth, application, application: { lang, returnTo, isShowModal }, messages } = this.props;
     const { router } = this.context;
-    const { isShowModal } = this.state;
     const { locale } = this.props.intl;
     const childType = this.props.location.pathname.split('/')[1];
 
@@ -170,7 +166,7 @@ export default class App extends Component {
               <div id="wrap-content">
                 <NavBar auth={auth} lang={lang} childType={childType} params={params} />
                 <main id="main-content">
-                  {!isShowModal ? this.props.children : this.previousChildren}
+                  {this.previousChildren ? this.previousChildren : this.props.children}
                 </main>
               </div>
               <Footer />
@@ -181,7 +177,7 @@ export default class App extends Component {
             <DialogWindow auth={auth} application={application} />
             <PopupModalWindow router={router}
                               application={application}>
-              {this.props.children}
+              {this.previousChildren ? this.props.children : null}
             </PopupModalWindow>
           </div>
         </StyleRoot>

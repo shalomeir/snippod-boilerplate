@@ -9,7 +9,7 @@ const styles = require('./PopupModalWindowStyles');
 export default class PopupModalWindow extends Component {
 
   static propTypes = {
-    children: PropTypes.object.isRequired,
+    children: PropTypes.object,
     router: PropTypes.object.isRequired,
     application: PropTypes.object.isRequired,
   };
@@ -19,6 +19,22 @@ export default class PopupModalWindow extends Component {
     this._closePopupModal = this._closePopupModal.bind(this);
     this._returnToBaseLocation = this._returnToBaseLocation.bind(this);
     this._captureAndFireReturnEvent = this._captureAndFireReturnEvent.bind(this);
+  }
+
+  componentDidMount() {
+    $('#popup-modal-window')
+      .modal({
+        context: $('#full-screen'),
+        dimmerSettings: {
+          duration: {
+            show: 400,
+            hide: 300
+          },
+          opacity: 0.8,
+        },
+        onHidden: this._returnToBaseLocation
+      })
+    ;
   }
 
   //Close popup modal window
@@ -32,10 +48,6 @@ export default class PopupModalWindow extends Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.application.isShowModal && this.props.application.isShowModal) {
       $('#popup-modal-window')
-        .modal({
-          context: $('#full-screen'),
-          onHidden: this._returnToBaseLocation
-        })
         .modal('show');
     }
   }
@@ -70,7 +82,7 @@ export default class PopupModalWindow extends Component {
       <div id="popup-modal-window" key="popup-modal-window" className="ui long modal" onClick={this._captureAndFireReturnEvent} >
         <i id="popup-modal-window-close-button" className="close icon" />
         <div id="popup-modal-window-inner-container" className="content">
-          {this.props.application.isShowModal ? this.props.children : null}
+          {this.props.children ? this.props.children : null}
         </div>
       </div>
     );
