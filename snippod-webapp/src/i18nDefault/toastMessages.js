@@ -51,7 +51,7 @@ const toastMessages = defineMessages({
     defaultMessage: '\'{postTitle}\' is posted.' //empty
   },
 
-  //in ducks/posts/posts
+  //in ducks/postings/posts
   deletePostTitle: {
     id: 'toast.deletePostTitle',
     defaultMessage: 'Post Deleted'
@@ -71,7 +71,7 @@ const toastMessages = defineMessages({
     defaultMessage: 'Your reply is added.' //empty
   },
 
-  //in ducks/posts/posts
+  //in ducks/postings/posts
   deleteCommentTitle: {
     id: 'toast.deleteCommentTitle',
     defaultMessage: 'Comment Deleted'

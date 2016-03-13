@@ -15,7 +15,7 @@ import { Link as LinkComponent } from 'react-router';
 const Link = Radium(LinkComponent);
 import { UpvoteButton } from 'components';
 
-import { upvoteComment, cancelUpvoteComment } from 'ducks/posts/comments';
+import { upvoteComment, cancelUpvoteComment } from 'ducks/postings/comments';
 
 const styles = require('./CommentStyles');
 

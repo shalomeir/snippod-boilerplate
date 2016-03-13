@@ -9,8 +9,9 @@ import $ from 'jquery';
 import classNames from 'classnames';
 import { shortenString } from 'utils/handleString';
 
+import { COMMENTS_BY_POST } from 'ducks/postings';
 import { showLoginDialog } from 'ducks/application/application';
-import { fetchPost, deletePost } from 'ducks/posts/posts';
+import { fetchPost, deletePost } from 'ducks/postings/posts';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'react-router';
@@ -175,7 +176,7 @@ export default class SinglePost extends Component {
     const { isFetching } = this.state;
 
     const postTitle = post && !post.deleted ? post.title :
-      isFetching ? (i18n.loading) : (i18n.nothingHere);
+      isFetching ? formatMessage(i18n.loading) : formatMessage(i18n.nothingHere);
 
     let tempDom;
     const isEmpty = !post || post.deleted;
@@ -195,7 +196,7 @@ export default class SinglePost extends Component {
         {this.renderPost(post)}
         <div className="comment-list ui card" style={styles.commentsCardContainer}>
           <CommentComposer postId={post.id} auth={auth} style={styles.commentComposer} loadPost={this.loadPost}/>
-          <Comments post={post} />
+          <Comments type={COMMENTS_BY_POST} option={post.id} />
         </div>
         <ConfirmCheckModal key="singlepost-delete-confirm-check-modal"
                            id="singlepost-delete-confirm-check-modal"

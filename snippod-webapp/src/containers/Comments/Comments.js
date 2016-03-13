@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 import { showLoginDialog } from 'ducks/application/application';
-import { loadCommentsByPost, deleteComment } from 'ducks/posts/comments';
+import { loadComments, deleteComment } from 'ducks/postings/comments';
 
 import { List, Comment, ConfirmCheckModal } from 'components';
 
@@ -45,21 +45,26 @@ const styles = {
 const mapStateToProps = createSelector([
   state => state.auth,
   state => state.entities.comments,
-  state => state.postings.commentsByPost,
-  (state, props) => props.post.id
-], (auth, comments, commentsByPost, postId) => {
-  const commentsByPostPagination = commentsByPost[postId] || { ids: [] };
-  const commentsByPostList = commentsByPostPagination.ids.map(id => comments[id]);
+  (state, props) => {
+    const postingsByType = state.postings[props.type];
+    if (postingsByType && postingsByType[props.option]) {
+      return postingsByType[props.option];
+    }
+    return { ids: [] };
+  }
+], (auth, comments, commentsPagination) => {
+  const commentsPaginationList = commentsPagination.ids.map(id => comments[id]);
+
   return {
     auth,
-    commentsByPostPagination,
-    commentsByPostList
+    commentsPagination,
+    commentsPaginationList
   };
 });
 
 @connect(
   mapStateToProps,
-  { loadCommentsByPost, deleteComment, showLoginDialog }
+  { loadComments, deleteComment, showLoginDialog }
 )
 @injectIntl
 @Radium
@@ -69,11 +74,14 @@ export default class Comments extends Component {
     intl: intlShape.isRequired,
     auth: PropTypes.object.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
-
-    post: PropTypes.object.isRequired,
-    commentsByPostPagination: PropTypes.object.isRequired,
-    commentsByPostList: PropTypes.array.isRequired,
-    loadCommentsByPost: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired,
+    option: PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number
+    ]),
+    commentsPagination: PropTypes.object.isRequired,
+    commentsPaginationList: PropTypes.array.isRequired,
+    loadComments: PropTypes.func.isRequired,
     deleteComment: PropTypes.func.isRequired,
   };
 
@@ -83,22 +91,22 @@ export default class Comments extends Component {
     this.onShowCheckModal = this.onShowCheckModal.bind(this);
     this.onCloseCheckModal = this.onCloseCheckModal.bind(this);
     this.onConfirmCheckModal = this.onConfirmCheckModal.bind(this);
-    this._loadCommentsByPost = this._loadCommentsByPost.bind(this);
+    this._loadComments = this._loadComments.bind(this);
     this._handleLoadMoreClick = this._handleLoadMoreClick.bind(this);
     this.renderComment = this.renderComment.bind(this);
   }
 
   componentWillMount() {
-    this._loadCommentsByPost(this.props.post.id);
+    this._loadComments(this.props.type, this.props.option);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.post.id !== nextProps.post.id) {
-      this._loadCommentsByPost(nextProps.post.id);
-    } else if (!nextProps.commentsByPostPagination.isFetching &&
-      this.props.commentsByPostPagination !== nextProps.commentsByPostPagination &&
-      !nextProps.commentsByPostPagination.pageCount) {
-      this._loadCommentsByPost(nextProps.post.id);
+    if (this.props.option !== nextProps.option || this.props.type !== nextProps.type) {
+      this._loadCommentsByPost(nextProps.type, nextProps.option);
+    } else if (!nextProps.commentsPagination.isFetching &&
+      this.props.commentsPagination !== nextProps.commentsPagination &&
+      !nextProps.commentsPagination.pageCount) {
+      this._loadComments(nextProps.type, nextProps.option);
     }
   }
 
@@ -121,12 +129,12 @@ export default class Comments extends Component {
     this.props.deleteComment(deletedCommentId);
   }
 
-  _loadCommentsByPost(commentId, nextPage) {
-    this.props.loadCommentsByPost(commentId, nextPage);
+  _loadComments(type, option, nextPage) {
+    this.props.loadComments(type, option, nextPage);
   }
 
   _handleLoadMoreClick() {
-    this._loadCommentsByPost(this.props.post.id, true);
+    this._loadComments(this.props.type, this.props.option, true);
   }
 
   renderComment(comment) {
@@ -145,7 +153,7 @@ export default class Comments extends Component {
   }
 
   render() {
-    const { post, commentsByPostPagination, commentsByPostList,
+    const { commentsPagination, commentsPaginationList,
       intl: { formatMessage } } = this.props;
 
     const confirmCheckModalIconCom = (
@@ -155,10 +163,10 @@ export default class Comments extends Component {
     return (
       <div className="comment-list">
         <List renderItem={this.renderComment}
-              items={commentsByPostList}
+              items={commentsPaginationList}
               onLoadMoreClick={this._handleLoadMoreClick}
               nothingText={formatMessage(i18n.commentsIsNone)}
-              {...commentsByPostPagination} />
+              {...commentsPagination} />
         <ConfirmCheckModal key="comments-comment-delete-confirm-check-modal"
                            id="comments-comment-delete-confirm-check-modal"
                            showOn={this.state.showCheckModal}

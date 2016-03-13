@@ -41,7 +41,11 @@ const styles = {
     color: '#9F3A38 !important',
     borderColor: '#E0B4B4 !important',
     fontWeight: 'initial'
-  }
+  },
+
+  mobileSubmitButton: {
+    borderRadius: '0px 0.28571429rem 0.28571429rem 0px'
+  },
 
 };
 

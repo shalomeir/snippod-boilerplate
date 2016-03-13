@@ -3,6 +3,8 @@ import { updateEntity } from 'ducks/globalActions';
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
 import Schemas from 'ducks/Schemas';
+import { COMMENTS_BY_POST, COMMENTS_BY_ACCOUNT } from 'ducks/postings';
+
 
 /********************************
           get comment
@@ -316,8 +318,22 @@ function deleteAllAtCommentsByAccount(accountId = null) {
 }
 
 /********************************
-    for comment composer
+    for comments and composer
  ********************************/
+// Relies on Redux Thunk middleware.
+export function loadComments(type, option, nextPage) {
+  return (dispatch, getState) => {
+    switch (type) {
+      case COMMENTS_BY_POST :
+        return dispatch(loadCommentsByPost(option, nextPage));
+      case COMMENTS_BY_ACCOUNT :
+        return dispatch(loadCommentsByAccount(option, nextPage));
+      default:
+        throw new Error('Expected comments pagination types.');
+    }
+  };
+}
+
 export function insertCommentToCommentsPagination(id) {
   return (dispatch, getState) => {
     const comment = getState().entities.comments[id];

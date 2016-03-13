@@ -3,6 +3,7 @@ import { updateEntity } from 'ducks/globalActions';
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
 import Schemas from 'ducks/Schemas';
+import { POSTS_BY_SORTING_OPTION, POSTS_BY_ACCOUNT } from 'ducks/postings';
 
 /********************************
             get post
@@ -318,6 +319,20 @@ function deleteAllAtPostsByAccount(accountId = null) {
 /********************************
           for posting
  ********************************/
+// Relies on Redux Thunk middleware.
+export function loadPosts(type, option, nextPage) {
+  return (dispatch, getState) => {
+    switch (type) {
+      case POSTS_BY_SORTING_OPTION :
+        return dispatch(loadPostsBySortingOption(option, nextPage));
+      case POSTS_BY_ACCOUNT :
+        return dispatch(loadPostsByAccount(option, nextPage));
+      default:
+        throw new Error('Expected postings pagination types.');
+    }
+  };
+}
+
 export function insertPostToPostsPagination(id) {
   return (dispatch, getState) => {
     dispatch(addPostToTopAtPostsBySortingOption('newest', id));

@@ -10,7 +10,7 @@ import errorMessage from './messages/errorMessage';
 import toastMessage from './messages/toastMessage';
 import application from './application/application';
 import auth from './authentication/auth';
-import postings from './posts';
+import postings from './postings';
 
 //Root Entities for normalization json schema
 const initialEntitiesState = {

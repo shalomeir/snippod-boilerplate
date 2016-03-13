@@ -13,7 +13,7 @@ import { reduxForm } from 'redux-form';
 import MediaQuery from 'react-responsive';
 
 //Do not connect this action
-import { submitComment, insertCommentToCommentsPagination } from 'ducks/posts/comments';
+import { submitComment, insertCommentToCommentsPagination } from 'ducks/postings/comments';
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
 
@@ -184,7 +184,7 @@ export default class CommentComposer extends Component {
 
     const mobileSubmitCommentButton = (
       <button type="submit" className={classNames('ui blue submit icon small button', { 'loading': submitting })}
-              disabled={submitting || invalid} >
+              disabled={submitting || invalid} style={styles.mobileSubmitButton}>
         <i className="edit icon" />
       </button>
     );

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 import { showLoginDialog, showRegisterDialog, redirectReplacePath } from 'ducks/application/application';
-import { loadPostsBySortingOption, deletePost } from 'ducks/posts/posts';
+import { loadPosts, deletePost } from 'ducks/postings/posts';
 
 import { List, Post, ConfirmCheckModal } from 'components';
 
@@ -42,22 +42,25 @@ const i18n = defineMessages({
 const mapStateToProps = createSelector([
   state => state.auth,
   state => state.entities.posts,
-  state => state.postings.postsBySortingOption,
-  (state, props) => props.sortingOption
-], (auth, posts, postsBySortingOption, sortingOption) => {
-  const postsBySortingOptionPagination = postsBySortingOption[sortingOption] || { ids: [] };
-  const postsBySortingOptionList = postsBySortingOptionPagination.ids.map(id => posts[id]);
+  (state, props) => {
+    const postingsByType = state.postings[props.type];
+    if (postingsByType && postingsByType[props.option]) {
+      return postingsByType[props.option];
+    }
+    return { ids: [] };
+  }
+], (auth, posts, postsPagination) => {
+  const postsPaginationList = postsPagination.ids.map(id => posts[id]);
   return {
     auth,
-    sortingOption,
-    postsBySortingOptionPagination,
-    postsBySortingOptionList
+    postsPagination,
+    postsPaginationList
   };
 });
 
 @connect(
   mapStateToProps,
-  { loadPostsBySortingOption, deletePost, showLoginDialog }
+  { loadPosts, deletePost, showLoginDialog }
 )
 @injectIntl
 @Radium
@@ -67,11 +70,14 @@ export default class Posts extends Component {
     intl: intlShape.isRequired,
     auth: PropTypes.object.isRequired,
     showLoginDialog: PropTypes.func.isRequired,
-
-    sortingOption: PropTypes.string.isRequired,
-    postsBySortingOptionPagination: PropTypes.object.isRequired,
-    postsBySortingOptionList: PropTypes.array.isRequired,
-    loadPostsBySortingOption: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired,
+    option: PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number
+    ]),
+    postsPagination: PropTypes.object.isRequired,
+    postsPaginationList: PropTypes.array.isRequired,
+    loadPosts: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired,
   };
 
@@ -81,22 +87,22 @@ export default class Posts extends Component {
     this.onShowCheckModal = this.onShowCheckModal.bind(this);
     this.onCloseCheckModal = this.onCloseCheckModal.bind(this);
     this.onConfirmCheckModal = this.onConfirmCheckModal.bind(this);
-    this._loadPostsBySortingOption = this._loadPostsBySortingOption.bind(this);
+    this._loadPosts = this._loadPosts.bind(this);
     this._handleLoadMoreClick = this._handleLoadMoreClick.bind(this);
     this.renderPost = this.renderPost.bind(this);
   }
 
   componentWillMount() {
-    this._loadPostsBySortingOption(this.props.sortingOption);
+    this._loadPosts(this.props.type, this.props.option);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.sortingOption !== nextProps.sortingOption) {
-      this._loadPostsBySortingOption(nextProps.sortingOption);
-    } else if (!nextProps.postsBySortingOptionPagination.isFetching &&
-      this.props.postsBySortingOptionPagination !== nextProps.postsBySortingOptionPagination &&
-      !nextProps.postsBySortingOptionPagination.pageCount) {
-      this._loadPostsBySortingOption(nextProps.sortingOption);
+    if (this.props.option !== nextProps.option || this.props.type !== nextProps.type) {
+      this._loadPosts(nextProps.type, nextProps.option);
+    } else if (!nextProps.postsPagination.isFetching &&
+      this.props.postsPagination !== nextProps.postsPagination &&
+      !nextProps.postsPagination.pageCount) {
+      this._loadPosts(nextProps.type, nextProps.option);
     }
   }
 
@@ -119,20 +125,21 @@ export default class Posts extends Component {
     this.props.deletePost(deletePostId);
   }
 
-  _loadPostsBySortingOption(sortingOption, nextPage) {
-    this.props.loadPostsBySortingOption(sortingOption, nextPage);
+  _loadPosts(type, option, nextPage) {
+    this.props.loadPosts(type, option, nextPage);
   }
 
   _handleLoadMoreClick() {
-    this._loadPostsBySortingOption(this.props.sortingOption, true);
+    this._loadPosts(this.props.type, this.props.option, true);
   }
 
   renderPost(post) {
-    const { intl, auth, sortingOption } = this.props;
+    const { intl, auth, type, option } = this.props;
     if (post.deleted) return null;
 
     return (
-      <div key={sortingOption + '-' + post.id} className="ui container" style={[radiumStyles.listMargin, radiumStyles.fullWidth]}>
+      <div key={type + '-' + option + '-' + post.id} className="ui container"
+           style={[radiumStyles.listMargin, radiumStyles.fullWidth]}>
         <Post post={post}
               intl={intl}
               auth={auth}
@@ -143,7 +150,7 @@ export default class Posts extends Component {
   }
 
   render() {
-    const { sortingOption, postsBySortingOptionPagination, postsBySortingOptionList,
+    const { postsPagination, postsPaginationList,
       intl: { formatMessage } } = this.props;
 
     const confirmCheckModalIconCom = (
@@ -154,9 +161,9 @@ export default class Posts extends Component {
       <div className="posts ui container">
         <List className="one cards"
               renderItem={this.renderPost}
-              items={postsBySortingOptionList}
+              items={postsPaginationList}
               onLoadMoreClick={this._handleLoadMoreClick}
-              {...postsBySortingOptionPagination} />
+              {...postsPagination} />
         <ConfirmCheckModal key="posts-post-delete-confirm-check-modal"
                            id="posts-post-delete-confirm-check-modal"
                            showOn={this.state.showCheckModal}

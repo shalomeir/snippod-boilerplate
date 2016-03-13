@@ -11,7 +11,7 @@ import { createSelector } from 'reselect';
 import { reduxForm } from 'redux-form';
 
 //Do not connect this action
-import { submitPost, insertPostToPostsPagination } from 'ducks/posts/posts';
+import { submitPost, insertPostToPostsPagination } from 'ducks/postings/posts';
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
 

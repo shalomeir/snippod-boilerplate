@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Link } from 'react-router';
 
-import { pushQuery } from 'ducks/application/application';
-
 import IntroCard from './IntroCard/IntroCard';
 import { PostComposer, PostsHeader, Posts } from 'containers';
+
+import { POSTS_BY_SORTING_OPTION } from 'ducks/postings';
+import { pushQuery } from 'ducks/application/application';
 
 const styles = require('./HomeStyles');
 
@@ -82,7 +83,7 @@ export default class Home extends Component {
         <PostComposer auth={auth} style={styles.postComposer}/>
         <PostsHeader sortingOption={this.state.sortingOption}
                      changeSortingOption={this.changeSortingOption} />
-        <Posts sortingOption={this.state.sortingOption} />
+        <Posts type={POSTS_BY_SORTING_OPTION} option={this.state.sortingOption} />
       </div>
     );
   }
