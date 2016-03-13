@@ -13,3 +13,4 @@ export AuthButtons from './AuthButtons/AuthButtons';
 export Post from './Post/Post';
 export Comment from './Comment/Comment';
 export UpvoteButton from './Voter/UpvoteButton';
+export UserCard from './UserCard/UserCard';

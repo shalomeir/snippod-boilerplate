@@ -61,7 +61,7 @@ export default class NavBar extends Component {
 
     const { childType, params, className, auth, lang, intl: { formatMessage } } = this.props;
 
-    let userIsMe;
+    let userIsMe = false;
     if (auth.loggedIn && childType === 'user') {
       if (parseInt(params.userId, 10) === auth.account.id) {
         userIsMe = true;

@@ -91,7 +91,7 @@ export default class Comment extends Component {
     return (
       <div className="comment">
         <Link className="avatar" to={'/user/' + comment.author.id}>
-          <i className="user icon" />
+          <i className="user circular inverted blue user small icon" />
         </Link>
         <div className="content" style={styles.mainContent}>
           <Link to={'/user/' + comment.author.id} className="author" style={styles.authorName}>{shortenString(comment.author.username, 12)}</Link>

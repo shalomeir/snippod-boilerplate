@@ -44,6 +44,10 @@ export default {
   "commentComposer.button": "댓글입력",
 
   "singlePost.nothingHere": "포스트 비었음",
+  "singlePost.loading": "로딩..",
+
+  "userCard.language": "언어",
+  "userCard.korean": "한국어",
 
   //Component
   "comp.authButtons.loginButton": "로그인",

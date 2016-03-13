@@ -43,6 +43,10 @@ const radiumStyles = {
     marginLeft: 'auto',
     marginRight: 'auto',
     width: '100% !important'
+  },
+
+  floatLeft: {
+    float: 'left',
   }
 
 };

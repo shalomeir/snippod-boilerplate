@@ -58,6 +58,11 @@ const i18n = defineMessages({
     defaultMessage: 'Nothing here'
   },
 
+  loading: {
+    id: 'singlePost.loading',
+    defaultMessage: 'Loading..'
+  },
+
   nothing: {
     id: 'comp.list.nothing',
     defaultMessage: 'Nothing here!'
@@ -169,7 +174,8 @@ export default class SinglePost extends Component {
     const { post, auth, intl: { formatMessage }, isShowModal } = this.props;
     const { isFetching } = this.state;
 
-    const postTitle = post && !post.deleted ? post.title : formatMessage(i18n.nothingHere);
+    const postTitle = post && !post.deleted ? post.title :
+      isFetching ? (i18n.loading) : (i18n.nothingHere);
 
     let tempDom;
     const isEmpty = !post || post.deleted;
