@@ -7,7 +7,9 @@ import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-i
 
 import { Link } from 'react-router';
 import { UserCard } from 'components';
+import { Posts, Comments } from 'containers';
 
+import { POSTS_BY_ACCOUNT, COMMENTS_BY_ACCOUNT } from 'ducks/postings';
 import { fetchAccount } from 'ducks/accounts/accounts';
 
 const radiumStyles = require('theme/RadiumStyles');
@@ -120,11 +122,8 @@ export default class User extends Component {
     const accountDom = account ? (
       <div id="capture-and-fire">
         {this.renderUserCard(account)}
-        <div className="post-list ui card" style={styles.postsCardContainer}>
-          {/*<PostsByAccount account={account} />*/}
-        </div>
-        <div className="comment-list ui card" style={styles.commentsCardContainer}>
-          {/*<CommentsByAccount account={account} />*/}
+        <div className="post-list" style={styles.postsCardContainer}>
+          <Posts type={POSTS_BY_ACCOUNT} option={account.id} />
         </div>
       </div>
     ) : null;
