@@ -56,7 +56,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
         unique=True,
     )
 
-    username = models.CharField(_('username'), max_length=30, unique=True,
+    username = models.CharField(_('username'), max_length=30,
                 help_text=_('Required. 30 characters or fewer. Letters, digits'
                             ' and ./+/-/_ only.'),
                 validators=[

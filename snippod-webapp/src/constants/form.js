@@ -10,6 +10,7 @@ const form = {
   registerForm: {
     usernameMinLength: 3,
     usernameMaxLength: 18,
+    descriptionMaxLength: 320,
   },
 
   postsForm: {

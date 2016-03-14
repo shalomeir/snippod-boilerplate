@@ -79,6 +79,7 @@ export default {
   "log.default": "안녕하세요",
   "log.required": "입력해주세요",
   "log.invalidEmail": "이메일 주소가 아닌 것 같네요",
+  "log.invalidString": "특수문자는 여기에 사용할 수 없어요",
   "log.invalidUrl": "URL을 입력해주세요",
   "log.minLength": "너무 짧아요. 길이가 적어도 {min, plural,\n  =0 {하나이상이}\n  =1 {하나는}\n  =2 {둘은}\n other {# 이상이}\n} 되어야 해요.",
   "log.maxLength": "너무 길어요. 길이가 {max}보다 길면 안되요.",
@@ -111,5 +112,8 @@ export default {
 
   "toast.deleteCommentTitle": "댓글 삭제",
   "toast.deleteCommentBody": "댓글이 삭제되었어요.",
+
+  "toast.updateUserCardTitle": "유저 정보 업데이트 성공",
+  "toast.updateUserCardBody": "@{username} 유저 정보가 새로 저장되었습니다.",
 
 };

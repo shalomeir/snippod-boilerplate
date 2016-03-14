@@ -202,7 +202,7 @@ export function loadPostsBySortingOption(sortingOption, nextPage) {
   };
 }
 
-function addPostToTopAtPostsBySortingOption(sortingOption, id) {
+export function addPostToTopAtPostsBySortingOption(sortingOption, id) {
   return {
     key: sortingOption,
     type: ADD_POST_TO_TOP_AT_POSTS_BY_SORTING_OPTION,
@@ -210,7 +210,7 @@ function addPostToTopAtPostsBySortingOption(sortingOption, id) {
   };
 }
 
-function addPostToBottomAtPostsBySortingOption(sortingOption, id) {
+export function addPostToBottomAtPostsBySortingOption(sortingOption, id) {
   return {
     key: sortingOption,
     type: ADD_POST_TO_BOTTOM_AT_POSTS_BY_SORTING_OPTION,
@@ -218,7 +218,7 @@ function addPostToBottomAtPostsBySortingOption(sortingOption, id) {
   };
 }
 
-function deletePostAtPostsBySortingOption(sortingOption, id) {
+export function deletePostAtPostsBySortingOption(sortingOption, id) {
   return {
     key: sortingOption,
     type: DELETE_POST_AT_POSTS_BY_SORTING_OPTION,
@@ -226,7 +226,7 @@ function deletePostAtPostsBySortingOption(sortingOption, id) {
   };
 }
 
-function deleteAllAtPostsBySortingOption(sortingOption = null) {
+export function deleteAllAtPostsBySortingOption(sortingOption = null) {
   return {
     key: sortingOption,
     type: DELETE_ALL_AT_POSTS_BY_SORTING_OPTION,
@@ -285,7 +285,7 @@ export function loadPostsByAccount(accountId, nextPage) {
   };
 }
 
-function addPostToTopAtPostsByAccount(accountId, id) {
+export function addPostToTopAtPostsByAccount(accountId, id) {
   return {
     key: accountId,
     type: ADD_POST_TO_TOP_AT_POSTS_BY_ACCOUNT,
@@ -293,7 +293,7 @@ function addPostToTopAtPostsByAccount(accountId, id) {
   };
 }
 
-function addPostToBottomAtPostsByAccount(accountId, id) {
+export function addPostToBottomAtPostsByAccount(accountId, id) {
   return {
     key: accountId,
     type: ADD_POST_TO_BOTTOM_AT_POSTS_BY_ACCOUNT,
@@ -301,7 +301,7 @@ function addPostToBottomAtPostsByAccount(accountId, id) {
   };
 }
 
-function deletePostAtPostsByAccount(accountId, id) {
+export function deletePostAtPostsByAccount(accountId, id) {
   return {
     key: accountId,
     type: DELETE_POST_AT_POSTS_BY_ACCOUNT,
@@ -309,7 +309,7 @@ function deletePostAtPostsByAccount(accountId, id) {
   };
 }
 
-function deleteAllAtPostsByAccount(accountId = null) {
+export function deleteAllAtPostsByAccount(accountId = null) {
   return {
     key: accountId,
     type: DELETE_ALL_AT_POSTS_BY_ACCOUNT,

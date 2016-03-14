@@ -1,2 +1,9 @@
 Forbidden (CSRF cookie not set.): /api/v1/weblink_snips
 Forbidden (CSRF cookie not set.): /api/v1/weblink_snips
+Method Not Allowed (PATCH): /api/v1/accounts/undefined
+Method Not Allowed (PATCH): /api/v1/accounts/undefined
+Method Not Allowed (PATCH): /api/v1/accounts/undefined
+Method Not Allowed (PATCH): /api/v1/accounts/23
+Method Not Allowed (PATCH): /api/v1/accounts/12
+Forbidden (CSRF token missing or incorrect.): /api/v1/topics/entertainment/create_child_topic
+Forbidden (CSRF token missing or incorrect.): /api/v1/topics/entertainment/create_child_topic

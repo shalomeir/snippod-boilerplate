@@ -18,6 +18,13 @@ function formatUrl(path) {
   return 'http://' + location.hostname + ':' + apiPort + apiPath + adjustedPath;
 }
 
+function addMethodQuery(path, method) {
+  if (method === 'patch') return path + '?_method=PATCH';
+  if (method === 'put') return path + '?_method=PUT';
+  if (method === 'del') return path + '?_method=DELETE';
+  return path;
+}
+
 // Extracts the next page URL from response API response.
 function getNextPageUrl(response) {
   const link = response.next;

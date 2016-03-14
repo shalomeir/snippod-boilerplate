@@ -140,7 +140,7 @@
     "react-toolbox": "^0.14.2",
     "redux": "^3.0.5",
     "redux-async-connect": "^1.0.0-rc2",
-    "redux-form": "^4.1.8",
+    "redux-form": "^4.2.2",
     "redux-thunk": "^1.0.3",
     "reselect": "^2.0.2",
     "semantic-ui": "^2.1.8",

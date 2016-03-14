@@ -204,7 +204,7 @@ export function loadCommentsByPost(postId, nextPage) {
   };
 }
 
-function addCommentToTopAtCommentsByPost(postId, id) {
+export function addCommentToTopAtCommentsByPost(postId, id) {
   return {
     key: postId,
     type: ADD_COMMENT_TO_TOP_AT_COMMENTS_BY_POST,
@@ -212,7 +212,7 @@ function addCommentToTopAtCommentsByPost(postId, id) {
   };
 }
 
-function addCommentToBottomAtCommentsByPost(postId, id) {
+export function addCommentToBottomAtCommentsByPost(postId, id) {
   return {
     key: postId,
     type: ADD_COMMENT_TO_BOTTOM_AT_COMMENTS_BY_POST,
@@ -220,7 +220,7 @@ function addCommentToBottomAtCommentsByPost(postId, id) {
   };
 }
 
-function deleteCommentAtCommentsByPost(postId, id) {
+export function deleteCommentAtCommentsByPost(postId, id) {
   return {
     key: postId,
     type: DELETE_COMMENT_AT_COMMENTS_BY_POST,
@@ -228,7 +228,7 @@ function deleteCommentAtCommentsByPost(postId, id) {
   };
 }
 
-function deleteAllAtCommentsByPost(postId = null) {
+export function deleteAllAtCommentsByPost(postId = null) {
   return {
     key: postId,
     type: DELETE_ALL_AT_COMMENTS_BY_POST,
@@ -286,7 +286,7 @@ export function loadCommentsByAccount(accountId, nextPage) {
   };
 }
 
-function addCommentToTopAtCommentsByAccount(accountId, id) {
+export function addCommentToTopAtCommentsByAccount(accountId, id) {
   return {
     key: accountId,
     type: ADD_COMMENT_TO_TOP_AT_COMMENTS_BY_ACCOUNT,
@@ -294,7 +294,7 @@ function addCommentToTopAtCommentsByAccount(accountId, id) {
   };
 }
 
-function addCommentToBottomAtCommentsByAccount(accountId, id) {
+export function addCommentToBottomAtCommentsByAccount(accountId, id) {
   return {
     key: accountId,
     type: ADD_COMMENT_TO_BOTTOM_AT_COMMENTS_BY_ACCOUNT,
@@ -302,7 +302,7 @@ function addCommentToBottomAtCommentsByAccount(accountId, id) {
   };
 }
 
-function deleteCommentAtCommentsByAccount(accountId, id) {
+export function deleteCommentAtCommentsByAccount(accountId, id) {
   return {
     key: accountId,
     type: DELETE_COMMENT_AT_COMMENTS_BY_ACCOUNT,
@@ -310,7 +310,7 @@ function deleteCommentAtCommentsByAccount(accountId, id) {
   };
 }
 
-function deleteAllAtCommentsByAccount(accountId = null) {
+export function deleteAllAtCommentsByAccount(accountId = null) {
   return {
     key: accountId,
     type: DELETE_ALL_AT_COMMENTS_BY_ACCOUNT,

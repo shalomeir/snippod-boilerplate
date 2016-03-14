@@ -81,6 +81,16 @@ const toastMessages = defineMessages({
     defaultMessage: 'A comment is deleted.' //empty
   },
 
+  //in components/UserCard/UserCardComposer
+  updateUserCardTitle: {
+    id: 'toast.updateUserCardTitle',
+    defaultMessage: 'User Information Updated'
+  },
+  updateUserCardBody: {
+    id: 'toast.updateUserCardBody',
+    defaultMessage: '@{username} information were saved.'
+  },
+
 });
 
 export default toastMessages;

@@ -10,6 +10,10 @@ const logMessages = defineMessages({
     id: 'log.required',
     defaultMessage: 'Required'
   },
+  invalidString: {
+    id: 'log.invalidString',
+    defaultMessage: 'Can\'t use special characters'
+  },
   invalidEmail: {
     id: 'log.invalidEmail',
     defaultMessage: 'Invalid email address'

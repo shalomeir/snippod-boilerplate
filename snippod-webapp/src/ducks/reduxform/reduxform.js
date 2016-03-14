@@ -16,7 +16,8 @@ const reduxForm = formReducer.plugin({
       default:
         return state;
     }
-  }
+  },
+
 });
 
 export default reduxForm;

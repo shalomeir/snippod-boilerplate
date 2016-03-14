@@ -10,6 +10,7 @@ import { UserCard } from 'components';
 import { Posts, Comments } from 'containers';
 
 import { POSTS_BY_ACCOUNT, COMMENTS_BY_ACCOUNT } from 'ducks/postings';
+import { deleteAllAtPostsByAccount } from 'ducks/postings/posts';
 import { fetchAccount } from 'ducks/accounts/accounts';
 
 const radiumStyles = require('theme/RadiumStyles');
@@ -44,7 +45,7 @@ const mapStateToProps = createSelector([
 
 @connect(
   mapStateToProps,
-  { fetchAccount }
+  { fetchAccount, deleteAllAtPostsByAccount }
 )
 @injectIntl
 @Radium
@@ -54,7 +55,8 @@ export default class User extends Component {
     auth: PropTypes.object.isRequired,
     account: PropTypes.object,
     params: PropTypes.object.isRequired,
-    fetchAccount: PropTypes.func.isRequired
+    fetchAccount: PropTypes.func.isRequired,
+    deleteAllAtPostsByAccount: PropTypes.func.isRequired
   };
 
   constructor() {
@@ -63,6 +65,7 @@ export default class User extends Component {
       isFetching: false
     };
     this.loadAccount = this.loadAccount.bind(this);
+    this.refreshComments = this.refreshComments.bind(this);
     this.renderUserCard = this.renderUserCard.bind(this);
   }
 
@@ -85,6 +88,10 @@ export default class User extends Component {
     }
   }
 
+  refreshComments() {
+    this.props.deleteAllAtPostsByAccount(this.props.account.id);
+  }
+
   renderUserCard(account) {
     const { auth, intl } = this.props;
 
@@ -92,7 +99,8 @@ export default class User extends Component {
       <UserCard key={account.id}
                 account={account}
                 auth={auth}
-                disabledSelfLink />
+                disabledSelfLink
+                offEdited={this.refreshComments} />
     );
   }
 

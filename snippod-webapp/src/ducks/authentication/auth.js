@@ -20,6 +20,10 @@ const REGISTER = 'authentication/auth/REGISTER';
 const REGISTER_SUCCESS = 'authentication/auth/REGISTER_SUCCESS';
 const REGISTER_FAIL = 'authentication/auth/REGISTER_FAIL';
 
+const UPDATE_ACCOUNT_PROFILE = 'authentication/auth/UPDATE_ACCOUNT_PROFILE';
+const UPDATE_ACCOUNT_PROFILE_SUCCESS = 'authentication/auth/UPDATE_ACCOUNT_PROFILE_SUCCESS';
+const UPDATE_ACCOUNT_PROFILE_FAIL = 'authentication/auth/UPDATE_ACCOUNT_PROFILE_FAIL';
+
 const UPDATE_ACCOUNT_SETTINGS = 'authentication/auth/UPDATE_ACCOUNT_SETTINGS';
 const UPDATE_ACCOUNT_SETTINGS_SUCCESS = 'authentication/auth/UPDATE_ACCOUNT_SETTINGS_SUCCESS';
 const UPDATE_ACCOUNT_SETTINGS_FAIL = 'authentication/auth/UPDATE_ACCOUNT_SETTINGS_FAIL';
@@ -111,6 +115,20 @@ export default function reducer(state = initialState, action = {}) {
         account: null,
         error: action.error
       };
+    case UPDATE_ACCOUNT_PROFILE:
+      return state;
+
+    case UPDATE_ACCOUNT_PROFILE_SUCCESS:
+      return {
+        ...state,
+        account: action.response.entities.accounts[action.response.result],
+      };
+    case UPDATE_ACCOUNT_PROFILE_FAIL:
+      return {
+        ...state,
+        error: action.error
+      };
+
     case UPDATE_ACCOUNT_SETTINGS:
       return state;
 
@@ -232,14 +250,26 @@ export function register(registerForm) {
   };
 }
 
+export function updateAccountProfile(account) {
+  return {
+    types: [UPDATE_ACCOUNT_PROFILE, UPDATE_ACCOUNT_PROFILE_SUCCESS, UPDATE_ACCOUNT_PROFILE_FAIL],
+    promise: (client) => client.patch('/accounts/' + account.id + '/', {
+      data: {
+        ...account
+      },
+      schema: Schemas.ACCOUNT
+    })
+  };
+}
+
 export function updateAccountSettings(account) {
   return {
     types: [UPDATE_ACCOUNT_SETTINGS, UPDATE_ACCOUNT_SETTINGS_SUCCESS, UPDATE_ACCOUNT_SETTINGS_FAIL],
-    promise: (client) => client.patch('/accounts/' + account.id, {
+    promise: (client) => client.patch('/accounts/' + account.id + '/', {
       data: {
-        account
+        ...account
       },
-      schema: Schemas.MY_ACCOUNT
+      schema: Schemas.ACCOUNT
     })
   };
 }

@@ -15,6 +15,13 @@ export function email(value) {
   }
 }
 
+export function specialCharCheck(value) {
+  const regExpWhiteList = /^[\w.+-|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$/;
+  if (!regExpWhiteList.test(value)) {
+    return i18n.invalidString;
+  }
+}
+
 export function required(value) {
   if (isEmpty(value)) {
     return i18n.required;
