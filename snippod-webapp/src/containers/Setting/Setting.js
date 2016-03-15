@@ -292,7 +292,7 @@ export default class Setting extends Component {
               { errors.confirmPassword && errors.confirmPassword.id ? <FormattedMessage {...errors.confirmPassword} /> : errors.confirmPassword ? errors.confirmPassword : null}
             </div>
           </div>
-          <button type="submit" className={classNames('ui fluid large blue button', { 'loading': submitting })}
+          <button type="submit" className={classNames('ui fluid large blue submit button', { 'loading': submitting })}
                   disabled={submitting || invalid} >
             <FormattedMessage {...i18n.changePasswordButton} />
           </button>

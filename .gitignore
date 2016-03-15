@@ -22,18 +22,6 @@ snippod-webapp/*.iml
 snippod-webapp/webpack-stats.json
 snippod-webapp/webpack-assets.json
 snippod-webapp/npm-debug.log
-
-snippod_webapp_reflux/.DS_Store
-snippod_webapp_reflux/node_modules
-snippod_webapp_reflux/*.log
-snippod_webapp_reflux/dist/server
-snippod_webapp_reflux/dist/client/.map
-snippod_webapp_reflux/dist/client/docs
-snippod_webapp_reflux/client/bower_components
-snippod_webapp_reflux/.tmp
-snippod_webapp_reflux/.grunt
-snippod_webapp_reflux/.yo-rc.json
-
 snippod_boilerplate/.DS_Store
 
 # python fabric
