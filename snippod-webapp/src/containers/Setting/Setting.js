@@ -45,12 +45,12 @@ const i18n = defineMessages({
   },
 
   password: {
-    id: 'registerDialog.password',
+    id: 'setting.password',
     defaultMessage: 'Password'
   },
 
   confirmPassword: {
-    id: 'registerDialog.confirmPassword',
+    id: 'setting.confirmPassword',
     defaultMessage: 'Confirm Password'
   },
 

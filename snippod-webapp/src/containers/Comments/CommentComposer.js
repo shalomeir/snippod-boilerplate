@@ -35,7 +35,7 @@ const i18n = defineMessages({
   },
 
   loginButton: {
-    id: 'layout.sideBar.loginButton',
+    id: 'commentComposer.loginButton',
     defaultMessage: 'Login first'
   },
 

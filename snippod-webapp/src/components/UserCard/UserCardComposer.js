@@ -23,25 +23,8 @@ import userValidation from './userValidation';
 const radiumStyles = require('theme/RadiumStyles');
 const styles = require('./UserCardStyles');
 
-const i18n = defineMessages({
-  language: {
-    id: 'userCard.language',
-    defaultMessage: 'Language'
-  },
-  korean: {
-    id: 'userCard.korean',
-    defaultMessage: 'Korean'
-  },
-  cancel: {
-    id: 'userCard.cancel',
-    defaultMessage: 'Cancel'
-  },
-  save: {
-    id: 'userCard.save',
-    defaultMessage: 'Save'
-  },
-});
-
+import i18nUserCard from 'i18nDefault/components/userCard';
+const i18n = i18nUserCard;
 
 @reduxForm({
   form: 'post',

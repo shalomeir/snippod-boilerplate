@@ -18,17 +18,17 @@ const styles = require('./UserStyles');
 
 const i18n = defineMessages({
   nothingHere: {
-    id: 'singlePost.nothingHere',
+    id: 'user.nothingHere',
     defaultMessage: 'Nothing here'
   },
 
   loading: {
-    id: 'singlePost.loading',
+    id: 'user.loading',
     defaultMessage: 'Loading..'
   },
 
   nothing: {
-    id: 'comp.list.nothing',
+    id: 'user.nothing',
     defaultMessage: 'Nothing here!'
   }
 

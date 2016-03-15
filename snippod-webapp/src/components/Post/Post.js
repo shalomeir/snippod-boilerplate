@@ -122,7 +122,6 @@ export default class Post extends Component {
           <Link className="user" to={'/user/' + post.author.id}>
             <i className="user circular inverted blue user small icon" />
             {shortenString(post.author.username, 13)}
-            {post.author.username.length > 13 ? (<span className="after-gradient-effect" />) : null}
           </Link>
           <div className="meta date" style={styles.meta}>
             {moment(post.createdAt).locale(locale).fromNow()}

@@ -15,22 +15,8 @@ import UserCardComposer from './UserCardComposer';
 const radiumStyles = require('theme/RadiumStyles');
 const styles = require('./UserCardStyles');
 
-const i18n = defineMessages({
-  language: {
-    id: 'userCard.language',
-    defaultMessage: 'Language'
-  },
-
-  korean: {
-    id: 'userCard.korean',
-    defaultMessage: 'Korean'
-  },
-
-  editButton: {
-    id: 'userCard.editButton',
-    defaultMessage: 'Edit'
-  }
-});
+import i18nUserCard from 'i18nDefault/components/userCard';
+const i18n = i18nUserCard;
 
 @injectIntl
 @Radium

@@ -32,6 +32,7 @@ export default {
   "postComposer.titlePlaceHolder": "제목",
   "postComposer.linkPlaceHolder": "URL을 입력하거나 붙여넣으세요",
   "postComposer.button": "포스트",
+  "postComposer.loginButton": "로그인을 먼저 해 주세요.",
 
   "posts.confirmCheckModalHeader": "포스트 지우기",
   "posts.confirmCheckModalDescription": "선택한 포스트를 삭제할까요?",
@@ -42,9 +43,17 @@ export default {
 
   "commentComposer.contentPlaceHolder": "댓글을 써보세요 ...",
   "commentComposer.button": "댓글입력",
+  "commentComposer.loginButton": "로그인을 먼저 해 주세요.",
 
   "singlePost.nothingHere": "포스트 비었음",
+  "singlePost.nothing": "여긴 보여드릴게 없어요.",
   "singlePost.loading": "로딩..",
+  "singlePost.confirmCheckModalHeader": "포스트 지우기",
+  "singlePost.confirmCheckModalDescription": "선택한 포스트를 삭제할까요?",
+
+  "user.nothingHere": "포스트 비었음",
+  "user.nothing": "여긴 보여드릴게 없어요.",
+  "user.loading": "로딩..",
 
   "userCard.language": "언어",
   "userCard.korean": "한국어",
@@ -61,6 +70,8 @@ export default {
   "setting.deleteAccount": "계정삭제",
   "setting.confirmCheckModalHeader": "내 계정 삭제",
   "setting.confirmCheckModalDescription": "정말 이 계정을 삭제하시겠어요?",
+  "setting.password": "비밀번호",
+  "setting.confirmPassword": "비밀번호 재확인",
 
   //Component
   "comp.authButtons.loginButton": "로그인",

@@ -45,12 +45,12 @@ const styles = {
 
 const i18n = defineMessages({
   confirmCheckModalHeader: {
-    id: 'posts.confirmCheckModalHeader',
+    id: 'singlePost.confirmCheckModalHeader',
     defaultMessage: 'Delete Post'
   },
 
   confirmCheckModalDescription: {
-    id: 'posts.confirmCheckModalDescription',
+    id: 'singlePost.confirmCheckModalDescription',
     defaultMessage: 'Are you sure you want to delete this post?'
   },
 
@@ -65,7 +65,7 @@ const i18n = defineMessages({
   },
 
   nothing: {
-    id: 'comp.list.nothing',
+    id: 'singlePost.nothing',
     defaultMessage: 'Nothing here!'
   }
 
