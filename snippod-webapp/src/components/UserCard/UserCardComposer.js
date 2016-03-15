@@ -139,7 +139,7 @@ export default class UserCardComposer extends Component {
            style={[radiumStyles.raisedCardBoxShadow, radiumStyles.paddingBySize, style]}>
         {editCompleteButtons}
         <form className={classNames('ui large form content', { 'error': invalid })}
-              ref="userCardForm" onSubmit={handleSubmit(this._onSubmit)}>
+              ref="userCardForm" onSubmit={handleSubmit(this._onSubmit)} style={styles.form}>
           <div className={classNames('field', { 'error': username.invalid })}>
             <h2 className="ui header username grey inverted input" style={styles.username}>
               <span style={styles.at}>@</span>
