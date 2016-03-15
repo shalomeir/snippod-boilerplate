@@ -9,7 +9,7 @@ import { shortenString } from 'utils/handleString';
 import { checkAuth } from 'helpers/authChecker';
 import { getHostPathFromUrl } from 'utils/transformUrl';
 import classNames from 'classnames';
-import { intlShape, defineMessages } from 'react-intl';
+import { injectIntl, intlShape, defineMessages } from 'react-intl';
 
 import { Link as LinkComponent } from 'react-router';
 const Link = Radium(LinkComponent);
@@ -30,6 +30,7 @@ const i18n = defineMessages({
   null,
   { upvoteComment, cancelUpvoteComment }
 )
+@injectIntl
 @Radium
 export default class Comment extends Component {
   static propTypes = {

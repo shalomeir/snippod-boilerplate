@@ -51,7 +51,7 @@ const mapStateToProps = createSelector([
 @Radium
 export default class User extends Component {
   static propTypes = {
-    intl: PropTypes.object.isRequired,
+    intl: intlShape.isRequired,
     auth: PropTypes.object.isRequired,
     account: PropTypes.object,
     params: PropTypes.object.isRequired,

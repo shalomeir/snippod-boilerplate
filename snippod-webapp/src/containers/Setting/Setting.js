@@ -270,7 +270,8 @@ export default class Setting extends Component {
     );
 
     const settingChangePassword = (
-      <form className={classNames('ui large form content', { 'error': (invalid && passwordFormChanged) })} onSubmit={handleSubmit(this._changePasswordSubmit)}>
+      <form className={classNames('ui large form content', { 'error': (invalid && passwordFormChanged) })}
+            onSubmit={handleSubmit(this._changePasswordSubmit)}>
         <div className="ui segment" style={styles.settingSegment}>
           <div className={classNames('field', { 'error': (password.invalid && passwordFormChanged) })}>
             <label><FormattedMessage {...i18n.password} /></label>
@@ -292,7 +293,7 @@ export default class Setting extends Component {
               { errors.confirmPassword && errors.confirmPassword.id ? <FormattedMessage {...errors.confirmPassword} /> : errors.confirmPassword ? errors.confirmPassword : null}
             </div>
           </div>
-          <button type="submit" className={classNames('ui fluid large blue submit button', { 'loading': submitting })}
+          <button type="submit" className={classNames('ui fluid large blue button', { 'loading': submitting })}
                   disabled={submitting || invalid} >
             <FormattedMessage {...i18n.changePasswordButton} />
           </button>
@@ -325,9 +326,8 @@ export default class Setting extends Component {
       </div>
     );
 
-
     const settingDom = (
-      <div className="ui styled settings accordion">
+      <div className="ui styled fluid settings accordion">
         <div className="title ui setting header active" style={styles.settingHeader}>
           <i className="dropdown icon"/>
           {formatMessage(i18n.language)}

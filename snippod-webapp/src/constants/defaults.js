@@ -10,7 +10,12 @@ const defaults = {
 
   v1: {
     defaultLang: 'en'
-  }
+  },
+
+  localesMyAppSupports: [
+    'en',
+    'ko'
+  ]
 
 };
 

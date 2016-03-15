@@ -134,14 +134,13 @@ export default class Posts extends Component {
   }
 
   renderPost(post) {
-    const { intl, auth, type, option } = this.props;
+    const { auth, type, option } = this.props;
     if (post.deleted) return null;
 
     return (
       <div key={type + '-' + option + '-' + post.id} className="ui container"
            style={[radiumStyles.listMargin, radiumStyles.fullWidth]}>
         <Post post={post}
-              intl={intl}
               auth={auth}
               showLoginDialog={this.props.showLoginDialog}
               showConfirmCheckModal={this.onShowCheckModal}/>

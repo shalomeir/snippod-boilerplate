@@ -9,7 +9,7 @@ import { shortenString } from 'utils/handleString';
 import { checkAuth } from 'helpers/authChecker';
 import { getHostPathFromUrl } from 'utils/transformUrl';
 import classNames from 'classnames';
-import { intlShape, defineMessages } from 'react-intl';
+import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 
 import { Link as LinkComponent } from 'react-router';
 const Link = Radium(LinkComponent);
@@ -34,6 +34,7 @@ const i18n = defineMessages({
   null,
   { upvotePost, cancelUpvotePost }
 )
+@injectIntl
 @Radium
 export default class Post extends Component {
   static propTypes = {
@@ -136,7 +137,7 @@ export default class Post extends Component {
           <Link className="right floated comment-info" to={singlePostLocation}
                 onClick={this.props.onCommentsButton} disabled={disabledSelfLink}>
             <i className="comment icon" />
-            {formatMessage(i18n.comments, { commentCount: post.commentCount })}
+            <FormattedMessage {...i18n.comments} values={{ commentCount: post.commentCount }}/>
           </Link>
         </div>
       </div>

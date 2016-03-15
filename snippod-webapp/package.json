@@ -107,6 +107,7 @@
     "hoist-non-react-statics": "^1.0.3",
     "http-proxy": "^1.12.0",
     "intl": "~1.0.1",
+    "intl-locales-supported": "^1.0.0",
     "jquery": "^2.1.4",
     "less": "^2.5.3",
     "less-loader": "^2.2.1",

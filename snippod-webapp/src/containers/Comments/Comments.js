@@ -138,13 +138,12 @@ export default class Comments extends Component {
   }
 
   renderComment(comment) {
-    const { intl, auth } = this.props;
+    const { auth } = this.props;
     if (comment.deleted) return null;
 
     return (
       <div key={comment.id} className="ui comments" style={styles.commentContainer}>
         <Comment comment={comment}
-                 intl={intl}
                  auth={auth}
                  showLoginDialog={this.props.showLoginDialog}
                  showConfirmCheckModal={this.onShowCheckModal}/>

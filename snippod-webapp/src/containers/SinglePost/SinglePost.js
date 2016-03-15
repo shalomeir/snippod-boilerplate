@@ -89,7 +89,7 @@ const mapStateToProps = createSelector([
 @Radium
 export default class SinglePost extends Component {
   static propTypes = {
-    intl: PropTypes.object.isRequired,
+    intl: intlShape.isRequired,
     auth: PropTypes.object.isRequired,
     isShowModal: PropTypes.bool.isRequired,
     post: PropTypes.object,
@@ -156,13 +156,12 @@ export default class SinglePost extends Component {
   }
 
   renderPost(post) {
-    const { intl, auth } = this.props;
+    const { auth } = this.props;
 
     return (
       <Post key={post.id}
             style={styles.zIndexUp}
             post={post}
-            intl={intl}
             auth={auth}
             disabledSelfLink
             showLoginDialog={this.props.showLoginDialog}
