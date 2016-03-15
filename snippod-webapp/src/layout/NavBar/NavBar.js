@@ -98,7 +98,7 @@ export default class NavBar extends Component {
 
     const languageDropdown = (
       <div className="item" style={radiumStyles.hideAtMobile} >
-        <LanguageDropdown lang={lang} />
+        <LanguageDropdown lang={lang} className="navbar" />
       </div>
     );
 

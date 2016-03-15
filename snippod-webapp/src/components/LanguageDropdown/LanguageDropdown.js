@@ -21,16 +21,22 @@ export default class LanguageDropdown extends Component {
   static propTypes = {
     lang: PropTypes.string.isRequired,
     switchLangAndDeleteLanguageQuery: PropTypes.func.isRequired,
+    changeLang: PropTypes.func,
     className: PropTypes.string
   };
 
   componentDidMount() {
-    $('.ui.language.dropdown')
+    const dropdownComponentName = '.ui.language.dropdown' + this.props.className ? '.' + this.props.className : null;
+    $(dropdownComponentName)
       .dropdown('set selected', this.props.lang)
       .dropdown({
         onChange: (value) => {
           if (this.props.lang !== value) {
-            this.props.switchLangAndDeleteLanguageQuery(value);
+            if (this.props.changeLang) {
+              this.props.changeLang(value);
+            } else {
+              this.props.switchLangAndDeleteLanguageQuery(value);
+            }
           }
         }
       })
@@ -38,13 +44,15 @@ export default class LanguageDropdown extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.lang !== $('.ui.language.dropdown').dropdown('get value')) {
-      $('.ui.language.dropdown').dropdown('set selected', this.props.lang);
+    const dropdownComponentName = '.ui.language.dropdown' + this.props.className ? '.' + this.props.className : null;
+    if (this.props.lang !== $(dropdownComponentName).dropdown('get value')) {
+      $(dropdownComponentName).dropdown('set selected', this.props.lang);
     }
   }
 
   render() {
     const { lang, className } = this.props;
+
     return (
       <div className= {classNames('ui language floating dropdown labeled icon button', className)} ref="langSwitcher"
            style={ styles.dropdown }>

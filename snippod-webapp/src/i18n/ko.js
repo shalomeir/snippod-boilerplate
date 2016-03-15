@@ -55,9 +55,12 @@ export default {
   "setting.header": "셋팅",
   "setting.subHeader": "사용하는 언어를 설정하거나 비밀번호를 바꿔보세요.",
   "setting.language": "언어",
+  "setting.myLanguage": "내 언어",
   "setting.changePassword": "비밀번호 변경",
   "setting.changePasswordButton": "변경요청",
   "setting.deleteAccount": "계정삭제",
+  "setting.confirmCheckModalHeader": "내 계정 삭제",
+  "setting.confirmCheckModalDescription": "정말 이 계정을 삭제하시겠어요?",
 
   //Component
   "comp.authButtons.loginButton": "로그인",

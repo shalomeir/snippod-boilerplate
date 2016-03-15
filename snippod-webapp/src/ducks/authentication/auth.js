@@ -1,5 +1,5 @@
 const debug = require('utils/getDebugger')('auth');
-import { switchLangAndDeleteLanguageQuery, reloadPage } from 'ducks/application/application';
+import { switchLangAndDeleteLanguageQuery, reloadPage, pushPath } from 'ducks/application/application';
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
 import Schemas from 'ducks/Schemas';
@@ -138,6 +138,20 @@ export default function reducer(state = initialState, action = {}) {
         account: action.response.entities.accounts[action.response.result],
       };
     case UPDATE_ACCOUNT_SETTINGS_FAIL:
+      return {
+        ...state,
+        error: action.error
+      };
+
+    case DESTROY_ACCOUNT:
+      return state;
+    case DESTROY_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        loggedIn: false,
+        account: null
+      };
+    case DESTROY_ACCOUNT_FAIL:
       return {
         ...state,
         error: action.error
@@ -286,22 +300,19 @@ export function updateAccountPassword(account) {
   };
 }
 
-export function destroyAccount(account) {
+export function destroyAccount(accountId) {
   return {
     types: [DESTROY_ACCOUNT, DESTROY_ACCOUNT_SUCCESS, DESTROY_ACCOUNT_FAIL],
-    promise: (client) => client.del('/accounts/' + account.id + '/', {
-      data: {
-        id: account.id
-      }
-    })
+    promise: (client) => client.del('/accounts/' + accountId + '/')
   };
 }
 
-export function deleteAccountAndFollow(account) {
+export function deleteAccountAndFollow() {
   return (dispatch, getState) => {
     dispatch(
-      destroyAccount(account)
+      destroyAccount(getState().auth.account.id)
     ).then((response) => {
+      dispatch(pushPath('/'));
       dispatch(reloadPage());
       dispatch(showDelayedToastMessage({
         type: 'info',

@@ -1,17 +1,16 @@
-# **Snippod-Webapp-Boilerplate**
+# **Snippod-Webapp-Demo-Boilerplate**
 
 
 ---
 
 ## About
 
-This is a starter boiler plate web app for client side of [**Snippod-Boilerplate**](https://github.com/shalomeir/snippod-boilerplate).
+This is a web app for client side of [**Snippod-Boilerplate**](https://github.com/shalomeir/snippod-boilerplate).
 This is combined based on the following repositories: 
 
 * [React Redux Universal Hot Example](https://github.com/erikras/react-redux-universal-hot-example)
 * [Redux Real-World Example](https://github.com/rackt/redux/tree/master/examples/real-world)
 
-And front demo application design is based on [Evan's React News](https://github.com/echenley/react-news).
 We use these repositories and technologies to build front web application and api call with django REST Framework API.
 
 ## Installation

@@ -6,7 +6,7 @@
 
 [**Snippod-Boilerplate**](https://github.com/shalomeir/snippod-boilerplate) is a webapp baseline sample program using react+flux and django REST architectures. This program was made for **Snippod's baseline**.
 We'd like to build this starter kit based on full stack single page web application architecture.
-Snippod's architecture used a this kind of technology, **React + Flux (RefluxJS) + django REST framewrok + RDBMS**.
+Snippod's architecture used a this kind of technology, **React + Flux (Redux) + django REST framewrok + RDBMS**.
 [This stack](https://www.gliffy.com/go/publish/7756603) is presented by diagram too.
 
 You can check out the hosted version [**DEMO**](http://snippod-boilerplate-dev.elasticbeanstalk.com/) at [http://snippod-boilerplate-dev.elasticbeanstalk.com/](http://snippod-boilerplate-dev.elasticbeanstalk.com/).
@@ -22,8 +22,8 @@ We made this using these technologies.
 
 * [React](http://facebook.github.io/react/)
 * [Redux](https://github.com/gaearon/redux)
-* [Immutable js](http://facebook.github.io/immutable-js/)
 * [Django](https://www.djangoproject.com/) and [Djnago REST Framework](http://www.django-rest-framework.org/)
+* [Semantic UI](http://semantic-ui.com/)
 
 ## Getting Started
 Preliminaries :
@@ -102,4 +102,4 @@ Contributions, questions and comments are all welcome and encouraged.
 ## License
 [MIT License](http://opensource.org/licenses/MIT).
 
-Copyright 2015 [Seonggyu Lee](http://www.shalomeir.com/).
+Copyright 2016 [Seonggyu Lee](http://www.shalomeir.com/).

@@ -11,10 +11,17 @@ const styles = {
     fontWeight: 'initial'
   },
 
-  changePasswordStack: {
+  settingSegment: {
     maxWidth: '27em',
     margin: 'auto'
-  }
+  },
+
+  settingLabel: {
+    fontSize: '0.92857em',
+    fontWeight: 'bold',
+    color: 'rgba(0, 0, 0, 0.77)',
+    marginRight: '1.6em'
+  },
 
 };
 

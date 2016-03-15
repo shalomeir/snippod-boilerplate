@@ -16,7 +16,7 @@ import { switchLangAndDeleteLanguageQuery } from 'ducks/application/application'
 import { showDelayedToastMessage } from 'ducks/messages/toastMessage';
 import toastMessages from 'i18nDefault/toastMessages';
 
-import { logoutAndFollow } from 'ducks/authentication/auth';
+import { LanguageDropdown, ConfirmCheckModal } from 'components';
 
 import settingValidation from './settingValidation';
 
@@ -37,6 +37,11 @@ const i18n = defineMessages({
   language: {
     id: 'setting.language',
     defaultMessage: 'Language'
+  },
+
+  myLanguage: {
+    id: 'setting.myLanguage',
+    defaultMessage: 'My Language'
   },
 
   password: {
@@ -64,6 +69,17 @@ const i18n = defineMessages({
     defaultMessage: 'Delete account'
   },
 
+  confirmCheckModalHeader: {
+    id: 'setting.confirmCheckModalHeader',
+    defaultMessage: 'Delete My Account'
+  },
+
+  confirmCheckModalDescription: {
+    id: 'setting.confirmCheckModalDescription',
+    defaultMessage: 'Are you sure you want to delete this account?'
+  },
+
+
 });
 
 @connect(
@@ -72,7 +88,7 @@ const i18n = defineMessages({
   ], (auth) => {
     return { auth };
   }),
-  { logoutAndFollow }
+  { updateAccountSettings, showDelayedToastMessage, switchLangAndDeleteLanguageQuery, deleteAccountAndFollow }
 )
 @reduxForm({
   form: 'setting',
@@ -85,7 +101,10 @@ export default class Setting extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
     auth: PropTypes.object.isRequired,
-    logoutAndFollow: PropTypes.func.isRequired,
+    updateAccountSettings: PropTypes.func.isRequired,
+    showDelayedToastMessage: PropTypes.func.isRequired,
+    switchLangAndDeleteLanguageQuery: PropTypes.func.isRequired,
+    deleteAccountAndFollow: PropTypes.func.isRequired,
 
     fields: PropTypes.object.isRequired,
     error: PropTypes.string,
@@ -104,9 +123,14 @@ export default class Setting extends Component {
     this.state = {
       isFetching: false,
       passwordFormChanged: false,
+      showCheckModal: false
     };
     this._changePasswordSubmit = this._changePasswordSubmit.bind(this);
     this._resetForm = this._resetForm.bind(this);
+    this.changeAccountLanguage = this.changeAccountLanguage.bind(this);
+    this.onShowCheckModal = this.onShowCheckModal.bind(this);
+    this.onCloseCheckModal = this.onCloseCheckModal.bind(this);
+    this.onConfirmCheckModal = this.onConfirmCheckModal.bind(this);
   }
 
   componentDidMount() {
@@ -164,6 +188,38 @@ export default class Setting extends Component {
     }
   }
 
+  onShowCheckModal() {
+    this.setState({
+      showCheckModal: true
+    });
+  }
+
+  onCloseCheckModal() {
+    this.setState({
+      showCheckModal: false
+    });
+  }
+
+  onConfirmCheckModal() {
+    this.props.deleteAccountAndFollow();
+  }
+
+  changeAccountLanguage(lang) {
+    this.props.updateAccountSettings({ id: this.props.auth.account.id, language: lang })
+      .then((response) => {
+        const account = response.entities.accounts[response.result];
+        this.props.showDelayedToastMessage({
+          type: 'info',
+          title: toastMessages.changeLanguageTitle,
+          body: toastMessages.changeLanguageBody
+        }, 300);
+        this.props.switchLangAndDeleteLanguageQuery(account.language.split('-')[0]);
+      }).catch((error) => {
+        console.log(error);
+      })
+    ;
+  }
+
   _changePasswordSubmit(values, dispatch) {
     this.props.initializeForm();
     return new Promise((resolve, reject) => {
@@ -198,11 +254,24 @@ export default class Setting extends Component {
       submitting } = this.props;
     const { isFetching, passwordFormChanged } = this.state;
 
-    const settingLanguage = (<div>sss langu</div>);
+    if (auth.loggedIn === false) {
+      return (
+        <div className="setting ui text container main-container">
+          <Helmet title="Setting" />
+        </div>
+      );
+    }
+
+    const settingLanguage = (
+      <div className="ui compact segment" style={styles.settingSegment}>
+        <label style={styles.settingLabel}><FormattedMessage {...i18n.myLanguage} /></label>
+        <LanguageDropdown lang={auth.account.language.split('-')[0]} changeLang={this.changeAccountLanguage} className="setting"/>
+      </div>
+    );
 
     const settingChangePassword = (
       <form className={classNames('ui large form content', { 'error': (invalid && passwordFormChanged) })} onSubmit={handleSubmit(this._changePasswordSubmit)}>
-        <div className="ui stacked segment" style={styles.changePasswordStack}>
+        <div className="ui segment" style={styles.settingSegment}>
           <div className={classNames('field', { 'error': (password.invalid && passwordFormChanged) })}>
             <label><FormattedMessage {...i18n.password} /></label>
             <div className="ui left icon password input">
@@ -234,7 +303,28 @@ export default class Setting extends Component {
       </form>
     );
 
-    const settingDeleteAccount = (<div>sss delete account</div>);
+    const confirmCheckModalIconCom = (
+      <i className="remove circle outline icon" style={styles.confirmIcon} />
+    );
+
+    const settingDeleteAccount = (
+      <div className="ui basic center aligned segment" style={styles.settingSegment}>
+        <button className="ui red big button" type="button"
+             onClick={this.onShowCheckModal}>
+          <i className="remove user icon"/>
+          {formatMessage(i18n.deleteAccount)}
+        </button>
+        <ConfirmCheckModal key="setting-delete-account-confirm-check-modal"
+                           id="setting-delete-account-confirm-check-modal"
+                           showOn={this.state.showCheckModal}
+                           header={formatMessage(i18n.confirmCheckModalHeader)}
+                           description={formatMessage(i18n.confirmCheckModalDescription)}
+                           iconDom={confirmCheckModalIconCom}
+                           onClose={this.onCloseCheckModal}
+                           onConfirm={this.onConfirmCheckModal}/>
+      </div>
+    );
+
 
     const settingDom = (
       <div className="ui styled settings accordion">
