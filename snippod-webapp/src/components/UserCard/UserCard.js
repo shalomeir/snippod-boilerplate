@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 
 import $ from 'jquery';
 import { shortenString } from 'utils/handleString';
@@ -20,15 +20,23 @@ const i18n = defineMessages({
     id: 'userCard.language',
     defaultMessage: 'Language'
   },
+
   korean: {
     id: 'userCard.korean',
     defaultMessage: 'Korean'
   },
+
+  editButton: {
+    id: 'userCard.editButton',
+    defaultMessage: 'Edit'
+  }
 });
 
+@injectIntl
 @Radium
 export default class UserCard extends Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     auth: PropTypes.object.isRequired,
     disabledSelfLink: PropTypes.bool,
     offEdited: PropTypes.func,
@@ -55,7 +63,7 @@ export default class UserCard extends Component {
   }
 
   render() {
-    const { auth, account, style } = this.props;
+    const { auth, account, style, intl: { formatMessage } } = this.props;
     const { editing } = this.state;
 
     if (editing) {
@@ -73,7 +81,7 @@ export default class UserCard extends Component {
     }
 
     const editButton = (<button className="ui basic inverted button"
-                                style={styles.editButton} onClick={this.onEditMode}><i className="edit icon"/>Edit</button>);
+                                style={styles.editButton} onClick={this.onEditMode}><i className="edit icon"/>{formatMessage(i18n.editButton)}</button>);
 
 
     const usernameDom = (

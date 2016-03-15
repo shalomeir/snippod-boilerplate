@@ -7,7 +7,7 @@ import { shortenString } from 'utils/handleString';
 
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { defineMessages, FormattedMessage } from 'react-intl';
+import { injectIntl, intlShape, defineMessages, FormattedMessage } from 'react-intl';
 import { reduxForm } from 'redux-form';
 
 import { Link as LinkComponent } from 'react-router';
@@ -32,6 +32,14 @@ const i18n = defineMessages({
     id: 'userCard.korean',
     defaultMessage: 'Korean'
   },
+  cancel: {
+    id: 'userCard.cancel',
+    defaultMessage: 'Cancel'
+  },
+  save: {
+    id: 'userCard.save',
+    defaultMessage: 'Save'
+  },
 });
 
 
@@ -42,9 +50,11 @@ const i18n = defineMessages({
 }, (state, props) => ({ // mapStateToProps
   initialValues: props.account // will pull props into form's initialValues
 }))
+@injectIntl
 @Radium
 export default class UserCardComposer extends Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     auth: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     className: PropTypes.string,
@@ -122,18 +132,19 @@ export default class UserCardComposer extends Component {
 
   render() {
     const { account, style, error, errors, fields: { username, description }, handleSubmit, invalid,
-      submitting } = this.props;
+      submitting, intl: { formatMessage } } = this.props;
     const { changed } = this.state;
 
     const editCompleteButtons = (
       <div className={classNames('ui inverted basic buttons')} style={styles.editButtons}>
-        <button className="ui button" onClick={this._closeEditor}>Cancel</button>
+        <button className="ui button" onClick={this._closeEditor}>{formatMessage(i18n.cancel)}</button>
         <button className={classNames('ui submit blue button', { 'loading': submitting })}
-                disabled={submitting || invalid} onClick={handleSubmit(this._onSubmit)}>Save</button>
+                disabled={submitting || invalid} onClick={handleSubmit(this._onSubmit)}>
+          <i className="save icon"/>{formatMessage(i18n.save)}
+        </button>
       </div>
     );
 
-    //TODO: Fix for mobile responsive design.
     return (
       <div className="user-card ui secondary inverted grey padded text raised segment center aligned"
            style={[radiumStyles.raisedCardBoxShadow, radiumStyles.paddingBySize, style]}>

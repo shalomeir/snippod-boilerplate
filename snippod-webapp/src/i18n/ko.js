@@ -48,6 +48,9 @@ export default {
 
   "userCard.language": "언어",
   "userCard.korean": "한국어",
+  "userCard.editButton": "수정",
+  "userCard.cancel": "취소",
+  "userCard.save": "저장",
 
   //Component
   "comp.authButtons.loginButton": "로그인",

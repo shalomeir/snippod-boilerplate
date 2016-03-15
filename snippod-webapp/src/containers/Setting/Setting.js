@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
 import Helmet from 'react-helmet';
 
 export default class Setting extends Component {
