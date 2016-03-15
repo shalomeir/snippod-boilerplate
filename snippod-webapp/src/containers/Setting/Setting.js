@@ -294,7 +294,7 @@ export default class Setting extends Component {
             </div>
           </div>
           <button type="submit" className={classNames('ui fluid large blue button', { 'loading': submitting })}
-                  disabled={submitting || invalid} >
+                  disabled={submitting || invalid} onClick={handleSubmit(this._changePasswordSubmit)}>
             <FormattedMessage {...i18n.changePasswordButton} />
           </button>
         </div>
