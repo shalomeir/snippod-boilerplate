@@ -273,3 +273,45 @@ export function updateAccountSettings(account) {
     })
   };
 }
+
+export function updateAccountPassword(account) {
+  return {
+    types: [UPDATE_ACCOUNT_PASSWORD, UPDATE_ACCOUNT_PASSWORD_SUCCESS, UPDATE_ACCOUNT_PASSWORD_FAIL],
+    promise: (client) => client.patch('/accounts/' + account.id + '/set_password/', {
+      data: {
+        password: account.password,
+        confirmPassword: account.confirmPassword
+      }
+    })
+  };
+}
+
+export function destroyAccount(account) {
+  return {
+    types: [DESTROY_ACCOUNT, DESTROY_ACCOUNT_SUCCESS, DESTROY_ACCOUNT_FAIL],
+    promise: (client) => client.del('/accounts/' + account.id + '/', {
+      data: {
+        id: account.id
+      }
+    })
+  };
+}
+
+export function deleteAccountAndFollow(account) {
+  return (dispatch, getState) => {
+    dispatch(
+      destroyAccount(account)
+    ).then((response) => {
+      dispatch(reloadPage());
+      dispatch(showDelayedToastMessage({
+        type: 'info',
+        title: toastMessages.deleteAccountTitle,
+        body: toastMessages.deleteAccountBody
+      }, 100));
+      return response;
+    }).catch((error) => {
+      debug('Error occurred : ', error);
+      return error;
+    });
+  };
+}

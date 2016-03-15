@@ -52,6 +52,13 @@ export default {
   "userCard.cancel": "취소",
   "userCard.save": "저장",
 
+  "setting.header": "셋팅",
+  "setting.subHeader": "사용하는 언어를 설정하거나 비밀번호를 바꿔보세요.",
+  "setting.language": "언어",
+  "setting.changePassword": "비밀번호 변경",
+  "setting.changePasswordButton": "변경요청",
+  "setting.deleteAccount": "계정삭제",
+
   //Component
   "comp.authButtons.loginButton": "로그인",
   "comp.authButtons.registerButton": "가입",
@@ -103,6 +110,15 @@ export default {
 
   "toast.logoutTitle": "로그아웃",
   "toast.logoutBody": "정상적으로 로그아웃 되었습니다.",
+
+  "toast.changeLanguageTitle": "언어설정 변경",
+  "toast.changeLanguageBody": "정상적으로 언어 설정이 변경되었습니다.",
+
+  "toast.changePasswordTitle": "비밀번호 변경 성공",
+  "toast.changePasswordBody": "정상적으로 비밀번호가 변경되었습니다.",
+
+  "toast.deleteAccountTitle": "계정삭제 성공",
+  "toast.deleteAccountBody": "정상적으로 계정이 삭제되었습니다.",
 
   "toast.submitPostTitle": "포스팅 성공",
   "toast.submitPostBody": "\'{postTitle}\' 포스트가 올라갔어요.",

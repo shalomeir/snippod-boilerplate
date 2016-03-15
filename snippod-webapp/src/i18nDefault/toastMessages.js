@@ -41,6 +41,34 @@ const toastMessages = defineMessages({
     defaultMessage: 'You are safely logout.' //empty
   },
 
+  changeLanguageTitle: {
+    id: 'toast.changeLanguageTitle',
+    defaultMessage: 'Language setup'
+  },
+  changeLanguageBody: {
+    id: 'toast.changeLanguageBody',
+    defaultMessage: 'Your account language setting were changed.' //empty
+  },
+
+  changePasswordTitle: {
+    id: 'toast.changePasswordTitle',
+    defaultMessage: 'Password change succeed'
+  },
+  changePasswordBody: {
+    id: 'toast.changePasswordBody',
+    defaultMessage: 'Your password were changed.' //empty
+  },
+
+  deleteAccountTitle: {
+    id: 'toast.deleteAccountTitle',
+    defaultMessage: 'Delete Account Succeed'
+  },
+
+  deleteAccountBody: {
+    id: 'toast.deleteAccountBody',
+    defaultMessage: 'Your account were deleted.' //empty
+  },
+
   //in containers/Posts/PostComposer
   submitPostTitle: {
     id: 'toast.submitPostTitle',
