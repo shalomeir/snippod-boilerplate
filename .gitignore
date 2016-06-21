@@ -17,6 +17,12 @@ snippod-webapp/dist/
 snippod-webapp/semantic/dist/
 snippod-webapp/semantic/examples/
 snippod-webapp/semantic/Semantic-UI-Docs/
+!snippod-webapp/semantic/tasks/build
+!snippod-webapp/semantic/dist
+!snippod-webapp/semantic/dist/*.js
+!snippod-webapp/semantic/dist/*.css
+snippod-webapp/semantic/dist/*/
+
 snippod-webapp/_translations
 snippod-webapp/*.iml
 snippod-webapp/webpack-stats.json
