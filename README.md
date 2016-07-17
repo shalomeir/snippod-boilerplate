@@ -1,6 +1,15 @@
-# **Snippod-Boilerplate**
+# **Snippod-Boilerplate (Deprecated)**
 
 [![Join the chat at https://gitter.im/shalomeir/snippod-boilerplate](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/shalomeir/snippod-boilerplate?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+## About
+This repository is deprecated. A [Reflux](https://github.com/spoike/refluxjs) and many other things are not valid these days. Furthermore, this is not a boilerplate anymore. So I upgraded many things and create a new repository to [here](https://github.com/shalomeir/snippod-starter-demo-app).
+
+**Go to the new [**Snippod-Starter-Demo-App**](https://github.com/shalomeir/snippod-starter-demo-app).**
+
+
+-----------
+## (Old)
 
 ## Overview
 
@@ -8,8 +17,6 @@
 We'd like to build this starter kit based on full stack single page web application architecture.
 Snippod's architecture used a this kind of technology, **React + Flux (RefluxJS) + django REST framewrok + RDBMS**.
 [This stack](https://www.gliffy.com/go/publish/7756603) is presented by diagram too.
-
-You can check out the hosted version [**DEMO**](http://snippod-boilerplate-dev.elasticbeanstalk.com/) at [http://snippod-boilerplate-dev.elasticbeanstalk.com/](http://snippod-boilerplate-dev.elasticbeanstalk.com/).
 
 ![Alt stack image](https://raw.githubusercontent.com/shalomeir/snippod-boilerplate/master/snippod-boilerplate-stack.png "Stack Diagram")
 
